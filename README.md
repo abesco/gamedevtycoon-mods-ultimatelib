@@ -7,8 +7,8 @@ UltimateLib
 
 Modules:
 --------------
-- List of modules
-- VisualTweaks
+- NameGenerator
+- VisualTweaks [BETA]
 
 
 
@@ -24,3 +24,10 @@ Terms of Use Agreement - For Modders:
 - Credit must be attributed 
 - Distrubution is only allowed if express permission is given. *i.e. Must be downloaded from this repo*
 - etc etc
+
+
+
+To Do:
+-------------
+
+- Amazing Module!
