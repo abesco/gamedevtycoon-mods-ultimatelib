@@ -1,11 +1,11 @@
-UltimateLib
+ULTIMATELIB
 =============================
 **UltimateLib is a library to empower the development of mods for GameDevTycoon.**
 
 *A project of alphabit and SirEverard from the GreenheartGames Community.*
 
 
-Modules:
+MODULES:
 --------------
 - NameGenerator
 - VisualTweaks [BETA]
@@ -13,27 +13,27 @@ Modules:
 
 
 
-How to Install:
+HOW TO INSTALL:
 --------------
 etc
 
 
-Terms of Use Agreement - For Modders:
+LICENSES :
 --------------
+This work is licensed under the <a rel="license" href="http://www.greenheartgames.com/legal/game-dev-tycoon-modding-agreement/">GDT Modding Agreement</a> with a small clause stating that any party wishing to use this mod in it's entirity must distribute it from this repo.
+There also may be 3rd party libraries included within the mod with their own non-conflicting respective licences **i.e. "Attribution-NonCommercial 4.0 International"**
 
-<a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-nc-nd/4.0/80x15.png" /></a><br />
-
-This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License</a>.
 
 **Short Version:**
-- **Do not distribute this with your mod. It must be downloaded from this repo.**
-- **Credit must be attributed to alphabit and SirEverard**
+- **Do not distribute this with you mod. It must be downloaded from this repo. Where all attributions are made to all 3rd-parties**
+- **Credit must be attributed to alphabit and SirEverard in you thread/readme/etc**
 
 
 
-To Do:
+TO DO:
 -------------
 
 - Amazing Module!
 -
+
 
