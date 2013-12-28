@@ -1,7 +1,7 @@
-
 UltimateLib
 =============================
 **UltimateLib is a library to empower the development of mods for GameDevTycoon.**
+
 *A project of alphabit and SirEverard from the Greenheartgames Community.*
 
 
