@@ -25,13 +25,9 @@ Terms of Use Agreement - For Modders:
 
 This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License</a>.
 
-**i.e.** 
+**Short Version:**
 - **Do not distribute this with your mod. It must be downloaded from this repo.**
 - **Credit must be attributed to alphabit and SirEverard**
-
-- Credit must be attributed 
-- Distrubution is only allowed if express permission is given. *i.e. Must be downloaded from this repo*
-- etc etc
 
 
 
