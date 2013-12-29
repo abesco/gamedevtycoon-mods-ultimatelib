@@ -1,5 +1,5 @@
 /**
- * @fileOverview Elements is an UltimateLib library providing easy dom elements access capabilities to UltimateLib
+ * @fileOverview Elements is an UltimateLib library providing easy DOM elements access capabilities to UltimateLib
  * @author alphabit and SirEverard
  * @version 1.0.0
  */
@@ -17,6 +17,7 @@ UltimateLib.Elements = (function() {
     
     self.Body           = $('body');
     self.SettingsPanel  = $('#settingsPanel');
-      
+    self.Head           = $('head');
+    
     return self;
 });
