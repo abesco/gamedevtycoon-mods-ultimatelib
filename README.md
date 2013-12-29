@@ -1,6 +1,6 @@
 ULTIMATELIB
 =============================
-**UltimateLib is a library to empower the development of mods for GameDevTycoon.**
+**UltimateLib is a library that aims to leverage and empower the development of plugin modules for GameDevTycoon.**
 
 *A project of alphabit and SirEverard from the GreenheartGames Community.*
 
@@ -17,18 +17,23 @@ HOW TO INSTALL:
 --------------
 etc
 
-
-LICENSES:
+LICENSE:
 --------------
-This work is licensed under the <a rel="license" href="http://www.greenheartgames.com/legal/game-dev-tycoon-modding-agreement/">GDT Modding Agreement</a> with a small clause stating that, any party wishing to use this mod in its entirety, must distribute it from the <a rel="repo" href="https://github.com/abesco/gamedevtycoon-mods-ultimatelib/">gamedevtycoon-mods-ultimatelib public repository</a>.
+This software is licensed under the GDT Modding Agreement with an additional clause stating that,
+any party wishing to use this software in its entirety, must distribute it from the gamedevtycoon-mods-ultimatelib
+public GitHub repository.
 
-There also may be 3rd party libraries included within this mod with their own (non-conflicting) respective licences *i.e. "Attribution-NonCommercial 4.0 International"*
+There also may be 3rd party libraries included used in and distributed with this software with their own (non-conflicting)
+respective licences i.e. the "Attribution-NonCommercial 4.0 International".
 
+In short:
 
-**Short Version:**
-- **Do not distribute this with you mod. It must be downloaded from this repo. Where all attributions are made to all 3rd-parties.**
-- **Credit must be attributed to alphabit and SirEverard in you thread/readme/etc.**
-
+ Do not distribute this software with your own software (in particular with your own GDT addin module).
+ The usage of this software is only allowed when downloaded from this repository and installed properly.
+ You are not allowed to copy, modify, merge, publish, distribute, sublicense, and/or distribute copies of this software without the permission of the project founders.
+ All attributions to 3rd-parties have to be implemented.
+ Credits must be attributed to alphabit and SirEverard in your public threads / readme / etc. (i.e. powered by UltimateLib).
+ 
 ATTRIBUTIONS & CONTRIBUTIONS:
 --------------
 
