@@ -11,8 +11,7 @@
  * @namespace GDT
 */
 
-var UltimateLib = UltimateLib || {};
-(function(self) {       
+var UltimateLib = (function(self) {       
     /**
      * Gets a file list from ./mods/UltimateLib/SECTION
      * @private
@@ -41,7 +40,7 @@ var UltimateLib = UltimateLib || {};
                 }
             }
             catch(ex){
-                UltimateLib.Logger.log('UltimateLib.getFiles - Could not use acquire info on ' + f, ex);
+                self.Logger.log('UltimateLib.getFiles - Could not use acquire info on ' + f, ex);
             }
         }
         
@@ -59,8 +58,7 @@ var UltimateLib = UltimateLib || {};
         var sections = ['3rd','libs'];
         
         var js = [];
-        
-        
+
         $.each(sections, function(i, section){
             var files = getFiles(section);
             $.each(files, function(j, file){
@@ -85,16 +83,21 @@ var UltimateLib = UltimateLib || {};
     };
 
     self.loaded = function(){
+        
+        // callee is this method
+        // caller the GDT event
+        // console.log(arguments.callee.caller);
+                    
         self.isLoaded = true;
-        UltimateLib.Logger.log("UltimateLib Libraries have been loaded.");
+        self.Logger.log("UltimateLib Libraries have been loaded.");
                
         // Call "init" methods on all loaded libraries where applicable
         $.each( self.libraries, function(i,v){
-            var lib     = UltimateLib[v.name];
-            var init    = lib ? lib.init : undefined;
-            
-            if(typeof init != 'undefined'){
-                UltimateLib.Logger.log("Calling init function of "+v.name+" ("+v.file+").");
+            var lib     =   self[v.name];
+            var init    = lib ? lib.init : null;
+
+            if(init != null){
+                self.Logger.log("Calling init function of "+v.name+" ("+v.file+").");
                 init();
             }
         });
@@ -104,4 +107,4 @@ var UltimateLib = UltimateLib || {};
     self.isLoaded = false;
     
     return self;
-})(UltimateLib);
+})(UltimateLib || {});

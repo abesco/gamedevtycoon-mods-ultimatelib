@@ -5,9 +5,7 @@
  * @constructor
  * @augments UltimateLib
  */
-UltimateLib.Research = (function() {
-    var self = this;
-    
+UltimateLib.Research = (function(self) {
     // Show up in console
     UltimateLib.Logger.log("UltimateLib.Research loading...");
 
@@ -115,4 +113,4 @@ UltimateLib.Research = (function() {
     UltimateLib.Logger.log("UltimateLib.Research loaded :-)");
         
     return self;
-})();
+})(UltimateLib.Research || {});

@@ -1,4 +1,4 @@
-UltimateLib.Test = (function(){
+UltimateLib.Test = (function(self){
     var self = this;
     
     // Show up in console
@@ -16,4 +16,4 @@ UltimateLib.Test = (function(){
     UltimateLib.Logger.log("UltimateLib.Test loaded :-)");
     
     return self;
-})();
+})(UltimateLib.Test || {});

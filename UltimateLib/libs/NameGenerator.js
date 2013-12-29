@@ -1,9 +1,7 @@
-UltimateLib.NameGenerator = (function(){
-    var self = this;
-    
+UltimateLib.NameGenerator = (function(self){
     // Show up in console
     UltimateLib.Logger.log("UltimateLib.NameGenerator loading...");
-
+    
     /**
      * @description Initializes the module.
      * @public
@@ -39,4 +37,4 @@ UltimateLib.NameGenerator = (function(){
     UltimateLib.Logger.log("UltimateLib.NameGenerator loaded :-)");
 
     return self;    
-})();
+})(UltimateLib.NameGenerator || {});

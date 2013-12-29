@@ -5,7 +5,7 @@
  * @constructor
  * @augments UltimateLib
  */
-UltimateLib.VisualTweaks = (function() {
+UltimateLib.VisualTweaks = (function(self) {
     var self = this;
     
     // Show up in console
@@ -61,4 +61,4 @@ UltimateLib.VisualTweaks = (function() {
     UltimateLib.Logger.log("UltimateLib.VisualTweaks loaded :-)");
 
     return self;
-})();
+})(UltimateLib.VisualTweaks || {});
