@@ -5,6 +5,28 @@ ULTIMATELIB
 *A project of alphabit and SirEverard from the GreenheartGames Community.*
 
 
+
+
+HOW TO INSTALL:
+--------------
+- Unpack the contents of the downloaded file (usually a ZIP package) into your GameDevTycoon "mods" folder
+- You should have a folder called "UltimateLib" inside your "mods" folder.
+- Before installing a new version, we always recommend to remove the older version and install from scratch (always backup your files if in doubt)
+
+
+ATTRIBUTIONS & CONTRIBUTIONS:
+--------------
+
+**<a href="http://forum.greenheartgames.com/">GreenheartGames Forums:</a>**
+- <a href="hhttps://github.com/abesco/">alphabit</a> - Founder
+- <a href="https://github.com/SirEverard/">SirEverard</a> - Founder
+
+**3rd Party:**
+- Foswig - <a href="https://github.com/mrsharpoblunto/foswig.js/">foswig on GitHub</a>, Licensed under the MIT license.
+
+
+MODDERS README SECTION
+=============================
 MODULES:
 --------------
 - NameGenerator - Name generation for games, characters, companys etc.
@@ -16,12 +38,6 @@ MODULES:
 - Configuration - Provides special functionality for enhancing the in-game settings UI by providing possibility to add custom content and settings items
 
 *all modules subject to change and currently constantly under development
-
-HOW TO INSTALL:
---------------
-- Unpack the contents of the downloaded file (usually a ZIP package) into your GameDevTycoon "mods" folder
-- You should have a folder called "UltimateLib" inside your "mods" folder.
-- Before installing a new version, we always recommend to remove the older version and install from scratch (always backup your files if in doubt)
 
 LICENSES:
 --------------
@@ -40,16 +56,6 @@ respective licences i.e. the "Attribution-NonCommercial 4.0 International".
 - All attributions to 3rd-parties have to be implemented.
 - Credits must be attributed to alphabit and SirEverard in your public threads / readme / etc. (i.e. powered by UltimateLib).
  
-ATTRIBUTIONS & CONTRIBUTIONS:
---------------
-
-**<a href="http://forum.greenheartgames.com/">GreenheartGames Forums:</a>**
-- <a href="hhttps://github.com/abesco/">alphabit</a> - Founder
-- <a href="https://github.com/SirEverard/">SirEverard</a> - Founder
-
-**3rd Party:**
-- Foswig - <a href="https://github.com/mrsharpoblunto/foswig.js/">foswig on GitHub</a>, Licensed under the MIT license.
-
 
 TO DO :
 -------------
