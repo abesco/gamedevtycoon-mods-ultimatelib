@@ -1,4 +1,12 @@
-UltimateLib.NameGenerator = (function(self){
+/**
+ * @fileOverview NameGenerator provides different name generating providers for easy and variable generation of various name types.
+ * @author alphabit
+ * @version 1.0.0
+ * @description NameGenerator provides different name generating providers for easy and variable generation of various name types.
+ * @constructor
+ * @augments UltimateLib
+ */
+ UltimateLib.NameGenerator = (function(self){
     // Show up in console
     UltimateLib.Logger.log("UltimateLib.NameGenerator loading...");
     
@@ -7,7 +15,7 @@ UltimateLib.NameGenerator = (function(self){
      * @public
     */ 
     self.init = function(){
-        UltimateLib.Logger.log("UltimateLib.NameGenerator init ran.");
+        
     };
     
 

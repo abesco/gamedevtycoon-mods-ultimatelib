@@ -1,7 +1,24 @@
-UltimateLib.Dialog = (function(self){
+/**
+ * @fileOverview Dialog is an UltimateLib library class providing dialog creation capabilities i.e. for use with PopupMenu.
+ * @author alphabit
+ * @version 1.0.0
+ * @description Dialog is an UltimateLib library class providing dialog creation capabilities i.e. for use with PopupMenu.
+ * @constructor
+ * @augments UltimateLib
+ */
+ UltimateLib.Dialog = (function(self){
     // Show up in console
     UltimateLib.Logger.log("UltimateLib.Dialog loading...");
     
+    /**
+     * @description Creates a dialog button and returns it as a wrapped jQuery element object for further usage
+     * @param {string} A name (id) for the dialog button. Additional element names will be automatically extended as required.  
+     * @param {string} Text (Title) of the button
+     * @param {string|int} The width of the button  (as integer or css string)
+     * @param {string|int} The height of the button  (as integer or css string)
+     * @param {string} A string indicating the callback function to call (i.e. UI.myCallBackOnUIClick)
+     * @public
+    */        
     self.createButton = function(name, text, width, height, onclick) {
         var el = $(document.createElement('div'));
         
@@ -13,6 +30,13 @@ UltimateLib.Dialog = (function(self){
         return el;
     };
     
+    /**
+     * @description Creates a dialog section and returns it as a wrapped jQuery element object for further usage
+     * @param {string} A name (id) for the dialog element. Additional element names will be automatically extended with "Section", "SectionTitle", etc.  
+     * @param {string} Text (Title) of the section label
+     * @param {array} An array of buttons to show in the dialog section (use createButton to create each button)  
+     * @public
+    */                
     self.createSection = function(name, text, buttons){
         var idSection       = name + "Section";
         var idSectionTitle  = name + "SectionTitle";
@@ -33,6 +57,13 @@ UltimateLib.Dialog = (function(self){
         return section;
     };
             
+    /**
+     * @description Creates a dialog and returns it as a wrapped jQuery element object for further usage
+     * @param {string} A name (id) for the dialog element. Additional element names will be automatically extended with "Modal", "Container", etc.  
+     * @param {string} Text (Title) of the dialog
+     * @param {array} An array of sections to show on the dialog (use createSection to create each section)  
+     * @public
+    */                
     self.createDialog = function(name, text, sections){
         var idModalDialog       = name + "Modal";
         var idDialogContainer   = name + "Container";

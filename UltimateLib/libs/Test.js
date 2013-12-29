@@ -1,4 +1,11 @@
-UltimateLib.Test = (function(self){
+/**
+ * @fileOverview This is a simple test module
+ * @version 1.0.0
+ * @author alphabit
+ * @constructor
+ * @augments UltimateLib
+ */
+ UltimateLib.Test = (function(self){
     // Show up in console
     UltimateLib.Logger.log("UltimateLib.Test loading...");
         

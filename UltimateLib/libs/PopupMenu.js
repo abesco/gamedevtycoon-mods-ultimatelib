@@ -1,4 +1,12 @@
-UltimateLib.PopupMenu = (function(self){
+/**
+ * @fileOverview PopupMenu provides simplified creation and access to popup menu within the game. Allows to create custom menu items for implementing custom functionality.
+ * @author alphabit
+ * @version 1.0.0
+ * @description PopupMenu provides simplified creation and access to popup menu within the game. Allows to create custom menu items for implementing custom functionality.
+ * @constructor
+ * @augments UltimateLib
+ */
+ UltimateLib.PopupMenu = (function(self){
     // Show up in console
     UltimateLib.Logger.log("UltimateLib.PopupMenu loading...");
         
@@ -13,7 +21,10 @@ UltimateLib.PopupMenu = (function(self){
         UltimateLib.Logger.log("UltimateLib.PopupMenu init ran.");
     };
         
-     
+    /**
+     * @description This has to be reviewed. -- Under Development -- Ignore please.
+     * @public
+    */      
     UI.selectInfoStatsModItemClickHandler = function (a) {
             Sound.click();
             switch (a.id) {
@@ -55,7 +66,10 @@ UltimateLib.PopupMenu = (function(self){
             }
     };  
 
-    
+    /**
+     * @description Updates the context menu by recreating customizations.
+     * @public
+    */     
     self.update = function(){
         origContextMenu = UI._showContextMenu;
         
@@ -106,10 +120,22 @@ UltimateLib.PopupMenu = (function(self){
         UI._showContextMenu = newContextMenu;
     };
     
+    /**
+     * @description Adds a PopupMenu Item to the internal list
+     * @param {string, element, bool} A PopupMenu Item (use createItem for simple creation)  
+     * @public
+    */      
     self.addItem = function(item){
         menuItems.push(item);
     };
          
+    /**
+     * @description Creates a PopupMenu Item object
+     * @param {string} The text to display (label / caption)
+     * @param {string} The dialog element (i.e. created with UltimateLib.Dialog class)
+     * @param {string} Setup true to pause the game while the dialog is open, otherwise false.
+     * @public
+    */            
     self.createItem = function(text, dialogElement, usePause){
         return {label: text, el: dialogElement, pause: usePause};
     };
