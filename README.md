@@ -13,6 +13,7 @@ MODULES:
 - Dialog - Simplify creation of GDT modal dialogs (i.e. for usage in popup menus)
 - PopupMenu - Simplify the creation of GDT popup menu entries
 - Elements - Simplify access to specific $DOM elements 
+- Configuration - Provides special functionality for enhancing the in-game settings UI by providing possibility to add custom content and settings items
 
 *all modules subject to change and currently constantly under development
 
