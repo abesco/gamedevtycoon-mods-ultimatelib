@@ -5,5 +5,5 @@
 	"author":"alphabit and SirEverard",
 	"url":"",
 	"description" : "Test Mod for UltimateLib.",
-	"main" : "./UltimateTestMod.js"
+	"main" : "./UltimateLibTestMod.js"
 }

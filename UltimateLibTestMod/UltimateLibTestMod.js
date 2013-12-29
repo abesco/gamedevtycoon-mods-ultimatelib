@@ -6,6 +6,6 @@
     var error = function () {
     };
 
-    GDT.loadJs(['mods/UltimateTestMod/test.js'], ready, error);
+    GDT.loadJs(['mods/UltimateLibTestMod/test.js'], ready, error);
 })();
 
