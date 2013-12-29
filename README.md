@@ -14,7 +14,9 @@ MODULES:
 
 HOW TO INSTALL:
 --------------
-etc
+- Unpack the contents of the downloaded file (usually a ZIP package) into your GameDevTycoon "mods" folder
+- You should have a folder called "UltimateLib" inside your "mods" folder.
+- Before installing a new version, we always recommend to remove the older version and install from scratch (always backup your files if in doubt)
 
 LICENSES:
 --------------
