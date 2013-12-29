@@ -81,7 +81,7 @@ UltimateLib.Research = (function() {
 	*/  
 	self.addLab = function (research) {
 		if (!labCheck(research)) {
-			UltimateLib.Logger.log("Special Research Failed Compatiblity Check. " + research);
+			UltimateLib.Logger.log("Lab Research Failed Compatiblity Check. " + research);
 			return; 
 		};
 		Research.bigProjects.push(research);	
