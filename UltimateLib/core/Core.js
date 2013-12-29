@@ -1,5 +1,4 @@
-/**
- * @file  
+/** 
  * @fileOverview UltimateLib is a library that aims to leverage and empower the development of plugin modules for GameDevTycoon
  * @author alphabit and SirEverard
  * @version 1.0.0

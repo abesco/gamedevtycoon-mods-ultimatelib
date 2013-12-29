@@ -1,7 +1,7 @@
 /**
- * Loader for the UltimateLib class. 
- * This class handles all the loading work for including the libraries
- * related to this package.
+ * @fileOverview Loader for the UltimateLib class. This class handles all the loading work for including the libraries related to this package.
+ * @version 1.0.0
+ * @author alphabit
  * @constructor
  * @augments UltimateLib
  */
@@ -9,9 +9,10 @@ UltimateLib.Loader = (function() {
     var self = this;
     
     /**
-     * Gets a file list from ./mods/UltimateLib/SECTION
+     * @description Gets a file list from ./mods/UltimateLib/SECTION
      * @private
      * @param {string} section The name the section to search .js files from
+     * @returns All modules/libs of UltimateLib
     */
     function getFiles(section){
         var outFiles    = [];
@@ -43,7 +44,7 @@ UltimateLib.Loader = (function() {
     }
   
     /**
-     * Automatically loads all the scripts from UltimateLib, thus including any 3rd party lib
+     * @description Automatically loads all the scripts from UltimateLib, thus including any 3rd party lib
      * @public
     */    
     self.load = function(){

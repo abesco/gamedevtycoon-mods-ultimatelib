@@ -38,7 +38,7 @@ In short
 
 (function () {
     var ready = function () {
-        UltimateLib.Logger.enabled = true;
+        //UltimateLib.Logger.enabled = true;
         UltimateLib.Loader.load();
     };
 
