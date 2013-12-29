@@ -6,8 +6,11 @@
  */
 
 /**
-* @namespace The Ultimate Library for GameDevTycoon. Access all the related libraries from here. This class hooks into GDT.
+ * @description Ultimate provides access to library related functionality as well as access all the related libraries from here. This class hooks into GDT.
+ * @constructor
+ * @namespace GDT
 */
+
 var UltimateLib = UltimateLib || 
 (function() {
     var self = this;
