@@ -42,7 +42,7 @@ ATTRIBUTIONS & CONTRIBUTIONS:
  
 
 **3rd Party:**
-- Mr X - <a href="somewebsite">SomeLib</a>
+- Foswig - <a href="https://github.com/mrsharpoblunto/foswig.js/">foswig on GitHub</a>, Licensed under the MIT license.
 
 
 TO DO :
