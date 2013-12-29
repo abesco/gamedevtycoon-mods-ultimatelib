@@ -5,9 +5,7 @@
  * @constructor
  * @augments UltimateLib
  */
-UltimateLib.VisualTweaks = (function(self) {
-    var self = this;
-    
+UltimateLib.VisualTweaks = (function(self) {    
     // Show up in console
     UltimateLib.Logger.log("UltimateLib.VisualTweaks loading...");
     

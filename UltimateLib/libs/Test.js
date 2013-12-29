@@ -1,6 +1,4 @@
 UltimateLib.Test = (function(self){
-    var self = this;
-    
     // Show up in console
     UltimateLib.Logger.log("UltimateLib.Test loading...");
         
