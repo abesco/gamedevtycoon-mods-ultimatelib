@@ -27,6 +27,11 @@
         UltimateLib.PopupMenu.addItem({label:'UltimateLib Test 2', el:dialogs[1], pause:true});
 
         UltimateLib.PopupMenu.update();
+        
+        var cpanel1 = UltimateLib.Configuration.createTabPanel("UltimateLibConfigurationTest", "UltimateLib","<div>Gaasijd</div>");
+            //cpanel1.text("this is a test panel... you can add whatever content is needed in this panel");
+        
+        UltimateLib.Configuration.addTab(cpanel1);
 
     };
 

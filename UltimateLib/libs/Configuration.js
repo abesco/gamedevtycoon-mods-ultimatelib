@@ -12,18 +12,40 @@ UltimateLib.Configuration = (function(self){
 
     /**
      * @description Adds a tab to the configuration tab
+     * @param {object} Add a tabpanel created with createTabPanel to the configuration tab
      * @public
     */        
-    self.addTab = function(){
-        
+    self.addTab = function(panel){
+
+        var tabs = $('#UltimateLibConfigurationTabs');
+        tabs.tabs("add","#"+panel.attr('id'),panel.attr('label'));
+        tabs.tabs( "refresh" );
+        tabs.tabs( 'select', 0);
+
+        panel.css("display","block");
     };
     
     /**
      * @description Creates a tab panel to use for addTab
+     * @param {string} Name (id) of the tab panel element
+     * @param {string} Text to show as title
+     * @param {string} Panel content
      * @public
     */          
-    self.createTabPanel = function(){
-        
+    self.createTabPanel = function(name, text, content){
+        var tabPanel = $(document.createElement('div'));
+            tabPanel.attr('id',name);
+            tabPanel.css({width:'100%',height:'auto'});
+            // tabPanel.addClass('ui-tabs-panel ui-widget-content ui-corner-bottom');
+            tabPanel.attr('label',text);
+            tabPanel.text(text);
+            
+        var tabPanelContainer = $(document.createElement('div'));
+            tabPanelContainer.appendTo(tabPanel);
+             
+            $(content).appendTo(tabPanel);
+             
+        return tabPanel;
     };
     
     /**
@@ -34,9 +56,11 @@ UltimateLib.Configuration = (function(self){
         var children = UltimateLib.Elements.SettingsPanel.children();
         
         var tabsContainer = $(document.createElement('div'));
+            tabsContainer.attr('id','UltimateLibConfigurationTabs');
             tabsContainer.css({width:'100%',height:'auto'});
 
         var tabsList      = $(document.createElement('ul'));
+            tabsList.attr('id','UltimateLibConfigurationTabsList');
             tabsList.append('<li><a href="#UltimateLibConfigurationDefaultTabPanel">Game</a></li>');
         
         var tabPanel      = $(document.createElement('div'));
