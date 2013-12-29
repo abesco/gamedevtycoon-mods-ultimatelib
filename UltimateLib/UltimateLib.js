@@ -36,15 +36,24 @@ In short
 
 */
 
+/**
+ * @fileOverview UltimateLib is a library that aims to leverage and empower the development of plugin modules for GameDevTycoon
+ * @author alphabit and SirEverard
+ * @version 1.0.0
+ */
+
 (function () {
     var ready = function () {
-        //UltimateLib.Logger.enabled = true;
+        UltimateLib.Logger.enabled = true;
         UltimateLib.Loader.load();
     };
 
     var error = function () {
     };
 
-    GDT.loadJs(['mods/UltimateLib/core/Core.js', 'mods/UltimateLib/core/Logger.js', 'mods/UltimateLib/core/Loader.js'], ready, error);
+    GDT.loadJs(['mods/UltimateLib/core/Core.js', 
+                'mods/UltimateLib/core/Logger.js', 
+                'mods/UltimateLib/core/Elements.js',
+                'mods/UltimateLib/core/Loader.js'], ready, error);
 })();
 

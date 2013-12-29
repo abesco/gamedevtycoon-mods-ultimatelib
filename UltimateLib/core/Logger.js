@@ -1,7 +1,7 @@
 /**
- * @fileOverview This class is used for simple console based logging purposes related to this package.
- * @version 1.0.0
- * @author alphabit
+ * Simple logger for the UltimateLib class. 
+ * This class is used for simple console based logging purposes.
+ * related to this package.
  * @constructor
  * @augments UltimateLib
  */
@@ -9,10 +9,9 @@ UltimateLib.Logger = (function() {
     var self = this;
     
     /**
-     * @description Format a date to iso standard yyyy-mm-dd hh:mm:nn
+     * Format a date to iso standard yyyy-mm-dd hh:mm:nn
      * @private
      * @param {Date} Date object
-     * @returns Date Formatted: yyyy-mm-dd hh:mm:nn 
     */        
     function formatDate(dt){
         //Pad given value to the left with "0"
@@ -23,14 +22,14 @@ UltimateLib.Logger = (function() {
     }
     
     /**
-     * @description Enables / Disables logging
+     * Enables / Disables logging
      * @public
      * @param {bool} Enable / Disable logging
     */    
     self.enabled = false;
     
     /**
-     * @description Outputs a message to console using a friendly output
+     * Outputs a message to console using a friendly output
      * @public
      * @param {string} The message to output to console
      * @param {string} Optional argument to automatically log an exception

@@ -1,7 +1,13 @@
 /**
- * @fileOverview Loader for the UltimateLib class. This class handles all the loading work for including the libraries related to this package.
+ * @fileOverview Loader is an UltimateLib library providing loading capabilities to UltimateLib
+ * @author alphabit and SirEverard
  * @version 1.0.0
- * @author alphabit
+ */
+ 
+/**
+ * Loader for the UltimateLib class. 
+ * This class handles all the loading work for including the libraries
+ * related to this package.
  * @constructor
  * @augments UltimateLib
  */
@@ -9,10 +15,9 @@ UltimateLib.Loader = (function() {
     var self = this;
     
     /**
-     * @description Gets a file list from ./mods/UltimateLib/SECTION
+     * Gets a file list from ./mods/UltimateLib/SECTION
      * @private
      * @param {string} section The name the section to search .js files from
-     * @returns All modules/libs of UltimateLib
     */
     function getFiles(section){
         var outFiles    = [];
@@ -44,31 +49,24 @@ UltimateLib.Loader = (function() {
     }
   
     /**
-     * @description Automatically loads all the scripts from UltimateLib, thus including any 3rd party lib
+     * Automatically loads all the scripts from UltimateLib, thus including any 3rd party lib
      * @public
     */    
     self.load = function(){
         var sections = ['3rd','libs'];
         
-        $('#UltimateLibResources').remove();
+        if(typeof UltimateLib.Elements.Resources != 'undefined'){
+             UltimateLib.Elements.Resources.remove();   
+        }
         
-        var jsdiv = $(document.createElement('div'));
-        jsdiv.attr('id','UltimateLibResources').appendTo($('body'));
-
+        var js = [];
         $.each(sections, function(i, section){
             var files = getFiles(section);
-            
             $.each(files, function(j, file){
-                            
-                var jstag = $(document.createElement('script'));
-                    jstag.attr({src:file, async:false});
-                    jstag.appendTo(jsdiv);
-                    
-                    UltimateLib.Logger.log(file);
-                    
+                js.push(file);
             });
         });
-
+        GDT.loadJs(js);
     };
     
     return self;
