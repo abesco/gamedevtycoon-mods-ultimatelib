@@ -11,40 +11,33 @@ UltimateLib.Configuration = (function(self){
     UltimateLib.Logger.log("UltimateLib.Configuration loading...");
 
     /**
-     * @description Adds a tab to the configuration tab
-     * @param {object} Add a tabpanel created with createTabPanel to the configuration tab
-     * @public
-    */        
-    self.addTab = function(panel){
-
-        var tabs = $('#UltimateLibConfigurationTabs');
-        tabs.tabs("add","#"+panel.attr('id'),panel.attr('label'));
-        tabs.tabs( "refresh" );
-        tabs.tabs( 'select', 0);
-
-        panel.css("display","block");
-    };
-    
-    /**
      * @description Creates a tab panel to use for addTab
      * @param {string} Name (id) of the tab panel element
      * @param {string} Text to show as title
      * @param {string} Panel content
+     * @returns {TabPanel} The new tab panel that can be used for further operations
      * @public
     */          
-    self.createTabPanel = function(name, text, content){
+    self.addTab = function(name, text, content){
         var tabPanel = $(document.createElement('div'));
-            tabPanel.attr('id',name);
-            tabPanel.css({width:'100%',height:'auto'});
-            // tabPanel.addClass('ui-tabs-panel ui-widget-content ui-corner-bottom');
-            tabPanel.attr('label',text);
+            tabPanel.attr({id:name});
+            tabPanel.css({width:'100%',height:'auto', display:'block'});
             tabPanel.text(text);
             
         var tabPanelContainer = $(document.createElement('div'));
+            tabPanelContainer.attr('id',name+"Container");
             tabPanelContainer.appendTo(tabPanel);
              
-            $(content).appendTo(tabPanel);
+            $(content).appendTo(tabPanelContainer);
              
+             
+        var tabs = $('#UltimateLibConfigurationTabs');
+            tabs.tabs("add","#"+name, text);
+            tabs.tabs( "refresh" );
+            tabs.tabs( 'select', 0);
+            
+        $("#"+name).append(content);
+                     
         return tabPanel;
     };
     
