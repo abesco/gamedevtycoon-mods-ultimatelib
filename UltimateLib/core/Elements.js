@@ -15,6 +15,7 @@ UltimateLib.Elements = (function() {
     
     self.Body           = $('body');
     self.SettingsPanel  = $('#settingsPanel');
+    self.Head           = $('head');
       
     return self;
 });
