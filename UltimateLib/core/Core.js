@@ -1,11 +1,8 @@
 /**
- * @file  
  * @fileOverview UltimateLib is a library that aims to leverage and empower the development of plugin modules for GameDevTycoon
  * @author alphabit and SirEverard
  * @version 1.0.0
- */
-
-/**
+ * @class UltimateLib
  * @description Ultimate provides access to library related functionality as well as access all the related libraries from here. This class hooks into GDT.
  * @constructor
  * @namespace GDT
@@ -13,7 +10,8 @@
 
 var UltimateLib = (function(self) {       
     /**
-     * Gets a file list from ./mods/UltimateLib/SECTION
+     * @method getFiles
+     * @description Gets a file list from ./mods/UltimateLib/SECTION
      * @private
      * @param {string} section The name the section to search .js files from
      * @returns Module file array
@@ -47,11 +45,27 @@ var UltimateLib = (function(self) {
         return outFiles;        
     }
   
+      /**
+     * @property libraries
+     * @type {Array}
+     * @default empty 
+     * @description  Array contaning file informations about the main libraries
+     * @public
+    */    
     self.libraries      = [];
+    
+    /**
+     * @property libraries3rd
+     * @type {Array}
+     * @default empty
+     * @description Array contaning file informations about the 3rd party libraries
+     * @public
+    */    
     self.libraries3rd   = [];
     
     /**
-     * Automatically loads all the scripts from UltimateLib, thus including any 3rd party lib
+     * @method load
+     * @description Automatically loads all the scripts from UltimateLib, thus including any 3rd party lib
      * @public
     */    
     self.load = function(){
@@ -82,6 +96,11 @@ var UltimateLib = (function(self) {
         GDT.loadJs(js, self.loaded);
     };
 
+    /**
+     * @method loaded
+     * @description Event (Callback) that is called when loading of JS libs has been finished
+     * @public
+    */        
     self.loaded = function(){
         
         // callee is this method
@@ -104,6 +123,13 @@ var UltimateLib = (function(self) {
         
     };
     
+    /**
+     * @property isLoaded
+     * @type {bool}
+     * @default false
+     * @description Event (Callback) that is called when loading of JS libs has been finished
+     * @public
+    */        
     self.isLoaded = false;
     
     return self;

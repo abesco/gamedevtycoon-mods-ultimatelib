@@ -1,21 +1,22 @@
-/**
+ /**
  * @fileOverview Logger is an UltimateLib library providing simple logger capabilities to UltimateLib
  * @author alphabit
  * @version 1.0.0
- */
- 
-/**
+ * @class Logger
  * @description Simple logger for the UltimateLib class. This class is used for simple console based logging purposes related to this package.
  * @constructor
+ * @namespace GDT
  * @augments UltimateLib
- */
+*/
 UltimateLib.Logger = (function() {
     var self = this;
     
     /**
+     * @method formatDate 
      * @description Format a date to iso standard yyyy-mm-dd hh:mm:nn
      * @private
      * @param {Date} Date object
+     * @returns A string containing a formatted representation of the date in the ISO format (yy-M-dd)
     */        
     function formatDate(dt){
         //Pad given value to the left with "0"
