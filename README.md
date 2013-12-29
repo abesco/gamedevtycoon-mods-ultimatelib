@@ -10,8 +10,11 @@ MODULES:
 - NameGenerator - Name generation for games, characters, companys etc.
 - VisualTweaks [BETA] - Tweak library for the UI 
 - Research - API for adding Lab researchs and one off staff researchs
+- Dialog - Simplify creation of GDT modal dialogs (i.e. for usage in popup menus)
+- PopupMenu - Simplify the creation of GDT popup menu entries
+- Elements - Simplify access to specific $DOM elements 
 
-
+*all modules subject to change and currently constantly under development
 
 HOW TO INSTALL:
 --------------
