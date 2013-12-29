@@ -7,8 +7,9 @@ ULTIMATELIB
 
 MODULES:
 --------------
-- NameGenerator
-- VisualTweaks [BETA]
+- NameGenerator - Name generation for games, characters, companys etc.
+- VisualTweaks [BETA] - Tweak library for the UI 
+- Research - API for adding Lab researchs and one off staff researchs
 
 
 
@@ -27,7 +28,7 @@ public GitHub repository.
 There also may be 3rd party libraries included used in and distributed with this software with their own (non-conflicting)
 respective licences i.e. the "Attribution-NonCommercial 4.0 International".
 
-#####In short#####
+#####In short:#####
 
 - Do not distribute this software with your own software (in particular with your own GDT addin module).
 - The usage of this software is only allowed when downloaded from this repository and installed properly.
