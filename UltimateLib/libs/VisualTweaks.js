@@ -7,7 +7,9 @@
  */
 UltimateLib.VisualTweaks = (function() {
     var self = this;
-    UltimateLib.Logger.log("UltimateLib.VisualTweaks is tweaking!");
+    
+    // Show up in console
+    UltimateLib.Logger.log("UltimateLib.VisualTweaks loading...");
     
     /**
      * @description Sets up the style tags for the rest of the module.
@@ -55,5 +57,8 @@ UltimateLib.VisualTweaks = (function() {
 		UltimateLib.Logger.log("UltimateLib.VisualTweaks.setRoundedButtons set."); 
 	};
 	
+    // Show up in console
+    UltimateLib.Logger.log("UltimateLib.VisualTweaks loaded :-)");
+
     return self;
 })();

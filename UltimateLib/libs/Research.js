@@ -7,7 +7,9 @@
  */
 UltimateLib.Research = (function() {
     var self = this;
-    UltimateLib.Logger.log("UltimateLib.Research is on fire! Ahhh!");
+    
+    // Show up in console
+    UltimateLib.Logger.log("UltimateLib.Research loading...");
 
 	/**
      * @description Adds a special/oneoff research.
@@ -101,5 +103,8 @@ UltimateLib.Research = (function() {
 		
 	};
 
+    // Show up in console
+    UltimateLib.Logger.log("UltimateLib.Research loaded :-)");
+        
     return self;
 })();

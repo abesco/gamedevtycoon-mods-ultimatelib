@@ -45,7 +45,8 @@ In short
 (function () {
     var ready = function () {
         UltimateLib.Logger.enabled = true;
-        UltimateLib.Loader.load();
+        UltimateLib.load();
+
     };
 
     var error = function () {
@@ -53,7 +54,5 @@ In short
 
     GDT.loadJs(['mods/UltimateLib/core/Core.js', 
                 'mods/UltimateLib/core/Logger.js', 
-                'mods/UltimateLib/core/Elements.js',
-                'mods/UltimateLib/core/Loader.js'], ready, error);
+                'mods/UltimateLib/core/Elements.js'], ready, error);
 })();
-

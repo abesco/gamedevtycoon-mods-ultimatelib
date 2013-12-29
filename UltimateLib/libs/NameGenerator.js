@@ -1,8 +1,9 @@
 UltimateLib.NameGenerator = (function(){
-    UltimateLib.Logger.log("UltimateLib.NameGenerator loaded :-)");
-
     var self = this;
     
+    // Show up in console
+    UltimateLib.Logger.log("UltimateLib.NameGenerator loading...");
+
     self.sayHello = function(){
         alert("hello :-)");
     };
@@ -29,5 +30,9 @@ UltimateLib.NameGenerator = (function(){
     var randomWord = chain.generateWord(5,10,false);
     */
     
+
+    // Show up in console
+    UltimateLib.Logger.log("UltimateLib.NameGenerator loaded :-)");
+
     return self;    
 })();
