@@ -1,6 +1,6 @@
 ULTIMATELIB
 =============================
-**UltimateLib is a library that aims to leverage and empower the development of plugin modules for GameDevTycoon.**
+**UltimateLib is a library that aims to simplify the development of plugin modules for GameDevTycoon.**
 
 *A project of alphabit and SirEverard from the GreenheartGames Community.*
 
