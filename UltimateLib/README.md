@@ -1,20 +1,16 @@
 ULTIMATELIB
 =============================
-**UltimateLib is a library that aims to simplify the development of plugin modules for GameDevTycoon.**
+**UltimateLib is a library that aims to leverage and empower the development of plugin modules for GameDevTycoon.**
 
 *A project of alphabit and SirEverard from the GreenheartGames Community.*
 
 
 MODULES:
 --------------
-- NameGenerator - Name generation for games, characters, companys etc.
-- VisualTweaks [BETA] - Tweak library for the UI 
-- Research - API for adding Lab researchs and one off staff researchs
-- Dialog - Simplify creation of GDT modal dialogs (i.e. for usage in popup menus)
-- PopupMenu - Simplify the creation of GDT popup menu entries
-- Elements - Simplify access to specific $DOM elements 
+- NameGenerator
+- VisualTweaks [BETA]
 
-*all modules subject to change and currently constantly under development
+
 
 HOW TO INSTALL:
 --------------
@@ -31,7 +27,7 @@ public GitHub repository.
 There also may be 3rd party libraries included used in and distributed with this software with their own (non-conflicting)
 respective licences i.e. the "Attribution-NonCommercial 4.0 International".
 
-#####In short:#####
+#####In short#####
 
 - Do not distribute this software with your own software (in particular with your own GDT addin module).
 - The usage of this software is only allowed when downloaded from this repository and installed properly.
