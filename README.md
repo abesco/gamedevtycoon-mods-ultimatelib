@@ -37,9 +37,8 @@ ATTRIBUTIONS & CONTRIBUTIONS:
 --------------
 
 **<a href="http://forum.greenheartgames.com/">GreenheartGames Forums:</a>**
-- alphabit - Founder
-- SirEverard - Founder
- 
+- <a href="hhttps://github.com/abesco/">alphabit</a> - Founder
+- <a href="https://github.com/SirEverard/">SirEverard</a> - Founder
 
 **3rd Party:**
 - Foswig - <a href="https://github.com/mrsharpoblunto/foswig.js/">foswig on GitHub</a>, Licensed under the MIT license.
