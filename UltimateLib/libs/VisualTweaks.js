@@ -42,6 +42,7 @@ UltimateLib.VisualTweaks = (function() {
 		tweak.append ("::-webkit-scrollbar-track-piece { width: 6px; }");
 		tweak.append ("::-webkit-scrollbar-track { width: 12px; -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.2);  border-radius: 8px; }");
 		tweak.append ("::-webkit-scrollbar-thumb { border-radius: 8px; -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.4);  background: radial-gradient(ellipse at center, rgba(250,198,149,1) 0%,rgba(245,171,102,1) 47%,rgba(239,141,49,1) 100%); }"); 
+		UltimateLib.Logger.log("UltimateLib.VisualTweaks.setScrollBar set."); 
 	};
 	
     /**
@@ -52,6 +53,7 @@ UltimateLib.VisualTweaks = (function() {
 		if (store.settings.roundedButtons === false){ UltimateLib.Logger.log("UltimateLib.VisualTweaks.roundedButtons = false."); return; };
 		var tweak = $('#visualTweaks');
 		tweak.append ('.orangeButton, .deleteButton, .whiteButton, .selectorButton, .baseButton { border-radius: 10px; }');
+		UltimateLib.Logger.log("UltimateLib.VisualTweaks.setRoundedButtons set."); 
 	};
 	
     return self;
