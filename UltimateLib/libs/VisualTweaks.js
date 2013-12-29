@@ -17,7 +17,7 @@ UltimateLib.VisualTweaks = (function() {
     */ 
    	self.init = function(){
    		UltimateLib.Logger.log("UltimateLib.VisualTweaks init ran.");
-		UltimateLib.Elements.Head.append('<style id="visualTweaks" type="text/css"></style>');
+		$('head').append('<style id="visualTweaks" type="text/css"></style>');
 	};
 	
     /**

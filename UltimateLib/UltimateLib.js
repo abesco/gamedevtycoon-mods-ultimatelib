@@ -53,6 +53,5 @@ In short
     };
 
     GDT.loadJs(['mods/UltimateLib/core/Core.js', 
-                'mods/UltimateLib/core/Logger.js', 
-                'mods/UltimateLib/core/Elements.js'], ready, error);
+                'mods/UltimateLib/core/Logger.js'], ready, error);
 })();

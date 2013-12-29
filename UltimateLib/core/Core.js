@@ -58,10 +58,6 @@ var UltimateLib = UltimateLib || {};
     self.load = function(){
         var sections = ['3rd','libs'];
         
-        if(typeof UltimateLib.Elements.Resources != 'undefined'){
-             UltimateLib.Elements.Resources.remove();   
-        }
-        
         var js = [];
         
         
