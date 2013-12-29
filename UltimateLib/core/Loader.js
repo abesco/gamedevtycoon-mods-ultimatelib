@@ -1,6 +1,6 @@
 /**
  * @fileOverview Loader is an UltimateLib library providing loading capabilities to UltimateLib
- * @author alphabit and SirEverard
+ * @author alphabit
  * @version 1.0.0
  */
  
@@ -18,6 +18,7 @@ UltimateLib.Loader = (function() {
      * Gets a file list from ./mods/UltimateLib/SECTION
      * @private
      * @param {string} section The name the section to search .js files from
+     * @returns Module file array
     */
     function getFiles(section){
         var outFiles    = [];

@@ -1,6 +1,6 @@
 /**
- * @fileOverview This is a library that w
- * @version 1.0.0
+ * @fileOverview This is a library that provides and API for tweaking visual elements within the game.
+ * @version 0.1.0b
  * @author SirEverard
  * @constructor
  * @augments UltimateLib
