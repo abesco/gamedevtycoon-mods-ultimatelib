@@ -1,6 +1,6 @@
 (function () {
     var ready = function () {
-        UltimateLib.Logger.log("UltimateLibTestMod loaded :-)"); 
+        
     };
 
     var error = function () {
