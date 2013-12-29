@@ -5,5 +5,5 @@ var UltimateLibTestMod = {};
         UltimateLib.VisualTweaks.setRoundedWindows();
     }
     
-    
+    UltimateLibTestMod.doSomething();
 });

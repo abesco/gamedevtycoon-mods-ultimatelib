@@ -21,11 +21,9 @@ UltimateLib.Dialog = (function(self){
             section.attr({id:idSection});
 
         var label = $(document.createElement('div'));
-            label.addClass('selectorButton whiteButton');
-            label.css({textAlign:'center', position: 'relative', marginLeft:'50px', width: '450px'});
+            label.css({textAlign:'center', marginLeft:'50px', width: '450px'});
             label.attr({id:idSectionTitle});
             label.text(text);
-            
             label.appendTo(section);
             
             for(var i = 0; i < buttons.length;i++){
