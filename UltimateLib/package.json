@@ -1,0 +1,9 @@
+{
+	"id" : "{88AE123F-1B7F-4613-A5BD-0DCFE1FD3309}",
+	"name" : "UltimateLib",
+	"version":"1.0.0",
+	"author":"alphabit and SirEverard",
+	"url":"",
+	"description" : "A foundation library on which other mods can be built upon. Some modules will require this library.",
+	"main" : "./UltimateLib.js"
+}

@@ -1,0 +1,9 @@
+{
+	"id" : "{7C25FF56-7EF5-4BD5-9416-CF9E4518B389}",
+	"name" : "UltimateLibTestMod",
+	"version":"1.0.0",
+	"author":"alphabit and SirEverard",
+	"url":"",
+	"description" : "Test Mod for UltimateLib.",
+	"main" : "./UltimateTestMod.js"
+}
