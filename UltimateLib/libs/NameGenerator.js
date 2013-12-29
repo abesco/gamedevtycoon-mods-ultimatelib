@@ -4,8 +4,12 @@ UltimateLib.NameGenerator = (function(){
     // Show up in console
     UltimateLib.Logger.log("UltimateLib.NameGenerator loading...");
 
-    self.sayHello = function(){
-        alert("hello :-)");
+    /**
+     * @description Initializes the module.
+     * @public
+    */ 
+    self.init = function(){
+        UltimateLib.Logger.log("UltimateLib.NameGenerator init ran.");
     };
     
 

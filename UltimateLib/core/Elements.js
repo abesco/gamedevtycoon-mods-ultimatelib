@@ -13,9 +13,15 @@
 UltimateLib.Elements = (function() {
     var self = this;
     
+    // Show up in console
+    UltimateLib.Logger.log("UltimateLib.Elements loading...");
+    
     self.Body           = $('body');
     self.SettingsPanel  = $('#settingsPanel');
     self.Head           = $('head');
       
+    // Show up in console
+    UltimateLib.Logger.log("UltimateLib.Elements loading...");
+
     return self;
 });

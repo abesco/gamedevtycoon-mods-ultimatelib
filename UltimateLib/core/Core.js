@@ -11,10 +11,8 @@
  * @namespace GDT
 */
 
-var UltimateLib = UltimateLib || 
-(function() {
-    var self = this;
-    
+var UltimateLib = UltimateLib || {};
+(function(self) {       
     /**
      * Gets a file list from ./mods/UltimateLib/SECTION
      * @private
@@ -50,6 +48,9 @@ var UltimateLib = UltimateLib ||
         return outFiles;        
     }
   
+    self.libraries      = [];
+    self.libraries3rd   = [];
+    
     /**
      * Automatically loads all the scripts from UltimateLib, thus including any 3rd party lib
      * @public
@@ -62,21 +63,49 @@ var UltimateLib = UltimateLib ||
         }
         
         var js = [];
+        
+        
         $.each(sections, function(i, section){
             var files = getFiles(section);
             $.each(files, function(j, file){
+                var name = file.replace(/^.*[\\\/]/, '');
+                    name = name.substring(0, name.length-3);
+                    
+                switch(section){
+                    case '3rd':
+                        self.libraries3rd.push({name:name, file:file});
+                    break;
+                    
+                    case 'libs':
+                        self.libraries.push({name:name, file:file});
+                    break;
+                }
+                
                 js.push(file);
             });
         });
+        
         GDT.loadJs(js, self.loaded);
     };
-    
+
     self.loaded = function(){
         self.isLoaded = true;
         UltimateLib.Logger.log("UltimateLib Libraries have been loaded.");
+               
+        // Call "init" methods on all loaded libraries where applicable
+        $.each( self.libraries, function(i,v){
+            var lib     = UltimateLib[v.name];
+            var init    = lib ? lib.init : undefined;
+            
+            if(typeof init != 'undefined'){
+                UltimateLib.Logger.log("Calling init function of "+v.name+" ("+v.file+").");
+                init();
+            }
+        });
+        
     };
     
     self.isLoaded = false;
     
     return self;
-})();
+})(UltimateLib);

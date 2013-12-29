@@ -11,6 +11,14 @@ UltimateLib.Research = (function() {
     // Show up in console
     UltimateLib.Logger.log("UltimateLib.Research loading...");
 
+    /**
+     * @description Initializes the module.
+     * @public
+    */ 
+    self.init = function(){
+        UltimateLib.Logger.log("UltimateLib.Research init ran.");
+    };
+    
 	/**
      * @description Adds a special/oneoff research.
      * @public
