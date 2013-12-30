@@ -28,10 +28,10 @@
 
         UltimateLib.PopupMenu.update();
         
-        var cpanel1 = UltimateLib.Configuration.createTabPanel("UltimateLibConfigurationTest", "UltimateLib","<div>Gaasijd</div>");
+        //var cpanel1 = UltimateLib.Configuration.addTab("UltimateLibConfigurationTest", "UltimateLib","<div>Gaasijdasdasdasd</div>");
             //cpanel1.text("this is a test panel... you can add whatever content is needed in this panel");
         
-        UltimateLib.Configuration.addTab(cpanel1);
+        //UltimateLib.Configuration.addTab(cpanel1);
 
     };
 
