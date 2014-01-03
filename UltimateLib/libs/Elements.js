@@ -21,6 +21,7 @@ UltimateLib.Elements = (function(self) {
     /**
      * @description The Head element of the document.
      * @returns The Head DOM Element wrappen in a jQuery element object.
+     * @property {dom} head
      * @public
     */         
     self.Head           = $('head');
@@ -28,17 +29,35 @@ UltimateLib.Elements = (function(self) {
     /**
      * @description The Body element of the document.
      * @returns The Body DOM Element wrappen in a jQuery element object.
+     * @property {dom} Body
      * @public
     */         
     self.Body           = $('body');
 
     /**
      * @description The Settings Panel element of the game.
-     * @returns The Settings Panel DOM Element wrappen in a jQuery element object.
+     * @returns The Settings Panel DOM Element wrapped in a jQuery element object.
+     * @property {dom} SettingsPanel
      * @public
     */         
     self.SettingsPanel  = $('#settingsPanel');
       
+    /**
+     * @description The gameContainerWrapper.
+     * @returns The gameContainerWrapper of the GDT wrapped in a jQuery element object.
+     * @property {dom} GameContainerWrapper
+     * @public
+    */         
+    self.GameContainerWrapper  = $('#gameContainerWrapper');
+      
+    /**
+     * @description The gameContainerWrapper.
+     * @returns The gameContainerWrapper of the GDT wrapped in a jQuery element object.
+     * @property {dom} SimpleModalContainer
+     * @public
+    */   
+    self.SimpleModalContainer  = $('#simplemodal-container');
+    
     // Show up in console
     UltimateLib.Logger.log("UltimateLib.Elements loaded :-)");
 

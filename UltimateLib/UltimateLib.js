@@ -46,7 +46,6 @@ In short
     var ready = function () {
         UltimateLib.Logger.enabled = true;
         UltimateLib.load();
-
     };
 
     var error = function () {

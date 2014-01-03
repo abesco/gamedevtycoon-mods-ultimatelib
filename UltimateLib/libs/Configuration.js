@@ -22,13 +22,12 @@ UltimateLib.Configuration = (function(self){
         var tabPanel = $(document.createElement('div'));
             tabPanel.attr({id:name});
             tabPanel.css({width:'100%',height:'auto', display:'block'});
-            tabPanel.text(text);
             
         var tabPanelContainer = $(document.createElement('div'));
             tabPanelContainer.attr('id',name+"Container");
-            tabPanelContainer.appendTo(tabPanel);
-             
-            $(content).appendTo(tabPanelContainer);
+
+            tabPanel.append(tabPanelContainer);
+            tabPanelContainer.append(content);
              
              
         var tabs = $('#UltimateLibConfigurationTabs');
