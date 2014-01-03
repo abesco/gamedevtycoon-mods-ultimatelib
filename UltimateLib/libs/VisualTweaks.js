@@ -28,7 +28,9 @@ UltimateLib.VisualTweaks = (function(self) {
 		if (store.settings.roundedCorners === false){ UltimateLib.Logger.log("UltimateLib.VisualTweaks.setRoundedWindows = false."); return; };
 		if (!(radius >= 0)) { radius = 15;}
 			var tweak = $('#visualTweaks');
-			tweak.append('.windowBorder { border-radius: ' + radius + 'px !important; }');
+			tweak.append('.windowBorder, .rsSlide, .selectionOverlayContainer, .ul-vt-window, .tallWindow, .wideWindow, .ui-dialog  { border-radius: ' + radius + 'px !important; }');
+			tweak.append('.notificationImageContainer, .featureStaffAsignPanel   { border-top-left-radius: ' + radius + 'px !important; border-bottom-left-radius: ' + radius + 'px !important; }'); //left
+			tweak.append('.featureSelectionPanel   { border-top-right-radius: ' + radius + 'px !important; border-bottom-right-radius: ' + radius + 'px !important; }'); //right
 			UltimateLib.Logger.log("UltimateLib.VisualTweaks.setRoundedWindows set."); 
 	};
 	
@@ -67,10 +69,27 @@ UltimateLib.VisualTweaks = (function(self) {
 		if (store.settings.roundedButtons === false){ UltimateLib.Logger.log("UltimateLib.VisualTweaks.roundedButtons = false."); return; };
 		if (!(radius >= 0)) { radius = 10;}
 		var tweak = $('#visualTweaks');
-		tweak.append ('.orangeButton, .deleteButton, .whiteButton, .selectorButton, .baseButton, .contextMenuButton { border-radius: ' + radius + 'px; }');
+		tweak.append ('.orangeButton, .deleteButton, .whiteButton, .selectorButton, .baseButton, .contextMenuButton, .ul-vt-button { border-radius: ' + radius + 'px; }');
 		UltimateLib.Logger.log("UltimateLib.VisualTweaks.setRoundedButtons set."); 
 	};
 	
+	self.setRoundedBars = function (radius){
+		if (store.settings.roundedBars === false){ UltimateLib.Logger.log("UltimateLib.VisualTweaks.setRoundedBars = false."); return; };
+		if (!(radius >= 0)) { radius = 8;}
+			var tweak = $('#visualTweaks');
+			tweak.append('.staffDTBarContainer, .rsNavItem, .rsThumb, .projectStatusCard, .selectableGameFeatureItem, .ul-vt-bar { border-radius: ' + radius + 'px; }');
+			UltimateLib.Logger.log("UltimateLib.VisualTweaks.setRoundedBars set."); 
+	};
+
+	self.setTextBox = function (radius){
+		if (store.settings.textBox === false){ UltimateLib.Logger.log("UltimateLib.VisualTweaks.setTextBox = false."); return; };
+		if (!(radius >= 0)) { radius = 8;}
+			var tweak = $('#visualTweaks');
+			tweak.append('#gameTitle, .featureSelectionCategoryHeading, .cashLogContainer, .ul-vt-textbox { border-radius: ' + radius + 'px; }');
+			UltimateLib.Logger.log("UltimateLib.VisualTweaks.setTextBox set."); 
+	};
+	
+
     // Show up in console
     UltimateLib.Logger.log("UltimateLib.VisualTweaks loaded :-)");
 
