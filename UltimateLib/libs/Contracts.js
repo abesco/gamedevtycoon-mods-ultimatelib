@@ -149,7 +149,7 @@ UltimateLib.Contracts = (function(self) {
 	
 	/**
      * @description Returns all pertinent collected contracts.
-     * @private
+     * @public
      * @param {GDT company object}
      * @return {contract object array}
     */  
