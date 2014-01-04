@@ -1,10 +1,12 @@
 /**
- * @fileOverview This is a custom storage class for the UltimateLib
+ * @fileOverview This is a custom storage class for the UltimateLib. It uses the jstorage.js by © 2010 - 2012 Andris Reinman, andris.reinman@gmail.com
+ *               jStorage is licensed under Unlicense, so basically you can do whatever you want to do with it.
  * @version 1.0.0
  * @author alphabit
  * @constructor
  * @augments UltimateLib
  * @class Storage
+ * @
  */
  UltimateLib.Storage = (function(self){
     // Show up in console
@@ -26,7 +28,7 @@
      * @returns {bool} True if writing to the storage was successful otherwise
      * @public
     */ 
-    self.write = function(storageId, data){
+    self.writeLikeGdt_IsNotThatGoodForUs_JustForInfoHere = function(storageId, data){
         try {
             if (isLocalStorageAvailable()){
                 window.localStorage['UltimateLib.Storage.'+storageId] = JSON.stringify(data);
@@ -47,7 +49,7 @@
      * @returns {object} The object written in the localStorage and identified by the specified ID
      * @public
     */     
-    self.read = function(storageId){
+    self.readLikeGdt_IsNotThatGoodForUs_JustForInfoHere = function(storageId){
         try {
             if ( isLocalStorageAvailable()){
                 UltimateLib.Logger.log("UltimateLib.Storage::read Trying to read from localStorage with ID " + storageId);
@@ -76,6 +78,81 @@
         }
     }
         
+    self.read = function(storageId, defaultValue){
+        try {
+            if ( isLocalStorageAvailable()){
+                UltimateLib.Logger.log("UltimateLib.Storage::read Trying to read from localStorage with ID UltimateLib.Storage." + storageId);
+                
+                if(typeof defaultValue !== undefined){
+                    return $.jStorage.get("UltimateLib.Storage." + storageId, defaultValue);
+                }
+                else {
+                    return $.jStorage.get("UltimateLib.Storage." + storageId);
+                }
+            }
+        }
+        catch(e) {
+            UltimateLib.Logger.log("UltimateLib.Storage::read An error occured trying to read from the local storage! Error: " + e.message);
+            return false;
+        }
+    };
+
+    self.write = function(storageId, data, ttl){
+        if(!$.jStorage.storageAvailable()){
+            return false;
+        }
+        try {
+            if(typeof ttl !== undefined){
+                $.jStorage.set("UltimateLib.Storage." + storageId, data, {TTL: ttl});
+            }
+            else {
+                $.jStorage.set("UltimateLib.Storage." + storageId, data);
+            }
+
+            UltimateLib.Logger.log("UltimateLib.Storage::write LocalStorage was successfully written at ID UltimateLib.Storage." + storageId);
+            return true;
+        }
+        catch(e) {
+            UltimateLib.Logger.log("UltimateLib.Storage::write An error occured trying to write to the local storage! Error: " + e.message);
+            return false;
+        }
+    };
+    
+    self.clearCache = function(){
+        $.jStorage.flush();
+    };
+    
+    self.getAllKeys = function(){
+        return $.jStorage.index();
+    };
+    
+    self.getStorageSize = function() {
+        $.jStorage.storageSize();
+    };
+    
+    self.reload = function(){
+        $.jStorage.reInit();  
+    };
+
+    // Callback format:
+    // function(key, action){
+    // console.log(key + " has been " + action);
+    // });        
+            
+    self.onKeyChanged = function(storageId, key, callback){
+        $.jStorage.listenKeyChange("UltimateLib.Storage." + storageId + "." + key, callback);
+    };
+    
+    // Stops listening for key change. If callback is set, only the used callback will be cleared, otherwise all listeners will be dropped.
+    self.removeListeners = function(storageId, key, callback){
+        if (typeof callback !== undefined){
+            $.jStorage.stopListening("UltimateLib.Storage." + storageId + "." + key, callback); 
+        }
+        else {
+            $.jStorage.stopListening("UltimateLib.Storage." + storageId + "." + key); 
+        }
+    };
+    
     // Show up in console
     UltimateLib.Logger.log("UltimateLib.Storage loaded :-)");
     

@@ -120,7 +120,7 @@ var UltimateLib = (function(self) {
                 init();
             }
         });
-        
+
     };
     
     /**
