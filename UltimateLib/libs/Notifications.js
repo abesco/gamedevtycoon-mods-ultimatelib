@@ -27,25 +27,25 @@ UltimateLib.Notifications = (function(self){
      * @public
      */
     self.Items = {        
-        GDT_PlatformReleaseNews: {name:"{PlatformReleaseNews}", enabled:true, asOverlay: false},
-        GDT_News               : {name:"News", enabled:true, asOverlay: false},
-        GDT_GameOffTheMarket   : {name:"Game off the market.",enabled:true, asOverlay: false},
-        GDT_GameConference     : {name:"Game Conference", enabled:true, asOverlay: false},
-        GDT_LabReport          : {name:"Lab report", enabled:true, asOverlay: false},
-        GDT_NewResearch        : {name:"New Research!", enabled:true, asOverlay: false},
-        GDT_IndustryNews       : {name:"Industry News", enabled:true, asOverlay: false},
-        GDT_GameReport         : {name:"Game Report", enabled:true, asOverlay: false},
-        GDT_MarketAnalysis     : {name:"Market Analysis", enabled:true, asOverlay: false},
-        GDT_EngineComplete     : {name:"Engine complete!", enabled:true, asOverlay: false},
-        GDT_GameReview         : {name:"Game review", enabled:true, asOverlay: false},
-        GDT_Sequel             : {name:"Sequel", enabled:true, asOverlay: false},
-        GDT_FirstWeekOfSales   : {name:"First week of sales!", enabled:true, asOverlay: false},
-        GDT_Fans               : {name:"Fans", enabled:true, asOverlay: false},
-        GDT_SalesRecord        : {name:"Sales Record", enabled:true, asOverlay: false},
+        GDT_PlatformReleaseNews: {id:'GDT_PlatformReleaseNews', name:"{PlatformReleaseNews}",   enabled:true, asOverlay: false},
+        GDT_News               : {id:'GDT_News',                name:"News",                    enabled:true, asOverlay: false},
+        GDT_GameOffTheMarket   : {id:'GDT_GameOffTheMarket',    name:"Game off the market.",    enabled:true, asOverlay: false},
+        GDT_GameConference     : {id:'GDT_GameConference',      name:"Game Conference",         enabled:true, asOverlay: false},
+        GDT_LabReport          : {id:'GDT_LabReport',           name:"Lab report",              enabled:true, asOverlay: false},
+        GDT_NewResearch        : {id:'GDT_NewResearch',         name:"New Research!",           enabled:true, asOverlay: false},
+        GDT_IndustryNews       : {id:'GDT_IndustryNews',        name:"Industry News",           enabled:true, asOverlay: false},
+        GDT_GameReport         : {id:'GDT_GameReport',          name:"Game Report",             enabled:true, asOverlay: false},
+        GDT_MarketAnalysis     : {id:'GDT_MarketAnalysis',      name:"Market Analysis",         enabled:true, asOverlay: false},
+        GDT_EngineComplete     : {id:'GDT_EngineComplete',      name:"Engine complete!",        enabled:true, asOverlay: false},
+        GDT_GameReview         : {id:'GDT_GameReview',          name:"Game review",             enabled:true, asOverlay: false},
+        GDT_Sequel             : {id:'GDT_Sequel',              name:"Sequel",                  enabled:true, asOverlay: false},
+        GDT_FirstWeekOfSales   : {id:'GDT_FirstWeekOfSales',    name:"First week of sales!",    enabled:true, asOverlay: false},
+        GDT_Fans               : {id:'GDT_Fans',                name:"Fans",                    enabled:true, asOverlay: false},
+        GDT_SalesRecord        : {id:'GDT_SalesRecord',         name:"Sales Record",            enabled:true, asOverlay: false},
         // ..> buggy? ..> GDT_Tutorial           : {name:"Tutorial", enabled:true, asOverlay: false},
         
         // Additional and 3rd party
-        InfoStatsMod_BestGame  : {name:"Company's Best Game", enabled:true, asOverlay: false}, // For InfoStatsMod 0.3.1 and higher
+        InfoStatsMod_BestGame  : {id:'InfoStatsMod_BestGame',   name:"Company's Best Game",     enabled:true, asOverlay: false}, // For InfoStatsMod 0.3.1 and higher
         
         enableAll: function(enable){
             self.Items.GDT_PlatformReleaseNews.enabled = enable;
@@ -90,7 +90,27 @@ UltimateLib.Notifications = (function(self){
             
             // Additional and 3rd party
             self.Items.InfoStatsMod_BestGame.asOverlay = enable;    
-        }        
+        },
+        
+        getIdList: function(){
+            return ['GDT_PlatformReleaseNews',
+                    'GDT_News',
+                    'GDT_GameOffTheMarket',
+                    'GDT_GameConference',
+                    'GDT_LabReport',
+                    'GDT_NewResearch',
+                    'GDT_IndustryNews',
+                    'GDT_GameReport',
+                    'GDT_MarketAnalysis',
+                    'GDT_EngineComplete',
+                    'GDT_GameReview',
+                    'GDT_Sequel',
+                    'GDT_FirstWeekOfSales',
+                    'GDT_Fans',
+                    'GDT_SalesRecord',
+                    'InfoStatsMod_BestGame'
+                    ];
+        }       
         
     };
                          
