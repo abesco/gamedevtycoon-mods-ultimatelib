@@ -30,24 +30,24 @@ MODDERS README SECTION
 MODULES:
 --------------
 **Configuration**
---------------
+
 Provides special functionality for enhancing the in-game settings UI
 by providing possibility to add custom content and settings items
 
 **Contracts**
---------------
+
 Simplify access to specific game contracts
 
 **Dialog**
---------------
+
 Simplify creation of GDT modal dialogs (i.e. for usage in popup menus)
 
 **Elements**
---------------
+
 Simplify access to specific $DOM elements 
 
 **NameGenerator**
---------------
+
 Name generation for games, characters, companys etc.
 
 **Notifications**
@@ -79,7 +79,7 @@ Utility library with useful functions for your code
 Tweak library for the UI
 
 
-**Important Note**
+***Important Note***
 
 All modules are subject to change and under constant development
 
