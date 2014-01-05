@@ -2,7 +2,7 @@
  * @fileOverview Notifications is an UltimateLib library class providing capabilities to manipulate the in-game settings notification system
  * @author alphabit
  * @version 1.0.0
- * @description Configuration is an UltimateLib library class providing capabilities to manipulate the in-game settings notification system.
+ * @description Notifications is an UltimateLib library class providing capabilities to manipulate the in-game settings notification system.
  * @constructor
  * @augments UltimateLib
  * @class Notifications

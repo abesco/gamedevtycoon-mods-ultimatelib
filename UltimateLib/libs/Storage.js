@@ -13,6 +13,16 @@
     UltimateLib.Logger.log("UltimateLib.Storage loading...");
         
     /**
+     * @description Determines if the local storage is available
+     * @function isLocalStorageAvailable
+     * @returns {bool} True if local storage is available otherwise False
+     * @private
+    */          
+    function isLocalStorageAvailable(){
+        return $.jStorage.storageAvailable();
+    }
+    
+    /**
      * @description Initializes the module.
      * @function init
      * @public
