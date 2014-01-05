@@ -34,40 +34,52 @@ Provides special functionality for enhancing the in-game settings UI
 by providing possibility to add custom content and settings items
 
 **Contracts**
+
 Simplify access to specific game contracts
 
 **Dialog**
+
 Simplify creation of GDT modal dialogs (i.e. for usage in popup menus)
 
 **Elements**
+
 Simplify access to specific $DOM elements 
 
 **NameGenerator**
+
 Name generation for games, characters, companys etc.
 
 **Notifications**
+
 Allows to manipulate / optimize the in-game settings notification system
 
 **PopupMenu**
+
 Simplify the creation of GDT popup menu entries
 
 **Publishers**
+
 Allows to create / add publishers to the game
 
 **Research**
+
 API for adding Lab researchs and one off staff researchs
 
 **Storage**
+
 API for global settings storage using the same GDT's local storage, but logically separated
 
 **Utils**
+
 Utility library with useful functions for your code
 
 **VisualTweaks**
+
 Tweak library for the UI
 
 
 **Important Note**
+
 All modules are subject to change and under constant development
 
 LICENSES:
