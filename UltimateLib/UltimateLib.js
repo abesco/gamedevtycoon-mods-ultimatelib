@@ -44,13 +44,17 @@ In short
 
 (function () {
     var ready = function () {
-        UltimateLib.Logger.enabled = true;
-        UltimateLib.load();
+        var loggerReady = function () {
+            UltimateLib.Logger.enabled = true;
+            UltimateLib.load();
+        };
+        
+        // Loads the LOGGER from CORE
+        GDT.loadJs(['mods/UltimateLib/core/Logger.js'], loggerReady);
     };
 
     var error = function () {
     };
 
-    GDT.loadJs(['mods/UltimateLib/core/Core.js', 
-                'mods/UltimateLib/core/Logger.js'], ready, error);
+    GDT.loadJs(['mods/UltimateLib/core/Core.js'], ready, error);
 })();

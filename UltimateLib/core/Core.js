@@ -45,7 +45,7 @@ var UltimateLib = (function(self) {
         return outFiles;        
     }
   
-      /**
+    /**
      * @property libraries
      * @type {Array}
      * @default empty 
@@ -131,6 +131,7 @@ var UltimateLib = (function(self) {
      * @public
     */        
     self.isLoaded = false;
-    
+
+
     return self;
 })(UltimateLib || {});
