@@ -23,7 +23,7 @@ ATTRIBUTIONS & CONTRIBUTIONS:
 
 **3rd Party:**
 - Foswig - <a href="https://github.com/mrsharpoblunto/foswig.js/">foswig on GitHub</a>, Licensed under the MIT license.
-
+- jStorage - <a href="http://www.jstorage.info/">jStorage website</a>, Licensed under the Unlicensed license. 
 
 MODDERS README SECTION
 =============================
