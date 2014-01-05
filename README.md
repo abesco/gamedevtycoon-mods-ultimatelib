@@ -29,15 +29,46 @@ MODDERS README SECTION
 =============================
 MODULES:
 --------------
-- NameGenerator - Name generation for games, characters, companys etc.
-- VisualTweaks [BETA] - Tweak library for the UI 
-- Research - API for adding Lab researchs and one off staff researchs
-- Dialog - Simplify creation of GDT modal dialogs (i.e. for usage in popup menus)
-- PopupMenu - Simplify the creation of GDT popup menu entries
-- Elements - Simplify access to specific $DOM elements 
-- Configuration - Provides special functionality for enhancing the in-game settings UI by providing possibility to add custom content and settings items
+**Configuration**
+Provides special functionality for enhancing the in-game settings UI
+by providing possibility to add custom content and settings items
 
-*all modules subject to change and currently constantly under development
+**Contracts**
+Simplify access to specific game contracts
+
+**Dialog**
+Simplify creation of GDT modal dialogs (i.e. for usage in popup menus)
+
+**Elements**
+Simplify access to specific $DOM elements 
+
+**NameGenerator**
+Name generation for games, characters, companys etc.
+
+**Notifications**
+Allows to manipulate / optimize the in-game settings notification system
+
+**PopupMenu**
+Simplify the creation of GDT popup menu entries
+
+**Publishers**
+Allows to create / add publishers to the game
+
+**Research**
+API for adding Lab researchs and one off staff researchs
+
+**Storage**
+API for global settings storage using the same GDT's local storage, but logically separated
+
+**Utils**
+Utility library with useful functions for your code
+
+**VisualTweaks**
+Tweak library for the UI
+
+
+**Important Note**
+All modules are subject to change and under constant development
 
 LICENSES:
 --------------
