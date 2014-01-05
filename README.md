@@ -35,7 +35,6 @@ Provides special functionality for enhancing the in-game settings UI
 by providing possibility to add custom content and settings items
 
 **Contracts**
-
 Simplify access to specific game contracts
 
 **Dialog**
