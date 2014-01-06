@@ -172,11 +172,11 @@ UltimateLib.Notifications = (function(self){
                 
                 switch (a.header) {
                      case "{ReleaseGame}":
-                     alert("{ReleaseGame}");
+                     // alert("{ReleaseGame}");
                      break;
                      
                      case "{Reviews}":
-                     alert("{Reviews}");
+                     // alert("{Reviews}");
                      break;
                      
                      case self.Items.GDT_EngineComplete.name.localize():
