@@ -9,9 +9,14 @@ UltimateLib.Utils = (function(self) {
     // Show up in console
     UltimateLib.Logger.log("UltimateLib.Utils loading...");
 
-
-
-		self.getFormattedNumber = function (num) {
+        /**
+         * @public
+         * @function getFormattedNumber
+         * @description Returns a formatted numbers in the scientific format 124E5
+         * @param {int} num The number to format
+         * @returns A scientifical formatted value
+        */    
+        self.getFormattedNumber = function (num) {
 			var s = num.toString().replace(",", ".");
 			var n = "";
 
@@ -36,7 +41,25 @@ UltimateLib.Utils = (function(self) {
 			return n;
 		};
 
-
+        /**
+         * @public
+         * @function wait4
+         * @description Waits for the specified "what" variable/object to be defined an "ms" amount of time (in milliseconds) and if set, assigns the "val" value to it
+         * @param {any} what The target variable/object to check and wait for
+         * @param {any} val A value to assign when @see what  
+         * @param {int} ms Interval time in milliseconds when to repeat check
+        */           
+        self.wait4 = function (what, val, ms){
+            if(typeof what !== "undefined"){
+                // variable exists, do what you want
+                console.log("Done waiting!");
+                what = val;
+            }
+            else{
+                console.log("I wait4 " + ms + " ms...");
+                setTimeout(function(){wait();},ms);
+            }
+        }
 	
     // Show up in console
     UltimateLib.Logger.log("UltimateLib.Utils loaded :-)");
