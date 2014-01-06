@@ -52,11 +52,11 @@ UltimateLib.Utils = (function(self) {
         self.wait4 = function (what, val, ms){
             if(typeof what !== "undefined"){
                 // variable exists, do what you want
-                console.log("Done waiting!");
+                UltimateLib.Logger.log("Done waiting!");
                 what = val;
             }
             else{
-                console.log("I wait4 " + ms + " ms...");
+                UltimateLib.Logger.log("I wait4 " + ms + " ms...");
                 setTimeout(function(){wait();},ms);
             }
         }
