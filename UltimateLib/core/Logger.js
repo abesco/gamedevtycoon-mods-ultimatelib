@@ -8,9 +8,7 @@
  * @namespace GDT
  * @augments UltimateLib
 */
-UltimateLib.Logger = (function() {
-    var self = this;
-    
+UltimateLib.Logger = (function(self) {
     /**
      * @method formatDate 
      * @description Format a date to iso standard yyyy-mm-dd hh:mm:nn
@@ -31,7 +29,7 @@ UltimateLib.Logger = (function() {
      * @public
      * @param {bool} Enable / Disable logging
     */    
-    self.enabled = false;
+    self.enabled = true;
     
     /**
      * @description Outputs a message to console using a friendly output
@@ -40,7 +38,7 @@ UltimateLib.Logger = (function() {
      * @param {string} Optional argument to automatically log an exception
     */    
     self.log = function(msg, ex){
-        if(!enabled){
+        if(!self.enabled){
             return;
         }
         
@@ -53,9 +51,8 @@ UltimateLib.Logger = (function() {
         else {
             m = now + ": Error! " + msg + "\n" +  ex.message;
         }
-        
         console.log(m);
     };
     
     return self;
-})();
+})(UltimateLib.Logger || {});

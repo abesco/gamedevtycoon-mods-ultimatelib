@@ -60,7 +60,7 @@ UltimateLib.Utils = (function(self) {
                 setTimeout(function(){wait();},ms);
             }
         }
-	
+
     // Show up in console
     UltimateLib.Logger.log("UltimateLib.Utils loaded :-)");
         
