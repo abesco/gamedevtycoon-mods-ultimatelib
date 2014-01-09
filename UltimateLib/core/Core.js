@@ -120,7 +120,31 @@ var UltimateLib = (function(self) {
                 init();
             }
         });
+        
+        // Now that the all the library have been loaded and initialized, we try to call the ulInit method on every module's main class
+        var availMods = ModSupport.availableMods;
+        
+        $.each(availMods, function(i,mod){
+           if(mod.active){
+               if(mod.ultimatelib){
+                
+                   // try to get pointer to mod
+                   var modptr  =   self[mod.ultimatelib];
+                   if(!modptr){
+                       modptr = window[mod.ultimatelib];
+                   }
+                   if(!modptr){
+                       modptr = eval(mod.ultimatelib); // eval is evil *eg*
+                   }
+                   var ulinit  = modptr ? modptr.ulInit : null
+                   if(ulinit){
+                       ulinit();
+                   }
+               }
+           }
+        });
 
+        
     };
     
     /**
