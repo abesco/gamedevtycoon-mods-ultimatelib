@@ -108,7 +108,7 @@ var UltimateLib = (function(self) {
         // console.log(arguments.callee.caller);
                     
         self.isLoaded = true;
-        self.Logger.log("UltimateLib Libraries have been loaded.");
+        self.Logger.log("--- UltimateLib main library successfully loaded, now loading additional libs...");
                
         // Call "init" methods on all loaded libraries where applicable
         $.each( self.libraries, function(i,v){
@@ -116,11 +116,14 @@ var UltimateLib = (function(self) {
             var init    = lib ? lib.init : null;
 
             if(init != null){
-                self.Logger.log("Calling init function of "+v.name+" ("+v.file+").");
+                self.Logger.log("# Calling UltimateLib internal init function on "+v.name+" ("+v.file+").");
                 init();
             }
         });
-        
+
+        self.Logger.log("UltimateLib fully loaded.");
+        self.Logger.log("----------------------------------------------------------------------");
+
         // Now that the all the library have been loaded and initialized, we try to call the ulInit method on every module's main class
         var availMods = ModSupport.availableMods;
         
@@ -138,6 +141,7 @@ var UltimateLib = (function(self) {
                    }
                    var ulinit  = modptr ? modptr.ulInit : null
                    if(ulinit){
+                       self.Logger.log("# Calling ulInit function on " + mod.name +" ("+mod.main+").");
                        ulinit();
                    }
                }
