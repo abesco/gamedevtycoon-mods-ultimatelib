@@ -102,6 +102,15 @@ var UltimateLib = (function(self) {
                 self.mod = mod;
             }
         });
+        
+        var handler = function (e) {
+            UltimateLib.Logger.log("A module has been loaded. " + e);
+            //custom code which will be called whenever one week passes.
+            // console.log("mod.loaded");
+            // console.log(ModSupport);
+        };
+        
+        GDT.on(GDT.eventKeys.mod.loaded, handler);
     };
         
     /**

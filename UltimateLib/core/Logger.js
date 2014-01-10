@@ -29,7 +29,7 @@ UltimateLib.Logger = (function(self) {
      * @public
      * @param {bool} Enable / Disable logging
     */    
-    self.enabled = true;
+    self.enabled = false;
     
     /**
      * @description Outputs a message to console using a friendly output

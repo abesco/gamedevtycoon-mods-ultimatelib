@@ -7,5 +7,5 @@
 	"description" : "A foundation library on which other mods can be built upon. Some modules will require this library.",
 	"main" : "./UltimateLib.js",
 	"dependencies" : {"gdt-modAPI":"0.1.x"},
-    "debug" : true
+    "debug" : false
 }

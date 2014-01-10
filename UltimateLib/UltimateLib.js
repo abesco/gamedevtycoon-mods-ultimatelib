@@ -45,20 +45,15 @@ In short
 (function () {
     // Called when GDT has loaded the module (GDT.loadJs)
     var ready = function () {
-        // Called when all UL libraries have been loaded
-        var loaded = function(){
-            UltimateLib.Core.init();
-        };
-        
-        // Initialize the base class (this provides all file information required for further actions)
         UltimateLib.init();
 
-        // Load all the associated UL libraries 
-        GDT.loadJs(UltimateLib.js, loaded);
+        UltimateLib.Logger.enabled = UltimateLib.mod.debug && UltimateLib.mod.debug == true;
+        UltimateLib.Core.init();
     };
 
-    var error = function () {
+    var error = function () {   
     };
 
-    GDT.loadJs(['mods/UltimateLib/core/Base.js','mods/UltimateLib/core/Logger.js','mods/UltimateLib/core/Core.js'], ready, error);
+    GDT.loadJs(['mods/UltimateLib/UltimateLib.Main.js'], ready, error);
+    
 })();

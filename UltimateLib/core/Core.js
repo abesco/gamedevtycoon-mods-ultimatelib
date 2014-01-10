@@ -15,15 +15,14 @@ UltimateLib.Core = (function(self) {
      * @public
     */        
     self.init = function(){
-        
+
         // Initializes the logger
-        UltimateLib.Logger.enabled = UltimateLib.mod.debug;
         UltimateLib.Logger.log("--- UltimateLib main library successfully loaded, now loading additional libs...");
                
         // Call "init" methods on all loaded libraries where applicable
         $.each( UltimateLib.libraries, function(i,v){
             var lib     = UltimateLib.getObjByName("UltimateLib." + v.name);
-            var init    = lib ? lib.init : null;
+            var init    = lib ? lib.init : null;    
 
             if(init != null){
                 UltimateLib.Logger.log("# Calling UltimateLib internal init function on "+v.name+" ("+v.file+").");
