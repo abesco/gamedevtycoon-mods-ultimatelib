@@ -27,37 +27,19 @@ UltimateLib.VisualTweaks = (function(self) {
     self.init = function(){
         UltimateLib.Logger.log("UltimateLib.VisualTweaks init ran.");
         $('head').append('<style id="visualTweaks" type="text/css"></style>');
-        /*
-        store.data.sliderbg = {};
-        store.data.sliderbg.engine = "";
-        store.data.sliderbg.gameplay = "";
-        store.data.sliderbg.story = "";
-        store.data.sliderbg.dialogs = "";
-        store.data.sliderbg.level = "";
-        store.data.sliderbg.ai = "";
-        store.data.sliderbg.graphic = "";
-        store.data.sliderbg.sound = "";
-        store.data.sliderbg.world = "";
-
-        */
         UltimateLib.Storage.write('SliderBG', {
-            engine: "url",
-            gameplay: "url",
-            story: "url",
-            dialogs: "url",
-            level: "url",
-            ai: "url",
-            graphic: "url",
-            sound: "url",
-            world: "url",
+            engine: ".\/mods\/UltimateLib\/img\/defaultsbg.gif",
+            gameplay: ".\/mods\/UltimateLib\/img\/defaultsbg.gif",
+            story: ".\/mods\/UltimateLib\/img\/defaultsbg.gif",
+            dialogs: ".\/mods\/UltimateLib\/img\/defaultsbg.gif",
+            level: ".\/mods\/UltimateLib\/img\/defaultsbg.gif",
+            ai: ".\/mods\/UltimateLib\/img\/defaultsbg.gif",
+            graphic: ".\/mods\/UltimateLib\/img\/defaultsbg.gif",
+            sound: ".\/mods\/UltimateLib\/img\/defaultsbg.gif",
+            world: ".\/mods\/UltimateLib\/img\/defaultsbg.gif",
             cssset: false,
             watermarkset: false
         });
-
-
-        //console.log("pre");
-        //console.log(GDT.getDataStore("UltimateLib").data.sliderbg);
-
     };
 	
 
@@ -153,6 +135,7 @@ UltimateLib.VisualTweaks = (function(self) {
         tweak.append('.featurePreview3, .featureProgressGain, .ul-vt-bar-right { border-top-right-radius: ' + radius + 'px; border-bottom-right-radius: ' + radius + 'px }');
         UltimateLib.Logger.log("UltimateLib.VisualTweaks.setRoundedBars set."); 
     };
+
     /**
      * @description Gives text boxes a rounded edge.
      * @public
@@ -165,6 +148,7 @@ UltimateLib.VisualTweaks = (function(self) {
         tweak.append('#gameTitle, .featureSelectionCategoryHeading, .loadSaveButton, .cashLogContainer, .ul-vt-textbox { border-radius: ' + radius + 'px; }');
         UltimateLib.Logger.log("UltimateLib.VisualTweaks.setTextBox set."); 
     };
+
     self.setFancyGrads = function (style) {
         if (store.settings.fancyGrads === false) { UltimateLib.Logger.log("UltimateLib.VisualTweaks.setFancyGrads = false."); return; };
         var tweak = $('#visualTweaks');
@@ -184,7 +168,6 @@ UltimateLib.VisualTweaks = (function(self) {
 
         UltimateLib.Logger.log("UltimateLib.VisualTweaks.setFancyGrads set.");
     };
-
 
     self.setWatermarks = function (object, url) {
         var tweak = $('#visualTweaks');
@@ -250,7 +233,7 @@ UltimateLib.VisualTweaks = (function(self) {
         console.log(urlstore);
         if (urlstore.cssset === false) {
             
-            tweak.append('.ul-vt-slider-img { width:80%; height:80%; border-width: 1px; border-style:solid; position:absolute; opacity:0.8; left: 19px; bottom: 70px; }');
+            tweak.append('.ul-vt-slider-img { width:80%; height:80%; border-width: 1px; border-style:solid; border-color:#828282; position:absolute; opacity:0.8; left: 17px; bottom: 70px; }');
             urlstore.cssset = true;
         }
         console.log(urlstore);
@@ -284,7 +267,7 @@ UltimateLib.VisualTweaks = (function(self) {
                 menu2.prepend('<img id="level" class="ul-vt-slider-img" src="' + getstore.level + '"/>');
                 menu3.prepend('<img id="ai" class="ul-vt-slider-img" src="' + getstore.ai + '"/>');
             }
-            if (GameManager.getCurrentDevStage() == 1) {    
+            if (GameManager.getCurrentDevStage() == 3) {    
                 //Stage 3
                 menu1.prepend('<img id="world" class="ul-vt-slider-img" src="' + getstore.world + '"/>');
                 menu2.prepend('<img id="graphic" class="ul-vt-slider-img" src="' + getstore.graphic + '"/>');
