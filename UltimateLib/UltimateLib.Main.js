@@ -1663,15 +1663,90 @@ UltimateLib.Elements = (function(self) {
     // Show up in console
     UltimateLib.Logger.log("UltimateLib.NameGenerator loading...");
     
+    var companyNamesData = {
+        adjectives: [
+                        "Digital", "Online", "Loud", "Quiet",
+                        "Black", "White", "Red", "Blue", "Yellow", "Green", "Pink",
+                        "Hard", "Soft", "Round", "Fast", "Slow", "Easy", "Tricky",
+                        "Tiny", "Big", "Giant", "Large", "Puny", "Heavy", "Light", "Dark",
+                        "Fast", "Speedy", "One",
+                        "Angry", "Happy", "Sad", "Mad", "Glad", "Rad", "Joy", "Love", "Naughty",
+                        "Flying", "Jumping", "Soaring", "Falling", "Dying", "Edible",
+                        "Undone", "Lonely", "Cracked", "Broken", "Found", "Lost",
+                        "North", "South", "East", "West", 
+                        "Late", "Early", "Never", "Always", "Midnight",
+                        "Upper", "Lower", "Inner", "Outer",
+                        "Rendered", "Rotten", "Fresh", "Altered", "Organic", "Sour",
+                        "Coastal", "Chill", "Healing", "Damaged"
+                        ],
+        nouns:  [
+                         "Method", "Function", 
+                         "Bomb", "Missile", "Gun", "Weapon", "Tank", "Rocket",
+                         "Terminal", "Connection", "Joint", "Machine", "Engine",
+                         "Starship", "Sandwich", "Plane", "Saucer", "Airship", "Jet", "Boat", "Ship",
+                         "Window", "Screen", "Man", "Computer",
+                         "Happiness", "Sadness", "Anger",
+                         "Spoon", "Knife", "Fork", 
+                         "Island", "Village", "City", "Town", "Mountain", "River", "Ocean", "Sea", "Coast",
+                         "Space", "World", "Earth", "Planet", "Night", "Day", "Star", "Sun",
+                         "Voyage", "Journey", "Time", "Destruction", "Ideas", "Everything",
+                         "King", "Queen", "Daughter", "Son", "Prince", "Princess",
+                         "Hangar", "Rainbow", "Signal", "Book", "Lawn",
+                         "Dog", "Cat", "Lion", "Horse", "Elephant", "Sloth", "Panda",
+                         "Turkey", "Possum", "Skunk", "Walrus", "Bear", 
+                         "Wizard", "Warrior", "Knight", "Dragon", "Goblin", "Mage",
+                         "Soul", "Music", "Country", "Enemy", "History",
+                         "Doctor", "Scientist", "Engineer", "Janitor", "Landlord", "Butcher", 
+                         "Astronaut", "Spaceman",
+                         "Hallway", "Ghost",  "Spirit", "Visions",
+                         "Hour", "Day", "Month", "Year", "Second", "Minute", "Age",
+                         "Men", "Women", "Boys", "Girls", "Uncle", "Aunt", "Mother", "Father",
+                         "Yard", "Room",
+                         "Banana", "Apple", "Melon", "Cake", "Pie", 
+                         "Tomato", "Celery", 
+                         "Sawblade", "Drill", "Hammer", "Nail", "Knife", "Knives",
+                         "Graveyard", "Highway", "Midnight", "Death", "Tragedy", "Tomb", "Progress", "Tree",
+                         "Gem", "Diamond", "Ruby", "Pearl", "Sparkle"
+                ],
+        suffixes:  [    "Collective", "United", "Studio", "Interactive", "Games", "Group",
+                        "Team", "Community", "Alliance", "Company", "Direction"
+                   ]
+    };
+
     /**
      * @description Initializes the module.
      * @public
     */ 
     self.init = function(){
-        
     };
     
+    self.generateCompanyName = function(){
+        function getItem(array)
+        {
+            return array[Math.floor(Math.random()*array.length)];
+        }
 
+        var companyName = "";
+        
+        if(Math.random() < 0.7)
+        {
+            companyName += ""  + getItem(companyNamesData.adjectives);
+            companyName += " " + getItem(companyNamesData.nouns);
+        }
+        else
+        {
+            companyName += ""  + getItem(companyNamesData.nouns);
+            companyName += " " + getItem(companyNamesData.nouns);
+        }
+
+        if(Math.random() < 0.3) {
+            companyName += " " + getItem(companyNamesData.suffixes);
+        }
+        
+        return companyName;
+    
+    };
+    
     /*
     // Create the markov chain and specify the Order of the markov chain.
     // The order (an integer > 0) indicates how many previous letters are 
@@ -2524,37 +2599,19 @@ UltimateLib.VisualTweaks = (function(self) {
     self.init = function(){
         UltimateLib.Logger.log("UltimateLib.VisualTweaks init ran.");
         $('head').append('<style id="visualTweaks" type="text/css"></style>');
-        /*
-        store.data.sliderbg = {};
-        store.data.sliderbg.engine = "";
-        store.data.sliderbg.gameplay = "";
-        store.data.sliderbg.story = "";
-        store.data.sliderbg.dialogs = "";
-        store.data.sliderbg.level = "";
-        store.data.sliderbg.ai = "";
-        store.data.sliderbg.graphic = "";
-        store.data.sliderbg.sound = "";
-        store.data.sliderbg.world = "";
-
-        */
         UltimateLib.Storage.write('SliderBG', {
-            engine: "url",
-            gameplay: "url",
-            story: "url",
-            dialogs: "url",
-            level: "url",
-            ai: "url",
-            graphic: "url",
-            sound: "url",
-            world: "url",
+            engine: ".\/mods\/UltimateLib\/img\/defaultsbg.gif",
+            gameplay: ".\/mods\/UltimateLib\/img\/defaultsbg.gif",
+            story: ".\/mods\/UltimateLib\/img\/defaultsbg.gif",
+            dialogs: ".\/mods\/UltimateLib\/img\/defaultsbg.gif",
+            level: ".\/mods\/UltimateLib\/img\/defaultsbg.gif",
+            ai: ".\/mods\/UltimateLib\/img\/defaultsbg.gif",
+            graphic: ".\/mods\/UltimateLib\/img\/defaultsbg.gif",
+            sound: ".\/mods\/UltimateLib\/img\/defaultsbg.gif",
+            world: ".\/mods\/UltimateLib\/img\/defaultsbg.gif",
             cssset: false,
             watermarkset: false
         });
-
-
-        //console.log("pre");
-        //console.log(GDT.getDataStore("UltimateLib").data.sliderbg);
-
     };
 	
 
@@ -2650,6 +2707,7 @@ UltimateLib.VisualTweaks = (function(self) {
         tweak.append('.featurePreview3, .featureProgressGain, .ul-vt-bar-right { border-top-right-radius: ' + radius + 'px; border-bottom-right-radius: ' + radius + 'px }');
         UltimateLib.Logger.log("UltimateLib.VisualTweaks.setRoundedBars set."); 
     };
+
     /**
      * @description Gives text boxes a rounded edge.
      * @public
@@ -2662,6 +2720,7 @@ UltimateLib.VisualTweaks = (function(self) {
         tweak.append('#gameTitle, .featureSelectionCategoryHeading, .loadSaveButton, .cashLogContainer, .ul-vt-textbox { border-radius: ' + radius + 'px; }');
         UltimateLib.Logger.log("UltimateLib.VisualTweaks.setTextBox set."); 
     };
+
     self.setFancyGrads = function (style) {
         if (store.settings.fancyGrads === false) { UltimateLib.Logger.log("UltimateLib.VisualTweaks.setFancyGrads = false."); return; };
         var tweak = $('#visualTweaks');
@@ -2681,7 +2740,6 @@ UltimateLib.VisualTweaks = (function(self) {
 
         UltimateLib.Logger.log("UltimateLib.VisualTweaks.setFancyGrads set.");
     };
-
 
     self.setWatermarks = function (object, url) {
         var tweak = $('#visualTweaks');
@@ -2747,7 +2805,7 @@ UltimateLib.VisualTweaks = (function(self) {
         console.log(urlstore);
         if (urlstore.cssset === false) {
             
-            tweak.append('.ul-vt-slider-img { width:80%; height:80%; border-width: 1px; border-style:solid; position:absolute; opacity:0.8; left: 19px; bottom: 70px; }');
+            tweak.append('.ul-vt-slider-img { width:80%; height:80%; border-width: 1px; border-style:solid; border-color:#828282; position:absolute; opacity:0.8; left: 17px; bottom: 70px; }');
             urlstore.cssset = true;
         }
         console.log(urlstore);
@@ -2781,7 +2839,7 @@ UltimateLib.VisualTweaks = (function(self) {
                 menu2.prepend('<img id="level" class="ul-vt-slider-img" src="' + getstore.level + '"/>');
                 menu3.prepend('<img id="ai" class="ul-vt-slider-img" src="' + getstore.ai + '"/>');
             }
-            if (GameManager.getCurrentDevStage() == 1) {    
+            if (GameManager.getCurrentDevStage() == 3) {    
                 //Stage 3
                 menu1.prepend('<img id="world" class="ul-vt-slider-img" src="' + getstore.world + '"/>');
                 menu2.prepend('<img id="graphic" class="ul-vt-slider-img" src="' + getstore.graphic + '"/>');
