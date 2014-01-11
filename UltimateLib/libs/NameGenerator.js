@@ -65,33 +65,6 @@
      * @public
     */ 
     self.init = function(){
-        (function() {
-            var proxied = UI.showNewGameView;
-            UI.showNewGameView = function (a, d) {
-                proxied.apply( this, arguments );
-                
-                
-                
-                // Allow creating a random name
-                var settingsButton = $('#newGameView').find('div')[1];
-                var companyNameTitle = $('#newGameViewContent').find('h2')[1];
-                var generateNameButton = $(document.createElement('div'));
-                var companyName = $('#newGameViewContent').find('#companyName');
-
-                generateNameButton.addClass('fontCharacterButton icon-edit');
-                
-                companyName.css({width:'280px'})
-                
-                generateNameButton.on('click', function(e){
-                    var newCompanyName = self.generateCompanyName();
-                    companyName.attr('value', newCompanyName);
-                    
-                });
-                
-
-                generateNameButton.insertBefore(companyNameTitle);
-            }
-        })();
     };
     
     self.generateCompanyName = function(){
