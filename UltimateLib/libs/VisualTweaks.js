@@ -18,7 +18,7 @@ UltimateLib.VisualTweaks.setWatermarks
 UltimateLib.VisualTweaks = (function(self) {    
     // Show up in console
     UltimateLib.Logger.log("UltimateLib.VisualTweaks loading...");
-    var store = GDT.getDataStore("UltimateLib");
+    var store = GDT.getDataStore("UltimateLib");//function () { return GDT.getDataStore("UltimateLib"); };
     
     /**
      * @description Sets up the style tags for the rest of the module.
@@ -27,7 +27,37 @@ UltimateLib.VisualTweaks = (function(self) {
     self.init = function(){
         UltimateLib.Logger.log("UltimateLib.VisualTweaks init ran.");
         $('head').append('<style id="visualTweaks" type="text/css"></style>');
-        store.sliderbg = {};
+        /*
+        store.data.sliderbg = {};
+        store.data.sliderbg.engine = "";
+        store.data.sliderbg.gameplay = "";
+        store.data.sliderbg.story = "";
+        store.data.sliderbg.dialogs = "";
+        store.data.sliderbg.level = "";
+        store.data.sliderbg.ai = "";
+        store.data.sliderbg.graphic = "";
+        store.data.sliderbg.sound = "";
+        store.data.sliderbg.world = "";
+
+        */
+        UltimateLib.Storage.write('SliderBG', {
+            engine: "url",
+            gameplay: "url",
+            story: "url",
+            dialogs: "url",
+            level: "url",
+            ai: "url",
+            graphic: "url",
+            sound: "url",
+            world: "url",
+            cssset: false,
+            watermarkset: false
+        });
+
+
+        //console.log("pre");
+        //console.log(GDT.getDataStore("UltimateLib").data.sliderbg);
+
     };
 	
 
@@ -152,44 +182,43 @@ UltimateLib.VisualTweaks = (function(self) {
                 break;
         }
 
-        tweak.append('');
         UltimateLib.Logger.log("UltimateLib.VisualTweaks.setFancyGrads set.");
     };
 
 
     self.setWatermarks = function (object, url) {
         var tweak = $('#visualTweaks');
-
+        var urlstore = UltimateLib.Storage.read('SliderBG');
         switch (object) {
             case "slider-all-img":
                 $('#selectFeatureMenuTemplate').find('.focusSliderWrapper').prepend('<img id="allsliderimg" class="ul-vt-slider-img" src="' + url + '"/>');
                 break;
             case "slider-engine-img":
-                store.sliderbg.engine = url;
+                urlstore.engine = url;
                 break;
             case "slider-gameplay-img":
-                store.sliderbg.gameplay = url;
+                urlstore.gameplay = url;
                 break;
             case "slider-story-img":
-                store.sliderbg.story = url;
+                urlstore.story = url;
                 break;
             case "slider-dialogs-img":
-                store.sliderbg.dialogs = url;
+                urlstore.dialogs = url;
                 break;
             case "slider-level-img":
-                store.sliderbg.level = url;
+                urlstore.level = url;
                 break;
             case "slider-ai-img":
-                store.sliderbg.ai = url;
+                urlstore.ai = url;
                 break;
             case "slider-world-img":
-                store.sliderbg.world = url;
+                urlstore.world = url;
                 break;
             case "slider-graphic-img":
-                store.sliderbg.graphic = url;
+                urlstore.graphic = url;
                 break;
             case "slider-sound-img":
-                store.sliderbg.sound = url;
+                urlstore.sound = url;
                 break;
             case "slider-1":
                 tweak.append('#selectFeatureMenuTemplate .focusSliderWrapper .feature1 { background-image: url("' + url + '"); }')
@@ -215,34 +244,52 @@ UltimateLib.VisualTweaks = (function(self) {
             case "development-3":
                 tweak.append('#selectFeatureMenuTemplate .focusSliderWrapper .feature1 { background-image: url("' + url + '"); }')
                 break;
+            default:
+                break;
         }
-        if (store.sliderbg.cssset != true){
+        console.log(urlstore);
+        if (urlstore.cssset === false) {
             
-            tweak.append('.ul-vt-slider-img { width:80%; height:80%; border: 1px; position:absolute; opacity:0.4; left: 0; }');
-            store.sliderbg.cssset = true;
+            tweak.append('.ul-vt-slider-img { width:80%; height:80%; border-width: 1px; border-style:solid; position:absolute; opacity:0.8; left: 19px; bottom: 70px; }');
+            urlstore.cssset = true;
         }
-        addWatermarkCallback();
+        console.log(urlstore);
+        if (urlstore.watermarkset === false) {
+            addWatermarkCallback();
+            urlstore.watermarkset = true;
+        }
+        console.log(urlstore);
     };
     var addWatermarkCallback = function () {
         var keepme = UI.showFeatureList;
         UI.showFeatureList = function (features, options) {
-            var store = GDT.getDataStore("UltimateLib");
+            console.log("2");
+            var getstore = UltimateLib.Storage.read('SliderBG');
+            console.log(getstore);
             var tweak = $('#visualTweaks');
             
             keepme(features, options)
-
-            //Stage 1
-            $('#selectFeatureMenu').find('.focusSliderWrapper').prepend('<img id="engine" class="ul-vt-slider-img" src="' + store.sliderbg.engine + '"/>');
-            $('#selectFeatureMenu').find('.focusSliderWrapper').prepend('<img id="gameplay" class="ul-vt-slider-img" src="' + store.sliderbg.gameplay + '"/>');
-            $('#selectFeatureMenu').find('.focusSliderWrapper').prepend('<img id="story" class="ul-vt-slider-img" src="' + store.sliderbg.story + '"/>');
-            //Stage 2 
-            $('#selectFeatureMenu').find('.focusSliderWrapper').prepend('<img id="dialogs" class="ul-vt-slider-img" src="' + store.sliderbg.dialogs + '"/>');
-            $('#selectFeatureMenu').find('.focusSliderWrapper').prepend('<img id="level" class="ul-vt-slider-img" src="' + store.sliderbg.level + '"/>');
-            $('#selectFeatureMenu').find('.focusSliderWrapper').prepend('<img id="ai" class="ul-vt-slider-img" src="' + store.sliderbg.ai + '"/>');
-            //Stage 3
-            $('#selectFeatureMenu').find('.focusSliderWrapper').prepend('<img id="world" class="ul-vt-slider-img" src="' + store.sliderbg.world + '"/>');
-            $('#selectFeatureMenu').find('.focusSliderWrapper').prepend('<img id="graphic" class="ul-vt-slider-img" src="' + store.sliderbg.graphic + '"/>');
-            $('#selectFeatureMenu').find('.focusSliderWrapper').prepend('<img id="sound" class="ul-vt-slider-img" src="' + store.sliderbg.sound + '"/>');
+            var menu1 = $('#selectFeatureMenu').find('.focusSliderWrapper.feature1');
+            var menu2 = $('#selectFeatureMenu').find('.focusSliderWrapper.feature2');
+            var menu3 = $('#selectFeatureMenu').find('.focusSliderWrapper.feature3');
+            if (GameManager.getCurrentDevStage() == 1) {
+                //Stage 1
+                menu1.prepend('<img id="engine" class="ul-vt-slider-img" src="' + getstore.engine + '"/>');
+                menu2.prepend('<img id="gameplay" class="ul-vt-slider-img" src="' + getstore.gameplay + '"/>');
+                menu3.prepend('<img id="story" class="ul-vt-slider-img" src="' + getstore.story + '"/>');
+            }
+            if (GameManager.getCurrentDevStage() == 2) {
+                //Stage 2 
+                menu1.prepend('<img id="dialogs" class="ul-vt-slider-img" src="' + getstore.dialogs + '"/>');
+                menu2.prepend('<img id="level" class="ul-vt-slider-img" src="' + getstore.level + '"/>');
+                menu3.prepend('<img id="ai" class="ul-vt-slider-img" src="' + getstore.ai + '"/>');
+            }
+            if (GameManager.getCurrentDevStage() == 1) {    
+                //Stage 3
+                menu1.prepend('<img id="world" class="ul-vt-slider-img" src="' + getstore.world + '"/>');
+                menu2.prepend('<img id="graphic" class="ul-vt-slider-img" src="' + getstore.graphic + '"/>');
+                menu3.prepend('<img id="sound" class="ul-vt-slider-img" src="' + getstore.sound + '"/>');
+            }
         }
 
     };
