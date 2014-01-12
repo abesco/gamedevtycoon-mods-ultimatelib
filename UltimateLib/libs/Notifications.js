@@ -157,7 +157,12 @@ UltimateLib.Notifications = (function(self){
         (function() {
             var proxied = $.fn.typewrite;
             $.fn.typewrite = function(b) {
-                b.delay = self.typeWriterDelay;
+                if(typeWriterDelay.mode=='factor'){
+                    b.delay *= typeWriterDelay.value;
+                }
+                else {
+                    b.delay = self.typeWriterDelay.value;
+                }
                 return proxied.apply( this, arguments );
             };
         })();
