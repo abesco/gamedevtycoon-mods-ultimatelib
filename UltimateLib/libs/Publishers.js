@@ -1,14 +1,10 @@
 /**
- * @class Publishers
- * @namespace UltimateLib
- * @author Chad Keating (SirEverard)
+ * @fileOverview This is an API for adding Publishers to the game
  * @version 0.1.0b
- * @description This is an API for adding Publishers to the game.
- * @fileOverview This is an API for adding Publishers to the game.
+ * @author SirEverard
  * @constructor
- * @param {object} self An object representing the class itself for extending
+ * @augments UltimateLib
  */
-
 UltimateLib.Publishers = (function(self) {
     // Show up in console
     UltimateLib.Logger.log("UltimateLib.Publishers loading...");
@@ -18,7 +14,7 @@ UltimateLib.Publishers = (function(self) {
      * @public
     */ 
     self.init = function(){
-    	
+    	/*
     	// Zero Contract Stores
     	var getstore = GDT.getDataStore("UltimateLib").settings;
         getstore.publisherNames = [];
@@ -26,7 +22,7 @@ UltimateLib.Publishers = (function(self) {
         // hijack ProjectContracts.getAvailable
         hijackgetAvailable();
         UltimateLib.Logger.log("UltimateLib.Contracts init ran.");
-        
+        */
     };
     
     
