@@ -1,13 +1,16 @@
 /**
+ * @class Storage
+ * @namespace UltimateLib
+ * @author Francesco Abbattista (alphabit)
+ * @version 1.0.0
+ * @description This is a custom storage class for the UltimateLib. It uses the jstorage.js by © 2010 - 2012 Andris Reinman, andris.reinman@gmail.com
+ *               jStorage is licensed under Unlicense, so basically you can do whatever you want to do with it.
  * @fileOverview This is a custom storage class for the UltimateLib. It uses the jstorage.js by © 2010 - 2012 Andris Reinman, andris.reinman@gmail.com
  *               jStorage is licensed under Unlicense, so basically you can do whatever you want to do with it.
- * @version 1.0.0
- * @author alphabit
  * @constructor
- * @augments UltimateLib
- * @class Storage
- * @
+ * @param {object} self An object representing the class itself for extending
  */
+
  UltimateLib.Storage = (function(self){
     // Show up in console
     UltimateLib.Logger.log("UltimateLib.Storage loading...");

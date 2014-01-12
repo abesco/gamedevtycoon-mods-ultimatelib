@@ -1,22 +1,25 @@
 /**
- * @fileOverview Configuration is an UltimateLib library class providing capabilities to manipulate the in-game settings UI
- * @author alphabit
+ * @class Configuration
+ * @namespace UltimateLib
+ * @author Francesco Abbattista (alphabit)
  * @version 1.0.0
  * @description Configuration is an UltimateLib library class providing capabilities to manipulate the in-game settings UI.
+ * @fileOverview Configuration is an UltimateLib library class providing capabilities to manipulate the in-game settings UI.
  * @constructor
- * @augments UltimateLib
+ * @param {object} self An object representing the class itself for extending
  */
+
 UltimateLib.Configuration = (function(self){
     // Show up in console
     UltimateLib.Logger.log("UltimateLib.Configuration loading...");
 
     /**
+     * @method
      * @description Creates a tab panel to use for addTab
      * @param {string} Name (id) of the tab panel element
      * @param {string} Text to show as title
      * @param {string} Panel content
      * @returns {TabPanel} The new tab panel that can be used for further operations
-     * @public
     */          
     self.addTab = function(name, text, content){
         var tabPanel = $(document.createElement('div'));
@@ -41,8 +44,8 @@ UltimateLib.Configuration = (function(self){
     };
     
     /**
+     * @method
      * @description Initializes the module.
-     * @public
     */     
     self.init = function(){
         var children = UltimateLib.Elements.SettingsPanel.children();

@@ -1,13 +1,14 @@
- /**
- * @fileOverview Logger is an UltimateLib library providing simple logger capabilities to UltimateLib
- * @author alphabit
- * @version 1.0.0
+/**
  * @class Logger
+ * @namespace UltimateLib
+ * @author Francesco Abbattista (alphabit) and Chad Keating (SirEverard)
+ * @version 1.0.0
  * @description Simple logger for the UltimateLib class. This class is used for simple console based logging purposes related to this package.
+ * @fileOverview  Logger is an UltimateLib library providing simple logger capabilities to UltimateLib.
  * @constructor
- * @namespace GDT
- * @augments UltimateLib
-*/
+ * @param {object} self An object representing the class itself for extending
+ */
+
 UltimateLib.Logger = (function(self) {
     /**
      * @method formatDate 

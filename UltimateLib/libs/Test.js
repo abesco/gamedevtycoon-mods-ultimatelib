@@ -1,10 +1,14 @@
 /**
- * @fileOverview This is a simple test module
+ * @class Test
+ * @namespace UltimateLib
+ * @author Francesco Abbattista (alphabit)
  * @version 1.0.0
- * @author alphabit
+ * @description This is a simple test module.
+ * @fileOverview This is a simple test module.
  * @constructor
- * @augments UltimateLib
+ * @param {object} self An object representing the class itself for extending
  */
+
  UltimateLib.Test = (function(self){
     // Show up in console
     UltimateLib.Logger.log("UltimateLib.Test loading...");

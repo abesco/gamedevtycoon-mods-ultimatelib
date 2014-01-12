@@ -1,4 +1,14 @@
-/*
+/**
+ * @class jStorage
+ * @author Andris Reinman
+ * @version 0.4.7
+ * @description Simple local storage wrapper to save data on the browser side. www.jstorage.info
+ * @fileOverview Simple local storage wrapper to save data on the browser side. www.jstorage.info
+ * @constructor
+ * @param {object} self An object representing the class itself for extending
+ */
+ 
+ /*
  * ----------------------------- JSTORAGE -------------------------------------
  * Simple local storage wrapper to save data on the browser side, supporting
  * all major browsers - IE6+, Firefox2+, Safari4+, Chrome4+ and Opera 10.5+

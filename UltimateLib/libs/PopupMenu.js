@@ -1,10 +1,12 @@
 /**
- * @fileOverview PopupMenu provides simplified creation and access to popup menu within the game. Allows to create custom menu items for implementing custom functionality.
- * @author alphabit
+ * @class PopupMenu
+ * @namespace UltimateLib
+ * @author Francesco Abbattista (alphabit)
  * @version 1.0.0
  * @description PopupMenu provides simplified creation and access to popup menu within the game. Allows to create custom menu items for implementing custom functionality.
+ * @fileOverview PopupMenu provides simplified creation and access to popup menu within the game. Allows to create custom menu items for implementing custom functionality.
  * @constructor
- * @augments UltimateLib
+ * @param {object} self An object representing the class itself for extending
  */
  UltimateLib.PopupMenu = (function(self){
     // Show up in console

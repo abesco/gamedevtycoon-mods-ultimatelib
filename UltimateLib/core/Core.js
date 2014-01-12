@@ -1,12 +1,13 @@
 /**
- * @fileOverview Core class of the UltimateLib
- * @author alphabit
- * @version 1.0.0
  * @class Core
- * @description Ultimate provides access to library related functionality as well as access all the related libraries from here. This class hooks into GDT.
+ * @namespace UltimateLib
+ * @author Francesco Abbattista (alphabit)
+ * @version 1.0.2
+ * @description Core class of the UltimateLib.
+ * @fileOverview  Core class of the UltimateLib.
  * @constructor
- * @namespace GDT
-*/
+ * @param {object} self An object representing the class itself for extending
+ */
 
 UltimateLib.Core = (function(self) {       
     /**

@@ -1,10 +1,14 @@
 /**
- * @fileOverview This is an API for adding differnt types of research to the game.
+ * @class Research
+ * @namespace UltimateLib
+ * @author Chad Keating (SirEverard)
  * @version 0.1.0b
- * @author SirEverard
+ * @description This is an API for adding differnt types of research to the game.
+ * @fileOverview This is an API for adding differnt types of research to the game.
  * @constructor
- * @augments UltimateLib
+ * @param {object} self An object representing the class itself for extending
  */
+
 UltimateLib.Research = (function(self) {
     // Show up in console
     UltimateLib.Logger.log("UltimateLib.Research loading...");

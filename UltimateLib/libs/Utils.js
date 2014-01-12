@@ -1,10 +1,14 @@
 /**
+ * @class Utils
+ * @namespace UltimateLib
+ * @author Francesco Abbattista (alphabit) and Chad Keating (SirEverard)
+ * @version 1.0.0
+ * @description Utility library with useful functions for your code.
  * @fileOverview Utility library with useful functions for your code.
- * @version 0.1.0b
- * @author SirEverard and alphabit
  * @constructor
- * @augments UltimateLib
+ * @param {object} self An object representing the class itself for extending
  */
+
 UltimateLib.Utils = (function(self) {
     // Show up in console
     UltimateLib.Logger.log("UltimateLib.Utils loading...");

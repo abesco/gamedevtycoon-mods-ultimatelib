@@ -1,30 +1,40 @@
 /**
- * @fileOverview Notifications is an UltimateLib library class providing capabilities to manipulate the in-game settings notification system
- * @author alphabit
- * @version 1.0.0
- * @description Notifications is an UltimateLib library class providing capabilities to manipulate the in-game settings notification system.
- * @constructor
- * @augments UltimateLib
  * @class Notifications
+ * @namespace UltimateLib
+ * @author Francesco Abbattista (alphabit)
+ * @version 1.0.2
+ * @description Notifications is an UltimateLib library class providing capabilities to manipulate the in-game settings notification system.
+ * @fileOverview Notifications is an UltimateLib library class providing capabilities to manipulate the in-game settings notification system
+ * @constructor
+ * @param {object} self An object representing the class itself for extending
  */
 UltimateLib.Notifications = (function(self){
     // Show up in console
     UltimateLib.Logger.log("UltimateLib.Notifications loading...");
     
     /**
-     * @description Headers is a nested class of Notifications and provides direct access to supported in-game notification headers.
-     * @property {int} typeWriterDelay
-     * @returns {int} The typewriter effect delay in ms
-     * @public
+     * @description Typewriter effect delay value object. Allowed modes are 'default' and 'factor'. 
+     * When using 'default' you can input integer values from 0 to whatever. 20 is the default game value.
+     * When using the 'factor', you can specify a value between 0.0 and 1.0 that will be multiplied with the regular value.
+     * 
+     * Object specification:
+     * {mode:'default' or 'factor', value:Integer_for_default or Float_for_factor}
+     * @property
+     * @type object
      */    
-    self.typeWriterDelay = 100;
+    self.typeWriterDelay = {mode:'factor', value:1.0};
+    
+    /**
+     * @description 
+     * @property 
+     * @type float
+     */        
+    self.typeWriterDelayFactor = 1.0;
     
     /**
      * @description Headers is a nested class of Notifications and provides direct access to supported in-game notification headers.
-     * @constructor
-     * @augments Notifications
-     * @class Headers
-     * @public
+     * @property
+     * @type array
      */
     self.Items = [
                     {id:'GDT_PlatformReleaseNews', name:"{PlatformReleaseNews}",   enabled:true, asOverlay: false},
@@ -50,18 +60,36 @@ UltimateLib.Notifications = (function(self){
                     {id:'InfoStatsMod_BestGame',   name:"Company's Best Game",     enabled:true, asOverlay: false} // For InfoStatsMod 0.3.1 and higher
                 ];
 
+    /**
+    * @method
+    * @description Sets the state of all internal dialog items to enabled or disabled.
+    * @param {boolean} enable Specifies a value to enable or disable all dialogs
+    * 
+    */
      self.enableAll = function(enable){
         for(var i = 0; i < self.Items.length; i++){
             self.Items[i].enabled = enable;
         }  
      }; 
      
+    /**
+    * @method
+    * @description Sets the state of all internal dialog items to overlay or not overlay.
+    * @param {boolean} enable Specifies a value to enable or disable overlay on all dialogs
+    * 
+    */
      self.overlayAll = function(enable){
         for(var i = 0; i < self.Items.length; i++){
             self.Items[i].asOverlay = enable;
         }  
      };      
         
+    /**
+    * @method
+    * @description Sets the state of the corresponding internal item of the specified item to the overlay state of the specified item.
+    * @param {object} item Set overlay value of the specified item and pass it internally to GDT
+    * 
+    */
      self.setOverlay = function(item){
         for(var i = 0; i < self.Items.length; i++){
             if (self.Items[i].id == item.id){
@@ -71,6 +99,12 @@ UltimateLib.Notifications = (function(self){
         } 
      };
      
+    /**
+    * @method
+    * @description Sets the state of the corresponding internal item of the specified item to the enabled state of the specified item.
+    * @param {object} item Set enabled value of the specified item and pass it internally to GDT
+    * 
+    */
      self.setEnabled = function(item){
         for(var i = 0; i < self.Items.length; i++){
             if (self.Items[i].id == item.id){
@@ -80,6 +114,12 @@ UltimateLib.Notifications = (function(self){
         } 
      };
      
+    /**
+    * @method
+    * @description Returns an notification item object by looking for the id
+    * @param {object} item Set overlay value of the specified item and pass it internally to GDT
+    * @return {object} An object representing the item with the specified id
+    */
      self.getItemById = function(id){
         for(var i = 0; i < self.Items.length; i++){
             if (self.Items[i].id == id){
@@ -89,7 +129,14 @@ UltimateLib.Notifications = (function(self){
         return undefined;
      };
 
-     self.getItemByName = function(localizedName){
+     
+    /**
+    * @method
+    * @description Returns an notification item object by looking for the localized header
+    * @param {string} localizedName The localized name (header) of the dialog
+    * @return {object} An object representing the item with the specified header text
+    */
+    self.getItemByName = function(localizedName){
         for(var i = 0; i < self.Items.length; i++){
             if (self.Items[i].name.localize() == localizedName){
                 return self.Items[i];
@@ -99,9 +146,8 @@ UltimateLib.Notifications = (function(self){
      };
                          
     /**
-     * @description Initializes the module.
-     * @method init
-     * @public
+     * @method
+     * @description Initializes the class.
     */     
     self.init = function(){
         var lastModalDialog = null;
@@ -171,7 +217,7 @@ UltimateLib.Notifications = (function(self){
                                  closeModal = true;
                                  makeOverlay    = obj.asOverlay;
                                  isEnabled      = obj.enabled;
-                                 $('#simplemodal-container').hide();
+                                 // $('#simplemodal-container').hide();
 
                              }
                             }

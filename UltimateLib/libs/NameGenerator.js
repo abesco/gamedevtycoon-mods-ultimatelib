@@ -1,15 +1,24 @@
 /**
- * @fileOverview NameGenerator provides different name generating providers for easy and variable generation of various name types.
- * @author alphabit
+ * @class NameGenerator
+ * @namespace UltimateLib
+ * @author Francesco Abbattista (alphabit)
  * @version 1.0.0
  * @description NameGenerator provides different name generating providers for easy and variable generation of various name types.
+ * @fileOverview NameGenerator provides different name generating providers for easy and variable generation of various name types.
  * @constructor
- * @augments UltimateLib
+ * @param {object} self An object representing the class itself for extending
  */
- UltimateLib.NameGenerator = (function(self){
+
+UltimateLib.NameGenerator = (function(self){
     // Show up in console
     UltimateLib.Logger.log("UltimateLib.NameGenerator loading...");
     
+    /*
+     * @description Holds company name data used for name generation. The format is {adjectives:[], nouns:[], suffixes:[]}
+     * @property
+     * @type object
+     * @private
+    */
     var companyNamesData = {
         adjectives: [
                         "Digital", "Online", "Loud", "Quiet",
@@ -59,7 +68,40 @@
                         "Team", "Community", "Alliance", "Company", "Direction"
                    ]
     };
-
+    
+    /*
+     * @description Holds player name data used for name generation (male and female). The format is {male:{firstNames:[]}, female:{firstNames:[]}, lastNames:[]}
+     * @property
+     * @type object
+     * @private
+    */    
+    var playerNamesData = {
+        male:{
+                firstNames: ['John', 'Mike', 'Marc', 'Mark', 'Will', 'Bill', 
+                             'Patrick', 'Daniel', 'Frank', 'Chad', 'Francesco', 
+                             'Charles', 'Justin', 'Bas', 'Matthijs', 'Alessandro', 
+                             'Eugene', 'Mohammed', 'Yuri', 'Ali', 'Tarkan', 'Juan', 
+                             'Chico', 'Loco', 'Francis', 'Peter', 'Robert', 'Knut', 
+                             'Manfred', 'Johann', 'Karim', 'Christian', 'Ronald', 
+                             'Roland', 'Igor', 'Ivan', 'Marek']
+        },
+        female:{
+                firstNames: ['Joanna', 'Abigail', 'Jasmine', 'Monica', 'Janette', 'Chantal', 
+                             'Maria', 'Conny', 'Marijane', 'Jane', 'Charlie', 
+                             'Charlize', 'April', 'May', 'June', 'Chelsea', 
+                             'Benedetta', 'Antje', 'Maraike', 'Mary', 'Nicole', 'Sandra', 
+                             'Caroline', 'Elisabeth', 'Beth', 'Kate', 'Dorothee', 'Cornelia', 
+                             'Eve', 'Anne', 'Marie', 'Hannah', 'Helene', 
+                             'Lotte', 'Julia', 'Jolanda', 'Jennifer']
+        },
+        lastNames:  ['Wilders', 'Carmack', 'Jones', 'Bush', 'Kennedy', 
+                     'Williams', 'McLoud', 'Alas', 'Popovic', 'Markos', 
+                     'Cross', 'Van der Wiel', 'Van Bonkrost', 'Rosek', 
+                     'Klug', 'Schlau', 'Dost', 'Van der Keen', 'Johnsson', 
+                     'Kerry', 'Miller', 'Garcia', 'Lee', 'Gonzales', 'Young', 
+                     'Allen', 'Peterson', 'Morgan', 'Freeman', 'Howard', 'Cox']
+    }
+    
     /**
      * @description Initializes the module.
      * @public
@@ -68,32 +110,47 @@
     };
     
     self.generateCompanyName = function(){
-        function getItem(array)
-        {
+        function getItem(array) {
             return array[Math.floor(Math.random()*array.length)];
         }
 
-        var companyName = "";
+        var name = "";
         
-        if(Math.random() < 0.7)
-        {
-            companyName += ""  + getItem(companyNamesData.adjectives);
-            companyName += " " + getItem(companyNamesData.nouns);
+        if(Math.random() < 0.7) {
+            name += ""  + getItem(companyNamesData.adjectives);
+            name += " " + getItem(companyNamesData.nouns);
         }
-        else
-        {
-            companyName += ""  + getItem(companyNamesData.nouns);
-            companyName += " " + getItem(companyNamesData.nouns);
+        else  {
+            name += ""  + getItem(companyNamesData.nouns);
+            name += " " + getItem(companyNamesData.nouns);
         }
 
         if(Math.random() < 0.3) {
-            companyName += " " + getItem(companyNamesData.suffixes);
+            name += " " + getItem(companyNamesData.suffixes);
         }
         
-        return companyName;
+        return name;
     
     };
     
+    self.generatePlayerName = function(male){
+        function getItem(array) {
+            return array[Math.floor(Math.random()*array.length)];
+        }
+        
+        
+        var firstNames  = male ? playerNamesData.male.firstNames : playerNamesData.female.firstNames;
+        var name = ""  + getItem(firstNames);
+            name += " " + getItem(playerNamesData.lastNames);
+
+        if(Math.random() < 0.3) {
+            name += "-" + getItem(playerNamesData.lastNames);
+        }
+        
+        return name;
+    
+    };
+        
     /*
     // Create the markov chain and specify the Order of the markov chain.
     // The order (an integer > 0) indicates how many previous letters are 

@@ -1,13 +1,13 @@
 /**
- * @fileOverview UltimateLib base declaration. Makes the namespace and the base class available before any other thing.
- * @author alphabit
- * @version 1.0.1
  * @class UltimateLib
- * @description Ultimate provides access to library related functionality as well as access all the related libraries from here. This class hooks into GDT.
+ * @namespace UltimateLib
+ * @author Francesco Abbattista (alphabit)
+ * @version 1.0.2
+ * @description UltimateLib base declaration. Makes the namespace and the base class available before any other thing.
+ * @fileOverview UltimateLib base declaration. Makes the namespace and the base class available before any other thing.
  * @constructor
- * @namespace GDT
-*/
-
+ * @param {object} self An object representing the class itself for extending
+ */
 var UltimateLib = (function(self) { 
     
     /**

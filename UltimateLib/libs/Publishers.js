@@ -1,10 +1,14 @@
 /**
- * @fileOverview This is an API for adding Publishers to the game
+ * @class Publishers
+ * @namespace UltimateLib
+ * @author Chad Keating (SirEverard)
  * @version 0.1.0b
- * @author SirEverard
+ * @description This is an API for adding Publishers to the game.
+ * @fileOverview This is an API for adding Publishers to the game.
  * @constructor
- * @augments UltimateLib
+ * @param {object} self An object representing the class itself for extending
  */
+
 UltimateLib.Publishers = (function(self) {
     // Show up in console
     UltimateLib.Logger.log("UltimateLib.Publishers loading...");
