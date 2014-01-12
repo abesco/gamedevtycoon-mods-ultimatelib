@@ -25,13 +25,6 @@ UltimateLib.Notifications = (function(self){
     self.typeWriterDelay = {mode:'factor', value:1.0};
     
     /**
-     * @description 
-     * @property 
-     * @type float
-     */        
-    self.typeWriterDelayFactor = 1.0;
-    
-    /**
      * @description Headers is a nested class of Notifications and provides direct access to supported in-game notification headers.
      * @property
      * @type array
@@ -157,8 +150,8 @@ UltimateLib.Notifications = (function(self){
         (function() {
             var proxied = $.fn.typewrite;
             $.fn.typewrite = function(b) {
-                if(typeWriterDelay.mode=='factor'){
-                    b.delay *= typeWriterDelay.value;
+                if(self.typeWriterDelay.mode=='factor'){
+                    b.delay *= self.typeWriterDelay.value;
                 }
                 else {
                     b.delay = self.typeWriterDelay.value;
