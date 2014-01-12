@@ -23,11 +23,13 @@ UltimateLib.VisualTweaks = (function(self) {
     /**
      * @description Sets up the style tags for the rest of the module.
      * @public
-    */ 
+    */
+    
     self.init = function(){
         UltimateLib.Logger.log("UltimateLib.VisualTweaks init ran.");
         $('head').append('<style id="visualTweaks" type="text/css"></style>');
         UltimateLib.Storage.write('SliderBG', {
+
             engine: ".\/mods\/UltimateLib\/img\/defaultsbg.gif",
             gameplay: ".\/mods\/UltimateLib\/img\/defaultsbg.gif",
             story: ".\/mods\/UltimateLib\/img\/defaultsbg.gif",
@@ -168,7 +170,7 @@ UltimateLib.VisualTweaks = (function(self) {
 
         UltimateLib.Logger.log("UltimateLib.VisualTweaks.setFancyGrads set.");
     };
-
+    
     self.setWatermarks = function (object, url) {
         var tweak = $('#visualTweaks');
         var urlstore = UltimateLib.Storage.read('SliderBG');
@@ -230,25 +232,20 @@ UltimateLib.VisualTweaks = (function(self) {
             default:
                 break;
         }
-        console.log(urlstore);
         if (urlstore.cssset === false) {
             
             tweak.append('.ul-vt-slider-img { width:80%; height:80%; border-width: 1px; border-style:solid; border-color:#828282; position:absolute; opacity:0.8; left: 17px; bottom: 70px; }');
             urlstore.cssset = true;
         }
-        console.log(urlstore);
         if (urlstore.watermarkset === false) {
             addWatermarkCallback();
             urlstore.watermarkset = true;
         }
-        console.log(urlstore);
     };
     var addWatermarkCallback = function () {
         var keepme = UI.showFeatureList;
         UI.showFeatureList = function (features, options) {
-            console.log("2");
             var getstore = UltimateLib.Storage.read('SliderBG');
-            console.log(getstore);
             var tweak = $('#visualTweaks');
             
             keepme(features, options)
@@ -276,7 +273,7 @@ UltimateLib.VisualTweaks = (function(self) {
         }
 
     };
-
+    
     // Show up in console
     UltimateLib.Logger.log("UltimateLib.VisualTweaks loaded :-)");
 
