@@ -1,13 +1,13 @@
 /**
- * @fileOverview UltimateLib base declaration. Makes the namespace and the base class available before any other thing.
- * @author alphabit
- * @version 1.0.1
  * @class UltimateLib
- * @description Ultimate provides access to library related functionality as well as access all the related libraries from here. This class hooks into GDT.
+ * @namespace UltimateLib
+ * @author Francesco Abbattista (alphabit)
+ * @version 1.0.2
+ * @description UltimateLib base declaration. Makes the namespace and the base class available before any other thing.
+ * @fileOverview UltimateLib base declaration. Makes the namespace and the base class available before any other thing.
  * @constructor
- * @namespace GDT
-*/
-
+ * @param {object} self An object representing the class itself for extending
+ */
 var UltimateLib = (function(self) { 
     
     /**
@@ -177,16 +177,17 @@ var UltimateLib = (function(self) {
     
     return self;
 })(UltimateLib || {});
- /**
- * @fileOverview Logger is an UltimateLib library providing simple logger capabilities to UltimateLib
- * @author alphabit
- * @version 1.0.0
+/**
  * @class Logger
+ * @namespace UltimateLib
+ * @author Francesco Abbattista (alphabit) and Chad Keating (SirEverard)
+ * @version 1.0.0
  * @description Simple logger for the UltimateLib class. This class is used for simple console based logging purposes related to this package.
+ * @fileOverview  Logger is an UltimateLib library providing simple logger capabilities to UltimateLib.
  * @constructor
- * @namespace GDT
- * @augments UltimateLib
-*/
+ * @param {object} self An object representing the class itself for extending
+ */
+
 UltimateLib.Logger = (function(self) {
     /**
      * @method formatDate 
@@ -236,14 +237,15 @@ UltimateLib.Logger = (function(self) {
     return self;
 })(UltimateLib.Logger || {});
 /**
- * @fileOverview Core class of the UltimateLib
- * @author alphabit
- * @version 1.0.0
  * @class Core
- * @description Ultimate provides access to library related functionality as well as access all the related libraries from here. This class hooks into GDT.
+ * @namespace UltimateLib
+ * @author Francesco Abbattista (alphabit)
+ * @version 1.0.2
+ * @description Core class of the UltimateLib.
+ * @fileOverview  Core class of the UltimateLib.
  * @constructor
- * @namespace GDT
-*/
+ * @param {object} self An object representing the class itself for extending
+ */
 
 UltimateLib.Core = (function(self) {       
     /**
@@ -298,7 +300,29 @@ UltimateLib.Core = (function(self) {
 
 
 
-/* Foswig.js | (c) Glenn Conner. | https://github.com/mrsharpoblunto/foswig.js/blob/master/LICENSE */ (function(e){e.foswig={};e.foswig.MarkovChain=function(e){function r(a){a=a.toLowerCase();for(var b=k,c=0;c<a.length;++c)if(b=b.children[a[c]],!b)return!1;return!0}function l(a){1<a.length&&l(a.substr(1));for(var b=k,c=0;c<a.length;++c){var d=b.children[a[c]];d||(d=new m,b.children[a[c]]=d);b=d}}function n(a){this.b=a;this.a=[]}function m(){this.children=[]}var k=new m,h=new n(""),p={};this.addWordsToChain=function(a){for(var b=0;b<a.length;++b)this.addWordToChain(a[b])};this.addWordToChain=function(a){l(a.toLowerCase()); for(var b=h,c="",d=0;d<a.length;++d){var q=a[d],c=c+q;c.length>e&&(c=c.substr(1));var f=p[c];f||(f=new n(q),p[c]=f);b.a.push(f);b=f}b.a.push(null)};this.generateWord=function(a,b,c){var d,e;do{e=!1;var f=Math.floor(Math.random()*h.a.length),g=h.a[f];for(d="";g&&d.length<=b;)d+=g.b,f=Math.floor(Math.random()*g.a.length),g=g.a[f];if(d.length>b||d.length<a)e=!0}while(e||!c&&r(d));return d}};"function"===typeof e.define&&e.define.amd&&e.define("foswig",[],function(){return e.foswig})})("undefined"!== typeof window?window:this);/*
+/**
+ * @class Foswig
+ * @author Glenn Conner
+ * @version 1.0.0
+ * @description Marchov Name Generation Algorithm https://github.com/mrsharpoblunto/foswig.js/blob/master/LICENSE 
+ * @fileOverview https://github.com/mrsharpoblunto/foswig.js/blob/master/LICENSE 
+ * @constructor
+ * @param {object} self An object representing the class itself for extending
+ */
+ 
+/* Foswig.js | (c) Glenn Conner. | https://github.com/mrsharpoblunto/foswig.js/blob/master/LICENSE */ 
+
+(function(e){e.foswig={};e.foswig.MarkovChain=function(e){function r(a){a=a.toLowerCase();for(var b=k,c=0;c<a.length;++c)if(b=b.children[a[c]],!b)return!1;return!0}function l(a){1<a.length&&l(a.substr(1));for(var b=k,c=0;c<a.length;++c){var d=b.children[a[c]];d||(d=new m,b.children[a[c]]=d);b=d}}function n(a){this.b=a;this.a=[]}function m(){this.children=[]}var k=new m,h=new n(""),p={};this.addWordsToChain=function(a){for(var b=0;b<a.length;++b)this.addWordToChain(a[b])};this.addWordToChain=function(a){l(a.toLowerCase()); for(var b=h,c="",d=0;d<a.length;++d){var q=a[d],c=c+q;c.length>e&&(c=c.substr(1));var f=p[c];f||(f=new n(q),p[c]=f);b.a.push(f);b=f}b.a.push(null)};this.generateWord=function(a,b,c){var d,e;do{e=!1;var f=Math.floor(Math.random()*h.a.length),g=h.a[f];for(d="";g&&d.length<=b;)d+=g.b,f=Math.floor(Math.random()*g.a.length),g=g.a[f];if(d.length>b||d.length<a)e=!0}while(e||!c&&r(d));return d}};"function"===typeof e.define&&e.define.amd&&e.define("foswig",[],function(){return e.foswig})})("undefined"!== typeof window?window:this);/**
+ * @class jStorage
+ * @author Andris Reinman
+ * @version 0.4.7
+ * @description Simple local storage wrapper to save data on the browser side. www.jstorage.info
+ * @fileOverview Simple local storage wrapper to save data on the browser side. www.jstorage.info
+ * @constructor
+ * @param {object} self An object representing the class itself for extending
+ */
+ 
+ /*
  * ----------------------------- JSTORAGE -------------------------------------
  * Simple local storage wrapper to save data on the browser side, supporting
  * all major browsers - IE6+, Firefox2+, Safari4+, Chrome4+ and Opera 10.5+
@@ -1259,24 +1283,27 @@ UltimateLib.Core = (function(self) {
 
 })();
 /**
- * @fileOverview Configuration is an UltimateLib library class providing capabilities to manipulate the in-game settings UI
- * @author alphabit
+ * @class Configuration
+ * @namespace UltimateLib
+ * @author Francesco Abbattista (alphabit)
  * @version 1.0.0
  * @description Configuration is an UltimateLib library class providing capabilities to manipulate the in-game settings UI.
+ * @fileOverview Configuration is an UltimateLib library class providing capabilities to manipulate the in-game settings UI.
  * @constructor
- * @augments UltimateLib
+ * @param {object} self An object representing the class itself for extending
  */
+
 UltimateLib.Configuration = (function(self){
     // Show up in console
     UltimateLib.Logger.log("UltimateLib.Configuration loading...");
 
     /**
+     * @method
      * @description Creates a tab panel to use for addTab
      * @param {string} Name (id) of the tab panel element
      * @param {string} Text to show as title
      * @param {string} Panel content
      * @returns {TabPanel} The new tab panel that can be used for further operations
-     * @public
     */          
     self.addTab = function(name, text, content){
         var tabPanel = $(document.createElement('div'));
@@ -1301,8 +1328,8 @@ UltimateLib.Configuration = (function(self){
     };
     
     /**
+     * @method
      * @description Initializes the module.
-     * @public
     */     
     self.init = function(){
         var children = UltimateLib.Elements.SettingsPanel.children();
@@ -1335,19 +1362,23 @@ UltimateLib.Configuration = (function(self){
 
     return self;    
 })(UltimateLib.Configuration || {});/**
- * @fileOverview This is an API for adding contracts to the game
+ * @class Contracts
+ * @namespace UltimateLib
+ * @author Chad Keating (SirEverard)
  * @version 0.1.0b
- * @author SirEverard
+ * @description This is an API for adding contracts to the game.
+ * @fileOverview This is an API for adding contracts to the game.
  * @constructor
- * @augments UltimateLib
+ * @param {object} self An object representing the class itself for extending
  */
+
 UltimateLib.Contracts = (function(self) {
     // Show up in console
     UltimateLib.Logger.log("UltimateLib.Contracts loading...");
 
     /**
+     * @method
      * @description Initializes the module.
-     * @public
     */ 
     self.init = function(){
     	
@@ -1364,23 +1395,23 @@ UltimateLib.Contracts = (function(self) {
     };
     
 	/**
+     * @method 
      * @description Adds a custom contract.
-     * @public
-     * @param {contract object}
+     * UltimateLib Contract Format
+        {
+            name : "Contract Name",
+            description : "Contract description",
+            requiredD : 10, // Design points required
+            requiredT : t, // tech points required
+            payment : 3E4, // Payment on completion 
+            penalty : -2E3, // Penelty for not completing on time.
+            weeksToFinish : 4, // Number of weeks to complete the contract.
+            rF : template.rF, 
+            size : "size" //"small", "medium", or "large"
+        }
+     *
+     * @param {contract object} The GDT contract object as described
     */    
-	/* UltimateLib Contract Format
-		{
-			name : "Contract Name",
-			description : "Contract description",
-			requiredD : 10, // Design points required
-			requiredT : t, // tech points required
-			payment : 3E4, // Payment on completion 
-			penalty : -2E3, // Penelty for not completing on time.
-			weeksToFinish : 4, // Number of weeks to complete the contract.
-			rF : template.rF, 
-			size : "size" //"small", "medium", or "large"
-		}
-	*/
 	self.addContract = function (contract) {
 		
 		var getstore = GDT.getDataStore("UltimateLib").settings;
@@ -1413,10 +1444,11 @@ UltimateLib.Contracts = (function(self) {
 	};
 		
 	/**
-     * @description Checks the contract for errors.
+     * @method 
      * @private
-     * @param {contract object}
-     * @return {bool} Pass or Fail the check
+     * @description Checks the contract for errors.
+     * @param {contract object} A GDT contract object
+     * @return {boolean} Pass or Fail the check
     */  
 	function contractCheck(contract){
 		if (!(Checks.checkPropertiesPresent(contract, ['name', 'description', 'requiredD', 'requiredT', 'payment','penalty','weeksToFinish','rF','size']) 
@@ -1427,26 +1459,28 @@ UltimateLib.Contracts = (function(self) {
 	};
 		
 	/**
+     * @method 
      * @description Formats the contract object to full contract object
+     * Real Contract Format
+        {
+            name : "Contract Name",
+            description : "Contract description",
+            requiredD : 10, // Design points required
+            requiredT : t, // tech points required
+            spawnedD : 0,
+            spawnedT : 0,
+            payment : 3E4, // Payment on completion 
+            penalty : -2E3, // Penelty for not completing on time.
+            weeksToFinish : 4, // Number of weeks to complete the contract.
+            rF : template.rF, 
+            isGeneric : true, 
+            size : "size" //"small", "medium", or "large"
+     *  }
      * @private
-     * @param {contract object}
-     * @return {full-contract object}
+     * @param {contract object} A GDT contract object
+     * @return {full-contract object} A GDT full (formatted) contract object
     */  
-     /* Real Contract Format
-		{
-			name : "Contract Name",
-			description : "Contract description",
-			requiredD : 10, // Design points required
-			requiredT : t, // tech points required
-			spawnedD : 0,
-			spawnedT : 0,
-			payment : 3E4, // Payment on completion 
-			penalty : -2E3, // Penelty for not completing on time.
-			weeksToFinish : 4, // Number of weeks to complete the contract.
-			rF : template.rF, 
-			isGeneric : true, 
-			size : "size" //"small", "medium", or "large"
-		}
+     /* 
 	*/
 	function formatContract(contract){
 		var c = contract;
@@ -1465,15 +1499,13 @@ UltimateLib.Contracts = (function(self) {
 				size : c.size // "small", "medium", or "large"
 		};
 	};
-		
-
 
 	/**
+     * @method
      * @description Adds custom contracts.
      * @private
-     * @return {contract object array}
+     * @return {contract object array} An array of GDT contract objects
     */  
-
 	function hijackgetAvailable () {
 		var keep = ProjectContracts.getAvailable;
 		ProjectContracts.getAvailable  = function(company, type){
@@ -1484,10 +1516,10 @@ UltimateLib.Contracts = (function(self) {
 	};
 	
 	/**
+     * @method
      * @description Returns all pertinent collected contracts.
-     * @public
-     * @param {GDT company object}
-     * @return {contract object array}
+     * @param {GDT company object} A GDT contract object
+     * @return {contract object array} An array of GDT contract objects
     */  
 	self.collection = function (company) {
 		
@@ -1507,34 +1539,33 @@ UltimateLib.Contracts = (function(self) {
 		
 		return collectedContracts;
 	};
-
-	
-
 	
     // Show up in console
     UltimateLib.Logger.log("UltimateLib.Contracts loaded :-)");
         
     return self;
 })(UltimateLib.Contracts || {});/**
- * @fileOverview Dialog is an UltimateLib library class providing dialog creation capabilities i.e. for use with PopupMenu.
- * @author alphabit
+ * @class Dialog
+ * @namespace UltimateLib
+ * @author Francesco Abbattista (alphabit)
  * @version 1.0.0
  * @description Dialog is an UltimateLib library class providing dialog creation capabilities i.e. for use with PopupMenu.
+ * @fileOverview Dialog is an UltimateLib library class providing dialog creation capabilities i.e. for use with PopupMenu.
  * @constructor
- * @augments UltimateLib
+ * @param {object} self An object representing the class itself for extending
  */
  UltimateLib.Dialog = (function(self){
     // Show up in console
     UltimateLib.Logger.log("UltimateLib.Dialog loading...");
     
     /**
+     * @method 
      * @description Creates a dialog button and returns it as a wrapped jQuery element object for further usage
-     * @param {string} A name (id) for the dialog button. Additional element names will be automatically extended as required.  
-     * @param {string} Text (Title) of the button
-     * @param {string|int} The width of the button  (as integer or css string)
-     * @param {string|int} The height of the button  (as integer or css string)
-     * @param {string} A string indicating the callback function to call (i.e. UI.myCallBackOnUIClick)
-     * @public
+     * @param {string} name A name (id) for the dialog button. Additional element names will be automatically extended as required.  
+     * @param {string} text Text (Title) of the button
+     * @param {string|integer} width The width of the button  (as integer or css string)
+     * @param {string|integer} height The height of the button  (as integer or css string)
+     * @param {string} onclick A string indicating the callback function to call (i.e. UI.myCallBackOnUIClick)
     */        
     self.createButton = function(name, text, width, height, onclick) {
         var el = $(document.createElement('div'));
@@ -1548,11 +1579,11 @@ UltimateLib.Contracts = (function(self) {
     };
     
     /**
+     * @method 
      * @description Creates a dialog section and returns it as a wrapped jQuery element object for further usage
-     * @param {string} A name (id) for the dialog element. Additional element names will be automatically extended with "Section", "SectionTitle", etc.  
-     * @param {string} Text (Title) of the section label
-     * @param {array} An array of buttons to show in the dialog section (use createButton to create each button)  
-     * @public
+     * @param {string} name A name (id) for the dialog element. Additional element names will be automatically extended with "Section", "SectionTitle", etc.  
+     * @param {string} text Text (Title) of the section label
+     * @param {array} buttons An array of buttons to show in the dialog section (use createButton to create each button)  
     */                
     self.createSection = function(name, text, buttons){
         var idSection       = name + "Section";
@@ -1575,11 +1606,11 @@ UltimateLib.Contracts = (function(self) {
     };
             
     /**
+     * @method 
      * @description Creates a dialog and returns it as a wrapped jQuery element object for further usage
-     * @param {string} A name (id) for the dialog element. Additional element names will be automatically extended with "Modal", "Container", etc.  
-     * @param {string} Text (Title) of the dialog
-     * @param {array} An array of sections to show on the dialog (use createSection to create each section)  
-     * @public
+     * @param {string} name A name (id) for the dialog element. Additional element names will be automatically extended with "Modal", "Container", etc.  
+     * @param {string} text Text (Title) of the dialog
+     * @param {array} sections An array of sections to show on the dialog (use createSection to create each section)  
     */                
     self.createDialog = function(name, text, sections){
         var idModalDialog       = name + "Modal";
@@ -1624,54 +1655,53 @@ UltimateLib.Contracts = (function(self) {
     return self;    
 })(UltimateLib.Dialog || {});
 /**
- * @fileOverview Elements is an UltimateLib library providing easy dom elements access capabilities to UltimateLib
- * @author alphabit and SirEverard
+ * @class Elements
+ * @namespace UltimateLib
+ * @author Francesco Abbattista (alphabit) and Chad Keating (SirEverard)
  * @version 1.0.0
  * @description Elements provides quick access to some important dom elements. This class handles all the loading work for including the libraries related to this package.
+ * @fileOverview Elements provides quick access to some important dom elements. This class handles all the loading work for including the libraries related to this package.
  * @constructor
- * @augments UltimateLib
+ * @param {object} self An object representing the class itself for extending
  */
+
 UltimateLib.Elements = (function(self) {
     // Show up in console
     UltimateLib.Logger.log("UltimateLib.Elements loading...");
     
     /**
+     * @method
      * @description Initializes the module.
-     * @public
     */ 
     self.init = function(){
         UltimateLib.Logger.log("UltimateLib.Elements init ran.");
     };
 
     /**
-     * @description The Head element of the document.
-     * @returns The Head DOM Element wrappen in a jQuery element object.
-     * @property {dom} head
-     * @public
+     * @description The Head element of the document. This is the Head DOM Element wrapped in a jQuery element object.
+     * @property 
+     * @type dom object
     */         
     self.Head           = $('head');
 
     /**
-     * @description The Body element of the document.
-     * @returns The Body DOM Element wrappen in a jQuery element object.
-     * @property {dom} Body
-     * @public
+     * @description The Body element of the document. This is the Body DOM Element wrapped in a jQuery element object.
+     * @property 
+     * @type dom object
     */         
     self.Body           = $('body');
 
     /**
-     * @description The Settings Panel element of the game.
-     * @returns The Settings Panel DOM Element wrapped in a jQuery element object.
-     * @property {dom} SettingsPanel
-     * @public
+     * @description The Settings Panel element of the game. The Settings Panel DOM Element wrapped in a jQuery element object.
+     * @property 
+     * @type dom object
     */         
     self.SettingsPanel  = $('#settingsPanel');
       
     /**
-     * @description The gameContainerWrapper.
-     * @returns The gameContainerWrapper of the GDT wrapped in a jQuery element object.
-     * @property {dom} GameContainerWrapper
-     * @public
+     * @description The gameContainerWrapper. This is the gameContainerWrapper of the GDT document wrapped in a jQuery element object.
+     * @property 
+     * @type dom object
     */         
     self.GameContainerWrapper  = $('#gameContainerWrapper');
       
@@ -1681,6 +1711,12 @@ UltimateLib.Elements = (function(self) {
      * @property {dom} SimpleModalContainer
      * @public
     */   
+
+    /**
+     * @description The simple modal container div. This is the simplemodal-container element of the GDT document wrapped in a jQuery element object.
+     * @property 
+     * @type dom object
+    */         
     self.SimpleModalContainer  = $('#simplemodal-container');
     
     // Show up in console
@@ -1689,17 +1725,26 @@ UltimateLib.Elements = (function(self) {
     return self;
 })(UltimateLib.Elements || {});
 /**
- * @fileOverview NameGenerator provides different name generating providers for easy and variable generation of various name types.
- * @author alphabit
+ * @class NameGenerator
+ * @namespace UltimateLib
+ * @author Francesco Abbattista (alphabit)
  * @version 1.0.0
  * @description NameGenerator provides different name generating providers for easy and variable generation of various name types.
+ * @fileOverview NameGenerator provides different name generating providers for easy and variable generation of various name types.
  * @constructor
- * @augments UltimateLib
+ * @param {object} self An object representing the class itself for extending
  */
- UltimateLib.NameGenerator = (function(self){
+
+UltimateLib.NameGenerator = (function(self){
     // Show up in console
     UltimateLib.Logger.log("UltimateLib.NameGenerator loading...");
     
+    /*
+     * @description Holds company name data used for name generation. The format is {adjectives:[], nouns:[], suffixes:[]}
+     * @property
+     * @type object
+     * @private
+    */
     var companyNamesData = {
         adjectives: [
                         "Digital", "Online", "Loud", "Quiet",
@@ -1749,7 +1794,40 @@ UltimateLib.Elements = (function(self) {
                         "Team", "Community", "Alliance", "Company", "Direction"
                    ]
     };
-
+    
+    /*
+     * @description Holds player name data used for name generation (male and female). The format is {male:{firstNames:[]}, female:{firstNames:[]}, lastNames:[]}
+     * @property
+     * @type object
+     * @private
+    */    
+    var playerNamesData = {
+        male:{
+                firstNames: ['John', 'Mike', 'Marc', 'Mark', 'Will', 'Bill', 
+                             'Patrick', 'Daniel', 'Frank', 'Chad', 'Francesco', 
+                             'Charles', 'Justin', 'Bas', 'Matthijs', 'Alessandro', 
+                             'Eugene', 'Mohammed', 'Yuri', 'Ali', 'Tarkan', 'Juan', 
+                             'Chico', 'Loco', 'Francis', 'Peter', 'Robert', 'Knut', 
+                             'Manfred', 'Johann', 'Karim', 'Christian', 'Ronald', 
+                             'Roland', 'Igor', 'Ivan', 'Marek']
+        },
+        female:{
+                firstNames: ['Joanna', 'Abigail', 'Jasmine', 'Monica', 'Janette', 'Chantal', 
+                             'Maria', 'Conny', 'Marijane', 'Jane', 'Charlie', 
+                             'Charlize', 'April', 'May', 'June', 'Chelsea', 
+                             'Benedetta', 'Antje', 'Maraike', 'Mary', 'Nicole', 'Sandra', 
+                             'Caroline', 'Elisabeth', 'Beth', 'Kate', 'Dorothee', 'Cornelia', 
+                             'Eve', 'Anne', 'Marie', 'Hannah', 'Helene', 
+                             'Lotte', 'Julia', 'Jolanda', 'Jennifer']
+        },
+        lastNames:  ['Wilders', 'Carmack', 'Jones', 'Bush', 'Kennedy', 
+                     'Williams', 'McLoud', 'Alas', 'Popovic', 'Markos', 
+                     'Cross', 'Van der Wiel', 'Van Bonkrost', 'Rosek', 
+                     'Klug', 'Schlau', 'Dost', 'Van der Keen', 'Johnsson', 
+                     'Kerry', 'Miller', 'Garcia', 'Lee', 'Gonzales', 'Young', 
+                     'Allen', 'Peterson', 'Morgan', 'Freeman', 'Howard', 'Cox']
+    }
+    
     /**
      * @description Initializes the module.
      * @public
@@ -1758,32 +1836,47 @@ UltimateLib.Elements = (function(self) {
     };
     
     self.generateCompanyName = function(){
-        function getItem(array)
-        {
+        function getItem(array) {
             return array[Math.floor(Math.random()*array.length)];
         }
 
-        var companyName = "";
+        var name = "";
         
-        if(Math.random() < 0.7)
-        {
-            companyName += ""  + getItem(companyNamesData.adjectives);
-            companyName += " " + getItem(companyNamesData.nouns);
+        if(Math.random() < 0.7) {
+            name += ""  + getItem(companyNamesData.adjectives);
+            name += " " + getItem(companyNamesData.nouns);
         }
-        else
-        {
-            companyName += ""  + getItem(companyNamesData.nouns);
-            companyName += " " + getItem(companyNamesData.nouns);
+        else  {
+            name += ""  + getItem(companyNamesData.nouns);
+            name += " " + getItem(companyNamesData.nouns);
         }
 
         if(Math.random() < 0.3) {
-            companyName += " " + getItem(companyNamesData.suffixes);
+            name += " " + getItem(companyNamesData.suffixes);
         }
         
-        return companyName;
+        return name;
     
     };
     
+    self.generatePlayerName = function(male){
+        function getItem(array) {
+            return array[Math.floor(Math.random()*array.length)];
+        }
+        
+        
+        var firstNames  = male ? playerNamesData.male.firstNames : playerNamesData.female.firstNames;
+        var name = ""  + getItem(firstNames);
+            name += " " + getItem(playerNamesData.lastNames);
+
+        if(Math.random() < 0.3) {
+            name += "-" + getItem(playerNamesData.lastNames);
+        }
+        
+        return name;
+    
+    };
+        
     /*
     // Create the markov chain and specify the Order of the markov chain.
     // The order (an integer > 0) indicates how many previous letters are 
@@ -1812,32 +1905,42 @@ UltimateLib.Elements = (function(self) {
     return self;    
 })(UltimateLib.NameGenerator || {});
 /**
- * @fileOverview Notifications is an UltimateLib library class providing capabilities to manipulate the in-game settings notification system
- * @author alphabit
- * @version 1.0.0
- * @description Notifications is an UltimateLib library class providing capabilities to manipulate the in-game settings notification system.
- * @constructor
- * @augments UltimateLib
  * @class Notifications
+ * @namespace UltimateLib
+ * @author Francesco Abbattista (alphabit)
+ * @version 1.0.2
+ * @description Notifications is an UltimateLib library class providing capabilities to manipulate the in-game settings notification system.
+ * @fileOverview Notifications is an UltimateLib library class providing capabilities to manipulate the in-game settings notification system
+ * @constructor
+ * @param {object} self An object representing the class itself for extending
  */
 UltimateLib.Notifications = (function(self){
     // Show up in console
     UltimateLib.Logger.log("UltimateLib.Notifications loading...");
     
     /**
-     * @description Headers is a nested class of Notifications and provides direct access to supported in-game notification headers.
-     * @property {int} typeWriterDelay
-     * @returns {int} The typewriter effect delay in ms
-     * @public
+     * @description Typewriter effect delay value object. Allowed modes are 'default' and 'factor'. 
+     * When using 'default' you can input integer values from 0 to whatever. 20 is the default game value.
+     * When using the 'factor', you can specify a value between 0.0 and 1.0 that will be multiplied with the regular value.
+     * 
+     * Object specification:
+     * {mode:'default' or 'factor', value:Integer_for_default or Float_for_factor}
+     * @property
+     * @type object
      */    
-    self.typeWriterDelay = 100;
+    self.typeWriterDelay = {mode:'factor', value:1.0};
+    
+    /**
+     * @description 
+     * @property 
+     * @type float
+     */        
+    self.typeWriterDelayFactor = 1.0;
     
     /**
      * @description Headers is a nested class of Notifications and provides direct access to supported in-game notification headers.
-     * @constructor
-     * @augments Notifications
-     * @class Headers
-     * @public
+     * @property
+     * @type array
      */
     self.Items = [
                     {id:'GDT_PlatformReleaseNews', name:"{PlatformReleaseNews}",   enabled:true, asOverlay: false},
@@ -1863,18 +1966,36 @@ UltimateLib.Notifications = (function(self){
                     {id:'InfoStatsMod_BestGame',   name:"Company's Best Game",     enabled:true, asOverlay: false} // For InfoStatsMod 0.3.1 and higher
                 ];
 
+    /**
+    * @method
+    * @description Sets the state of all internal dialog items to enabled or disabled.
+    * @param {boolean} enable Specifies a value to enable or disable all dialogs
+    * 
+    */
      self.enableAll = function(enable){
         for(var i = 0; i < self.Items.length; i++){
             self.Items[i].enabled = enable;
         }  
      }; 
      
+    /**
+    * @method
+    * @description Sets the state of all internal dialog items to overlay or not overlay.
+    * @param {boolean} enable Specifies a value to enable or disable overlay on all dialogs
+    * 
+    */
      self.overlayAll = function(enable){
         for(var i = 0; i < self.Items.length; i++){
             self.Items[i].asOverlay = enable;
         }  
      };      
         
+    /**
+    * @method
+    * @description Sets the state of the corresponding internal item of the specified item to the overlay state of the specified item.
+    * @param {object} item Set overlay value of the specified item and pass it internally to GDT
+    * 
+    */
      self.setOverlay = function(item){
         for(var i = 0; i < self.Items.length; i++){
             if (self.Items[i].id == item.id){
@@ -1884,6 +2005,12 @@ UltimateLib.Notifications = (function(self){
         } 
      };
      
+    /**
+    * @method
+    * @description Sets the state of the corresponding internal item of the specified item to the enabled state of the specified item.
+    * @param {object} item Set enabled value of the specified item and pass it internally to GDT
+    * 
+    */
      self.setEnabled = function(item){
         for(var i = 0; i < self.Items.length; i++){
             if (self.Items[i].id == item.id){
@@ -1893,6 +2020,12 @@ UltimateLib.Notifications = (function(self){
         } 
      };
      
+    /**
+    * @method
+    * @description Returns an notification item object by looking for the id
+    * @param {object} item Set overlay value of the specified item and pass it internally to GDT
+    * @return {object} An object representing the item with the specified id
+    */
      self.getItemById = function(id){
         for(var i = 0; i < self.Items.length; i++){
             if (self.Items[i].id == id){
@@ -1902,7 +2035,14 @@ UltimateLib.Notifications = (function(self){
         return undefined;
      };
 
-     self.getItemByName = function(localizedName){
+     
+    /**
+    * @method
+    * @description Returns an notification item object by looking for the localized header
+    * @param {string} localizedName The localized name (header) of the dialog
+    * @return {object} An object representing the item with the specified header text
+    */
+    self.getItemByName = function(localizedName){
         for(var i = 0; i < self.Items.length; i++){
             if (self.Items[i].name.localize() == localizedName){
                 return self.Items[i];
@@ -1912,9 +2052,8 @@ UltimateLib.Notifications = (function(self){
      };
                          
     /**
-     * @description Initializes the module.
-     * @method init
-     * @public
+     * @method
+     * @description Initializes the class.
     */     
     self.init = function(){
         var lastModalDialog = null;
@@ -1984,7 +2123,7 @@ UltimateLib.Notifications = (function(self){
                                  closeModal = true;
                                  makeOverlay    = obj.asOverlay;
                                  isEnabled      = obj.enabled;
-                                 $('#simplemodal-container').hide();
+                                 // $('#simplemodal-container').hide();
 
                              }
                             }
@@ -2028,12 +2167,14 @@ UltimateLib.Notifications = (function(self){
 
     return self;    
 })(UltimateLib.Notifications || {});/**
- * @fileOverview PopupMenu provides simplified creation and access to popup menu within the game. Allows to create custom menu items for implementing custom functionality.
- * @author alphabit
+ * @class PopupMenu
+ * @namespace UltimateLib
+ * @author Francesco Abbattista (alphabit)
  * @version 1.0.0
  * @description PopupMenu provides simplified creation and access to popup menu within the game. Allows to create custom menu items for implementing custom functionality.
+ * @fileOverview PopupMenu provides simplified creation and access to popup menu within the game. Allows to create custom menu items for implementing custom functionality.
  * @constructor
- * @augments UltimateLib
+ * @param {object} self An object representing the class itself for extending
  */
  UltimateLib.PopupMenu = (function(self){
     // Show up in console
@@ -2176,12 +2317,16 @@ UltimateLib.Notifications = (function(self){
         
 })(UltimateLib.PopupMenu || {});
 /**
- * @fileOverview This is an API for adding Publishers to the game
+ * @class Publishers
+ * @namespace UltimateLib
+ * @author Chad Keating (SirEverard)
  * @version 0.1.0b
- * @author SirEverard
+ * @description This is an API for adding Publishers to the game.
+ * @fileOverview This is an API for adding Publishers to the game.
  * @constructor
- * @augments UltimateLib
+ * @param {object} self An object representing the class itself for extending
  */
+
 UltimateLib.Publishers = (function(self) {
     // Show up in console
     UltimateLib.Logger.log("UltimateLib.Publishers loading...");
@@ -2249,12 +2394,16 @@ UltimateLib.Publishers = (function(self) {
         
     return self;
 })(UltimateLib.Publishers || {});/**
- * @fileOverview This is an API for adding differnt types of research to the game.
+ * @class Research
+ * @namespace UltimateLib
+ * @author Chad Keating (SirEverard)
  * @version 0.1.0b
- * @author SirEverard
+ * @description This is an API for adding differnt types of research to the game.
+ * @fileOverview This is an API for adding differnt types of research to the game.
  * @constructor
- * @augments UltimateLib
+ * @param {object} self An object representing the class itself for extending
  */
+
 UltimateLib.Research = (function(self) {
     // Show up in console
     UltimateLib.Logger.log("UltimateLib.Research loading...");
@@ -2364,15 +2513,18 @@ UltimateLib.Research = (function(self) {
         
     return self;
 })(UltimateLib.Research || {});/**
+ * @class Storage
+ * @namespace UltimateLib
+ * @author Francesco Abbattista (alphabit)
+ * @version 1.0.0
+ * @description This is a custom storage class for the UltimateLib. It uses the jstorage.js by © 2010 - 2012 Andris Reinman, andris.reinman@gmail.com
+ *               jStorage is licensed under Unlicense, so basically you can do whatever you want to do with it.
  * @fileOverview This is a custom storage class for the UltimateLib. It uses the jstorage.js by © 2010 - 2012 Andris Reinman, andris.reinman@gmail.com
  *               jStorage is licensed under Unlicense, so basically you can do whatever you want to do with it.
- * @version 1.0.0
- * @author alphabit
  * @constructor
- * @augments UltimateLib
- * @class Storage
- * @
+ * @param {object} self An object representing the class itself for extending
  */
+
  UltimateLib.Storage = (function(self){
     // Show up in console
     UltimateLib.Logger.log("UltimateLib.Storage loading...");
@@ -2541,12 +2693,16 @@ UltimateLib.Research = (function(self) {
     
     return self;
 })(UltimateLib.Storage || {});/**
+ * @class Utils
+ * @namespace UltimateLib
+ * @author Francesco Abbattista (alphabit) and Chad Keating (SirEverard)
+ * @version 1.0.0
+ * @description Utility library with useful functions for your code.
  * @fileOverview Utility library with useful functions for your code.
- * @version 0.1.0b
- * @author SirEverard and alphabit
  * @constructor
- * @augments UltimateLib
+ * @param {object} self An object representing the class itself for extending
  */
+
 UltimateLib.Utils = (function(self) {
     // Show up in console
     UltimateLib.Logger.log("UltimateLib.Utils loading...");
@@ -2608,14 +2764,15 @@ UltimateLib.Utils = (function(self) {
         
     return self;
 })(UltimateLib.Utils || {});/**
- * @fileOverview This is a library that provides and API for tweaking visual elements within the game.
+ * @class VisualTweaks
+ * @namespace UltimateLib
+ * @author Chad Keating (SirEverard)
  * @version 0.1.0b
- * @author SirEverard
+ * @description This is a library that provides and API for tweaking visual elements within the game.
+ * @fileOverview This is a library that provides and API for tweaking visual elements within the game.
  * @constructor
- * @augments UltimateLib
+ * @param {object} self An object representing the class itself for extending
  */
-
-
 /*
 Slider Wrapper
 width: 195px;
@@ -2632,11 +2789,13 @@ UltimateLib.VisualTweaks = (function(self) {
     /**
      * @description Sets up the style tags for the rest of the module.
      * @public
-    */ 
+    */
+    
     self.init = function(){
         UltimateLib.Logger.log("UltimateLib.VisualTweaks init ran.");
         $('head').append('<style id="visualTweaks" type="text/css"></style>');
         UltimateLib.Storage.write('SliderBG', {
+
             engine: ".\/mods\/UltimateLib\/img\/defaultsbg.gif",
             gameplay: ".\/mods\/UltimateLib\/img\/defaultsbg.gif",
             story: ".\/mods\/UltimateLib\/img\/defaultsbg.gif",
@@ -2650,7 +2809,7 @@ UltimateLib.VisualTweaks = (function(self) {
             watermarkset: false
         });
     };
-	
+    
 
     self.setAllTweaks = function (style) {
 
@@ -2678,7 +2837,7 @@ UltimateLib.VisualTweaks = (function(self) {
         tweak.append('.featureSelectionPanel   { border-top-right-radius: ' + radius + 'px !important; border-bottom-right-radius: ' + radius + 'px !important; }'); //right
         UltimateLib.Logger.log("UltimateLib.VisualTweaks.setRoundedWindows set."); 
     };
-	
+    
     /**
      * @description Adds a style to the overflow scrollbar
      * @public
@@ -2700,7 +2859,7 @@ UltimateLib.VisualTweaks = (function(self) {
                 tweak.append ("::-webkit-scrollbar { width: 10px; background-color: #F5F5F5; }");
                 tweak.append ("::-webkit-scrollbar-thumb {border-radius: 10px; background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.44, rgb(122,153,217)), color-stop(0.72, rgb(73,125,189)), color-stop(0.86, rgb(28,58,148))); }");
                 UltimateLib.Logger.log("UltimateLib.VisualTweaks.setScrollBar 2 set."); 
-                break;	
+                break;    
             case 3:
                 tweak.append ("::-webkit-scrollbar-track { -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); background-color: #F5F5F5; border-radius: 10px; }");
                 tweak.append ("::-webkit-scrollbar { width: 10px; background-color: #F5F5F5; }");
@@ -2716,7 +2875,7 @@ UltimateLib.VisualTweaks = (function(self) {
                 break;
         }
     };
-	
+    
     /**
      * @description Gives buttons a rounded edge.
      * @public
@@ -2729,7 +2888,7 @@ UltimateLib.VisualTweaks = (function(self) {
         tweak.append ('.orangeButton, .deleteButton, .whiteButton, .selectorButton, .baseButton, .contextMenuButton, .ul-vt-button { border-radius: ' + radius + 'px; }');
         UltimateLib.Logger.log("UltimateLib.VisualTweaks.setRoundedButtons set."); 
     };
-	
+    
     /**
      * @description Gives "bars" a rounded edge.
      * @public
@@ -2777,7 +2936,7 @@ UltimateLib.VisualTweaks = (function(self) {
 
         UltimateLib.Logger.log("UltimateLib.VisualTweaks.setFancyGrads set.");
     };
-
+    
     self.setWatermarks = function (object, url) {
         var tweak = $('#visualTweaks');
         var urlstore = UltimateLib.Storage.read('SliderBG');
@@ -2839,25 +2998,20 @@ UltimateLib.VisualTweaks = (function(self) {
             default:
                 break;
         }
-        console.log(urlstore);
         if (urlstore.cssset === false) {
             
             tweak.append('.ul-vt-slider-img { width:80%; height:80%; border-width: 1px; border-style:solid; border-color:#828282; position:absolute; opacity:0.8; left: 17px; bottom: 70px; }');
             urlstore.cssset = true;
         }
-        console.log(urlstore);
         if (urlstore.watermarkset === false) {
             addWatermarkCallback();
             urlstore.watermarkset = true;
         }
-        console.log(urlstore);
     };
     var addWatermarkCallback = function () {
         var keepme = UI.showFeatureList;
         UI.showFeatureList = function (features, options) {
-            console.log("2");
             var getstore = UltimateLib.Storage.read('SliderBG');
-            console.log(getstore);
             var tweak = $('#visualTweaks');
             
             keepme(features, options)
@@ -2885,7 +3039,7 @@ UltimateLib.VisualTweaks = (function(self) {
         }
 
     };
-
+    
     // Show up in console
     UltimateLib.Logger.log("UltimateLib.VisualTweaks loaded :-)");
 
