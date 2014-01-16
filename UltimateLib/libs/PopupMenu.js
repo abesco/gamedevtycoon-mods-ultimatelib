@@ -14,7 +14,7 @@
         
     var origContextMenu = UI._showContextMenu;
     var menuItems       = [];
-    
+           
     /**
      * @description Initializes the module.
      * @public
@@ -27,7 +27,7 @@
      * @description This has to be reviewed. -- Under Development -- Ignore please.
      * @public
     */      
-    UI.selectInfoStatsModItemClickHandler = function (a) {
+    UI.ulPopupMenuItemClickHandler = function (a) {
     };  
 
     /**
@@ -70,15 +70,9 @@
                     }
                 });
             });
-            // Scroll to top div
-//            UltimateLib.Elements.Body.animate({
-//                scrollTop: $('#top').offset().top
-//            }, 2000);
-            
-           
+
             // Calling the original context menu
             origContextMenu(b, c, d, h);
-        
         };
         
         UI._showContextMenu = newContextMenu;
