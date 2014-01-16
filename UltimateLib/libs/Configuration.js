@@ -70,9 +70,23 @@ UltimateLib.Configuration = (function(self){
         tabsContainer.tabs();
         tabsContainer.find('.ui-tabs .ui-tabs-nav li a').css({fontSize:'7pt'});
 
+        //Add overflow style for advanded options
+        $('head').append('<style id="ul-config-adv-overflow" type="text/css">#newGameView .featureSelectionPanel { overflow-x: none; overflow-y: auto; }</style>');
+
         UltimateLib.Logger.log("UltimateLib.Configuration init ran.");              
     };
     
+    /**
+     * @method
+     * @description Manages the adding of HTML to advanced options.
+     * @param {string} Contains HTML to be added.
+    */
+    self.addAdvancedOption = function (code) {
+        var findMe = $("#newGameView").find(".featureSelectionPanel.featureSelectionPanelHiddenState");
+        findMe.append(code);
+    };
+
+
     // Show up in console
     UltimateLib.Logger.log("UltimateLib.Configuration loaded :-)");
 

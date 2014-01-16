@@ -16,7 +16,7 @@ UltimateLib.Utils = (function(self) {
         /**
          * @public
          * @function getFormattedNumber
-         * @description Returns a formatted numbers in the scientific format 124E5
+         * @description Returns a rounded formatted numbers in the scientific format 124E5
          * @param {int} num The number to format
          * @returns A scientifical formatted value
         */    
@@ -53,19 +53,72 @@ UltimateLib.Utils = (function(self) {
          * @param {any} val A value to assign when @see what  
          * @param {int} ms Interval time in milliseconds when to repeat check
         */           
-        self.wait4 = function (what, val, ms){
-            if(typeof what !== "undefined"){
+        self.wait4 = function (what, val, ms) {
+            if (typeof what !== "undefined") {
                 // variable exists, do what you want
                 UltimateLib.Logger.log("Done waiting!");
                 what = val;
             }
-            else{
+            else {
                 UltimateLib.Logger.log("I wait4 " + ms + " ms...");
-                setTimeout(function(){wait();},ms);
+                setTimeout(function () { wait(); }, ms);
             }
+        };
+
+        self.sort = function (array, typ, asc) {
+            var sorted;
+            if (typ == "alpha") {
+                sorted = array.sort(sortAlpha);
+            }
+            if (typ == "num") {
+                sorted = array.sort(sortNum);
+            }
+            if (asc === false) {
+                sorted.reverse();
+            }
+            return sorted;
+        };
+
+        function  sortAlpha(a, b) {
+            return a.toLowerCase() > b.toLowerCase() ? 1 : -1;
+        };
+
+        function sortNum(a, b) {
+            return a > b ? 1 : -1;
+        };
+        
+        self.compare = function (val1, val2, op) {
+
+            var newArr;
+            newArr = true;
+
+            if (op == "=" && val1 == val2) {
+                newArr = true;
+            } else { newArr = false; }
+
+            if (op == "<" && val1 < val2) {
+                newArr = true;
+            } else { newArr = false; }
+
+            if (op == ">" && val1 > val2) {
+                newArr = true;
+            } else { newArr = false; }
+
+            return newArr;
+        };
+
+
+        self.getIds = function (arr) {
+
+            var newArr;
+
+            $.grep(arr, function (e, i) {
+                newArr.push(e.id);
+            });
+
+            return newArr;
         }
-        
-        
+
     // Show up in console
     UltimateLib.Logger.log("UltimateLib.Utils loaded :-)");
         
