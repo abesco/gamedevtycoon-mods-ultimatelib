@@ -2,7 +2,7 @@
  * @class PopupMenu
  * @namespace UltimateLib
  * @author Francesco Abbattista (alphabit)
- * @version 1.0.0
+ * @version 1.0.1
  * @description PopupMenu provides simplified creation and access to popup menu within the game. Allows to create custom menu items for implementing custom functionality.
  * @fileOverview PopupMenu provides simplified creation and access to popup menu within the game. Allows to create custom menu items for implementing custom functionality.
  * @constructor
@@ -28,44 +28,6 @@
      * @public
     */      
     UI.selectInfoStatsModItemClickHandler = function (a) {
-            Sound.click();
-            switch (a.id) {
-                case "statsmodshowreleasedgames":
-                    m.ReleasedGames.showReleasedGames();
-                    break;
-                case "statsmodconfigreleasedgames":
-                    m.ReleasedGames.showConfig();
-                    break;
-                case "statsmodshowplatforms":
-                    m.Platforms.showPlatforms();
-                    break;
-                case "statsmodconfigplatforms":
-                    m.Platforms.showConfig();
-                    break;
-
-                case "statsmodnotifications":
-                    m.Notifications.showNotifications();
-                    break;
-
-
-
-                case "statsmodshowsalesanalysis":
-                    m.Analysis.showSalesAnalysis();
-                    break;
-                case "":
-                    GameManager.togglePause();
-                    break;
-                case "statsmodtogglepause":
-                    GameManager.togglePause();
-                    break;
-                case "statsmodresetsettings":
-                     m.Config.resetStorage();
-                    break;
-                case "statsmodtogglefooter":
-                    m.Footer.toggleVisibilty();
-                default:
-                    return;
-            }
     };  
 
     /**
