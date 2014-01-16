@@ -5,9 +5,7 @@
  * @namespace UltimateLib
  * @requires Base,Core,Logger
  * @author Francesco Abbattista (alphabit)
- * @version 1.1.0
  * @description Configuration is an UltimateLib library class providing capabilities to manipulate the in-game settings UI.
- * @fileOverview Configuration is an UltimateLib library class providing capabilities to manipulate the in-game settings UI.
  * @constructor
  * @param {Object} self An object representing the class itself or a new object for the purpose of extensibility. This parameter can be ignored.
  */ 

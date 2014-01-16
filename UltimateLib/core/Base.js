@@ -4,9 +4,7 @@
  * @main UltimateLib
  * @namespace UltimateLib
  * @author Francesco Abbattista (alphabit)
- * @version 1.1.0
  * @description This is the UltimateLib base class that provides the basic namespace declaration.
- * @fileOverview This is the UltimateLib base class that provides the basic namespace declaration.
  * @constructor
  * @param {Object} self An object representing the class itself or a new object for the purpose of extensibility. This parameter can be ignored.
  */ 
@@ -49,7 +47,7 @@ var UltimateLib = (function(self) {
      * @method getFiles
      * @param {String} Section name
      * @description Returns all files found in the UltimateLib library section folders
-     * @returns {array} An array that contains all files found in the UltimateLib library section folders
+     * @return {array} An array that contains all files found in the UltimateLib library section folders
      * @public
     */       
     function getFiles(section){
@@ -111,7 +109,6 @@ var UltimateLib = (function(self) {
      * @method initDev
      * @description Called for global initialization after Base.init()
      * @public
-     * @hide
     */        
     self.initDev = function(){
         var sections        = ['3rd','libs'];
@@ -165,7 +162,7 @@ var UltimateLib = (function(self) {
      * @method getObjByName
      * @param {String} Name of the object to find 
      * @description Tries to retrieve an object by it's specified name 
-     * @returns An object with the specified name or undefined
+     * @return An object with the specified name or undefined
      * @public
     */       
     self.getObjByName = function(name){

@@ -5,9 +5,7 @@
  * @namespace UltimateLib
  * @requires Base,Core,Logger
  * @author Francesco Abbattista (alphabit)
- * @version 1.0.0
  * @description  This is a simple test module that can be used as a base for creating a custom library module.
- * @fileOverview This is a simple test module that can be used as a base for creating a custom library module.
  * @constructor
  * @param {Object} self An object representing the class itself or a new object for the purpose of extensibility. This parameter can be ignored.
  */ 

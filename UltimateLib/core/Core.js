@@ -4,9 +4,7 @@
  * @main UltimateLib
  * @namespace UltimateLib
  * @author Francesco Abbattista (alphabit)
- * @version 1.1.0
  * @description Core class providing the basic functionality for the UltimateLib.
- * @fileOverview Core class providing the basic functionality for the UltimateLib
  * @constructor
  * @param {Object} self An object representing the class itself or a new object for the purpose of extensibility. This parameter can be ignored.
  */ 

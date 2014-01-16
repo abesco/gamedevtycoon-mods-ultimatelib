@@ -5,9 +5,7 @@
  * @namespace UltimateLib
  * @requires Base,Core,Logger
  * @author Chad Keating (SirEverard)
- * @version 1.0.1
  * @description This is an API for adding differnt types of research to the game.
- * @fileOverview This is an API for adding differnt types of research to the game.
  * @constructor
  * @param {Object} self An object representing the class itself or a new object for the purpose of extensibility. This parameter can be ignored.
  * @beta

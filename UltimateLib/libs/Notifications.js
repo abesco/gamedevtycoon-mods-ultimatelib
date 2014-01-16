@@ -5,9 +5,7 @@
  * @namespace UltimateLib
  * @requires Base,Core,Logger
  * @author Francesco Abbattista (alphabit)
- * @version 1.0.2
  * @description Notifications is an UltimateLib library class providing capabilities to manipulate the in-game settings notification system.
- * @fileOverview Notifications is an UltimateLib library class providing capabilities to manipulate the in-game settings notification system.
  * @constructor
  * @param {Object} self An object representing the class itself or a new object for the purpose of extensibility. This parameter can be ignored.
  * @beta

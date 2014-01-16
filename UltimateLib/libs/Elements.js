@@ -5,9 +5,7 @@
  * @namespace UltimateLib
  * @requires Base,Core,Logger
  * @author Francesco Abbattista (alphabit) and Chad Keating (SirEverard)
- * @version 1.0.0
  * @description Elements provides quick access to some important dom elements. 
- * @fileOverview Elements provides quick access to some important dom elements. 
  * @constructor
  * @param {Object} self An object representing the class itself or a new object for the purpose of extensibility. This parameter can be ignored.
  */ 

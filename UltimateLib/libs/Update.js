@@ -5,9 +5,7 @@
  * @namespace UltimateLib
  * @requires Base,Core,Logger
  * @author Francesco Abbattista (alphabit)
- * @version 1.0.0
  * @description  The Updater class allows to check for a possible update of UL and / or other mods if they cope the specs.
- * @fileOverview The Updater class allows to check for a possible update of UL and / or other mods if they cope the specs.
  * @constructor
  * @param {Object} self An object representing the class itself or a new object for the purpose of extensibility. This parameter can be ignored.
  */ 

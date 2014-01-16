@@ -5,9 +5,7 @@
  * @namespace UltimateLib
  * @requires Base,Core,Logger
  * @author Francesco Abbattista (alphabit)
- * @version 1.0.2
  * @description NameGenerator provides different name generating providers for easy and variable generation of various name types.
- * @fileOverview NameGenerator provides different name generating providers for easy and variable generation of various name types. 
  * @constructor
  * @param {Object} self An object representing the class itself or a new object for the purpose of extensibility. This parameter can be ignored.
  */ 

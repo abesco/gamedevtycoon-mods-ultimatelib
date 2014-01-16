@@ -5,9 +5,7 @@
  * @namespace UltimateLib
  * @requires Base,Core,Logger
  * @author Chad Keating (SirEverard)
- * @version 0.1.0b
  * @description This API provides functionality for adding Publishers to the game
- * @fileOverview This API provides functionality for adding Publishers to the game
  * @constructor
  * @param {Object} self An object representing the class itself or a new object for the purpose of extensibility. This parameter can be ignored.
  * @beta

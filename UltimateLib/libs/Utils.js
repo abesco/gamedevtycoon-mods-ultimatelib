@@ -5,9 +5,7 @@
  * @namespace UltimateLib
  * @requires Base,Core,Logger
  * @author Francesco Abbattista (alphabit) and Chad Keating (SirEverard)
- * @version 1.0.2
  * @description  Utility library with useful functions for your code.
- * @fileOverview Utility library with useful functions for your code.
  * @constructor
  * @param {Object} self An object representing the class itself or a new object for the purpose of extensibility. This parameter can be ignored.
  */ 
