@@ -1,33 +1,50 @@
-/**
+ /**
  * @class Notifications
+ * @module UltimateLib
+ * @main UltimateLib
  * @namespace UltimateLib
+ * @requires Base,Core,Logger
  * @author Francesco Abbattista (alphabit)
  * @version 1.0.2
  * @description Notifications is an UltimateLib library class providing capabilities to manipulate the in-game settings notification system.
- * @fileOverview Notifications is an UltimateLib library class providing capabilities to manipulate the in-game settings notification system
+ * @fileOverview Notifications is an UltimateLib library class providing capabilities to manipulate the in-game settings notification system.
  * @constructor
- * @param {object} self An object representing the class itself for extending
- */
+ * @param {Object} self An object representing the class itself or a new object for the purpose of extensibility. This parameter can be ignored.
+ * @beta
+ */ 
 UltimateLib.Notifications = (function(self){
     // Show up in console
     UltimateLib.Logger.log("UltimateLib.Notifications loading...");
     
     /**
+     * @property typeWriterDelay
+     * @type Object
      * @description Typewriter effect delay value object. Allowed modes are 'default' and 'factor'. 
-     * When using 'default' you can input integer values from 0 to whatever. 20 is the default game value.
-     * When using the 'factor', you can specify a value between 0.0 and 1.0 that will be multiplied with the regular value.
-     * 
-     * Object specification:
-     * {mode:'default' or 'factor', value:Integer_for_default or Float_for_factor}
-     * @property
-     * @type object
+      When using 'default' you can input integer values from 0 to whatever. 20 is the default game value.
+      When using the 'factor', you can specify a value between 0.0 and 1.0 that will be multiplied with the regular value.
+      
+     * @example 
+        Object specification:
+        {
+            mode:'default' or 'factor', 
+            value:Integer_for_default or Float_for_factor
+        }
      */    
     self.typeWriterDelay = {mode:'factor', value:1.0};
     
     /**
-     * @description Headers is a nested class of Notifications and provides direct access to supported in-game notification headers.
-     * @property
-     * @type array
+     * @property Items
+     * @type Array
+     * @description Array of UltimateLib dialog notification objects used for control each dialog type separately
+     * @example
+        Object specification:
+        {
+            id:'InternalDialogId', 
+            name:"GDT_Dialog_Header_Text_English",   
+            enabled: true or false for enabling / disabling the dialog, 
+            asOverlay: true or false to use overlay message instead of regular message
+        }
+        
      */
     self.Items = [
                     {id:'GDT_PlatformReleaseNews', name:"{PlatformReleaseNews}",   enabled:true, asOverlay: false},
@@ -54,9 +71,9 @@ UltimateLib.Notifications = (function(self){
                 ];
 
     /**
-    * @method
-    * @description Sets the state of all internal dialog items to enabled or disabled.
-    * @param {boolean} enable Specifies a value to enable or disable all dialogs
+    * @method enableAll
+    * @description Sets the state of all internal notification dialog items to enabled or disabled.
+    * @param {Boolean} enable True of false to enable or disable all dialogs
     * 
     */
      self.enableAll = function(enable){
@@ -66,9 +83,9 @@ UltimateLib.Notifications = (function(self){
      }; 
      
     /**
-    * @method
-    * @description Sets the state of all internal dialog items to overlay or not overlay.
-    * @param {boolean} enable Specifies a value to enable or disable overlay on all dialogs
+    * @method overlayAll
+    * @description Sets the state of all internal notification dialog items to overlay or not overlay.
+    * @param {Boolean} enable True of false to enable or disable overlay on all dialogs
     * 
     */
      self.overlayAll = function(enable){
@@ -78,9 +95,17 @@ UltimateLib.Notifications = (function(self){
      };      
         
     /**
-    * @method
+    * @method setOverlay
     * @description Sets the state of the corresponding internal item of the specified item to the overlay state of the specified item.
-    * @param {object} item Set overlay value of the specified item and pass it internally to GDT
+    * @param {Object} item The UltimateLib notification dialog item to apply overlay state to
+    * @example
+        Object specification:
+        {
+            id:'InternalDialogId', 
+            name:"GDT_Dialog_Header_Text_English",   
+            enabled: true or false for enabling / disabling the dialog, 
+            asOverlay: true or false to use overlay message instead of regular message
+        }
     * 
     */
      self.setOverlay = function(item){
@@ -93,9 +118,17 @@ UltimateLib.Notifications = (function(self){
      };
      
     /**
-    * @method
+    * @method setEnabled
     * @description Sets the state of the corresponding internal item of the specified item to the enabled state of the specified item.
-    * @param {object} item Set enabled value of the specified item and pass it internally to GDT
+    * @param {Object} item The UltimateLib notification dialog item to apply enabled state to
+    * @example
+        Object specification:
+        {
+            id:'InternalDialogId', 
+            name:"GDT_Dialog_Header_Text_English",   
+            enabled: true or false for enabling / disabling the dialog, 
+            asOverlay: true or false to use overlay message instead of regular message
+        }
     * 
     */
      self.setEnabled = function(item){
@@ -108,11 +141,19 @@ UltimateLib.Notifications = (function(self){
      };
      
     /**
-    * @method
+    * @method getItemById
     * @description Returns an notification item object by looking for the id
-    * @param {object} item Set overlay value of the specified item and pass it internally to GDT
-    * @return {object} An object representing the item with the specified id
-    */
+    * @param {String} id UltimateLib notification dialog item id
+    * @return {Object} An object representing the item with the specified id
+    * @example
+        Object specification:
+        {
+            id:'InternalDialogId', 
+            name:"GDT_Dialog_Header_Text_English",   
+            enabled: true or false for enabling / disabling the dialog, 
+            asOverlay: true or false to use overlay message instead of regular message
+        }
+     */
      self.getItemById = function(id){
         for(var i = 0; i < self.Items.length; i++){
             if (self.Items[i].id == id){
@@ -124,10 +165,19 @@ UltimateLib.Notifications = (function(self){
 
      
     /**
-    * @method
+    * @method getItemByName
     * @description Returns an notification item object by looking for the localized header
-    * @param {string} localizedName The localized name (header) of the dialog
-    * @return {object} An object representing the item with the specified header text
+    * @param {String} localizedName The localized name (header) of the dialog
+    * @return {Object} An object representing the item with the specified header text
+    * @example
+        Object specification:
+        {
+            id:'InternalDialogId', 
+            name:"GDT_Dialog_Header_Text_English",   
+            enabled: true or false for enabling / disabling the dialog, 
+            asOverlay: true or false to use overlay message instead of regular message
+        }
+    * 
     */
     self.getItemByName = function(localizedName){
         for(var i = 0; i < self.Items.length; i++){
@@ -139,7 +189,7 @@ UltimateLib.Notifications = (function(self){
      };
                          
     /**
-     * @method
+     * @method init
      * @description Initializes the class.
     */     
     self.init = function(){

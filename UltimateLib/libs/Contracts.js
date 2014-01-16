@@ -1,17 +1,54 @@
 /**
- * @fileOverview This is an API for adding contracts to the game
+ * @class Contracts
+ * @module UltimateLib
+ * @main UltimateLib
+ * @namespace UltimateLib
+ * @requires Base,Core,Logger
+ * @author Chad Keating (SirEverard)
  * @version 0.1.0b
- * @author SirEverard
+ * @description This API provides functionality for adding contracts to the game.
+ * @fileOverview This API provides functionality for adding contracts to the game.
  * @constructor
- * @augments UltimateLib
- */
+ * @param {Object} self An object representing the class itself or a new object for the purpose of extensibility. This parameter can be ignored.
+ * @beta
+ * @example
+ 
+        UltimateLib Contract Format
+        {
+        name : "Contract Name",
+        description : "Contract description",
+        requiredD : 10, // Design points required
+        requiredT : t, // tech points required
+        payment : 3E4, // Payment on completion 
+        penalty : -2E3, // Penelty for not completing on time.
+        weeksToFinish : 4, // Number of weeks to complete the contract.
+        rF : template.rF, 
+        size : "size" //"small", "medium", or "large"
+        }
+
+        Real Contract Format
+        {
+        name : "Contract Name",
+        description : "Contract description",
+        requiredD : 10, // Design points required
+        requiredT : t, // tech points required
+        spawnedD : 0,
+        spawnedT : 0,
+        payment : 3E4, // Payment on completion 
+        penalty : -2E3, // Penelty for not completing on time.
+        weeksToFinish : 4, // Number of weeks to complete the contract.
+        rF : template.rF, 
+        isGeneric : true, 
+        size : "size" //"small", "medium", or "large"
+        }
+ */ 
 UltimateLib.Contracts = (function(self) {
     // Show up in console
     UltimateLib.Logger.log("UltimateLib.Contracts loading...");
 
     /**
+     * @method init 
      * @description Initializes the module.
-     * @public
     */ 
     self.init = function(){
     	/*
@@ -28,11 +65,11 @@ UltimateLib.Contracts = (function(self) {
     };
     
 	/**
+     * @method addContract
      * @description Adds a custom contract.
-     * @public
-     * @param {contract object}
-    */    
-	/* UltimateLib Contract Format
+     * @param {Object} contract An object that has the specification shown in the example box (UltimateLib Contract Format)
+     * @example
+	UltimateLib Contract Format
 		{
 			name : "Contract Name",
 			description : "Contract description",
@@ -77,11 +114,25 @@ UltimateLib.Contracts = (function(self) {
 	};
 		
 	/**
-     * @description Checks the contract for errors.
      * @private
-     * @param {contract object}
-     * @return {bool} Pass or Fail the check
-    */  
+     * @method contractCheck
+     * @description Checks the contract for errors.
+     * @param {Object} contract An object that has the specification shown in the example box (UltimateLib Contract Format)
+     * @return {Boolean} Pass or Fail the check
+     * @example
+    UltimateLib Contract Format
+        {
+            name : "Contract Name",
+            description : "Contract description",
+            requiredD : 10, // Design points required
+            requiredT : t, // tech points required
+            payment : 3E4, // Payment on completion 
+            penalty : -2E3, // Penelty for not completing on time.
+            weeksToFinish : 4, // Number of weeks to complete the contract.
+            rF : template.rF, 
+            size : "size" //"small", "medium", or "large"
+        }
+    */
 	function contractCheck(contract){
 		if (!(Checks.checkPropertiesPresent(contract, ['name', 'description', 'requiredD', 'requiredT', 'payment','penalty','weeksToFinish','rF','size']) 
 		   )) {
@@ -91,12 +142,13 @@ UltimateLib.Contracts = (function(self) {
 	};
 		
 	/**
-     * @description Formats the contract object to full contract object
      * @private
-     * @param {contract object}
-     * @return {full-contract object}
-    */  
-     /* Real Contract Format
+     * @method formatContract
+     * @description Formats the contract object to full contract object
+     * @param {Object} contract An object that has the UltimateLib Contract Format specification
+     * @return {Object} An object that has the specification shown in the example box (Real Contract Format)
+     * @example 
+     Real Contract Format
 		{
 			name : "Contract Name",
 			description : "Contract description",
@@ -129,15 +181,13 @@ UltimateLib.Contracts = (function(self) {
 				size : c.size // "small", "medium", or "large"
 		};
 	};
-		
-
 
 	/**
-     * @description Adds custom contracts.
      * @private
-     * @return {contract object array}
+     * @method hijackgetAvailable
+     * @description Gets available contracts.
+     * @return {Object} An array containig object items with the UltimateLib Contract Format specification
     */  
-
 	function hijackgetAvailable () {
 		var keep = ProjectContracts.getAvailable;
 		ProjectContracts.getAvailable  = function(company, type){
@@ -148,10 +198,10 @@ UltimateLib.Contracts = (function(self) {
 	};
 	
 	/**
-     * @description Returns all pertinent collected contracts.
-     * @public
-     * @param {GDT company object}
-     * @return {contract object array}
+     * @method collection
+     * @description A collection of all pertinent contracts.
+     * @param {GDT.company} company The GDT company object
+     * @return {Array} An array of objects containing UltimateLib Contract Format items.
     */  
 	self.collection = function (company) {
 		
@@ -172,10 +222,7 @@ UltimateLib.Contracts = (function(self) {
 		return collectedContracts;
 	};
 
-	
-
-	
-    // Show up in console
+	// Show up in console
     UltimateLib.Logger.log("UltimateLib.Contracts loaded :-)");
         
     return self;

@@ -1,26 +1,30 @@
 /**
  * @class Configuration
+ * @module UltimateLib
+ * @main UltimateLib
  * @namespace UltimateLib
+ * @requires Base,Core,Logger
  * @author Francesco Abbattista (alphabit)
- * @version 1.0.0
+ * @version 1.1.0
  * @description Configuration is an UltimateLib library class providing capabilities to manipulate the in-game settings UI.
  * @fileOverview Configuration is an UltimateLib library class providing capabilities to manipulate the in-game settings UI.
  * @constructor
- * @param {object} self An object representing the class itself for extending
- */
-
+ * @param {Object} self An object representing the class itself or a new object for the purpose of extensibility. This parameter can be ignored.
+ */ 
 UltimateLib.Configuration = (function(self){
     // Show up in console
     UltimateLib.Logger.log("UltimateLib.Configuration loading...");
 
     /**
-     * @method
-     * @description Creates a tab panel to use for addTab
-     * @param {string} Name (id) of the tab panel element
-     * @param {string} Text to show as title
-     * @param {string} Panel content
-     * @returns {TabPanel} The new tab panel that can be used for further operations
-    */          
+     * @method addTab
+     * @description Adds a new configuration tab to the enhanced in-game settings menu
+     * @param {String} name Name (or id) of the tab panel element
+     * @param {String} text Text to show as title
+     * @param {String} content Panel content
+     * @return {TabPanel} The new tab panel that can be used for further operations
+     * @example
+        UltimateLib.Configuration('MyModule', 'My Module Title', yourPanelHtmlOrJqueryDomElement);
+     */          
     self.addTab = function(name, text, content){
         var tabPanel = $(document.createElement('div'));
             tabPanel.attr({id:name});
@@ -44,7 +48,7 @@ UltimateLib.Configuration = (function(self){
     };
     
     /**
-     * @method
+     * @method init
      * @description Initializes the module.
     */     
     self.init = function(){
@@ -77,16 +81,15 @@ UltimateLib.Configuration = (function(self){
     };
     
     /**
-     * @method
+     * @method addAdvancedOption
      * @description Manages the adding of HTML to advanced options.
-     * @param {string} Contains HTML to be added.
+     * @param {String} code Contains HTML to be added.
     */
     self.addAdvancedOption = function (code) {
         var findMe = $("#newGameView").find(".featureSelectionPanel.featureSelectionPanelHiddenState");
         findMe.append(code);
     };
-
-
+    
     // Show up in console
     UltimateLib.Logger.log("UltimateLib.Configuration loaded :-)");
 

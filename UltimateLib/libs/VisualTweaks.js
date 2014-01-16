@@ -1,13 +1,17 @@
 /**
  * @class VisualTweaks
+ * @module UltimateLib
+ * @main UltimateLib
  * @namespace UltimateLib
+ * @requires Base,Core,Logger
  * @author Chad Keating (SirEverard)
  * @version 0.1.0b
- * @description This is a library that provides and API for tweaking visual elements within the game.
+ * @description  This is a library that provides and API for tweaking visual elements within the game.
  * @fileOverview This is a library that provides and API for tweaking visual elements within the game.
  * @constructor
- * @param {object} self An object representing the class itself for extending
- */
+ * @param {Object} self An object representing the class itself or a new object for the purpose of extensibility. This parameter can be ignored.
+ * @beta
+ */ 
 /*
 Slider Wrapper
 width: 195px;
@@ -22,10 +26,9 @@ UltimateLib.VisualTweaks = (function(self) {
     var store = GDT.getDataStore("UltimateLib");//function () { return GDT.getDataStore("UltimateLib"); };
     
     /**
+     * @method init
      * @description Sets up the style tags for the rest of the module.
-     * @public
     */
-    
     self.init = function(){
         UltimateLib.Logger.log("UltimateLib.VisualTweaks init ran.");
         $('head').append('<style id="visualTweaks" type="text/css"></style>');
@@ -45,7 +48,11 @@ UltimateLib.VisualTweaks = (function(self) {
         });
     };
     
-
+    /**
+     * @method setAllTweaks
+     * @description Enables all available tweaks. 
+     * @param {String} style The style to apply **not yet implemented
+    */   
     self.setAllTweaks = function (style) {
 
         self.setRoundedWindows();
@@ -59,9 +66,9 @@ UltimateLib.VisualTweaks = (function(self) {
 
 
     /**
+     * @method setRoundedWindows
      * @description Give windows rounded edges.
-     * @public
-     * @param {radius} Rounded edge radius on the window.
+     * @param {Integer} radius Rounded edge radius on the window.
     */ 
     self.setRoundedWindows = function(radius){
         if (store.settings.roundedCorners === false){ UltimateLib.Logger.log("UltimateLib.VisualTweaks.setRoundedWindows = false."); return; };
@@ -74,9 +81,9 @@ UltimateLib.VisualTweaks = (function(self) {
     };
     
     /**
+     * @method setScrollBar
      * @description Adds a style to the overflow scrollbar
-     * @public
-     * @param {scrollbar style} 1 = default scrollbar styles
+     * @param {Integer} scrollbar style 1 = default scrollbar styles (available style: 1,2 and 3)
     */ 
     self.setScrollBar = function(style){
         if (store.settings.scrollBar === false){ UltimateLib.Logger.log("UltimateLib.VisualTweaks.scrollBar = false."); return; };
@@ -112,9 +119,9 @@ UltimateLib.VisualTweaks = (function(self) {
     };
     
     /**
+     * @method setRoundedButtons
      * @description Gives buttons a rounded edge.
-     * @public
-     * @param {radius} Rounded edge radius on the button.
+     * @param {Integer} radius Rounded edge radius on the button.
     */ 
     self.setRoundedButtons = function (radius) {
         if (store.settings.roundedButtons === false){ UltimateLib.Logger.log("UltimateLib.VisualTweaks.roundedButtons = false."); return; };
@@ -125,9 +132,9 @@ UltimateLib.VisualTweaks = (function(self) {
     };
     
     /**
+     * @method setRoundedBars
      * @description Gives "bars" a rounded edge.
-     * @public
-     * @param {radius} Rounded edge radius on the bar.
+     * @param {Integer} radius Rounded edge radius on the bar.
     */ 
     self.setRoundedBars = function (radius){
         if (store.settings.roundedBars === false){ UltimateLib.Logger.log("UltimateLib.VisualTweaks.setRoundedBars = false."); return; };
@@ -140,9 +147,9 @@ UltimateLib.VisualTweaks = (function(self) {
     };
 
     /**
+     * @method setTextBox
      * @description Gives text boxes a rounded edge.
-     * @public
-     * @param {radius} Rounded edge radius on textboxes.
+     * @param {Integer} radius Rounded edge radius on textboxes.
     */ 
     self.setTextBox = function (radius){
         if (store.settings.textBox === false){ UltimateLib.Logger.log("UltimateLib.VisualTweaks.setTextBox = false."); return; };
@@ -152,6 +159,11 @@ UltimateLib.VisualTweaks = (function(self) {
         UltimateLib.Logger.log("UltimateLib.VisualTweaks.setTextBox set."); 
     };
 
+    /**
+     * @method setTextBox
+     * @description Gives text boxes a rounded edge.
+     * @param {Integer} style The style of the fancy grads. 1 or default.
+    */     
     self.setFancyGrads = function (style) {
         if (store.settings.fancyGrads === false) { UltimateLib.Logger.log("UltimateLib.VisualTweaks.setFancyGrads = false."); return; };
         var tweak = $('#visualTweaks');
@@ -172,6 +184,12 @@ UltimateLib.VisualTweaks = (function(self) {
         UltimateLib.Logger.log("UltimateLib.VisualTweaks.setFancyGrads set.");
     };
     
+    /**
+     * @method setWatermarks
+     * @description Gives text boxes a rounded edge.
+     * @param {String} object ID of the DOM object element.
+     * @param {String} url Image url of the watermark.
+    */     
     self.setWatermarks = function (object, url) {
         var tweak = $('#visualTweaks');
         var urlstore = UltimateLib.Storage.read('SliderBG');
@@ -243,6 +261,13 @@ UltimateLib.VisualTweaks = (function(self) {
             urlstore.watermarkset = true;
         }
     };
+
+    /**
+     * @private 
+     * @property addWatermarkCallback
+     * @type Closure
+     * @description Callback for adding a watermark into the game.
+    */      
     var addWatermarkCallback = function () {
         var keepme = UI.showFeatureList;
         UI.showFeatureList = function (features, options) {

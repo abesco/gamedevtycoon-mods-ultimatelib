@@ -1,21 +1,22 @@
-/**
+  /**
  * @class Logger
+ * @module UltimateLib
+ * @main UltimateLib
  * @namespace UltimateLib
  * @author Francesco Abbattista (alphabit) and Chad Keating (SirEverard)
  * @version 1.0.0
  * @description Simple logger for the UltimateLib class. This class is used for simple console based logging purposes related to this package.
- * @fileOverview  Logger is an UltimateLib library providing simple logger capabilities to UltimateLib.
+ * @fileOverview Simple logger for the UltimateLib class. This class is used for simple console based logging purposes related to this package.
  * @constructor
- * @param {object} self An object representing the class itself for extending
- */
-
+ * @param {Object} self An object representing the class itself or a new object for the purpose of extensibility. This parameter can be ignored.
+ */ 
 UltimateLib.Logger = (function(self) {
     /**
+     * @private
      * @method formatDate 
      * @description Format a date to iso standard yyyy-mm-dd hh:mm:nn
-     * @private
-     * @param {Date} Date object
-     * @returns A string containing a formatted representation of the date in the ISO format (yy-M-dd)
+     * @param {Date} dt Date object
+     * @return A string containing a formatted representation of the date in the ISO format (yy-M-dd)
     */        
     function formatDate(dt){
         //Pad given value to the left with "0"
@@ -26,17 +27,18 @@ UltimateLib.Logger = (function(self) {
     }
     
     /**
+     * @property enabled 
+     * @type Boolean
+     * @default false
      * @description Enables / Disables logging
-     * @public
-     * @param {bool} Enable / Disable logging
     */    
     self.enabled = false;
     
     /**
+     * @method log
      * @description Outputs a message to console using a friendly output
-     * @public
-     * @param {string} The message to output to console
-     * @param {string} Optional argument to automatically log an exception
+     * @param {String} msg The message to output to console
+     * @param {String} ex Optional argument to automatically log an exception
     */    
     self.log = function(msg, ex){
         if(!self.enabled){

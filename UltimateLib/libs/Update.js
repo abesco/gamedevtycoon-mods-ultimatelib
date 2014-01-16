@@ -1,18 +1,28 @@
 /**
  * @class Update
+ * @module UltimateLib
+ * @main UltimateLib
  * @namespace UltimateLib
+ * @requires Base,Core,Logger
  * @author Francesco Abbattista (alphabit)
  * @version 1.0.0
- * @description The Updater class allows to check for a possible update of UL and / or other mods if they cope the specs.
+ * @description  The Updater class allows to check for a possible update of UL and / or other mods if they cope the specs.
  * @fileOverview The Updater class allows to check for a possible update of UL and / or other mods if they cope the specs.
  * @constructor
- * @param {object} self An object representing the class itself for extending
- */
-
+ * @param {Object} self An object representing the class itself or a new object for the purpose of extensibility. This parameter can be ignored.
+ */ 
 UltimateLib.Update = (function(self){
     // Show up in console
     UltimateLib.Logger.log("UltimateLib.Update loading...");
 
+    /**
+     * @private
+     * @method compareVersions
+     * @description Compares two version strings to find out if the v2 is newer than v1.
+     * @param {String} v1 The version to compare (current version)
+     * @param {String} v2 The version to compare with (online version)
+     * @return {Integer} -1 if the v2 is newer than v1, otherwise 0.
+    */    
     function compareVersions(v1, v2) {
       var res   = 0;
       var p1    = v1.split('.');
@@ -34,12 +44,34 @@ UltimateLib.Update = (function(self){
 
       return res;
     };
-        
+     
+     /**
+     * @method init
+     * @description Initializes the module.
+    */ 
     self.init = function(){
         UltimateLib.Logger.log("UltimateLib.Update init ran.");
     };
     
+    /**
+     * @property GitHub
+     * @type Object
+     * @description Provides an object to perform update operations on GitHub. Please note that it is only allowed for 60 request per hours (GitHub specific) on this unauthorized mode.
+     * @param {method} getLatestVersionAvailable Returns the latest version of a mod, available from the specified repository, branch and directory.
+     * @param {method} hasNewerVersion Checks if there's a new version of a mod online by querying the specified repository, branch and directory.
+     * @param {method} notifyIfNewerVersion Notifies the user in-game if there's a new version of the mod available by offering to navigate to the page.
+    */   
     self.GitHub = {
+        
+        /**
+         * @method getLatestVersionAvailable
+         * @description Returns the latest version of a mod, available from the specified repository, branch and directory.
+         * @param {String} user The name of the GitHub user
+         * @param {String} repo The name of the repository
+         * @param {String} [branch=master] Optional: A name specifying the branch to use. Default: master
+         * @param {String} [dir] Optional: Directory of the package.json of the module. Default: empty string (repo root)
+         * @return {String} A string containing the version information about the latest version available online.
+        */   
         getLatestVersionAvailable: function(user, repo, branch, dir){
             branch  = branch ? branch : "master";
             dir     = dir ? dir+'/' : '';
@@ -59,6 +91,15 @@ UltimateLib.Update = (function(self){
             });
         },
         
+        /**
+         * @method hasNewerVersion
+         * @description Checks if there's a new version of a mod online by querying the specified repository, branch and directory.
+         * @param {String} user The name of the GitHub user
+         * @param {String} repo The name of the repository
+         * @param {String} [branch] Optional: A name specifying the branch to use. Default: master
+         * @param {String} [dir] Optional: Directory of the package.json of the module. Default: empty string (repo root)
+         * @return {Boolean} True if there's a new version of the mod available online, otherwise False.
+        */           
         hasNewerVersion: function(user, repo, branch, dir){
             branch  = branch ? branch : "master";
             dir     = dir ? dir+'/' : '';
@@ -89,6 +130,15 @@ UltimateLib.Update = (function(self){
             });
          },
          
+        /**
+         * @method notifyIfNewerVersion
+         * @description Notifies the user in-game if there's a new version of the mod available by offering to navigate to the page.
+         * @param {String} user The name of the GitHub user
+         * @param {String} repo The name of the repository
+         * @param {String} [branch] Optional: A name specifying the branch to use. Default: master
+         * @param {String} [dir] Optional: Directory of the package.json of the module. Default: empty string (repo root)
+         * @param {String} Optional: Directory of the package.json of the module. Default: empty string (repo root)
+        */             
         notifyIfNewerVersion: function(user, repo, branch, dir){
             branch  = branch ? branch : "master";
             dir     = dir ? dir+'/' : '';

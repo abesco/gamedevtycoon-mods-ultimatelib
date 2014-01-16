@@ -1,24 +1,26 @@
-/**
- * @class UltimateLib
+ /**
+ * @class Base
+ * @module UltimateLib
+ * @main UltimateLib
  * @namespace UltimateLib
  * @author Francesco Abbattista (alphabit)
- * @version 1.0.2
- * @description UltimateLib base declaration. Makes the namespace and the base class available before any other thing.
- * @fileOverview UltimateLib base declaration. Makes the namespace and the base class available before any other thing.
+ * @version 1.1.0
+ * @description This is the UltimateLib base class that provides the basic namespace declaration.
+ * @fileOverview This is the UltimateLib base class that provides the basic namespace declaration.
  * @constructor
- * @param {object} self An object representing the class itself for extending
- */
+ * @param {Object} self An object representing the class itself or a new object for the purpose of extensibility. This parameter can be ignored.
+ */ 
 var UltimateLib = (function(self) { 
     
     /**
-     * @property {array} js
+     * @property {Array} js
      * @description An array that contains the js files associated to the complete UltimateLib libraries
      * @public
     */            
     self.js             = [];
       
     /**
-     * @property {array} libraries
+     * @property {Array} libraries
      * @description An array that contains all the core files of UltimateLib
      * @public
     */            
@@ -32,21 +34,22 @@ var UltimateLib = (function(self) {
                            {name:'Publishers', file:''},
                            {name:'Research', file:''},
                            {name:'Storage', file:''},
+                           {name:'Update', file:''},
                            {name:'Utils', file:''},
                            {name:'VisualTweaks', file:''}];
 
     /**
-     * @property {array} libraries3rd
+     * @property {Array} libraries3rd
      * @description An array that contains all the 3rd party files of UltimateLib
      * @public
     */            
-    self.libraries3rd   = [{name:'foswig', file:'Contracts'},{name:'jstorage', file:'Contracts'}];
+    self.libraries3rd   = [{name:'base64', file:''}, {name:'underscore', file:''}, {name:'github', file:''}, {name:'foswig', file:''},{name:'jstorage', file:''}];
 
     /**
-     * @function getFiles
-     * @param {string} Section name
-     * @description An array that contains all files found in the UltimateLib library section folders
-     * @returns 
+     * @method getFiles
+     * @param {String} Section name
+     * @description Returns all files found in the UltimateLib library section folders
+     * @returns {array} An array that contains all files found in the UltimateLib library section folders
      * @public
     */       
     function getFiles(section){
@@ -79,7 +82,7 @@ var UltimateLib = (function(self) {
     }
 
     /**
-     * @function init
+     * @method init
      * @description Called for global initialization after Base.init()
      * @public
     */        
@@ -105,9 +108,10 @@ var UltimateLib = (function(self) {
     };
     
     /**
-     * @function initDev
+     * @method initDev
      * @description Called for global initialization after Base.init()
      * @public
+     * @hide
     */        
     self.initDev = function(){
         var sections        = ['3rd','libs'];
@@ -151,15 +155,15 @@ var UltimateLib = (function(self) {
     };
         
     /**
-     * @property {object} mod
+     * @property {Object} mod
      * @description Returns the GDT package.json object representation of this mod
      * @public
     */                   
     self.mod;
     
     /**
-     * @function getObjByName
-     * @param {string} Name of the object to find 
+     * @method getObjByName
+     * @param {String} Name of the object to find 
      * @description Tries to retrieve an object by it's specified name 
      * @returns An object with the specified name or undefined
      * @public

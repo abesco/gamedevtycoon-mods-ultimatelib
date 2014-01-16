@@ -1,25 +1,30 @@
-/**
+ /**
  * @class Dialog
+ * @module UltimateLib
+ * @main UltimateLib
  * @namespace UltimateLib
+ * @requires Base,Core,Logger
  * @author Francesco Abbattista (alphabit)
  * @version 1.0.0
  * @description Dialog is an UltimateLib library class providing dialog creation capabilities i.e. for use with PopupMenu.
  * @fileOverview Dialog is an UltimateLib library class providing dialog creation capabilities i.e. for use with PopupMenu.
  * @constructor
- * @param {object} self An object representing the class itself for extending
- */
+ * @param {Object} self An object representing the class itself or a new object for the purpose of extensibility. This parameter can be ignored.
+ * @beta
+ */ 
+ 
  UltimateLib.Dialog = (function(self){
     // Show up in console
     UltimateLib.Logger.log("UltimateLib.Dialog loading...");
     
     /**
-     * @method 
+     * @method createButton
      * @description Creates a dialog button and returns it as a wrapped jQuery element object for further usage
-     * @param {string} name A name (id) for the dialog button. Additional element names will be automatically extended as required.  
-     * @param {string} text Text (Title) of the button
-     * @param {string|integer} width The width of the button  (as integer or css string)
-     * @param {string|integer} height The height of the button  (as integer or css string)
-     * @param {string} onclick A string indicating the callback function to call (i.e. UI.myCallBackOnUIClick)
+     * @param {String} name A name (id) for the dialog button. Additional element names will be automatically extended as required.  
+     * @param {String} text Text (Title) of the button
+     * @param {String|Integer} width The width of the button  (as integer or css string)
+     * @param {String|Integer} height The height of the button  (as integer or css string)
+     * @param {String} onclick A string indicating the callback function to call (i.e. UI.myCallBackOnUIClick)
     */        
     self.createButton = function(name, text, width, height, onclick) {
         var el = $(document.createElement('div'));
@@ -33,11 +38,11 @@
     };
     
     /**
-     * @method 
+     * @method createSection
      * @description Creates a dialog section and returns it as a wrapped jQuery element object for further usage
-     * @param {string} name A name (id) for the dialog element. Additional element names will be automatically extended with "Section", "SectionTitle", etc.  
-     * @param {string} text Text (Title) of the section label
-     * @param {array} buttons An array of buttons to show in the dialog section (use createButton to create each button)  
+     * @param {String} name A name (id) for the dialog element. Additional element names will be automatically extended with "Section", "SectionTitle", etc.  
+     * @param {String} text Text (Title) of the section label
+     * @param {Array} buttons An array of buttons to show in the dialog section (use createButton to create each button)  
     */                
     self.createSection = function(name, text, buttons){
         var idSection       = name + "Section";
@@ -60,11 +65,11 @@
     };
             
     /**
-     * @method 
+     * @method createDialog
      * @description Creates a dialog and returns it as a wrapped jQuery element object for further usage
-     * @param {string} name A name (id) for the dialog element. Additional element names will be automatically extended with "Modal", "Container", etc.  
-     * @param {string} text Text (Title) of the dialog
-     * @param {array} sections An array of sections to show on the dialog (use createSection to create each section)  
+     * @param {String} name A name (id) for the dialog element. Additional element names will be automatically extended with "Modal", "Container", etc.  
+     * @param {String} text Text (Title) of the dialog
+     * @param {Array} sections An array of sections to show on the dialog (use createSection to create each section)  
     */                
     self.createDialog = function(name, text, sections){
         var idModalDialog       = name + "Modal";

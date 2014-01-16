@@ -1,17 +1,25 @@
-/**
- * @fileOverview This is an API for adding Publishers to the game
+ /**
+ * @class Publishers
+ * @module UltimateLib
+ * @main UltimateLib
+ * @namespace UltimateLib
+ * @requires Base,Core,Logger
+ * @author Chad Keating (SirEverard)
  * @version 0.1.0b
- * @author SirEverard
+ * @description This API provides functionality for adding Publishers to the game
+ * @fileOverview This API provides functionality for adding Publishers to the game
  * @constructor
- * @augments UltimateLib
- */
+ * @param {Object} self An object representing the class itself or a new object for the purpose of extensibility. This parameter can be ignored.
+ * @beta
+ */ 
+ 
 UltimateLib.Publishers = (function(self) {
     // Show up in console
     UltimateLib.Logger.log("UltimateLib.Publishers loading...");
 
     /**
+     * @method init
      * @description Initializes the module.
-     * @public
     */ 
     self.init = function(){
     	/*
@@ -25,23 +33,21 @@ UltimateLib.Publishers = (function(self) {
         */
     };
     
-    
     /**
+     * @method addPublisherName
      * @description Adds publisher name to array
-     * @param {publisher id/name object}
-     * @private
+     * @param {String} name Publisher id/name
     */  
     self.addPublisherName = function(name){
  		var getstore = GDT.getDataStore("UltimateLib").settings;
         getstore.publisherNames.push(name);
-    	
     };
     
-    
     /**
-     * @description Adds publisher contracts.
      * @private
-     * @return {publisher object array}
+     * @method hijackgetAvailable
+     * @description Gets available publishers.
+     * @return {Object} An array containig object items with the UltimateLib Publisher Format specification
     */  
 	function hijackgetAvailable () {
 		var keep = ProjectContracts.getAvailable;
@@ -51,21 +57,16 @@ UltimateLib.Publishers = (function(self) {
 			return contracts;				
 		};
 	};
-	
-	
-	
+
 	/**
+     * @method collection
      * @description Returns all custom contracts.
-     * @public
-     * @param {GDT company object}
-     * @return {contract object array}
+     * @return {Object} An array containig a list of publisher names
     */  
 	self.collection = function () {
 		var getstore = GDT.getDataStore("UltimateLib").settings;
 		return getstore.publisherNames;
 	};
-	
-	
     	
     // Show up in console
     UltimateLib.Logger.log("UltimateLib.Publishers loaded :-)");
