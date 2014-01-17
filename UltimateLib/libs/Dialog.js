@@ -29,7 +29,15 @@
         
         el.addClass('selectorButton whiteButton');
         el.css({display:'inline-block', position: 'relative', marginLeft:'50px', width: width, height: height});
-        el.attr({id:name, onclick:onclick});
+        el.attr({id:name});
+        if(typeof(onclick) == 'function')
+        {
+            $(el).on('click', onclick);
+        }
+        else
+        {
+            el.attr({id:name, onclick:onclick});
+        }
         el.text(text);
         
         return el;
@@ -73,7 +81,6 @@
         var idModalDialog       = name + "Modal";
         var idDialogContainer   = name + "Container";
         var idTop               = name + "Top";
-        var idPoweredBy         = name + "PoweredBy";
         
         // Modal dialog for a GDT dialog -->
         var modal = $(document.createElement('div'));
@@ -93,18 +100,69 @@
             scrolltop.appendTo(container);
                                         
         $.each(sections, function(i, v){
-            container.append(v);
+            UltimateLib.Dialog.addSection(container, v);
         });
 
-        var poweredBy = $(document.createElement('div'));
-            poweredBy.attr({id:idPoweredBy});
-            poweredBy.css({textAlign:'center', marginLeft:'50px', width: '450px'});
-            poweredBy.append('br').append('br');
-            poweredBy.text("Powered by UltimateLib");
-            poweredBy.appendTo(container);
+        //Add the poweredby
+        UltimateLib.Dialog.addPoweredBy(container);
             
         return container;
     };
+    
+    /**
+     * @method 
+     * @description Removes all sections from the provided dialog element
+     * @param {dialog} dialog The dialog you wish to clear all sections from
+    */ 
+    self.clearSections = function(dialog){
+
+        //Clear the dialog section
+        $('.ultimatelib-dialog-section', dialog).remove();
+
+    }
+    
+    /**
+     * @method 
+     * @description Appends a section to the dialog
+     * @param {dialog} dialog The dialog you wish to append the section to
+     * @param {section} section The section you wish to append to the dialog
+    */ 
+    self.addSection = function(dialog, section){
+
+        //Append the section
+        UltimateLib.Dialog.clearPoweredBy(dialog);
+        dialog.append(section);
+        UltimateLib.Dialog.addPoweredBy(dialog);
+
+    }
+    
+    /**
+     * @method 
+     * @description Removes the poweredBy section so we can add more items to the dialog and then add the powered by again later
+     * @param {dialog} dialog The dialog you wish to remove the poweredBy from
+    */ 
+    self.clearPoweredBy = function(dialog){
+
+        //Clear the dialog section
+        $('.ultimatelib-dialog-poweredby', dialog).remove();
+
+    }
+    
+    /**
+     * @method 
+     * @description Appends the powered by section at the end of the dialog
+     * @param {dialog} dialog The dialog you wish to append the poweredby to
+    */ 
+    self.addPoweredBy = function(dialog){
+
+        var poweredBy = $(document.createElement('div'));
+            poweredBy.attr({id:$(dialog).attr('id').replace('Container', 'PoweredBy'), class:"ultimatelib-dialog-poweredby"});
+            poweredBy.css({textAlign:'center', marginLeft:'50px', width: '450px'});
+            poweredBy.append('br').append('br');
+            poweredBy.text("Powered by UltimateLib");
+            dialog.append(poweredBy);
+
+    }
     
     // Show up in console
     UltimateLib.Logger.log("UltimateLib.Dialog loaded :-)");
