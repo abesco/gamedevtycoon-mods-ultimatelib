@@ -6,15 +6,19 @@ Copyright (c) 2013, 2014 Francesco Abbattista and Chad Keating
 
 Founder(s):
  -----------------------------------------------------------------------------------------------------------------------
-- alphabit
-- SirEverard
+- alphabit      Lead development
+- SirEverard    Lead development
 
 Contributors:
  -----------------------------------------------------------------------------------------------------------------------
 
 3rd Party Libraries:
  -----------------------------------------------------------------------------------------------------------------------
-- Foswig - foswig.js, https://github.com/mrsharpoblunto/foswig.js (foswig on GitHub), Licensed under the MIT license.
+- Foswig        - foswig.js, https://github.com/mrsharpoblunto/foswig.js (foswig on GitHub), Licensed under the MIT license.
+- Base64        - base64.js, http://rumkin.com, Tyler Akins, Licensed under the Public Domain license.
+- Underscore    - underscore.js, http://underscorejs.org, (c) 2009-2012 Jeremy Ashkenas, DocumentCloud Inc, Licensed under the MIT license.
+- Github        - github.js, http://substance.io/michael/github, (c) 2013 Michael Aufreiter, Development Seed, Licensed under the MIT license.
+
 
 License:
  -----------------------------------------------------------------------------------------------------------------------
@@ -37,9 +41,10 @@ In short
 */
 
 /**
+ * @description UltimateLib is a library that aims to leverage and empower the development of plugin modules for GameDevTycoon
  * @fileOverview UltimateLib is a library that aims to leverage and empower the development of plugin modules for GameDevTycoon
  * @author alphabit and SirEverard
- * @version 1.0.0
+ * @version 1.1.0
  */
 
 (function () {
@@ -49,6 +54,8 @@ In short
 
         UltimateLib.Logger.enabled = UltimateLib.mod.debug && UltimateLib.mod.debug == true;
         UltimateLib.Core.init();
+        
+        UltimateLib.Update.GitHub.notifyIfNewerVersion("abesco", "gamedevtycoon-mods-ultimatelib", "release", "UltimateLib");
     };
 
     var error = function () {   

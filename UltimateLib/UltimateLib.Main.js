@@ -1,24 +1,26 @@
-/**
- * @class UltimateLib
+ /**
+ * @class Base
+ * @module UltimateLib
+ * @main UltimateLib
  * @namespace UltimateLib
  * @author Francesco Abbattista (alphabit)
- * @version 1.0.2
- * @description UltimateLib base declaration. Makes the namespace and the base class available before any other thing.
- * @fileOverview UltimateLib base declaration. Makes the namespace and the base class available before any other thing.
+ * @version 1.1.0
+ * @description This is the UltimateLib base class that provides the basic namespace declaration.
+ * @fileOverview This is the UltimateLib base class that provides the basic namespace declaration.
  * @constructor
- * @param {object} self An object representing the class itself for extending
- */
+ * @param {Object} self An object representing the class itself or a new object for the purpose of extensibility. This parameter can be ignored.
+ */ 
 var UltimateLib = (function(self) { 
     
     /**
-     * @property {array} js
+     * @property {Array} js
      * @description An array that contains the js files associated to the complete UltimateLib libraries
      * @public
     */            
     self.js             = [];
       
     /**
-     * @property {array} libraries
+     * @property {Array} libraries
      * @description An array that contains all the core files of UltimateLib
      * @public
     */            
@@ -32,21 +34,22 @@ var UltimateLib = (function(self) {
                            {name:'Publishers', file:''},
                            {name:'Research', file:''},
                            {name:'Storage', file:''},
+                           {name:'Update', file:''},
                            {name:'Utils', file:''},
                            {name:'VisualTweaks', file:''}];
 
     /**
-     * @property {array} libraries3rd
+     * @property {Array} libraries3rd
      * @description An array that contains all the 3rd party files of UltimateLib
      * @public
     */            
-    self.libraries3rd   = [{name:'foswig', file:'Contracts'},{name:'jstorage', file:'Contracts'}];
+    self.libraries3rd   = [{name:'base64', file:''}, {name:'underscore', file:''}, {name:'github', file:''}, {name:'foswig', file:''},{name:'jstorage', file:''}];
 
     /**
-     * @function getFiles
-     * @param {string} Section name
-     * @description An array that contains all files found in the UltimateLib library section folders
-     * @returns 
+     * @method getFiles
+     * @param {String} Section name
+     * @description Returns all files found in the UltimateLib library section folders
+     * @returns {array} An array that contains all files found in the UltimateLib library section folders
      * @public
     */       
     function getFiles(section){
@@ -79,7 +82,7 @@ var UltimateLib = (function(self) {
     }
 
     /**
-     * @function init
+     * @method init
      * @description Called for global initialization after Base.init()
      * @public
     */        
@@ -105,9 +108,10 @@ var UltimateLib = (function(self) {
     };
     
     /**
-     * @function initDev
+     * @method initDev
      * @description Called for global initialization after Base.init()
      * @public
+     * @hide
     */        
     self.initDev = function(){
         var sections        = ['3rd','libs'];
@@ -151,15 +155,15 @@ var UltimateLib = (function(self) {
     };
         
     /**
-     * @property {object} mod
+     * @property {Object} mod
      * @description Returns the GDT package.json object representation of this mod
      * @public
     */                   
     self.mod;
     
     /**
-     * @function getObjByName
-     * @param {string} Name of the object to find 
+     * @method getObjByName
+     * @param {String} Name of the object to find 
      * @description Tries to retrieve an object by it's specified name 
      * @returns An object with the specified name or undefined
      * @public
@@ -177,24 +181,25 @@ var UltimateLib = (function(self) {
     
     return self;
 })(UltimateLib || {});
-/**
+  /**
  * @class Logger
+ * @module UltimateLib
+ * @main UltimateLib
  * @namespace UltimateLib
  * @author Francesco Abbattista (alphabit) and Chad Keating (SirEverard)
  * @version 1.0.0
  * @description Simple logger for the UltimateLib class. This class is used for simple console based logging purposes related to this package.
- * @fileOverview  Logger is an UltimateLib library providing simple logger capabilities to UltimateLib.
+ * @fileOverview Simple logger for the UltimateLib class. This class is used for simple console based logging purposes related to this package.
  * @constructor
- * @param {object} self An object representing the class itself for extending
- */
-
+ * @param {Object} self An object representing the class itself or a new object for the purpose of extensibility. This parameter can be ignored.
+ */ 
 UltimateLib.Logger = (function(self) {
     /**
+     * @private
      * @method formatDate 
      * @description Format a date to iso standard yyyy-mm-dd hh:mm:nn
-     * @private
-     * @param {Date} Date object
-     * @returns A string containing a formatted representation of the date in the ISO format (yy-M-dd)
+     * @param {Date} dt Date object
+     * @return A string containing a formatted representation of the date in the ISO format (yy-M-dd)
     */        
     function formatDate(dt){
         //Pad given value to the left with "0"
@@ -205,17 +210,18 @@ UltimateLib.Logger = (function(self) {
     }
     
     /**
+     * @property enabled 
+     * @type Boolean
+     * @default false
      * @description Enables / Disables logging
-     * @public
-     * @param {bool} Enable / Disable logging
     */    
     self.enabled = false;
     
     /**
+     * @method log
      * @description Outputs a message to console using a friendly output
-     * @public
-     * @param {string} The message to output to console
-     * @param {string} Optional argument to automatically log an exception
+     * @param {String} msg The message to output to console
+     * @param {String} ex Optional argument to automatically log an exception
     */    
     self.log = function(msg, ex){
         if(!self.enabled){
@@ -236,17 +242,18 @@ UltimateLib.Logger = (function(self) {
     
     return self;
 })(UltimateLib.Logger || {});
-/**
+  /**
  * @class Core
+ * @module UltimateLib
+ * @main UltimateLib
  * @namespace UltimateLib
  * @author Francesco Abbattista (alphabit)
- * @version 1.0.2
- * @description Core class of the UltimateLib.
- * @fileOverview  Core class of the UltimateLib.
+ * @version 1.1.0
+ * @description Core class providing the basic functionality for the UltimateLib.
+ * @fileOverview Core class providing the basic functionality for the UltimateLib
  * @constructor
- * @param {object} self An object representing the class itself for extending
- */
-
+ * @param {Object} self An object representing the class itself or a new object for the purpose of extensibility. This parameter can be ignored.
+ */ 
 UltimateLib.Core = (function(self) {       
     /**
      * @method init
@@ -300,7 +307,98 @@ UltimateLib.Core = (function(self) {
 
 
 
-/**
+// This code was written by Tyler Akins and has been placed in the
+// public domain.  It would be nice if you left this header intact.
+// Base64 code from Tyler Akins -- http://rumkin.com
+
+var Base64 = (function () {
+    var keyStr = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
+
+    var obj = {
+        /**
+         * Encodes a string in base64
+         * @param {String} input The string to encode in base64.
+         */
+        encode: function (input) {
+            var output = "";
+            var chr1, chr2, chr3;
+            var enc1, enc2, enc3, enc4;
+            var i = 0;
+
+            do {
+                chr1 = input.charCodeAt(i++);
+                chr2 = input.charCodeAt(i++);
+                chr3 = input.charCodeAt(i++);
+
+                enc1 = chr1 >> 2;
+                enc2 = ((chr1 & 3) << 4) | (chr2 >> 4);
+                enc3 = ((chr2 & 15) << 2) | (chr3 >> 6);
+                enc4 = chr3 & 63;
+
+                if (isNaN(chr2)) {
+                    enc3 = enc4 = 64;
+                } else if (isNaN(chr3)) {
+                    enc4 = 64;
+                }
+
+                output = output + keyStr.charAt(enc1) + keyStr.charAt(enc2) +
+                    keyStr.charAt(enc3) + keyStr.charAt(enc4);
+            } while (i < input.length);
+
+            return output;
+        },
+
+        /**
+         * Decodes a base64 string.
+         * @param {String} input The string to decode.
+         */
+        decode: function (input) {
+            var output = "";
+            var chr1, chr2, chr3;
+            var enc1, enc2, enc3, enc4;
+            var i = 0;
+
+            // remove all characters that are not A-Z, a-z, 0-9, +, /, or =
+            input = input.replace(/[^A-Za-z0-9\+\/\=]/g, "");
+
+            do {
+                enc1 = keyStr.indexOf(input.charAt(i++));
+                enc2 = keyStr.indexOf(input.charAt(i++));
+                enc3 = keyStr.indexOf(input.charAt(i++));
+                enc4 = keyStr.indexOf(input.charAt(i++));
+
+                chr1 = (enc1 << 2) | (enc2 >> 4);
+                chr2 = ((enc2 & 15) << 4) | (enc3 >> 2);
+                chr3 = ((enc3 & 3) << 6) | enc4;
+
+                output = output + String.fromCharCode(chr1);
+
+                if (enc3 != 64) {
+                    output = output + String.fromCharCode(chr2);
+                }
+                if (enc4 != 64) {
+                    output = output + String.fromCharCode(chr3);
+                }
+            } while (i < input.length);
+
+            return output;
+        }
+    };
+
+    return obj;
+})();
+if (typeof exports !== 'undefined') {
+    // Github = exports;
+    module.exports = Base64;
+} else {
+    window.Base64 = Base64;
+}
+
+//     Underscore.js 1.4.2
+//     http://underscorejs.org
+//     (c) 2009-2012 Jeremy Ashkenas, DocumentCloud Inc.
+//     Underscore may be freely distributed under the MIT license.
+(function(){var e=this,t=e._,n={},r=Array.prototype,i=Object.prototype,s=Function.prototype,o=r.push,u=r.slice,a=r.concat,f=r.unshift,l=i.toString,c=i.hasOwnProperty,h=r.forEach,p=r.map,d=r.reduce,v=r.reduceRight,m=r.filter,g=r.every,y=r.some,b=r.indexOf,w=r.lastIndexOf,E=Array.isArray,S=Object.keys,x=s.bind,T=function(e){if(e instanceof T)return e;if(!(this instanceof T))return new T(e);this._wrapped=e};typeof exports!="undefined"?(typeof module!="undefined"&&module.exports&&(exports=module.exports=T),exports._=T):e._=T,T.VERSION="1.4.2";var N=T.each=T.forEach=function(e,t,r){if(e==null)return;if(h&&e.forEach===h)e.forEach(t,r);else if(e.length===+e.length){for(var i=0,s=e.length;i<s;i++)if(t.call(r,e[i],i,e)===n)return}else for(var o in e)if(T.has(e,o)&&t.call(r,e[o],o,e)===n)return};T.map=T.collect=function(e,t,n){var r=[];return e==null?r:p&&e.map===p?e.map(t,n):(N(e,function(e,i,s){r[r.length]=t.call(n,e,i,s)}),r)},T.reduce=T.foldl=T.inject=function(e,t,n,r){var i=arguments.length>2;e==null&&(e=[]);if(d&&e.reduce===d)return r&&(t=T.bind(t,r)),i?e.reduce(t,n):e.reduce(t);N(e,function(e,s,o){i?n=t.call(r,n,e,s,o):(n=e,i=!0)});if(!i)throw new TypeError("Reduce of empty array with no initial value");return n},T.reduceRight=T.foldr=function(e,t,n,r){var i=arguments.length>2;e==null&&(e=[]);if(v&&e.reduceRight===v)return r&&(t=T.bind(t,r)),arguments.length>2?e.reduceRight(t,n):e.reduceRight(t);var s=e.length;if(s!==+s){var o=T.keys(e);s=o.length}N(e,function(u,a,f){a=o?o[--s]:--s,i?n=t.call(r,n,e[a],a,f):(n=e[a],i=!0)});if(!i)throw new TypeError("Reduce of empty array with no initial value");return n},T.find=T.detect=function(e,t,n){var r;return C(e,function(e,i,s){if(t.call(n,e,i,s))return r=e,!0}),r},T.filter=T.select=function(e,t,n){var r=[];return e==null?r:m&&e.filter===m?e.filter(t,n):(N(e,function(e,i,s){t.call(n,e,i,s)&&(r[r.length]=e)}),r)},T.reject=function(e,t,n){var r=[];return e==null?r:(N(e,function(e,i,s){t.call(n,e,i,s)||(r[r.length]=e)}),r)},T.every=T.all=function(e,t,r){t||(t=T.identity);var i=!0;return e==null?i:g&&e.every===g?e.every(t,r):(N(e,function(e,s,o){if(!(i=i&&t.call(r,e,s,o)))return n}),!!i)};var C=T.some=T.any=function(e,t,r){t||(t=T.identity);var i=!1;return e==null?i:y&&e.some===y?e.some(t,r):(N(e,function(e,s,o){if(i||(i=t.call(r,e,s,o)))return n}),!!i)};T.contains=T.include=function(e,t){var n=!1;return e==null?n:b&&e.indexOf===b?e.indexOf(t)!=-1:(n=C(e,function(e){return e===t}),n)},T.invoke=function(e,t){var n=u.call(arguments,2);return T.map(e,function(e){return(T.isFunction(t)?t:e[t]).apply(e,n)})},T.pluck=function(e,t){return T.map(e,function(e){return e[t]})},T.where=function(e,t){return T.isEmpty(t)?[]:T.filter(e,function(e){for(var n in t)if(t[n]!==e[n])return!1;return!0})},T.max=function(e,t,n){if(!t&&T.isArray(e)&&e[0]===+e[0]&&e.length<65535)return Math.max.apply(Math,e);if(!t&&T.isEmpty(e))return-Infinity;var r={computed:-Infinity};return N(e,function(e,i,s){var o=t?t.call(n,e,i,s):e;o>=r.computed&&(r={value:e,computed:o})}),r.value},T.min=function(e,t,n){if(!t&&T.isArray(e)&&e[0]===+e[0]&&e.length<65535)return Math.min.apply(Math,e);if(!t&&T.isEmpty(e))return Infinity;var r={computed:Infinity};return N(e,function(e,i,s){var o=t?t.call(n,e,i,s):e;o<r.computed&&(r={value:e,computed:o})}),r.value},T.shuffle=function(e){var t,n=0,r=[];return N(e,function(e){t=T.random(n++),r[n-1]=r[t],r[t]=e}),r};var k=function(e){return T.isFunction(e)?e:function(t){return t[e]}};T.sortBy=function(e,t,n){var r=k(t);return T.pluck(T.map(e,function(e,t,i){return{value:e,index:t,criteria:r.call(n,e,t,i)}}).sort(function(e,t){var n=e.criteria,r=t.criteria;if(n!==r){if(n>r||n===void 0)return 1;if(n<r||r===void 0)return-1}return e.index<t.index?-1:1}),"value")};var L=function(e,t,n,r){var i={},s=k(t);return N(e,function(t,o){var u=s.call(n,t,o,e);r(i,u,t)}),i};T.groupBy=function(e,t,n){return L(e,t,n,function(e,t,n){(T.has(e,t)?e[t]:e[t]=[]).push(n)})},T.countBy=function(e,t,n){return L(e,t,n,function(e,t,n){T.has(e,t)||(e[t]=0),e[t]++})},T.sortedIndex=function(e,t,n,r){n=n==null?T.identity:k(n);var i=n.call(r,t),s=0,o=e.length;while(s<o){var u=s+o>>>1;n.call(r,e[u])<i?s=u+1:o=u}return s},T.toArray=function(e){return e?e.length===+e.length?u.call(e):T.values(e):[]},T.size=function(e){return e.length===+e.length?e.length:T.keys(e).length},T.first=T.head=T.take=function(e,t,n){return t!=null&&!n?u.call(e,0,t):e[0]},T.initial=function(e,t,n){return u.call(e,0,e.length-(t==null||n?1:t))},T.last=function(e,t,n){return t!=null&&!n?u.call(e,Math.max(e.length-t,0)):e[e.length-1]},T.rest=T.tail=T.drop=function(e,t,n){return u.call(e,t==null||n?1:t)},T.compact=function(e){return T.filter(e,function(e){return!!e})};var A=function(e,t,n){return N(e,function(e){T.isArray(e)?t?o.apply(n,e):A(e,t,n):n.push(e)}),n};T.flatten=function(e,t){return A(e,t,[])},T.without=function(e){return T.difference(e,u.call(arguments,1))},T.uniq=T.unique=function(e,t,n,r){var i=n?T.map(e,n,r):e,s=[],o=[];return N(i,function(n,r){if(t?!r||o[o.length-1]!==n:!T.contains(o,n))o.push(n),s.push(e[r])}),s},T.union=function(){return T.uniq(a.apply(r,arguments))},T.intersection=function(e){var t=u.call(arguments,1);return T.filter(T.uniq(e),function(e){return T.every(t,function(t){return T.indexOf(t,e)>=0})})},T.difference=function(e){var t=a.apply(r,u.call(arguments,1));return T.filter(e,function(e){return!T.contains(t,e)})},T.zip=function(){var e=u.call(arguments),t=T.max(T.pluck(e,"length")),n=new Array(t);for(var r=0;r<t;r++)n[r]=T.pluck(e,""+r);return n},T.object=function(e,t){var n={};for(var r=0,i=e.length;r<i;r++)t?n[e[r]]=t[r]:n[e[r][0]]=e[r][1];return n},T.indexOf=function(e,t,n){if(e==null)return-1;var r=0,i=e.length;if(n){if(typeof n!="number")return r=T.sortedIndex(e,t),e[r]===t?r:-1;r=n<0?Math.max(0,i+n):n}if(b&&e.indexOf===b)return e.indexOf(t,n);for(;r<i;r++)if(e[r]===t)return r;return-1},T.lastIndexOf=function(e,t,n){if(e==null)return-1;var r=n!=null;if(w&&e.lastIndexOf===w)return r?e.lastIndexOf(t,n):e.lastIndexOf(t);var i=r?n:e.length;while(i--)if(e[i]===t)return i;return-1},T.range=function(e,t,n){arguments.length<=1&&(t=e||0,e=0),n=arguments[2]||1;var r=Math.max(Math.ceil((t-e)/n),0),i=0,s=new Array(r);while(i<r)s[i++]=e,e+=n;return s};var O=function(){};T.bind=function(t,n){var r,i;if(t.bind===x&&x)return x.apply(t,u.call(arguments,1));if(!T.isFunction(t))throw new TypeError;return i=u.call(arguments,2),r=function(){if(this instanceof r){O.prototype=t.prototype;var e=new O,s=t.apply(e,i.concat(u.call(arguments)));return Object(s)===s?s:e}return t.apply(n,i.concat(u.call(arguments)))}},T.bindAll=function(e){var t=u.call(arguments,1);return t.length==0&&(t=T.functions(e)),N(t,function(t){e[t]=T.bind(e[t],e)}),e},T.memoize=function(e,t){var n={};return t||(t=T.identity),function(){var r=t.apply(this,arguments);return T.has(n,r)?n[r]:n[r]=e.apply(this,arguments)}},T.delay=function(e,t){var n=u.call(arguments,2);return setTimeout(function(){return e.apply(null,n)},t)},T.defer=function(e){return T.delay.apply(T,[e,1].concat(u.call(arguments,1)))},T.throttle=function(e,t){var n,r,i,s,o,u,a=T.debounce(function(){o=s=!1},t);return function(){n=this,r=arguments;var f=function(){i=null,o&&(u=e.apply(n,r)),a()};return i||(i=setTimeout(f,t)),s?o=!0:(s=!0,u=e.apply(n,r)),a(),u}},T.debounce=function(e,t,n){var r,i;return function(){var s=this,o=arguments,u=function(){r=null,n||(i=e.apply(s,o))},a=n&&!r;return clearTimeout(r),r=setTimeout(u,t),a&&(i=e.apply(s,o)),i}},T.once=function(e){var t=!1,n;return function(){return t?n:(t=!0,n=e.apply(this,arguments),e=null,n)}},T.wrap=function(e,t){return function(){var n=[e];return o.apply(n,arguments),t.apply(this,n)}},T.compose=function(){var e=arguments;return function(){var t=arguments;for(var n=e.length-1;n>=0;n--)t=[e[n].apply(this,t)];return t[0]}},T.after=function(e,t){return e<=0?t():function(){if(--e<1)return t.apply(this,arguments)}},T.keys=S||function(e){if(e!==Object(e))throw new TypeError("Invalid object");var t=[];for(var n in e)T.has(e,n)&&(t[t.length]=n);return t},T.values=function(e){var t=[];for(var n in e)T.has(e,n)&&t.push(e[n]);return t},T.pairs=function(e){var t=[];for(var n in e)T.has(e,n)&&t.push([n,e[n]]);return t},T.invert=function(e){var t={};for(var n in e)T.has(e,n)&&(t[e[n]]=n);return t},T.functions=T.methods=function(e){var t=[];for(var n in e)T.isFunction(e[n])&&t.push(n);return t.sort()},T.extend=function(e){return N(u.call(arguments,1),function(t){for(var n in t)e[n]=t[n]}),e},T.pick=function(e){var t={},n=a.apply(r,u.call(arguments,1));return N(n,function(n){n in e&&(t[n]=e[n])}),t},T.omit=function(e){var t={},n=a.apply(r,u.call(arguments,1));for(var i in e)T.contains(n,i)||(t[i]=e[i]);return t},T.defaults=function(e){return N(u.call(arguments,1),function(t){for(var n in t)e[n]==null&&(e[n]=t[n])}),e},T.clone=function(e){return T.isObject(e)?T.isArray(e)?e.slice():T.extend({},e):e},T.tap=function(e,t){return t(e),e};var M=function(e,t,n,r){if(e===t)return e!==0||1/e==1/t;if(e==null||t==null)return e===t;e instanceof T&&(e=e._wrapped),t instanceof T&&(t=t._wrapped);var i=l.call(e);if(i!=l.call(t))return!1;switch(i){case"[object String]":return e==String(t);case"[object Number]":return e!=+e?t!=+t:e==0?1/e==1/t:e==+t;case"[object Date]":case"[object Boolean]":return+e==+t;case"[object RegExp]":return e.source==t.source&&e.global==t.global&&e.multiline==t.multiline&&e.ignoreCase==t.ignoreCase}if(typeof e!="object"||typeof t!="object")return!1;var s=n.length;while(s--)if(n[s]==e)return r[s]==t;n.push(e),r.push(t);var o=0,u=!0;if(i=="[object Array]"){o=e.length,u=o==t.length;if(u)while(o--)if(!(u=M(e[o],t[o],n,r)))break}else{var a=e.constructor,f=t.constructor;if(a!==f&&!(T.isFunction(a)&&a instanceof a&&T.isFunction(f)&&f instanceof f))return!1;for(var c in e)if(T.has(e,c)){o++;if(!(u=T.has(t,c)&&M(e[c],t[c],n,r)))break}if(u){for(c in t)if(T.has(t,c)&&!(o--))break;u=!o}}return n.pop(),r.pop(),u};T.isEqual=function(e,t){return M(e,t,[],[])},T.isEmpty=function(e){if(e==null)return!0;if(T.isArray(e)||T.isString(e))return e.length===0;for(var t in e)if(T.has(e,t))return!1;return!0},T.isElement=function(e){return!!e&&e.nodeType===1},T.isArray=E||function(e){return l.call(e)=="[object Array]"},T.isObject=function(e){return e===Object(e)},N(["Arguments","Function","String","Number","Date","RegExp"],function(e){T["is"+e]=function(t){return l.call(t)=="[object "+e+"]"}}),T.isArguments(arguments)||(T.isArguments=function(e){return!!e&&!!T.has(e,"callee")}),typeof /./!="function"&&(T.isFunction=function(e){return typeof e=="function"}),T.isFinite=function(e){return T.isNumber(e)&&isFinite(e)},T.isNaN=function(e){return T.isNumber(e)&&e!=+e},T.isBoolean=function(e){return e===!0||e===!1||l.call(e)=="[object Boolean]"},T.isNull=function(e){return e===null},T.isUndefined=function(e){return e===void 0},T.has=function(e,t){return c.call(e,t)},T.noConflict=function(){return e._=t,this},T.identity=function(e){return e},T.times=function(e,t,n){for(var r=0;r<e;r++)t.call(n,r)},T.random=function(e,t){return t==null&&(t=e,e=0),e+(0|Math.random()*(t-e+1))};var _={escape:{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#x27;","/":"&#x2F;"}};_.unescape=T.invert(_.escape);var D={escape:new RegExp("["+T.keys(_.escape).join("")+"]","g"),unescape:new RegExp("("+T.keys(_.unescape).join("|")+")","g")};T.each(["escape","unescape"],function(e){T[e]=function(t){return t==null?"":(""+t).replace(D[e],function(t){return _[e][t]})}}),T.result=function(e,t){if(e==null)return null;var n=e[t];return T.isFunction(n)?n.call(e):n},T.mixin=function(e){N(T.functions(e),function(t){var n=T[t]=e[t];T.prototype[t]=function(){var e=[this._wrapped];return o.apply(e,arguments),F.call(this,n.apply(T,e))}})};var P=0;T.uniqueId=function(e){var t=P++;return e?e+t:t},T.templateSettings={evaluate:/<%([\s\S]+?)%>/g,interpolate:/<%=([\s\S]+?)%>/g,escape:/<%-([\s\S]+?)%>/g};var H=/(.)^/,B={"'":"'","\\":"\\","\r":"r","\n":"n","  ":"t","\u2028":"u2028","\u2029":"u2029"},j=/\\|'|\r|\n|\t|\u2028|\u2029/g;T.template=function(e,t,n){n=T.defaults({},n,T.templateSettings);var r=new RegExp([(n.escape||H).source,(n.interpolate||H).source,(n.evaluate||H).source].join("|")+"|$","g"),i=0,s="__p+='";e.replace(r,function(t,n,r,o,u){s+=e.slice(i,u).replace(j,function(e){return"\\"+B[e]}),s+=n?"'+\n((__t=("+n+"))==null?'':_.escape(__t))+\n'":r?"'+\n((__t=("+r+"))==null?'':__t)+\n'":o?"';\n"+o+"\n__p+='":"",i=u+t.length}),s+="';\n",n.variable||(s="with(obj||{}){\n"+s+"}\n"),s="var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};\n"+s+"return __p;\n";try{var o=new Function(n.variable||"obj","_",s)}catch(u){throw u.source=s,u}if(t)return o(t,T);var a=function(e){return o.call(this,e,T)};return a.source="function("+(n.variable||"obj")+"){\n"+s+"}",a},T.chain=function(e){return T(e).chain()};var F=function(e){return this._chain?T(e).chain():e};T.mixin(T),N(["pop","push","reverse","shift","sort","splice","unshift"],function(e){var t=r[e];T.prototype[e]=function(){var n=this._wrapped;return t.apply(n,arguments),(e=="shift"||e=="splice")&&n.length===0&&delete n[0],F.call(this,n)}}),N(["concat","join","slice"],function(e){var t=r[e];T.prototype[e]=function(){return F.call(this,t.apply(this._wrapped,arguments))}}),T.extend(T.prototype,{chain:function(){return this._chain=!0,this},value:function(){return this._wrapped}})}).call(this);/**
  * @class Foswig
  * @author Glenn Conner
  * @version 1.0.0
@@ -1284,29 +1382,787 @@ UltimateLib.Core = (function(self) {
     _init();
 
 })();
-/**
+// Github.js 0.9.0
+// (c) 2013 Michael Aufreiter, Development Seed
+// Github.js is freely distributable under the MIT license.
+// For all details and documentation:
+// http://substance.io/michael/github
+
+(function() {
+
+  // Initial Setup
+  // -------------
+
+  var XMLHttpRequest, Base64, _;
+  if (typeof exports !== 'undefined') {
+      XMLHttpRequest = require('xmlhttprequest').XMLHttpRequest;
+      _ = require('underscore');
+      Base64 = require('./lib/base64.js');
+  }else{
+      _ = window._;
+      Base64 = window.Base64;
+  }
+  //prefer native XMLHttpRequest always
+  if (typeof window !== 'undefined' && typeof window.XMLHttpRequest !== 'undefined'){
+      XMLHttpRequest = window.XMLHttpRequest;
+  }
+
+
+  var API_URL = 'https://api.github.com';
+
+  var Github = function(options) {
+
+    // HTTP Request Abstraction
+    // =======
+    //
+    // I'm not proud of this and neither should you be if you were responsible for the XMLHttpRequest spec.
+
+    function _request(method, path, data, cb, raw, sync) {
+      function getURL() {
+        var url = path.indexOf('//') >= 0 ? path : API_URL + path;
+        return url + ((/\?/).test(url) ? "&" : "?") + (new Date()).getTime();
+      }
+
+      var xhr = new XMLHttpRequest();
+      if (!raw) {xhr.dataType = "json";}
+
+      xhr.open(method, getURL(), !sync);
+      if (!sync) {
+        xhr.onreadystatechange = function () {
+          if (this.readyState == 4) {
+            if (this.status >= 200 && this.status < 300 || this.status === 304) {
+              cb(null, raw ? this.responseText : this.responseText ? JSON.parse(this.responseText) : true, this);
+            } else {
+              cb({path: path, request: this, error: this.status});
+            }
+          }
+        }
+      };
+      xhr.setRequestHeader('Accept','application/vnd.github.raw+json');
+      xhr.setRequestHeader('Content-Type','application/json;charset=UTF-8');
+      if ((options.token) || (options.username && options.password)) {
+           xhr.setRequestHeader('Authorization', options.token
+             ? 'token '+ options.token
+             : 'Basic ' + Base64.encode(options.username + ':' + options.password)
+           );
+         }
+      data ? xhr.send(JSON.stringify(data)) : xhr.send();
+      if (sync) return xhr.response;
+    }
+
+    function _requestAllPages(path, cb) {
+      var results = [];
+      (function iterate() {
+        _request("GET", path, null, function(err, res, xhr) {
+          if (err) {
+            return cb(err);
+          }
+
+          results.push.apply(results, res);
+
+          var links = (xhr.getResponseHeader('link') || '').split(/\s*,\s*/g),
+              next = _.find(links, function(link) { return /rel="next"/.test(link); });
+
+          if (next) {
+            next = (/<(.*)>/.exec(next) || [])[1];
+          }
+
+          if (!next) {
+            cb(err, results);
+          } else {
+            path = next;
+            iterate();
+          }
+        });
+      })();
+    }
+
+
+
+    // User API
+    // =======
+
+    Github.User = function() {
+      this.repos = function(cb) {
+        // Github does not always honor the 1000 limit so we want to iterate over the data set.
+        _requestAllPages("/user/repos?type=all&per_page=1000&sort=updated", function(err, res) {
+          cb(err, res);
+        });
+      };
+
+      // List user organizations
+      // -------
+
+      this.orgs = function(cb) {
+        _request("GET", "/user/orgs", null, function(err, res) {
+          cb(err, res);
+        });
+      };
+
+      // List authenticated user's gists
+      // -------
+
+      this.gists = function(cb) {
+        _request("GET", "/gists", null, function(err, res) {
+          cb(err,res);
+        });
+      };
+
+      // List authenticated user's unread notifications
+      // -------
+
+      this.notifications = function(cb) {
+        _request("GET", "/notifications", null, function(err, res) {
+          cb(err,res);
+        });
+      };
+
+      // Show user information
+      // -------
+
+      this.show = function(username, cb) {
+        var command = username ? "/users/"+username : "/user";
+
+        _request("GET", command, null, function(err, res) {
+          cb(err, res);
+        });
+      };
+
+      // List user repositories
+      // -------
+
+      this.userRepos = function(username, cb) {
+        // Github does not always honor the 1000 limit so we want to iterate over the data set.
+        _requestAllPages("/users/"+username+"/repos?type=all&per_page=1000&sort=updated", function(err, res) {
+          cb(err, res);
+        });
+      };
+
+      // List a user's gists
+      // -------
+
+      this.userGists = function(username, cb) {
+        _request("GET", "/users/"+username+"/gists", null, function(err, res) {
+          cb(err,res);
+        });
+      };
+
+      // List organization repositories
+      // -------
+
+      this.orgRepos = function(orgname, cb) {
+        // Github does not always honor the 1000 limit so we want to iterate over the data set.
+        _requestAllPages("/orgs/"+orgname+"/repos?type=all&&page_num=1000&sort=updated&direction=desc", function(err, res) {
+          cb(err, res);
+        });
+      };
+
+      // Follow user
+      // -------
+
+      this.follow = function(username, cb) {
+        _request("PUT", "/user/following/"+username, null, function(err, res) {
+          cb(err, res);
+        });
+      };
+
+      // Unfollow user
+      // -------
+
+      this.unfollow = function(username, cb) {
+        _request("DELETE", "/user/following/"+username, null, function(err, res) {
+          cb(err, res);
+        });
+      };
+    };
+
+
+    // Repository API
+    // =======
+
+    Github.Repository = function(options) {
+      var repo = options.name;
+      var user = options.user;
+
+      var that = this;
+      var repoPath = "/repos/" + user + "/" + repo;
+
+      var currentTree = {
+        "branch": null,
+        "sha": null
+      };
+
+      // Uses the cache if branch has not been changed
+      // -------
+
+      function updateTree(branch, cb) {
+        if (branch === currentTree.branch && currentTree.sha) return cb(null, currentTree.sha);
+        that.getRef("heads/"+branch, function(err, sha) {
+          currentTree.branch = branch;
+          currentTree.sha = sha;
+          cb(err, sha);
+        });
+      }
+
+      // Get a particular reference
+      // -------
+
+      this.getRef = function(ref, cb) {
+        _request("GET", repoPath + "/git/refs/" + ref, null, function(err, res) {
+          if (err) return cb(err);
+          cb(null, res.object.sha);
+        });
+      };
+
+      // Create a new reference
+      // --------
+      //
+      // {
+      //   "ref": "refs/heads/my-new-branch-name",
+      //   "sha": "827efc6d56897b048c772eb4087f854f46256132"
+      // }
+
+      this.createRef = function(options, cb) {
+        _request("POST", repoPath + "/git/refs", options, cb);
+      };
+
+      // Delete a reference
+      // --------
+      //
+      // repo.deleteRef('heads/gh-pages')
+      // repo.deleteRef('tags/v1.0')
+
+      this.deleteRef = function(ref, cb) {
+        _request("DELETE", repoPath + "/git/refs/"+ref, options, cb);
+      };
+
+      // Create a repo  
+      // -------
+
+      this.createRepo = function(options, cb) {
+        _request("POST", "/user/repos", options, cb);
+      };
+
+      // Delete a repo  
+      // --------  
+
+      this.deleteRepo = function(cb) {  
+        _request("DELETE", repoPath, options, cb);  
+      };
+
+      // List all tags of a repository
+      // -------
+
+      this.listTags = function(cb) {
+        _request("GET", repoPath + "/tags", null, function(err, tags) {
+          if (err) return cb(err);
+          cb(null, tags);
+        });
+      };
+
+      // List all pull requests of a respository
+      // -------
+
+      this.listPulls = function(state, cb) {
+        _request("GET", repoPath + "/pulls" + (state ? '?state=' + state : ''), null, function(err, pulls) {
+          if (err) return cb(err);
+          cb(null, pulls);
+        });
+      };
+
+      // Gets details for a specific pull request
+      // -------
+
+      this.getPull = function(number, cb) {
+        _request("GET", repoPath + "/pulls/" + number, null, function(err, pull) {
+          if (err) return cb(err);
+          cb(null, pull);
+        });
+      };
+
+      // Retrieve the changes made between base and head
+      // -------
+
+      this.compare = function(base, head, cb) {
+        _request("GET", repoPath + "/compare/" + base + "..." + head, null, function(err, diff) {
+          if (err) return cb(err);
+          cb(null, diff);
+        });
+      };
+
+      // List all branches of a repository
+      // -------
+
+      this.listBranches = function(cb) {
+        _request("GET", repoPath + "/git/refs/heads", null, function(err, heads) {
+          if (err) return cb(err);
+          cb(null, _.map(heads, function(head) { return _.last(head.ref.split('/')); }));
+        });
+      };
+
+      // Retrieve the contents of a blob
+      // -------
+
+      this.getBlob = function(sha, cb) {
+        _request("GET", repoPath + "/git/blobs/" + sha, null, cb, 'raw');
+      };
+
+      // For a given file path, get the corresponding sha (blob for files, tree for dirs)
+      // -------
+
+      this.getSha = function(branch, path, cb) {
+        // Just use head if path is empty
+        if (path === "") return that.getRef("heads/"+branch, cb);
+        that.getTree(branch+"?recursive=true", function(err, tree) {
+          if (err) return cb(err);
+          var file = _.select(tree, function(file) {
+            return file.path === path;
+          })[0];
+          cb(null, file ? file.sha : null);
+        });
+      };
+
+      // Retrieve the tree a commit points to
+      // -------
+
+      this.getTree = function(tree, cb) {
+        _request("GET", repoPath + "/git/trees/"+tree, null, function(err, res) {
+          if (err) return cb(err);
+          cb(null, res.tree);
+        });
+      };
+
+      // Post a new blob object, getting a blob SHA back
+      // -------
+
+      this.postBlob = function(content, cb) {
+        if (typeof(content) === "string") {
+          content = {
+            "content": content,
+            "encoding": "utf-8"
+          };
+        }
+
+        _request("POST", repoPath + "/git/blobs", content, function(err, res) {
+          if (err) return cb(err);
+          cb(null, res.sha);
+        });
+      };
+
+      // Update an existing tree adding a new blob object getting a tree SHA back
+      // -------
+
+      this.updateTree = function(baseTree, path, blob, cb) {
+        var data = {
+          "base_tree": baseTree,
+          "tree": [
+            {
+              "path": path,
+              "mode": "100644",
+              "type": "blob",
+              "sha": blob
+            }
+          ]
+        };
+        _request("POST", repoPath + "/git/trees", data, function(err, res) {
+          if (err) return cb(err);
+          cb(null, res.sha);
+        });
+      };
+
+      // Post a new tree object having a file path pointer replaced
+      // with a new blob SHA getting a tree SHA back
+      // -------
+
+      this.postTree = function(tree, cb) {
+        _request("POST", repoPath + "/git/trees", { "tree": tree }, function(err, res) {
+          if (err) return cb(err);
+          cb(null, res.sha);
+        });
+      };
+
+      // Create a new commit object with the current commit SHA as the parent
+      // and the new tree SHA, getting a commit SHA back
+      // -------
+
+      this.commit = function(parent, tree, message, cb) {
+        var data = {
+          "message": message,
+          "author": {
+            "name": options.username
+          },
+          "parents": [
+            parent
+          ],
+          "tree": tree
+        };
+
+        _request("POST", repoPath + "/git/commits", data, function(err, res) {
+          currentTree.sha = res.sha; // update latest commit
+          if (err) return cb(err);
+          cb(null, res.sha);
+        });
+      };
+
+      // Update the reference of your head to point to the new commit SHA
+      // -------
+
+      this.updateHead = function(head, commit, cb) {
+        _request("PATCH", repoPath + "/git/refs/heads/" + head, { "sha": commit }, function(err, res) {
+          cb(err);
+        });
+      };
+
+      // Show repository information
+      // -------
+
+      this.show = function(cb) {
+        _request("GET", repoPath, null, cb);
+      };
+
+      // Get contents
+      // --------
+
+      this.contents = function(branch, path, cb, sync) {
+        return _request("GET", repoPath + "/contents?ref=" + branch + (path ? "&path=" + path : ""), null, cb, 'raw', sync);
+      };
+
+      // Fork repository
+      // -------
+
+      this.fork = function(cb) {
+        _request("POST", repoPath + "/forks", null, cb);
+      };
+
+      // Branch repository  
+      // --------  
+ 
+      this.branch = function(oldBranch,newBranch,cb) {
+        if(arguments.length === 2 && typeof arguments[1] === "function") {
+          cb = newBranch;
+          newBranch = oldBranch;
+          oldBranch = "master";
+        }
+        this.getRef("heads/" + oldBranch, function(err,ref) {
+          if(err && cb) return cb(err);
+          that.createRef({
+            ref: "refs/heads/" + newBranch,
+            sha: ref
+          },cb);
+        });
+      }
+
+      // Create pull request
+      // --------
+
+      this.createPullRequest = function(options, cb) {
+        _request("POST", repoPath + "/pulls", options, cb);
+      };
+
+      // List hooks
+      // --------
+
+      this.listHooks = function(cb) {
+        _request("GET", repoPath + "/hooks", null, cb);
+      };
+
+      // Get a hook
+      // --------
+
+      this.getHook = function(id, cb) {
+        _request("GET", repoPath + "/hooks/" + id, null, cb);
+      };
+
+      // Create a hook
+      // --------
+
+      this.createHook = function(options, cb) {
+        _request("POST", repoPath + "/hooks", options, cb);
+      };
+
+      // Edit a hook
+      // --------
+
+      this.editHook = function(id, options, cb) {
+        _request("PATCH", repoPath + "/hooks/" + id, options, cb);
+      };
+
+      // Delete a hook
+      // --------
+
+      this.deleteHook = function(id, cb) {
+        _request("DELETE", repoPath + "/hooks/" + id, null, cb);
+      };
+
+      // Read file at given path
+      // -------
+
+      this.read = function(branch, path, cb) {
+        that.getSha(branch, path, function(err, sha) {
+          if (!sha) return cb("not found", null);
+          that.getBlob(sha, function(err, content) {
+            cb(err, content, sha);
+          });
+        });
+      };
+
+      // Remove a file from the tree
+      // -------
+
+      this.remove = function(branch, path, cb) {
+        updateTree(branch, function(err, latestCommit) {
+          that.getTree(latestCommit+"?recursive=true", function(err, tree) {
+            // Update Tree
+            var newTree = _.reject(tree, function(ref) { return ref.path === path; });
+            _.each(newTree, function(ref) {
+              if (ref.type === "tree") delete ref.sha;
+            });
+
+            that.postTree(newTree, function(err, rootTree) {
+              that.commit(latestCommit, rootTree, 'Deleted '+path , function(err, commit) {
+                that.updateHead(branch, commit, function(err) {
+                  cb(err);
+                });
+              });
+            });
+          });
+        });
+      };
+
+      // Move a file to a new location
+      // -------
+
+      this.move = function(branch, path, newPath, cb) {
+        updateTree(branch, function(err, latestCommit) {
+          that.getTree(latestCommit+"?recursive=true", function(err, tree) {
+            // Update Tree
+            _.each(tree, function(ref) {
+              if (ref.path === path) ref.path = newPath;
+              if (ref.type === "tree") delete ref.sha;
+            });
+
+            that.postTree(tree, function(err, rootTree) {
+              that.commit(latestCommit, rootTree, 'Deleted '+path , function(err, commit) {
+                that.updateHead(branch, commit, function(err) {
+                  cb(err);
+                });
+              });
+            });
+          });
+        });
+      };
+
+      // Write file contents to a given branch and path
+      // -------
+
+      this.write = function(branch, path, content, message, cb) {
+        updateTree(branch, function(err, latestCommit) {
+          if (err) return cb(err);
+          that.postBlob(content, function(err, blob) {
+            if (err) return cb(err);
+            that.updateTree(latestCommit, path, blob, function(err, tree) {
+              if (err) return cb(err);
+              that.commit(latestCommit, tree, message, function(err, commit) {
+                if (err) return cb(err);
+                that.updateHead(branch, commit, cb);
+              });
+            });
+          });
+        });
+      };
+
+      // List commits on a repository. Takes an object of optional paramaters:
+      // sha: SHA or branch to start listing commits from
+      // path: Only commits containing this file path will be returned
+      // since: ISO 8601 date - only commits after this date will be returned
+      // until: ISO 8601 date - only commits before this date will be returned
+      // -------
+
+      this.getCommits = function(options, cb) {
+          options = options || {};
+          var url = repoPath + "/commits";
+          var params = [];
+          if (options.sha) {
+              params.push("sha=" + encodeURIComponent(options.sha));
+          }
+          if (options.path) {
+              params.push("path=" + encodeURIComponent(options.path));
+          }
+          if (options.since) {
+              var since = options.since;
+              if (since.constructor === Date) {
+                  since = since.toISOString();
+              }
+              params.push("since=" + encodeURIComponent(since));
+          }
+          if (options.until) {
+              var until = options.until;
+              if (until.constructor === Date) {
+                  until = until.toISOString();
+              }
+              params.push("until=" + encodeURIComponent(until));
+          }
+          if (params.length > 0) {
+              url += "?" + params.join("&");
+          }
+          _request("GET", url, null, cb);
+      };
+    };
+
+    // Gists API
+    // =======
+
+    Github.Gist = function(options) {
+      var id = options.id;
+      var gistPath = "/gists/"+id;
+
+      // Read the gist
+      // --------
+
+      this.read = function(cb) {
+        _request("GET", gistPath, null, function(err, gist) {
+          cb(err, gist);
+        });
+      };
+
+      // Create the gist
+      // --------
+      // {
+      //  "description": "the description for this gist",
+      //    "public": true,
+      //    "files": {
+      //      "file1.txt": {
+      //        "content": "String file contents"
+      //      }
+      //    }
+      // }
+
+      this.create = function(options, cb){
+        _request("POST","/gists", options, cb);
+      };
+
+      // Delete the gist
+      // --------
+
+      this.delete = function(cb) {
+        _request("DELETE", gistPath, null, function(err,res) {
+          cb(err,res);
+        });
+      };
+
+      // Fork a gist
+      // --------
+
+      this.fork = function(cb) {
+        _request("POST", gistPath+"/fork", null, function(err,res) {
+          cb(err,res);
+        });
+      };
+
+      // Update a gist with the new stuff
+      // --------
+
+      this.update = function(options, cb) {
+        _request("PATCH", gistPath, options, function(err,res) {
+          cb(err,res);
+        });
+      };
+
+      // Star a gist
+      // --------
+
+      this.star = function(cb) {
+        _request("PUT", gistPath+"/star", null, function(err,res) {
+          cb(err,res);
+        });
+      };
+
+      // Untar a gist
+      // --------
+
+      this.unstar = function(cb) {
+        _request("DELETE", gistPath+"/star", null, function(err,res) {
+          cb(err,res);
+        });
+      };
+
+      // Check if a gist is starred
+      // --------
+
+      this.isStarred = function(cb) {
+        _request("GET", gistPath+"/star", null, function(err,res) {
+          cb(err,res);
+        });
+      };
+    };
+
+    // Issues API
+    // ==========
+
+    Github.Issue = function(options) {
+      var path = "/repos/" + options.user + "/" + options.repo + "/issues";
+
+      this.list = function(options, cb) {
+        _request("GET", path, options, function(err, res) {
+          cb(err,res)
+        });
+      };
+    };
+
+    // Top Level API
+    // -------
+
+    this.getIssues = function(user, repo) {
+      return new Github.Issue({user: user, repo: repo});
+    };
+
+    this.getRepo = function(user, repo) {
+      return new Github.Repository({user: user, name: repo});
+    };
+
+    this.getUser = function() {
+      return new Github.User();
+    };
+
+    this.getGist = function(id) {
+      return new Github.Gist({id: id});
+    };
+  };
+
+
+  if (typeof exports !== 'undefined') {
+    // Github = exports;
+    module.exports = Github;
+  } else {
+    window.Github = Github;
+  }
+}).call(this);/**
  * @class Configuration
+ * @module UltimateLib
+ * @main UltimateLib
  * @namespace UltimateLib
+ * @requires Base,Core,Logger
  * @author Francesco Abbattista (alphabit)
- * @version 1.0.0
+ * @version 1.1.0
  * @description Configuration is an UltimateLib library class providing capabilities to manipulate the in-game settings UI.
  * @fileOverview Configuration is an UltimateLib library class providing capabilities to manipulate the in-game settings UI.
  * @constructor
- * @param {object} self An object representing the class itself for extending
- */
-
+ * @param {Object} self An object representing the class itself or a new object for the purpose of extensibility. This parameter can be ignored.
+ */ 
 UltimateLib.Configuration = (function(self){
     // Show up in console
     UltimateLib.Logger.log("UltimateLib.Configuration loading...");
 
     /**
-     * @method
-     * @description Creates a tab panel to use for addTab
-     * @param {string} Name (id) of the tab panel element
-     * @param {string} Text to show as title
-     * @param {string} Panel content
-     * @returns {TabPanel} The new tab panel that can be used for further operations
-    */          
+     * @method addTab
+     * @description Adds a new configuration tab to the enhanced in-game settings menu
+     * @param {String} name Name (or id) of the tab panel element
+     * @param {String} text Text to show as title
+     * @param {String} content Panel content
+     * @return {TabPanel} The new tab panel that can be used for further operations
+     * @example
+        UltimateLib.Configuration('MyModule', 'My Module Title', yourPanelHtmlOrJqueryDomElement);
+     */          
     self.addTab = function(name, text, content){
         var tabPanel = $(document.createElement('div'));
             tabPanel.attr({id:name});
@@ -1330,7 +2186,7 @@ UltimateLib.Configuration = (function(self){
     };
     
     /**
-     * @method
+     * @method init
      * @description Initializes the module.
     */     
     self.init = function(){
@@ -1356,7 +2212,20 @@ UltimateLib.Configuration = (function(self){
         tabsContainer.tabs();
         tabsContainer.find('.ui-tabs .ui-tabs-nav li a').css({fontSize:'7pt'});
 
+        //Add overflow style for advanded options
+        $('head').append('<style id="ul-config-adv-overflow" type="text/css">#newGameView .featureSelectionPanel { overflow-x: none; overflow-y: auto; }</style>');
+
         UltimateLib.Logger.log("UltimateLib.Configuration init ran.");              
+    };
+    
+    /**
+     * @method addAdvancedOption
+     * @description Manages the adding of HTML to advanced options.
+     * @param {String} code Contains HTML to be added.
+    */
+    self.addAdvancedOption = function (code) {
+        var findMe = $("#newGameView").find(".featureSelectionPanel.featureSelectionPanelHiddenState");
+        findMe.append(code);
     };
     
     // Show up in console
@@ -1364,19 +2233,56 @@ UltimateLib.Configuration = (function(self){
 
     return self;    
 })(UltimateLib.Configuration || {});/**
- * @fileOverview This is an API for adding contracts to the game
+ * @class Contracts
+ * @module UltimateLib
+ * @main UltimateLib
+ * @namespace UltimateLib
+ * @requires Base,Core,Logger
+ * @author Chad Keating (SirEverard)
  * @version 0.1.0b
- * @author SirEverard
+ * @description This API provides functionality for adding contracts to the game.
+ * @fileOverview This API provides functionality for adding contracts to the game.
  * @constructor
- * @augments UltimateLib
- */
+ * @param {Object} self An object representing the class itself or a new object for the purpose of extensibility. This parameter can be ignored.
+ * @beta
+ * @example
+ 
+        UltimateLib Contract Format
+        {
+        name : "Contract Name",
+        description : "Contract description",
+        requiredD : 10, // Design points required
+        requiredT : t, // tech points required
+        payment : 3E4, // Payment on completion 
+        penalty : -2E3, // Penelty for not completing on time.
+        weeksToFinish : 4, // Number of weeks to complete the contract.
+        rF : template.rF, 
+        size : "size" //"small", "medium", or "large"
+        }
+
+        Real Contract Format
+        {
+        name : "Contract Name",
+        description : "Contract description",
+        requiredD : 10, // Design points required
+        requiredT : t, // tech points required
+        spawnedD : 0,
+        spawnedT : 0,
+        payment : 3E4, // Payment on completion 
+        penalty : -2E3, // Penelty for not completing on time.
+        weeksToFinish : 4, // Number of weeks to complete the contract.
+        rF : template.rF, 
+        isGeneric : true, 
+        size : "size" //"small", "medium", or "large"
+        }
+ */ 
 UltimateLib.Contracts = (function(self) {
     // Show up in console
     UltimateLib.Logger.log("UltimateLib.Contracts loading...");
 
     /**
+     * @method init 
      * @description Initializes the module.
-     * @public
     */ 
     self.init = function(){
     	/*
@@ -1393,11 +2299,11 @@ UltimateLib.Contracts = (function(self) {
     };
     
 	/**
+     * @method addContract
      * @description Adds a custom contract.
-     * @public
-     * @param {contract object}
-    */    
-	/* UltimateLib Contract Format
+     * @param {Object} contract An object that has the specification shown in the example box (UltimateLib Contract Format)
+     * @example
+	UltimateLib Contract Format
 		{
 			name : "Contract Name",
 			description : "Contract description",
@@ -1442,11 +2348,25 @@ UltimateLib.Contracts = (function(self) {
 	};
 		
 	/**
-     * @description Checks the contract for errors.
      * @private
-     * @param {contract object}
-     * @return {bool} Pass or Fail the check
-    */  
+     * @method contractCheck
+     * @description Checks the contract for errors.
+     * @param {Object} contract An object that has the specification shown in the example box (UltimateLib Contract Format)
+     * @return {Boolean} Pass or Fail the check
+     * @example
+    UltimateLib Contract Format
+        {
+            name : "Contract Name",
+            description : "Contract description",
+            requiredD : 10, // Design points required
+            requiredT : t, // tech points required
+            payment : 3E4, // Payment on completion 
+            penalty : -2E3, // Penelty for not completing on time.
+            weeksToFinish : 4, // Number of weeks to complete the contract.
+            rF : template.rF, 
+            size : "size" //"small", "medium", or "large"
+        }
+    */
 	function contractCheck(contract){
 		if (!(Checks.checkPropertiesPresent(contract, ['name', 'description', 'requiredD', 'requiredT', 'payment','penalty','weeksToFinish','rF','size']) 
 		   )) {
@@ -1456,12 +2376,13 @@ UltimateLib.Contracts = (function(self) {
 	};
 		
 	/**
-     * @description Formats the contract object to full contract object
      * @private
-     * @param {contract object}
-     * @return {full-contract object}
-    */  
-     /* Real Contract Format
+     * @method formatContract
+     * @description Formats the contract object to full contract object
+     * @param {Object} contract An object that has the UltimateLib Contract Format specification
+     * @return {Object} An object that has the specification shown in the example box (Real Contract Format)
+     * @example 
+     Real Contract Format
 		{
 			name : "Contract Name",
 			description : "Contract description",
@@ -1494,15 +2415,13 @@ UltimateLib.Contracts = (function(self) {
 				size : c.size // "small", "medium", or "large"
 		};
 	};
-		
-
 
 	/**
-     * @description Adds custom contracts.
      * @private
-     * @return {contract object array}
+     * @method hijackgetAvailable
+     * @description Gets available contracts.
+     * @return {Object} An array containig object items with the UltimateLib Contract Format specification
     */  
-
 	function hijackgetAvailable () {
 		var keep = ProjectContracts.getAvailable;
 		ProjectContracts.getAvailable  = function(company, type){
@@ -1513,10 +2432,10 @@ UltimateLib.Contracts = (function(self) {
 	};
 	
 	/**
-     * @description Returns all pertinent collected contracts.
-     * @public
-     * @param {GDT company object}
-     * @return {contract object array}
+     * @method collection
+     * @description A collection of all pertinent contracts.
+     * @param {GDT.company} company The GDT company object
+     * @return {Array} An array of objects containing UltimateLib Contract Format items.
     */  
 	self.collection = function (company) {
 		
@@ -1537,35 +2456,37 @@ UltimateLib.Contracts = (function(self) {
 		return collectedContracts;
 	};
 
-	
-
-	
-    // Show up in console
+	// Show up in console
     UltimateLib.Logger.log("UltimateLib.Contracts loaded :-)");
         
     return self;
-})(UltimateLib.Contracts || {});/**
+})(UltimateLib.Contracts || {}); /**
  * @class Dialog
+ * @module UltimateLib
+ * @main UltimateLib
  * @namespace UltimateLib
+ * @requires Base,Core,Logger
  * @author Francesco Abbattista (alphabit)
  * @version 1.0.0
  * @description Dialog is an UltimateLib library class providing dialog creation capabilities i.e. for use with PopupMenu.
  * @fileOverview Dialog is an UltimateLib library class providing dialog creation capabilities i.e. for use with PopupMenu.
  * @constructor
- * @param {object} self An object representing the class itself for extending
- */
+ * @param {Object} self An object representing the class itself or a new object for the purpose of extensibility. This parameter can be ignored.
+ * @beta
+ */ 
+ 
  UltimateLib.Dialog = (function(self){
     // Show up in console
     UltimateLib.Logger.log("UltimateLib.Dialog loading...");
     
     /**
-     * @method 
+     * @method createButton
      * @description Creates a dialog button and returns it as a wrapped jQuery element object for further usage
-     * @param {string} name A name (id) for the dialog button. Additional element names will be automatically extended as required.  
-     * @param {string} text Text (Title) of the button
-     * @param {string|integer} width The width of the button  (as integer or css string)
-     * @param {string|integer} height The height of the button  (as integer or css string)
-     * @param {string} onclick A string indicating the callback function to call (i.e. UI.myCallBackOnUIClick)
+     * @param {String} name A name (id) for the dialog button. Additional element names will be automatically extended as required.  
+     * @param {String} text Text (Title) of the button
+     * @param {String|Integer} width The width of the button  (as integer or css string)
+     * @param {String|Integer} height The height of the button  (as integer or css string)
+     * @param {String} onclick A string indicating the callback function to call (i.e. UI.myCallBackOnUIClick)
     */        
     self.createButton = function(name, text, width, height, onclick) {
         var el = $(document.createElement('div'));
@@ -1579,11 +2500,11 @@ UltimateLib.Contracts = (function(self) {
     };
     
     /**
-     * @method 
+     * @method createSection
      * @description Creates a dialog section and returns it as a wrapped jQuery element object for further usage
-     * @param {string} name A name (id) for the dialog element. Additional element names will be automatically extended with "Section", "SectionTitle", etc.  
-     * @param {string} text Text (Title) of the section label
-     * @param {array} buttons An array of buttons to show in the dialog section (use createButton to create each button)  
+     * @param {String} name A name (id) for the dialog element. Additional element names will be automatically extended with "Section", "SectionTitle", etc.  
+     * @param {String} text Text (Title) of the section label
+     * @param {Array} buttons An array of buttons to show in the dialog section (use createButton to create each button)  
     */                
     self.createSection = function(name, text, buttons){
         var idSection       = name + "Section";
@@ -1606,11 +2527,11 @@ UltimateLib.Contracts = (function(self) {
     };
             
     /**
-     * @method 
+     * @method createDialog
      * @description Creates a dialog and returns it as a wrapped jQuery element object for further usage
-     * @param {string} name A name (id) for the dialog element. Additional element names will be automatically extended with "Modal", "Container", etc.  
-     * @param {string} text Text (Title) of the dialog
-     * @param {array} sections An array of sections to show on the dialog (use createSection to create each section)  
+     * @param {String} name A name (id) for the dialog element. Additional element names will be automatically extended with "Modal", "Container", etc.  
+     * @param {String} text Text (Title) of the dialog
+     * @param {Array} sections An array of sections to show on the dialog (use createSection to create each section)  
     */                
     self.createDialog = function(name, text, sections){
         var idModalDialog       = name + "Modal";
@@ -1656,21 +2577,24 @@ UltimateLib.Contracts = (function(self) {
 })(UltimateLib.Dialog || {});
 /**
  * @class Elements
+ * @module UltimateLib
+ * @main UltimateLib
  * @namespace UltimateLib
+ * @requires Base,Core,Logger
  * @author Francesco Abbattista (alphabit) and Chad Keating (SirEverard)
  * @version 1.0.0
- * @description Elements provides quick access to some important dom elements. This class handles all the loading work for including the libraries related to this package.
- * @fileOverview Elements provides quick access to some important dom elements. This class handles all the loading work for including the libraries related to this package.
+ * @description Elements provides quick access to some important dom elements. 
+ * @fileOverview Elements provides quick access to some important dom elements. 
  * @constructor
- * @param {object} self An object representing the class itself for extending
- */
-
+ * @param {Object} self An object representing the class itself or a new object for the purpose of extensibility. This parameter can be ignored.
+ */ 
+ 
 UltimateLib.Elements = (function(self) {
     // Show up in console
     UltimateLib.Logger.log("UltimateLib.Elements loading...");
     
     /**
-     * @method
+     * @method init
      * @description Initializes the module.
     */ 
     self.init = function(){
@@ -1678,45 +2602,43 @@ UltimateLib.Elements = (function(self) {
     };
 
     /**
+     * @property Head
+     * @type DOM
+     * @default "$('head')"
      * @description The Head element of the document. This is the Head DOM Element wrapped in a jQuery element object.
-     * @property 
-     * @type dom object
     */         
     self.Head           = $('head');
 
     /**
+     * @property Body
+     * @type DOM
+     * @default "$('body')"
      * @description The Body element of the document. This is the Body DOM Element wrapped in a jQuery element object.
-     * @property 
-     * @type dom object
     */         
     self.Body           = $('body');
 
     /**
+     * @property SettingsPanel
+     * @type DOM
+     * @default "$('#settingsPanel')"
      * @description The Settings Panel element of the game. The Settings Panel DOM Element wrapped in a jQuery element object.
-     * @property 
-     * @type dom object
     */         
     self.SettingsPanel  = $('#settingsPanel');
       
     /**
+     * @property GameContainerWrapper
+     * @type DOM
+     * @default "$('#gameContainerWrapper')"
      * @description The gameContainerWrapper. This is the gameContainerWrapper of the GDT document wrapped in a jQuery element object.
-     * @property 
-     * @type dom object
-    */         
+     */    
     self.GameContainerWrapper  = $('#gameContainerWrapper');
-      
+   
     /**
-     * @description The gameContainerWrapper.
-     * @returns The gameContainerWrapper of the GDT wrapped in a jQuery element object.
-     * @property {dom} SimpleModalContainer
-     * @public
-    */   
-
-    /**
+     * @property SimpleModalContainer
+     * @type DOM
+     * @default "$('#simplemodal-container')"
      * @description The simple modal container div. This is the simplemodal-container element of the GDT document wrapped in a jQuery element object.
-     * @property 
-     * @type dom object
-    */         
+      */      
     self.SimpleModalContainer  = $('#simplemodal-container');
     
     // Show up in console
@@ -1724,26 +2646,36 @@ UltimateLib.Elements = (function(self) {
 
     return self;
 })(UltimateLib.Elements || {});
-/**
+ /**
  * @class NameGenerator
+ * @module UltimateLib
+ * @main UltimateLib
  * @namespace UltimateLib
+ * @requires Base,Core,Logger
  * @author Francesco Abbattista (alphabit)
- * @version 1.0.0
+ * @version 1.0.2
  * @description NameGenerator provides different name generating providers for easy and variable generation of various name types.
- * @fileOverview NameGenerator provides different name generating providers for easy and variable generation of various name types.
+ * @fileOverview NameGenerator provides different name generating providers for easy and variable generation of various name types. 
  * @constructor
- * @param {object} self An object representing the class itself for extending
- */
-
+ * @param {Object} self An object representing the class itself or a new object for the purpose of extensibility. This parameter can be ignored.
+ */ 
+ 
 UltimateLib.NameGenerator = (function(self){
     // Show up in console
     UltimateLib.Logger.log("UltimateLib.NameGenerator loading...");
     
     /*
-     * @description Holds company name data used for name generation. The format is {adjectives:[], nouns:[], suffixes:[]}
-     * @property
-     * @type object
      * @private
+     * @property companyNamesData
+     * @description Company name data object used for name generation. 
+     * @type Object
+     * @example
+        companyNamesData format: 
+        {
+            adjectives:[], 
+            nouns:[], 
+            suffixes:[]
+        }
     */
     var companyNamesData = {
         adjectives: [
@@ -1754,15 +2686,19 @@ UltimateLib.NameGenerator = (function(self){
                         "Fast", "Speedy", "One",
                         "Angry", "Happy", "Sad", "Mad", "Glad", "Rad", "Joy", "Love", "Naughty",
                         "Flying", "Jumping", "Soaring", "Falling", "Dying", "Edible",
-                        "Undone", "Lonely", "Cracked", "Broken", "Found", "Lost",
                         "North", "South", "East", "West", 
                         "Late", "Early", "Never", "Always", "Midnight",
                         "Upper", "Lower", "Inner", "Outer",
                         "Rendered", "Rotten", "Fresh", "Altered", "Organic", "Sour",
-                        "Coastal", "Chill", "Healing", "Damaged"
+                        "Coastal", "Chill", "Healing", "Damaged",
+                        "Omatic", "PlayMaker", "GameMaker", "Makadam",
+                        "Cradle", "Sim", "Makers of", "Rooster", "Animal",
+                        "Squared", "Round", "Lined", "Cubed", "Triangled", "Sphered",
+                        "Great", "Awesome", "Best", "Über", 
+                        
                         ],
         nouns:  [
-                         "Method", "Function", 
+                         "Method", "Function", "Struct", "Class", "Library",
                          "Bomb", "Missile", "Gun", "Weapon", "Tank", "Rocket",
                          "Terminal", "Connection", "Joint", "Machine", "Engine",
                          "Starship", "Sandwich", "Plane", "Saucer", "Airship", "Jet", "Boat", "Ship",
@@ -1788,53 +2724,172 @@ UltimateLib.NameGenerator = (function(self){
                          "Tomato", "Celery", 
                          "Sawblade", "Drill", "Hammer", "Nail", "Knife", "Knives",
                          "Graveyard", "Highway", "Midnight", "Death", "Tragedy", "Tomb", "Progress", "Tree",
-                         "Gem", "Diamond", "Ruby", "Pearl", "Sparkle"
+                         "Gem", "Diamond", "Ruby", "Pearl", "Sparkle",
+                         "Crown", "Unitrends", "Highwall", "Tran",
+                         "ColdLight", "Tableau","Mobile", "Tablet", "Processor", "Cooler",
+                         "Geek", "Nerd", "Pro", 
+                         "Redheart", "Blueheart", "Yellowheart", "Azureheart", "Pinkheart",
+                         "Momentum", "Dicendum", "Morendum", "Addendum", "Lorendum",
+                         "Mind", "Brain", "Idea", "Synapse","Neuron", "Neuronal",
+                         "Monkey", "Gorilla", "Ape", "Orangutan",
+                         "iPipeline", "iProcess", "iDevelop", "iBest", "iWok",
+                         "Nitro", "Booster", "Turbo"
+                         
+                         
                 ],
         suffixes:  [    "Collective", "United", "Studio", "Interactive", "Games", "Group",
-                        "Team", "Community", "Alliance", "Company", "Direction"
+                        "Team", "Community", "Alliance", "Company", "Direction", "Software", 
+                        "Media", "Labs", "Ltd.", "Global", "Solutions", "Apps", "Technologies",
+                        "Park", "Systems", "Logic", "Services", "Associates", "Consulting"
                    ]
     };
     
     /*
-     * @description Holds player name data used for name generation (male and female). The format is {male:{firstNames:[]}, female:{firstNames:[]}, lastNames:[]}
-     * @property
-     * @type object
      * @private
-    */    
+     * @property companyNamesData
+     * @description Company player name data object used for name generation. 
+     * @type Object
+     * @example
+        companyNamesData format: 
+        {
+            male:{
+                firstNames:[]
+            },
+            
+            female:{
+                firstNames:[]
+            },
+            
+            lastNames:[]
+        }
+    */
     var playerNamesData = {
         male:{
-                firstNames: ['John', 'Mike', 'Marc', 'Mark', 'Will', 'Bill', 
-                             'Patrick', 'Daniel', 'Frank', 'Chad', 'Francesco', 
-                             'Charles', 'Justin', 'Bas', 'Matthijs', 'Alessandro', 
-                             'Eugene', 'Mohammed', 'Yuri', 'Ali', 'Tarkan', 'Juan', 
-                             'Chico', 'Loco', 'Francis', 'Peter', 'Robert', 'Knut', 
-                             'Manfred', 'Johann', 'Karim', 'Christian', 'Ronald', 
-                             'Roland', 'Igor', 'Ivan', 'Marek']
+                firstNames: [ 'Alessandro', 'Ali', 'Aaron', 'Abdul', 'Abe', 'Abraham', 'Adam', 'Alex', 'Alexander', 'Arnold', 'Austin', 
+                              'Bill','Bas', 'Barry', 'Ben', 'Benton', 'Blair', 'Boris', 'Bobby', 'Bradley', 'Brain', 'Bruno', 'Buster', 
+                              'Chad', 'Charles', 'Christian', 'Chico', 'Carl', 'Cedric', 'Carlton', 'Carlos', 'Chang', 'Claudio', 'Colin', 'Curtis',
+                              'Daniel', 'Damian', 'Darrell', 'Dan', 'Davis', 'David', 'Dean', 'Dennis', 'Devin', 'Devon', 'Diego', 'Don', 'Dylan',
+                              'Eugene', 'Earl', 'Edison', 'Edmondo', 'Edgar', 'Eddy', 'Ed', 'Elijah', 'Elliot', 'Edwin', 'Elvin', 'Elvis', 'Emanuel', 'Emilio', 'Evan',
+                              'Francesco', 'Frank', 'Francis','Felipe', 'Felix', 'Floyd', 'Fletcher', 'Franklin', 'Fred', 'Frederick', 'Freeman', 'Fritz',
+                              'Garry', 'Gastone', 'Gary', 'Gavin', 'Gino', 'Giovanni', 'Graham', 'Grant', 'Greg', 'Gregg', 'Gregory', 'Gus', 'Guy',
+                              'Hank', 'Hal', 'Harold', 'Harris', 'Harrison', 'Herbert', 'Homer', 'Horace', 'Horacio', 'Hugo', 'Hunter', 'Hugh',
+                              'Ivan', 'Igor', 'Ian', 'Ismael', 'Isaac', 'Isaiah', 'Irwin', 'Irving',
+                              'John', 'Justin', 'Johann', 'Juan', 'Jake', 'Jasper', 'Jay', 'Jeff', 'Jefferson', 'Jeffrey', 'Jerome', 'Joan', 'Jonathan', 'Jose', 'Junior',
+                              'Karim', 'Knut', 'Kasey', 'Kenneth', 'Ken', 'Kenny', 'Kermit', 'Kim', 'King', 'Kris', 'Kristofer',
+                              'Loco', 'Lee', 'Long', 'Lino', 'Levi', 'Lou', 'Loyd', 'Lucas', 'Lorenzo', 'Lynn', 'Luther',
+                              'Mohammed', 'Matthijs', 'Mike', 'Marc', 'Mark', 'Manfred', 'Marek', 'Marcellus', 'Mario', 'Marlon', 'Marlin', 'Merlin', 'Marshall', 'Michael', 'Miguel', 'Murray',
+                              'Nigel', 'Nicolas', 'Noah', 'Nolan', 'Nick', 'Nicklas', 'Noel', 'Norris',
+                              'Oscar', 'Oskar', 'Osvald', 'Omar', 'Oliver', 'Ollie', 'Otto', 'Owen', 'Orlando',
+                              'Peter', 'Patrick', 'Pablo', 'Paul', 'Pedro', 'Philip', 'Phillip', 'Preston', 'Porter', 'Paolo', 'Pinto', 
+                              'Quincy', 'Quinn', 'Quinton',
+                              'Roland', 'Ronald', 'Robert',  'Rafael', 'Roger', 'Robin', 'Ralf', 'Ralph', 'Rufus', 'Renaldo', 'Ridge', 'Reuben', 'Rene', 
+                              'Sam', 'Scott', 'Samuel', 'Seth', 'Seymour', 'Shaun', 'Shawn', 'Sergio', 'Sean', 'Saul', 'Scot', 'Scott', 'Sid', 'Spencer', 'Stefan', 'Stephan', 'Stuart', 'Steve',
+                              'Tarkan', 'Ted', 'Tom', 'Todd', 'Tomas', 'Thomas', 'Tobias', 'Toby', 'Tommy', 'Ty', 'Tyron', 'Tyrese', 'Tyrell', 'Truman', 'Troy', 
+                              'Van', 'Vance', 'Vernon', 'Vicente', 'Virgil', 'Vito',                               
+                              'Will', 'Wayne', 'Wilbert', 'Walther', 'Walter', 'Weston', 'Wesley', 'Winfried', 'Woodrow', 'Winston',
+                              'Xavier',                              
+                              'Yuri', 'Yong', 'Young', 
+                              'Zack', 'Zachery', 'Zane'
+                                ]
         },
         female:{
-                firstNames: ['Joanna', 'Abigail', 'Jasmine', 'Monica', 'Janette', 'Chantal', 
-                             'Maria', 'Conny', 'Marijane', 'Jane', 'Charlie', 
-                             'Charlize', 'April', 'May', 'June', 'Chelsea', 
-                             'Benedetta', 'Antje', 'Maraike', 'Mary', 'Nicole', 'Sandra', 
-                             'Caroline', 'Elisabeth', 'Beth', 'Kate', 'Dorothee', 'Cornelia', 
-                             'Eve', 'Anne', 'Marie', 'Hannah', 'Helene', 
-                             'Lotte', 'Julia', 'Jolanda', 'Jennifer']
+                firstNames: [ 'Abbey', 'Abigail', 'Adela', 'Adaline','Adina', 'Ariel', 'Adriana', 'Aiko', 'Alana', 'Alberta', 'Alda', 'Alanis', 'Alannis', 'Alexa', 'Alice', 'Alisa', 'Amber', 'Anna', 'Angel', 'Annie', 'Ashley', 'Aurora', 
+                              'Barbara', 'Bambi', 'Becky', 'Bee', 'Bea', 'Belinda', 'Beth', 'Betsy', 'Bertha', 'Bianca', 'Brandi', 'Brandie', 'Bobbi', 'Bonita', 'Bridget', 'Britt', 'Brittany', 'Buffy',
+                              'Camelia', 'Carla', 'Caren', 'Candi', 'Candy', 'Candice', 'Caroline', 'Carol', 'Cary', 'Carry', 'Catherina', 'Cathy', 'Celia', 'Chanel', 'Chantal', 'Chang', 'Charlie', 'Cheryl', 'Christina', 'Chris', 'Crystal', 'Curtis',
+                              'Dacia', 'Debby', 'Deborah', 'Daniela', 'Dany', 'Denice', 'Denise', 'Destiny', 'Dolly', 'Doria', 'Dori', 'Doreen', 
+                              'Easter', 'Eda', 'Eleonora', 'Emy', 'Elia', 'Elena', 'Elsa', 'Ena', 'Etha', 'Eva', 'Exie', 
+                              'Fae', 'Fay', 'Fawn', 'Felipa', 'Felicia', 'Felicitas', 'Flavia', 'Fiona', 'Francie', 'Florence', 'Frida',
+                              'Gabrielle', 'Galina', 'Gary', 'Gina', 'Gerri', 'Gia', 'Gloria', 'Glory', 'Goldie', 'Grace', 'Gwyn',
+                              'Hannah', 'Ha', 'Hazel', 'Heather', 'Heidi', 'Hilary', 'Holly', 'Hyo', 'Hyun', 'Hui',
+                              'Ida', 'Ina', 'Inge', 'Inga', 'Ingrid', 'Ines',  'Irene', 'Iris', 'Isabel', 'Iva', 'Ivy', 'Ivory',
+                              'Jackelyn', 'Jaqueline', 'Jada', 'Jane', 'Joanna', 'Joel', 'Jeanette', 'Jeanice', 'Jenni', 'Jennifer', 'Jessie', 'Jessy', 'Jessica', 'Jolanda', 'Judie', 'Judith', 'Juliette', 'Julia', 
+                              'Ka', 'Kacey', 'Kandi', 'Kandice', 'Karen', 'Karolyn', 'Karol', 'Karrie', 'Kate', 'Katja', 'Keira', 'Kesha', 'Kia', 'Kimberly', 'Kirstin', 'Kimber', 'Kris', 'Klara', 'Krystal', 'Kyle', 'Kylee', 'Kym',
+                              'Lacey', 'Laine', 'Laila', 'Lane', 'Lang', 'Larue', 'Latricia', 'Latina', 'Laura', 'Laureen', 'Lavina', 'Lea', 'Leah', 'Lela', 'Lenni', 'Lia', 'Lina', 'Linda', 'Lindsay', 'Loan', 'Lola', 'Lorrie', 'Love', 'Lydia',
+                              'Ma', 'Mable', 'Macy', 'Madeleine', 'Maggie', 'Maureen', 'Marie', 'Mary', 'Maria', 'Manuela', 'Margaret', 'Meg', 'Meredith', 'Melody', 'Mia', 'Michaela', 'Millie', 'Melissa', 'Molly', 
+                              'Nadine', 'Nada', 'Naomi', 'Noemi', 'Nancy', 'Ngan', 'Nia', 'Nicole', 'Nikki', 'Nola', 'Nu',
+                              'Ola', 'Olga', 'Olivia', 'Ora',
+                              'Paige', 'Pamela', 'Patricia', 'Peggie', 'Penny', 'Pia', 'Prudence',
+                              'Queen', 'Qiana',
+                              'Rae', 'Ramona', 'Randee', 'Reagan', 'Ragina', 'Rebecca', 'Rhonda', 'Ricki', 'Robin', 'Rosalba', 'Rose', 'Rosa', 'Roxie', 'Roxanne', 'Ruby', 'Ruth',
+                              'Sabine', 'Sabrina', 'Sandy', 'Sandra', 'Sally', 'Sandra', 'Sarah', 'Serena', 'Shakira', 'Shanta', 'Sheryl', 'Shirley', 'Silvya', 'Silvana', 'Sofia', 'Sophie', 'Stephanie', 'Summer', 'Sue', 'Suzy',
+                              'Tabeah', 'Tabatha', 'Thea', 'Tami', 'Tarah', 'Theresa', 'Tesha', 'Tia', 'Tiara', 'Trisha', 'Tracey', 'Tyra', 
+                              'Ula', 'Ute', 'Ulrike', 
+                              'Valerie', 'Valeria', 'Vanessa', 'Vanda', 'Verona', 'Veronique', 'Vickie', 'Victoria', 'Violett', 'Vivian', 'Vivienne',
+                              'Wanda', 'Wonda', 'Willow', 'Wynona',
+                              'Xamara', 'Xenia', 'Xiao',
+                              'Yadira', 'Yang', 'Yasmin', 'Yi', 'Yolanda', 'Yukiko', 'Yuriko', 'Yuki', 'Yuonne',
+                              'Zelda', 'Zenia', 'Zandra', 'Zora'
+                              
+                              
+                            
+                
+                
+                            ]
         },
-        lastNames:  ['Wilders', 'Carmack', 'Jones', 'Bush', 'Kennedy', 
-                     'Williams', 'McLoud', 'Alas', 'Popovic', 'Markos', 
-                     'Cross', 'Van der Wiel', 'Van Bonkrost', 'Rosek', 
-                     'Klug', 'Schlau', 'Dost', 'Van der Keen', 'Johnsson', 
-                     'Kerry', 'Miller', 'Garcia', 'Lee', 'Gonzales', 'Young', 
-                     'Allen', 'Peterson', 'Morgan', 'Freeman', 'Howard', 'Cox']
+        lastNames:  [ 
+                        'Alas', 'Abair', 'Abate', 'Abell', 'Abeles', 'Aben', 'Abbattista', 'Abitz', 'Ablao', 'Abney', 'Abraham', 'Abrahams', 'Albrecht','Abramovich', 'Abrey', 'Abrew', 'Ace', 'Achs', 'Acon','Adas', 'Adelstein', 'Adham', 'Aggen',
+                        'Agueros', 'Aguilar', 'Ahlborn', 'Ahl', 'Anders', 'Ahrendt', 'Airy', 'Ajmeri', 'Akashi', 'Akeo', 'Allen',
+                        'Baab', 'Baah','Babe', 'Baban', 'Babich', 'Baca', 'Babinyks', 'Babson', 'Bacani', 'Babor', 'Bachinsky', 'Bachelor', 'Backfisch', 'Backhus', 'Bradley', 'Baglione', 'Bahns', 'Burns', 'Browe', 'Bruston', 
+                        'Brailey', 'Baldwin', 'Bricks', 'Brausil', 'Brookes', 'Broken', 'Brick', 'Bricks', 'Bristol', 'Bentley', 'Bush', 'Books', 'Bunils',
+                        'Chan', 'Caan', 'Cabato', 'Cassis', 'Cabal', 'Cada','Caden', 'Cagg', 'Cahen', 'Cohen', 'Cahill', 'Caires', 'Cail', 'Campsey', 'Charleston', 'Colpas', 'Can', 'Cannington', 'Caetil', 'Canterbury',
+                        'Cap', 'Coasts', 'Coalson', 'Coates', 'Cocks', 'Cockrell', 'Codd', 'Cole', 'Coles', 'Corson', 'Cox', 'Carmack', 'Cross',
+                        'Dallas', 'Dost', 'Dabek', 'Dabrowski', 'Dafoe', 'Dahlenburg', 'Dahl', 'Daniels', 'Danilson','Danial', 'Datz', 'Dauby', 'Decurtis', 'Ded', 'Dedio', 'Dellon', 'Dilan', 'Dillons', 'Dmitriev', 
+                        'Doak', 'Dobin', 'Dominsky', 'Domon', 'Dors', 'Dorosz', 'Dorsa', 'Druhan', 'Drugs', 'Drose', 'Durham', 'Duirieux', 'Durette', 'Dyroff', 
+                        'Eagler', 'Eam', 'Eames', 'Eakens', 'Eck', 'Ekels', 'Echt', 'Echler', 'Ehringer', 'Ehrle', 'Erhardt', 'Einstein', 'Ekholm', 'Enquist', 'Ek', 'Ekstrom', 'Elarton', 'Enneking', 'Enriquez',
+                        'Emiliano', 'Ennis', 'Engine', 'Eschbach', 'Esswein', 'Esher', 'Eyers', 'Eyestone',
+                        'Freeman', 'Faaborg', 'Fabi', 'Fattore', 'Faue', 'Fauber', 'Feltch', 'Felsman', 'Felz', 'Felson', 'Felser', 'Felux', 'Feuer', 'Fire', 'Fiddes', 'Fiddler', 'Fiedler', 'Fidell', 'Fleck', 
+                        'Fleagle', 'Flavell', 'Floro', 'Florke', 'Flower', 'Flunder', 'Fluth', 'Fly',
+                        'Gaal', 'Gaber', 'Gabelle', 'Garic', 'Garlick','Garland', 'Garlock', 'Garmon', 'Gimple', 'Gindi', 'Gim', 'Giltner', 'Gilster', 'Gleave', 'Gleiser', 'Glazer', 'Glynn', 'Gnade', 'Graham', 
+                        'Granmlich', 'Grames', 'Gramberg', 'Garcia', 'Gonzales', 'Granada', 'Grett', 'Grey', 'Greyhound', 'Gravius', 'Guinn', 'Guth', 'Guzek',
+                        'Howard', 'Hack', 'Haan', 'Haahr', 'Haagen', 'Hamrock', 'Hampshire', 'Hashi', 'Heacox', 'Headington', 'Hedge', 'Hefton', 'Hefler', 'Heggan', 'Hecnk', 'Hendler', 'Heinz', 'Hepker', 'Hepinstall', 
+                        'Hentzel', 'Hermosa', 'Hernandez', 'Hermus', 'Hguyen', 'Hickel', 'Hilbert', 'Holter', 'Holthaus', 'Holtrey', 'House', 'Houton', 'Huffin', 'Hug', 'Huryn', 'Hurston',
+                        'Iansen', 'Ianni', 'Iannini', 'Iames', 'Imel', 'Imbler', 'Infield', 'Ineson', 'Ingleheart', 'Ingraham', 'Ingles', 'Isler', 'Ita', 'Itterly', 'Izzo',
+                        'Jones', 'Jacks', 'Jabs', 'Jamison', 'Johnsson', 'Jandrik', 'Jance', 'Jancek','Jamros', 'Jefferson', 'Jemal', 'Jelleron', 'Jewison', 'Jewitt', 'Jew', 'Jolly', 'Jonassen', 'Johanson', 
+                        'Juco', 'Jue', 'Jung', 'Jungmeier', 'Junkert', 'Junez',
+                        'Klug', 'Keating', 'Kerry', 'Kennedy', 'Kaahanui', 'Kabak', 'Kaat', 'Kadric', 'Kaehr', 'Kallenberg', 'Kalosky', 'Kowalski', 'Kallmeyer', 'Kanagy', 'Kendric', 'Keagy', 'Keeney', 'Keem', 
+                        'Keep', 'Keefover', 'Kessler', 'Ketelaar', 'Kilcup', 'Kilgus', 'Kile', 'Klein', 'Kleinow', 'Klopp', 'Kloman', 'Klosek', 'Knife', 'Knisley', 'Knill', 'Kotarksi', 'Kothe', 'Kruss',
+                        'Lee', 'Laboe', 'Laborn', 'Labit', 'Larew', 'Lardin', 'Larch', 'Large', 'Lawell', 'Leach', 'Lockley', 'Leafty', 'Leaming', 'Lemmings', 'Leagan', 'Lepping', 'Ler', 'Lhereux', 'Liam', 
+                        'Lofthouse', 'Logdes', 'Locked', 'Lohans', 'Logan', 'Lua', 'Luber', 'Liberow', 'Lux',
+                        'Morgan', 'Markos', 'McLoud', 'Miller', 'Mables', 'Maat', 'Maas', 'Marbles', 'Maestro', 'Magary', 'Magao', 'Malcot', 'Malinovski', 'Managhan', 'Manas', 'Mauser', 'McAbee',
+                        'McIvory', 'McCroy', 'McCullar', 'McCuin', 'Malchin', 'McMananamon', 'Melan', 'Melder', 'Mullins', 'Moulder', 'Money', 'Mocarksi', 'Moates', 'Motts', 'Murty',
+                        'Nabi', 'Nacci', 'Nabers', 'Neighbours', 'Neiner', 'Neihardt', 'Newling', 'Newitt', 'Newill', 'Newmark', 'Nicholson', 'Nickelsen', 'Nickey', 'Nichols', 'Nixon', 'Nivala', 'Northway', 
+                        'Northern', 'North', 'Norse', 'Norvelle',
+                        'Oaks', 'Oakley', 'Oertel', 'Oettel', 'Oetting', 'Ogg', 'Oggs', 'Ogles', 'Olejarz', 'Oldson', 'Oldridge', 'Oldman', 'Oldmixon', 'Ondrey', 'Onal', 'Onaka', 'Oms', 'Orlandi', 'Orlowski',
+                        'Orlic', 'Otto', 'Ouelette', 'Ouchida', 'Ozoa',
+                        'Peterson', 'Popovic', 'Paananen', 'Pabst', 'Paetzold', 'Paganucci', 'Pavarotti', 'Paeth', 'Payor', 'Paulson', 'Patterson', 'Peace', 'Peacemaker', 'Pearch', 'Pearl', 'Pearlstone', 
+                        'Peebles', 'Peddy', 'Peers', 'Peerson', 'Pearson', 'Pernot', 'Perl', 'Petering', 'Poach', 'Poates', 'Picard', 'Piccolo', 'Picek', 'Pigg', 'Pegg', 'Piggot', 'Polster', 'Pritschett',
+                        'Qi', 'Quade', 'Quebec', 'Quelle', 'Quong', 'Quiz', 'Quitoriano',
+                        'Rosek', 'Raab', 'Rabenau', 'Rabourn', 'Rachor', 'Rackham', 'Radcliff', 'Ramirez', 'Ramler', 'randie', 'Randle', 'Randale', 'Razzo', 'Readling', 'Readman', 'Reilly', 'Reinberg', 
+                        'Remington', 'Remos', 'Remster', 'Reynaurd', 'Rhee', 'Rhames', 'Ribble', 'Richards', 'Richardson', 'Roan', 'Roaks', 'Rob', 'Roaden', 'Roachford', 'Rollet', 'Ruff', 'Rugg', 'Rugen',
+                        'Schlau', 'Sadler', 'Saed', 'Salzberg', 'Salvetti', 'Salveson', 'Sawdon', 'Saxby', 'Scanlin', 'Scanner', 'Scarbord', 'Schmidt', 'Schnaars', 'Scolari', 'Scramlin', 'Seabert', 'Seacrest',
+                        'Seadler', 'Seidl', 'Settle', 'Seum', 'Shakles', 'Shacklock', 'Shadle', 'sharrock', 'Shatley', 'Shoe', 'Showmaker', 'Shy', 'Siciliani', 'Siddons', 'Slates', 'Stiffler', 'Slark', 'Small', 'Smeets',
+                        'Solt', 'Solus', 'Sparks', 'Spalla', 'Spin', 'Spinnler', 'Spinoza', 'Springs', 'Springwater', 'Stack', 'Stade', 'Stecz', 'Steeger', 'Stedge', 'Stephenson', 'Stepp', 'Stickle', 'Stieg', 
+                        'Stow', 'Stoye', 'Strock', 'Stunts', 'Styler', 'Sublette', 'Suchon', 'Suby', 'Swait', 'Swag', 'Swalley', 'Swick', 'Swetz', 'Szynal', 
+                        'Tabas', 'Tabarez', 'Takvorian', 'Taratuta', 'Tarber', 'Tarbill', 'Tardiff', 'Tarkenton', 'Tardo', 'Taugher', 'Taubmann', 'Tee', 'Ted', 'Teufel', 'Tempel', 'Thai', 'Thang', 'Thaggard', 
+                        'Thomasson', 'Thomson', 'Thompson', 'Thys', 'Thyberg', 'Tok', 'Townsend', 'Tozzo', 'Toxey', 'Trinity', 'Trines', 'Trucks',
+                        'Uchida', 'Udd', 'Umbro', 'Umsted', 'Umbenhower', 'Unsicker', 'Unnerstall', 'Uth', 'Utter', 'Uzzle',
+                        'Van der Wiel', 'Van Bonkrost', 'Van der Keen', 'Vaeth', 'Vagt', 'Vaughn', 'Vadell', 'Vanavery', 'Van Bemmel', 'Van Auken', 'Vazquez', 'Vayo', 'Viada', 'Vryhof', 'Vikings', 'Valdez',
+                        'Wilders', 'Williams', 'Wacker', 'Walcott', 'Wilshire', 'Willis', 'Walsworth', 'Walters', 'Warney', 'Warrenberg', 'Woodfort', 'Woods', 'Winters', 'Wenners', 'Werner', 'Werbelow', 
+                        'Wheatle', 'Wheller', 'Weelis', 'Wheels', 'Wheet', 'Weeds', 'Wheeler', 'Westinghouse', 'Westham', 'Wheaton', 'Whitmore', 'Whittaker', 'Whitting', 'Wice', 'Wichner', 'Winkey', 
+                        'Winks', 'Winker', 'Wooden', 'Woodhull', 'Woodhill', 'Wyatt', 'Wust', 'Wyan', 'Wurz', 'Wydnick',
+                        'Xander', 'Xu', 'Xuan', 'Xi', 'Xia', 'Xavier', 'Xue', 'Ximenez', 'Xenos', 'Xanthos',
+                        'Young', 'Younes', 'Yabes', 'Yale', 'Yada', 'Yacob', 'Yamasaki', 'Yan', 'Yell', 'Yellows', 'Yelton', 'Yelland', 'Yonas', 'Yonko', 'Yu', 'Yule','Yvon',
+                        'Zaback', 'Zaborski', 'Zaccharias', 'Zackery', 'Zadnik', 'Zanetti', 'Zenz', 'Zerbe','Zebra', 'Zhai', 'Zalas', 'Zhi', 'Zinninger', 'Zinzi', 'Zucchero', 'Zukic'
+                       ]
     }
     
     /**
+     * @method init
      * @description Initializes the module.
-     * @public
     */ 
     self.init = function(){
     };
     
+    /**
+     * @method generateCompanyName
+     * @description Returns an randomly generated company name
+     * @return {String} A string containing a randomly generated company name.
+    */     
     self.generateCompanyName = function(){
         function getItem(array) {
             return array[Math.floor(Math.random()*array.length)];
@@ -1859,6 +2914,12 @@ UltimateLib.NameGenerator = (function(self){
     
     };
     
+    /**
+     * @method generatePlayerName
+     * @param {String} male True for a male name, false for a female name (yes, I'm a man, so I use MAN as unique var, that's emancipation ;))
+     * @description Generates a random player name for the specified gender
+     * @return {String} A string containing a randomly generated player name.
+    */     
     self.generatePlayerName = function(male){
         function getItem(array) {
             return array[Math.floor(Math.random()*array.length)];
@@ -1904,36 +2965,53 @@ UltimateLib.NameGenerator = (function(self){
 
     return self;    
 })(UltimateLib.NameGenerator || {});
-/**
+ /**
  * @class Notifications
+ * @module UltimateLib
+ * @main UltimateLib
  * @namespace UltimateLib
+ * @requires Base,Core,Logger
  * @author Francesco Abbattista (alphabit)
  * @version 1.0.2
  * @description Notifications is an UltimateLib library class providing capabilities to manipulate the in-game settings notification system.
- * @fileOverview Notifications is an UltimateLib library class providing capabilities to manipulate the in-game settings notification system
+ * @fileOverview Notifications is an UltimateLib library class providing capabilities to manipulate the in-game settings notification system.
  * @constructor
- * @param {object} self An object representing the class itself for extending
- */
+ * @param {Object} self An object representing the class itself or a new object for the purpose of extensibility. This parameter can be ignored.
+ * @beta
+ */ 
 UltimateLib.Notifications = (function(self){
     // Show up in console
     UltimateLib.Logger.log("UltimateLib.Notifications loading...");
     
     /**
+     * @property typeWriterDelay
+     * @type Object
      * @description Typewriter effect delay value object. Allowed modes are 'default' and 'factor'. 
-     * When using 'default' you can input integer values from 0 to whatever. 20 is the default game value.
-     * When using the 'factor', you can specify a value between 0.0 and 1.0 that will be multiplied with the regular value.
-     * 
-     * Object specification:
-     * {mode:'default' or 'factor', value:Integer_for_default or Float_for_factor}
-     * @property
-     * @type object
+      When using 'default' you can input integer values from 0 to whatever. 20 is the default game value.
+      When using the 'factor', you can specify a value between 0.0 and 1.0 that will be multiplied with the regular value.
+      
+     * @example 
+        Object specification:
+        {
+            mode:'default' or 'factor', 
+            value:Integer_for_default or Float_for_factor
+        }
      */    
     self.typeWriterDelay = {mode:'factor', value:1.0};
     
     /**
-     * @description Headers is a nested class of Notifications and provides direct access to supported in-game notification headers.
-     * @property
-     * @type array
+     * @property Items
+     * @type Array
+     * @description Array of UltimateLib dialog notification objects used for control each dialog type separately
+     * @example
+        Object specification:
+        {
+            id:'InternalDialogId', 
+            name:"GDT_Dialog_Header_Text_English",   
+            enabled: true or false for enabling / disabling the dialog, 
+            asOverlay: true or false to use overlay message instead of regular message
+        }
+        
      */
     self.Items = [
                     {id:'GDT_PlatformReleaseNews', name:"{PlatformReleaseNews}",   enabled:true, asOverlay: false},
@@ -1960,9 +3038,9 @@ UltimateLib.Notifications = (function(self){
                 ];
 
     /**
-    * @method
-    * @description Sets the state of all internal dialog items to enabled or disabled.
-    * @param {boolean} enable Specifies a value to enable or disable all dialogs
+    * @method enableAll
+    * @description Sets the state of all internal notification dialog items to enabled or disabled.
+    * @param {Boolean} enable True of false to enable or disable all dialogs
     * 
     */
      self.enableAll = function(enable){
@@ -1972,9 +3050,9 @@ UltimateLib.Notifications = (function(self){
      }; 
      
     /**
-    * @method
-    * @description Sets the state of all internal dialog items to overlay or not overlay.
-    * @param {boolean} enable Specifies a value to enable or disable overlay on all dialogs
+    * @method overlayAll
+    * @description Sets the state of all internal notification dialog items to overlay or not overlay.
+    * @param {Boolean} enable True of false to enable or disable overlay on all dialogs
     * 
     */
      self.overlayAll = function(enable){
@@ -1984,9 +3062,17 @@ UltimateLib.Notifications = (function(self){
      };      
         
     /**
-    * @method
+    * @method setOverlay
     * @description Sets the state of the corresponding internal item of the specified item to the overlay state of the specified item.
-    * @param {object} item Set overlay value of the specified item and pass it internally to GDT
+    * @param {Object} item The UltimateLib notification dialog item to apply overlay state to
+    * @example
+        Object specification:
+        {
+            id:'InternalDialogId', 
+            name:"GDT_Dialog_Header_Text_English",   
+            enabled: true or false for enabling / disabling the dialog, 
+            asOverlay: true or false to use overlay message instead of regular message
+        }
     * 
     */
      self.setOverlay = function(item){
@@ -1999,9 +3085,17 @@ UltimateLib.Notifications = (function(self){
      };
      
     /**
-    * @method
+    * @method setEnabled
     * @description Sets the state of the corresponding internal item of the specified item to the enabled state of the specified item.
-    * @param {object} item Set enabled value of the specified item and pass it internally to GDT
+    * @param {Object} item The UltimateLib notification dialog item to apply enabled state to
+    * @example
+        Object specification:
+        {
+            id:'InternalDialogId', 
+            name:"GDT_Dialog_Header_Text_English",   
+            enabled: true or false for enabling / disabling the dialog, 
+            asOverlay: true or false to use overlay message instead of regular message
+        }
     * 
     */
      self.setEnabled = function(item){
@@ -2014,11 +3108,19 @@ UltimateLib.Notifications = (function(self){
      };
      
     /**
-    * @method
+    * @method getItemById
     * @description Returns an notification item object by looking for the id
-    * @param {object} item Set overlay value of the specified item and pass it internally to GDT
-    * @return {object} An object representing the item with the specified id
-    */
+    * @param {String} id UltimateLib notification dialog item id
+    * @return {Object} An object representing the item with the specified id
+    * @example
+        Object specification:
+        {
+            id:'InternalDialogId', 
+            name:"GDT_Dialog_Header_Text_English",   
+            enabled: true or false for enabling / disabling the dialog, 
+            asOverlay: true or false to use overlay message instead of regular message
+        }
+     */
      self.getItemById = function(id){
         for(var i = 0; i < self.Items.length; i++){
             if (self.Items[i].id == id){
@@ -2030,10 +3132,19 @@ UltimateLib.Notifications = (function(self){
 
      
     /**
-    * @method
+    * @method getItemByName
     * @description Returns an notification item object by looking for the localized header
-    * @param {string} localizedName The localized name (header) of the dialog
-    * @return {object} An object representing the item with the specified header text
+    * @param {String} localizedName The localized name (header) of the dialog
+    * @return {Object} An object representing the item with the specified header text
+    * @example
+        Object specification:
+        {
+            id:'InternalDialogId', 
+            name:"GDT_Dialog_Header_Text_English",   
+            enabled: true or false for enabling / disabling the dialog, 
+            asOverlay: true or false to use overlay message instead of regular message
+        }
+    * 
     */
     self.getItemByName = function(localizedName){
         for(var i = 0; i < self.Items.length; i++){
@@ -2045,7 +3156,7 @@ UltimateLib.Notifications = (function(self){
      };
                          
     /**
-     * @method
+     * @method init
      * @description Initializes the class.
     */     
     self.init = function(){
@@ -2166,77 +3277,45 @@ UltimateLib.Notifications = (function(self){
     return self;    
 })(UltimateLib.Notifications || {});/**
  * @class PopupMenu
+ * @module UltimateLib
+ * @main UltimateLib
  * @namespace UltimateLib
+ * @requires Base,Core,Logger
  * @author Francesco Abbattista (alphabit)
- * @version 1.0.0
+ * @version 1.0.1
  * @description PopupMenu provides simplified creation and access to popup menu within the game. Allows to create custom menu items for implementing custom functionality.
  * @fileOverview PopupMenu provides simplified creation and access to popup menu within the game. Allows to create custom menu items for implementing custom functionality.
  * @constructor
- * @param {object} self An object representing the class itself for extending
- */
+ * @param {Object} self An object representing the class itself or a new object for the purpose of extensibility. This parameter can be ignored.
+ * @beta
+ */ 
+ 
  UltimateLib.PopupMenu = (function(self){
     // Show up in console
     UltimateLib.Logger.log("UltimateLib.PopupMenu loading...");
         
     var origContextMenu = UI._showContextMenu;
     var menuItems       = [];
-    
+           
     /**
+     * @method init
      * @description Initializes the module.
-     * @public
     */ 
     self.init = function(){
         UltimateLib.Logger.log("UltimateLib.PopupMenu init ran.");
     };
         
     /**
+     * @method UI.ulPopupMenuItemClickHandler 
+     * @param {Object} a GDT menu object
      * @description This has to be reviewed. -- Under Development -- Ignore please.
-     * @public
     */      
-    UI.selectInfoStatsModItemClickHandler = function (a) {
-            Sound.click();
-            switch (a.id) {
-                case "statsmodshowreleasedgames":
-                    m.ReleasedGames.showReleasedGames();
-                    break;
-                case "statsmodconfigreleasedgames":
-                    m.ReleasedGames.showConfig();
-                    break;
-                case "statsmodshowplatforms":
-                    m.Platforms.showPlatforms();
-                    break;
-                case "statsmodconfigplatforms":
-                    m.Platforms.showConfig();
-                    break;
-
-                case "statsmodnotifications":
-                    m.Notifications.showNotifications();
-                    break;
-
-
-
-                case "statsmodshowsalesanalysis":
-                    m.Analysis.showSalesAnalysis();
-                    break;
-                case "":
-                    GameManager.togglePause();
-                    break;
-                case "statsmodtogglepause":
-                    GameManager.togglePause();
-                    break;
-                case "statsmodresetsettings":
-                     m.Config.resetStorage();
-                    break;
-                case "statsmodtogglefooter":
-                    m.Footer.toggleVisibilty();
-                default:
-                    return;
-            }
+    UI.ulPopupMenuItemClickHandler = function (a) {
     };  
 
     /**
-     * @description Updates the context menu by recreating customizations.
-     * @public
+     * @method update
+     * @description Updates the context menu by recreating customizations. Use this method after adding items.
     */     
     self.update = function(){
         origContextMenu = UI._showContextMenu;
@@ -2274,35 +3353,36 @@ UltimateLib.Notifications = (function(self){
                     }
                 });
             });
-            // Scroll to top div
-//            UltimateLib.Elements.Body.animate({
-//                scrollTop: $('#top').offset().top
-//            }, 2000);
-            
-           
+
             // Calling the original context menu
             origContextMenu(b, c, d, h);
-        
         };
         
         UI._showContextMenu = newContextMenu;
     };
     
     /**
+     * @method addItem
      * @description Adds a PopupMenu Item to the internal list
-     * @param {string, element, bool} A PopupMenu Item (use createItem for simple creation)  
-     * @public
+     * @param {Object} item A PopupMenu Item (use createItem for simple creation)  
+     * @example
+        Object specification:
+        {
+            label:'My Menu Item',
+            el: associatedDialogDomElement,
+            pause: true or false to use game pause upon displaying dialog
+        }
     */      
     self.addItem = function(item){
         menuItems.push(item);
     };
          
     /**
+     * @method createItem 
      * @description Creates a PopupMenu Item object
-     * @param {string} The text to display (label / caption)
-     * @param {string} The dialog element (i.e. created with UltimateLib.Dialog class)
-     * @param {string} Setup true to pause the game while the dialog is open, otherwise false.
-     * @public
+     * @param {String} text The text to display (label / caption)
+     * @param {String} dialogElement The dialog element (i.e. created with UltimateLib.Dialog class)
+     * @param {String} usePause Setup true to pause the game while the dialog is open, otherwise false.
     */            
     self.createItem = function(text, dialogElement, usePause){
         return {label: text, el: dialogElement, pause: usePause};
@@ -2314,20 +3394,28 @@ UltimateLib.Notifications = (function(self){
     return self;
         
 })(UltimateLib.PopupMenu || {});
-/**
- * @fileOverview This is an API for adding Publishers to the game
+ /**
+ * @class Publishers
+ * @module UltimateLib
+ * @main UltimateLib
+ * @namespace UltimateLib
+ * @requires Base,Core,Logger
+ * @author Chad Keating (SirEverard)
  * @version 0.1.0b
- * @author SirEverard
+ * @description This API provides functionality for adding Publishers to the game
+ * @fileOverview This API provides functionality for adding Publishers to the game
  * @constructor
- * @augments UltimateLib
- */
+ * @param {Object} self An object representing the class itself or a new object for the purpose of extensibility. This parameter can be ignored.
+ * @beta
+ */ 
+ 
 UltimateLib.Publishers = (function(self) {
     // Show up in console
     UltimateLib.Logger.log("UltimateLib.Publishers loading...");
 
     /**
+     * @method init
      * @description Initializes the module.
-     * @public
     */ 
     self.init = function(){
     	/*
@@ -2341,23 +3429,21 @@ UltimateLib.Publishers = (function(self) {
         */
     };
     
-    
     /**
+     * @method addPublisherName
      * @description Adds publisher name to array
-     * @param {publisher id/name object}
-     * @private
+     * @param {String} name Publisher id/name
     */  
     self.addPublisherName = function(name){
  		var getstore = GDT.getDataStore("UltimateLib").settings;
         getstore.publisherNames.push(name);
-    	
     };
     
-    
     /**
-     * @description Adds publisher contracts.
      * @private
-     * @return {publisher object array}
+     * @method hijackgetAvailable
+     * @description Gets available publishers.
+     * @return {Object} An array containig object items with the UltimateLib Publisher Format specification
     */  
 	function hijackgetAvailable () {
 		var keep = ProjectContracts.getAvailable;
@@ -2367,70 +3453,103 @@ UltimateLib.Publishers = (function(self) {
 			return contracts;				
 		};
 	};
-	
-	
-	
+
 	/**
+     * @method collection
      * @description Returns all custom contracts.
-     * @public
-     * @param {GDT company object}
-     * @return {contract object array}
+     * @return {Object} An array containig a list of publisher names
     */  
 	self.collection = function () {
 		var getstore = GDT.getDataStore("UltimateLib").settings;
 		return getstore.publisherNames;
 	};
-	
-	
     	
     // Show up in console
     UltimateLib.Logger.log("UltimateLib.Publishers loaded :-)");
         
     return self;
-})(UltimateLib.Publishers || {});/**
+})(UltimateLib.Publishers || {}); /**
  * @class Research
+ * @module UltimateLib
+ * @main UltimateLib
  * @namespace UltimateLib
+ * @requires Base,Core,Logger
  * @author Chad Keating (SirEverard)
- * @version 0.1.0b
+ * @version 1.0.1
  * @description This is an API for adding differnt types of research to the game.
  * @fileOverview This is an API for adding differnt types of research to the game.
  * @constructor
- * @param {object} self An object representing the class itself for extending
- */
-
+ * @param {Object} self An object representing the class itself or a new object for the purpose of extensibility. This parameter can be ignored.
+ * @beta
+ * @example
+        Special Research Format
+        {
+            id: "UniqueID",
+            name: "Research Name".localize(),
+            pointsCost: 100, //Number of research points
+            duration: 3E4, //Time taken to research
+            cost: 50E4, //Cost of the research (cash)
+            canResearch: function (company) {
+                return (a.staff.length == 3); //Returns a boolean value. Perform flag checks here.
+            },
+            category: "Debugging", //Category for classing your research. Can be a new category.
+            categoryDisplayName: "Debugging".localize(), //Name shown for the Category
+            complete: function () {
+                //Stuff that happens when the research completes.
+            }
+        };
+        
+        Lab Research Format
+        {
+            id: "UniqueID",
+            name: "Research Name".localize(),
+            pointsCost: 1000, //Research cost, this is gathered over time and the speed is controlled by the lab budget. 
+            canResearch: function (company) {
+                return (a.staff.length == 3); //Returns a boolean value. Perform flag checks here.
+            },
+            iconUri: "./mods/YourMod/images/yourImage.png", //Path to icon for your research.
+            description: "Description of your research.".localize(),
+            targetZone: 2, //Unconfirmed what the hell this does. Poke it and see.
+            complete: function () {
+                //Stuff that happens when the research completes.
+            }
+        };
+                
+ */ 
+ 
 UltimateLib.Research = (function(self) {
     // Show up in console
     UltimateLib.Logger.log("UltimateLib.Research loading...");
 
     /**
+     * @method init
      * @description Initializes the module.
-     * @public
     */ 
     self.init = function(){
         UltimateLib.Logger.log("UltimateLib.Research init ran.");
     };
     
 	/**
+     * @method addSpecial
      * @description Adds a special/oneoff research.
-     * @public
-     * @param {special research object}
-    */    
-    /* Special Research Format
-		{
-			id: "UniqueID",
-			name: "Research Name".localize(),
-			pointsCost: 100, //Number of research points
-			duration: 3E4, //Time taken to research
-			cost: 50E4, //Cost of the research (cash)
-			canResearch: function (company) {
-				return (a.staff.length == 3); //Returns a boolean value. Perform flag checks here.
-			},
-			category: "Debugging", //Category for classing your research. Can be a new category.
-			categoryDisplayName: "Debugging".localize(), //Name shown for the Category
-			complete: function () {
-				//Stuff that happens when the research completes.
-			}
-		};
+     * @param {Object} research An object of using the UltimateLib Special Research Format
+     * @example
+        Special Research Format
+        {
+            id: "UniqueID",
+            name: "Research Name".localize(),
+            pointsCost: 100, //Number of research points
+            duration: 3E4, //Time taken to research
+            cost: 50E4, //Cost of the research (cash)
+            canResearch: function (company) {
+                return (a.staff.length == 3); //Returns a boolean value. Perform flag checks here.
+            },
+            category: "Debugging", //Category for classing your research. Can be a new category.
+            categoryDisplayName: "Debugging".localize(), //Name shown for the Category
+            complete: function () {
+                //Stuff that happens when the research completes.
+            }
+        }; 
 	*/
 	self.addSpecial = function (research) {
 		
@@ -2443,11 +3562,29 @@ UltimateLib.Research = (function(self) {
 	};
 	
 	/**
-     * @description Adds a special/oneoff research.
      * @private
-     * @param {special research object}
-     * @return {bool} Pass or Fail the check
-    */  
+     * @method specialCheck
+     * @description Adds a special/oneoff research.
+     * @return {Boolean} Pass or Fail the check
+     * @param {Object} research An object of using the UltimateLib Special Research Format
+     * @example
+        Special Research Format
+        {
+            id: "UniqueID",
+            name: "Research Name".localize(),
+            pointsCost: 100, //Number of research points
+            duration: 3E4, //Time taken to research
+            cost: 50E4, //Cost of the research (cash)
+            canResearch: function (company) {
+                return (a.staff.length == 3); //Returns a boolean value. Perform flag checks here.
+            },
+            category: "Debugging", //Category for classing your research. Can be a new category.
+            categoryDisplayName: "Debugging".localize(), //Name shown for the Category
+            complete: function () {
+                //Stuff that happens when the research completes.
+            }
+        }; 
+    */
 	function specialCheck(research){
 		if (!(Checks.checkPropertiesPresent(research, ['id', 'name', 'pointsCost', 'duration', 'cost','category','categoryDisplayName']) 
 		   && Checks.checkUniqueness(research, 'id', Research.getAllItems()))) {
@@ -2456,27 +3593,26 @@ UltimateLib.Research = (function(self) {
 		return true;	
 	};
 	
-	
 	/**
+     * @method addLab
      * @description Adds a big/lab research.
-     * @public
-     * @param {big research object}
-    */  
-    /* Lab Research Format
-		{
-			id: "UniqueID",
-			name: "Research Name".localize(),
-			pointsCost: 1000, //Research cost, this is gathered over time and the speed is controlled by the lab budget. 
-			canResearch: function (company) {
-				return (a.staff.length == 3); //Returns a boolean value. Perform flag checks here.
-			},
-			iconUri: "./mods/YourMod/images/yourImage.png", //Path to icon for your research.
-			description: "Description of your research.".localize(),
-			targetZone: 2, //Unconfirmed what the hell this does. Poke it and see.
-			complete: function () {
-				//Stuff that happens when the research completes.
-			}
-		};
+     * @param {Object} research An object of using the UltimateLib Lab Research Format
+     * @example
+        Lab Research Format
+        {
+	        id: "UniqueID",
+	        name: "Research Name".localize(),
+	        pointsCost: 1000, //Research cost, this is gathered over time and the speed is controlled by the lab budget. 
+	        canResearch: function (company) {
+		        return (a.staff.length == 3); //Returns a boolean value. Perform flag checks here.
+	        },
+	        iconUri: "./mods/YourMod/images/yourImage.png", //Path to icon for your research.
+	        description: "Description of your research.".localize(),
+	        targetZone: 2, //Unconfirmed what the hell this does. Poke it and see.
+	        complete: function () {
+		        //Stuff that happens when the research completes.
+	        }
+        };
 	*/  
 	self.addLab = function (research) {
 		if (!labCheck(research)) {
@@ -2488,10 +3624,27 @@ UltimateLib.Research = (function(self) {
 	};
 
 	/**
-     * @description Adds a lab research.
      * @private
-     * @param {lab research object}
-     * @return {bool} Pass or Fail the check
+     * @method labCheck
+     * @description Adds a lab research.
+     * @param {Object} research An object of using the UltimateLib Lab Research Format
+     * @return {Boolean} Pass or Fail the check
+     * @example
+        Lab Research Format
+        {
+            id: "UniqueID",
+            name: "Research Name".localize(),
+            pointsCost: 1000, //Research cost, this is gathered over time and the speed is controlled by the lab budget. 
+            canResearch: function (company) {
+                return (a.staff.length == 3); //Returns a boolean value. Perform flag checks here.
+            },
+            iconUri: "./mods/YourMod/images/yourImage.png", //Path to icon for your research.
+            description: "Description of your research.".localize(),
+            targetZone: 2, //Unconfirmed what the hell this does. Poke it and see.
+            complete: function () {
+                //Stuff that happens when the research completes.
+            }
+        }; 
     */ 
 	function labCheck(research){
 		if (!(Checks.checkPropertiesPresent(research, ['id', 'name', 'pointsCost', 'iconUri', 'description']) 
@@ -2508,35 +3661,37 @@ UltimateLib.Research = (function(self) {
     return self;
 })(UltimateLib.Research || {});/**
  * @class Storage
+ * @module UltimateLib
+ * @main UltimateLib
  * @namespace UltimateLib
+ * @requires Base,Core,Logger
  * @author Francesco Abbattista (alphabit)
- * @version 1.0.0
- * @description This is a custom storage class for the UltimateLib. It uses the jstorage.js by © 2010 - 2012 Andris Reinman, andris.reinman@gmail.com
- *               jStorage is licensed under Unlicense, so basically you can do whatever you want to do with it.
- * @fileOverview This is a custom storage class for the UltimateLib. It uses the jstorage.js by © 2010 - 2012 Andris Reinman, andris.reinman@gmail.com
- *               jStorage is licensed under Unlicense, so basically you can do whatever you want to do with it.
+ * @version 0.1.0b
+ * @description 
+    This is a custom storage class for the UltimateLib. It uses the jstorage.js by (c) 2010 - 2012 Andris Reinman, andris.reinman@gmail.com
+    jStorage is licensed under Unlicense, so basically you can do whatever you want to do with it.
+ * @fileOverview This is a custom storage class for the UltimateLib. It uses the jstorage.js by (c) 2010 - 2012 Andris Reinman, andris.reinman@gmail.com
  * @constructor
- * @param {object} self An object representing the class itself for extending
- */
-
+ * @param {Object} self An object representing the class itself or a new object for the purpose of extensibility. This parameter can be ignored.
+ */ 
+ 
  UltimateLib.Storage = (function(self){
     // Show up in console
     UltimateLib.Logger.log("UltimateLib.Storage loading...");
         
     /**
-     * @description Determines if the local storage is available
-     * @function isLocalStorageAvailable
-     * @returns {bool} True if local storage is available otherwise False
      * @private
+     * @method isLocalStorageAvailable
+     * @description Determines if the local storage is available
+     * @return {Boolean} True if local storage is available otherwise False
     */          
     function isLocalStorageAvailable(){
         return $.jStorage.storageAvailable();
     }
     
     /**
+     * @method init
      * @description Initializes the module.
-     * @function init
-     * @public
     */ 
     self.init = function(){
         UltimateLib.Logger.log("UltimateLib.Storage init ran.");
@@ -2544,11 +3699,10 @@ UltimateLib.Research = (function(self) {
         
     /**
      * @description Reads from the UltimateLib localStorage the object stored under the specified ID
-     * @function read
-     * @param {string} storageId A custom unique ID for identifying your own storage section
-     * @param {object} defaultValue Optional default value to apply to the storage value(e) returned in case it hasn't been set
-     * @returns {object} The object written in the localStorage and identified by the specified ID
-     * @public
+     * @method read
+     * @param {String} storageId A custom unique ID for identifying your own storage section
+     * @param {Object} defaultValue Optional default value to apply to the storage value(e) returned in case it hasn't been set
+     * @return {Object} The object written in the localStorage and identified by the specified ID
     */            
     self.read = function(storageId, defaultValue){
         try {
@@ -2571,12 +3725,11 @@ UltimateLib.Research = (function(self) {
 
     /**
      * @description Writes the specified data to a storage object called UltimateLib.YOUR_STORAGE_ID
-     * @function write
-     * @param {string} storageId A custom unique ID for identifying your own storage section
-     * @param {object} data A javascript object that contains the data to be stores in storage
-     * @param {int} ttl Optional timeToLive for the data expressed in milliseconds
-     * @returns {bool} True if writing to the storage was successful otherwise
-     * @public
+     * @method write
+     * @param {String} storageId A custom unique ID for identifying your own storage section
+     * @param {Object} data A javascript object that contains the data to be stores in storage
+     * @param {Integer} ttl Optional timeToLive for the data expressed in milliseconds
+     * @return {Boolean} True if writing to the storage was successful otherwise
     */     
     self.write = function(storageId, data, ttl){
         if(!$.jStorage.storageAvailable()){
@@ -2600,77 +3753,70 @@ UltimateLib.Research = (function(self) {
     };
     
     /**
+     * @method clearCache
      * @description Clears the storage cache
-     * @function clearCache
-     * @public
     */         
     self.clearCache = function(){
         $.jStorage.flush();
     };
     
     /**
+     * @method getAllKeys
      * @description Returns all keys used from UltimateLib to store data into storage
-     * @function getAllKeys
-     * @returns {array} An array of string containing all the keys stored in the UltimateLib storage
-     * @public
+     * @return {array} An array of string containing all the keys stored in the UltimateLib storage
     */         
     self.getAllKeys = function(){
         return $.jStorage.index();
     };
     
     /**
+     * @method getStorageSize
      * @description Returns the size in bytes of the whole storage
-     * @function getStorageSize
-     * @returns {int} An integer value indicating the size in bytes of the storage 
-     * @public
+     * @return {Integer} An integer value indicating the size in bytes of the storage 
     */         
     self.getStorageSize = function() {
         return $.jStorage.storageSize();
     };
     
     /**
+     * @method getStorageFreeSize
      * @description Returns the size in bytes left for the whole storage
-     * @function getStorageFreeSize
-     * @returns {int} An integer value indicating the size in bytes that are left in the storage 
-     * @public
+     * @return {int} An integer value indicating the size in bytes that are left in the storage 
     */         
     self.getStorageFreeSize = function(){
         return $.jStorage.storageAvailable();        
     };
     
     /**
+     * @method reload
      * @description Reloads the data from storage
-     * @function reload
-     * @public
     */         
     self.reload = function(){
         $.jStorage.reInit();  
     };
 
     /**
-     * Sets up a listener that notifies on updates for the selected key. Updates made in other windows/tabs are reflected, so this feature can also be used for some kind of publish/subscribe service.
-     * The callback function should be as follows:
-     * function(key, action){
-     *      console.log(key + " has been " + action);
-     * });
-     * @function onKeyChanged
-     * @param {string} storageId A custom unique ID for identifying your own storage section
-     * @param {string} key The key to observe
-     * @param {function} callback A callback function that handles key change notifications. Format: function(key, action)
-     * @public
+     * @method onKeyChanged
+     * @description Sets up a listener that notifies on updates for the selected key. Updates made in other windows/tabs are reflected, so this feature can also be used for some kind of publish/subscribe service.
+     * @param {String} storageId A custom unique ID for identifying your own storage section
+     * @param {String} key The key to observe
+     * @param {Function} callback A callback function that handles key change notifications. Format: function(key, action)
+     * @example
+        The callback function should be as follows:
+        function(key, action){
+            console.log(key + " has been " + action);
+        });
     */        
     self.onKeyChanged = function(storageId, key, callback){
         $.jStorage.listenKeyChange("UltimateLib.Storage." + storageId + "." + key, callback);
     };
     
     /**
-     * Stops notifying and tracking for a key change. 
-     * If the callback function is set, only the callback specified will be cleared, otherwise all listeners will be dropped.
-     * @function removeListeners
-     * @param {string} storageId A custom unique ID for identifying your own storage section
-     * @param {string} key The key from where to remove the listener(s)
+     * @method removeListeners
+     * @description Stops notifying and tracking for a key change. If the callback function is set, only the callback specified will be cleared, otherwise all listeners will be dropped.
+     * @param {String} storageId A custom unique ID for identifying your own storage section
+     * @param {String} key The key from where to remove the listener(s)
      * @param {function} callback Optional: Callback function that should be dropped
-     * @public
     */       
     // 
     self.removeListeners = function(storageId, key, callback){
@@ -2688,27 +3834,52 @@ UltimateLib.Research = (function(self) {
     return self;
 })(UltimateLib.Storage || {});/**
  * @class Utils
+ * @module UltimateLib
+ * @main UltimateLib
  * @namespace UltimateLib
+ * @requires Base,Core,Logger
  * @author Francesco Abbattista (alphabit) and Chad Keating (SirEverard)
- * @version 1.0.0
- * @description Utility library with useful functions for your code.
+ * @version 1.0.2
+ * @description  Utility library with useful functions for your code.
  * @fileOverview Utility library with useful functions for your code.
  * @constructor
- * @param {object} self An object representing the class itself for extending
- */
-
+ * @param {Object} self An object representing the class itself or a new object for the purpose of extensibility. This parameter can be ignored.
+ */ 
 UltimateLib.Utils = (function(self) {
     // Show up in console
     UltimateLib.Logger.log("UltimateLib.Utils loading...");
+    
+        /**
+         * @private
+         * @method sortAlpha
+         * @description Comparer method for alphanumeric sorting
+         * @param {String} a First string 
+         * @param {String} b Second string
+         * @return {Integer} 1 if a is greatr than b else -1.
+        */      
+        function sortAlpha(a, b) {
+           return a.toLowerCase() > b.toLowerCase() ? 1 : -1;
+        };
 
         /**
-         * @public
-         * @function getFormattedNumber
+         * @private
+         * @method sortNum
+         * @description Comparer method for numeric sorting
+         * @param {Number} a First number
+         * @param {Number} b Second number
+         * @return {Integer} 1 if a is greatr than b else -1.
+        */           
+        function sortNum(a, b) {
+           return a > b ? 1 : -1;
+        };
+       
+        /**
+         * @method getFormattedNumber
          * @description Returns a formatted numbers in the scientific format 124E5
-         * @param {int} num The number to format
-         * @returns A scientifical formatted value
+         * @param {Integer} num The number to format
+         * @return {Integer} A scientifical formatted value
         */    
-        self.getFormattedNumber = function (num) {
+        self.getFormattedNumber = function(num) {
 			var s = num.toString().replace(",", ".");
 			var n = "";
 
@@ -2734,39 +3905,110 @@ UltimateLib.Utils = (function(self) {
 		};
 
         /**
-         * @public
-         * @function wait4
+         * @method wait4
          * @description Waits for the specified "what" variable/object to be defined an "ms" amount of time (in milliseconds) and if set, assigns the "val" value to it
          * @param {any} what The target variable/object to check and wait for
          * @param {any} val A value to assign when @see what  
-         * @param {int} ms Interval time in milliseconds when to repeat check
+         * @param {Integer} ms Interval time in milliseconds when to repeat check
         */           
-        self.wait4 = function (what, val, ms){
-            if(typeof what !== "undefined"){
+        self.wait4 = function(what, val, ms){
+            if(typeof what !== "undefined") {
                 // variable exists, do what you want
                 UltimateLib.Logger.log("Done waiting!");
                 what = val;
             }
             else{
                 UltimateLib.Logger.log("I wait4 " + ms + " ms...");
-                setTimeout(function(){wait();},ms);
+                setTimeout(function () { wait(); }, ms);
             }
         }
+        
+        /**
+         * @method sort
+         * @description Sorts the specified array using the desired type and sorting direction
+         * @param {Array} array The array to sort
+         * @param {String} typ A string indicating the type of sorting. alpha for alphanumeric or num for numeric.
+         * @param {Boolean} asc True for sorting in ascending direction, false for descending direction.
+         * @return {Array} The sorted input array.
+        */           
+       self.sort = function (array, typ, asc) {
+           var sorted;
+           if (typ == "alpha") {
+               sorted = array.sort(sortAlpha);
+           }
+           if (typ == "num") {
+               sorted = array.sort(sortNum);
+           }
+           if (asc === false) {
+               sorted.reverse();
+           }
+           return sorted;
+       };
 
+        /**
+         * @method compare
+         * @description Compares the 1st value with the 2nd value using compare operators.
+         * @param {String|Number} val1 A number or string to compare. 
+         * @param {String|Number} val2 A number or string to compare. 
+         * @param {String} op Compare operator. Allowed values are "=" for equals, "<" for less than and ">" for greater than.
+         * @return {Boolean} True is comparison matched, false otherwise
+        */          
+       self.compare = function (val1, val2, op) {
+
+           var newArr;
+           newArr = true;
+
+           if (op == "=" && val1 == val2) {
+               newArr = true;
+           } else { newArr = false; }
+
+           if (op == "<" && val1 < val2) {
+               newArr = true;
+           } else { newArr = false; }
+
+           if (op == ">" && val1 > val2) {
+               newArr = true;
+           } else { newArr = false; }
+
+           return newArr;
+       };
+
+        /**
+         * @method getIds
+         * @description Returns an array containing the id field of an object that provides an id property.
+         * @param {Array} arr The array containing objects providing an id property.
+         * @return {Array} An array of ids
+        */           
+       self.getIds = function (arr) {
+
+           var newArr;
+
+           $.grep(arr, function (e, i) {
+               newArr.push(e.id);
+           });
+
+           return newArr;
+       }
+
+        
     // Show up in console
     UltimateLib.Logger.log("UltimateLib.Utils loaded :-)");
         
     return self;
 })(UltimateLib.Utils || {});/**
  * @class VisualTweaks
+ * @module UltimateLib
+ * @main UltimateLib
  * @namespace UltimateLib
+ * @requires Base,Core,Logger
  * @author Chad Keating (SirEverard)
  * @version 0.1.0b
- * @description This is a library that provides and API for tweaking visual elements within the game.
+ * @description  This is a library that provides and API for tweaking visual elements within the game.
  * @fileOverview This is a library that provides and API for tweaking visual elements within the game.
  * @constructor
- * @param {object} self An object representing the class itself for extending
- */
+ * @param {Object} self An object representing the class itself or a new object for the purpose of extensibility. This parameter can be ignored.
+ * @beta
+ */ 
 /*
 Slider Wrapper
 width: 195px;
@@ -2781,10 +4023,9 @@ UltimateLib.VisualTweaks = (function(self) {
     var store = GDT.getDataStore("UltimateLib");//function () { return GDT.getDataStore("UltimateLib"); };
     
     /**
+     * @method init
      * @description Sets up the style tags for the rest of the module.
-     * @public
     */
-    
     self.init = function(){
         UltimateLib.Logger.log("UltimateLib.VisualTweaks init ran.");
         $('head').append('<style id="visualTweaks" type="text/css"></style>');
@@ -2804,7 +4045,11 @@ UltimateLib.VisualTweaks = (function(self) {
         });
     };
     
-
+    /**
+     * @method setAllTweaks
+     * @description Enables all available tweaks. 
+     * @param {String} style The style to apply **not yet implemented
+    */   
     self.setAllTweaks = function (style) {
 
         self.setRoundedWindows();
@@ -2818,9 +4063,9 @@ UltimateLib.VisualTweaks = (function(self) {
 
 
     /**
+     * @method setRoundedWindows
      * @description Give windows rounded edges.
-     * @public
-     * @param {radius} Rounded edge radius on the window.
+     * @param {Integer} radius Rounded edge radius on the window.
     */ 
     self.setRoundedWindows = function(radius){
         if (store.settings.roundedCorners === false){ UltimateLib.Logger.log("UltimateLib.VisualTweaks.setRoundedWindows = false."); return; };
@@ -2833,9 +4078,9 @@ UltimateLib.VisualTweaks = (function(self) {
     };
     
     /**
+     * @method setScrollBar
      * @description Adds a style to the overflow scrollbar
-     * @public
-     * @param {scrollbar style} 1 = default scrollbar styles
+     * @param {Integer} scrollbar style 1 = default scrollbar styles (available style: 1,2 and 3)
     */ 
     self.setScrollBar = function(style){
         if (store.settings.scrollBar === false){ UltimateLib.Logger.log("UltimateLib.VisualTweaks.scrollBar = false."); return; };
@@ -2871,9 +4116,9 @@ UltimateLib.VisualTweaks = (function(self) {
     };
     
     /**
+     * @method setRoundedButtons
      * @description Gives buttons a rounded edge.
-     * @public
-     * @param {radius} Rounded edge radius on the button.
+     * @param {Integer} radius Rounded edge radius on the button.
     */ 
     self.setRoundedButtons = function (radius) {
         if (store.settings.roundedButtons === false){ UltimateLib.Logger.log("UltimateLib.VisualTweaks.roundedButtons = false."); return; };
@@ -2884,9 +4129,9 @@ UltimateLib.VisualTweaks = (function(self) {
     };
     
     /**
+     * @method setRoundedBars
      * @description Gives "bars" a rounded edge.
-     * @public
-     * @param {radius} Rounded edge radius on the bar.
+     * @param {Integer} radius Rounded edge radius on the bar.
     */ 
     self.setRoundedBars = function (radius){
         if (store.settings.roundedBars === false){ UltimateLib.Logger.log("UltimateLib.VisualTweaks.setRoundedBars = false."); return; };
@@ -2899,9 +4144,9 @@ UltimateLib.VisualTweaks = (function(self) {
     };
 
     /**
+     * @method setTextBox
      * @description Gives text boxes a rounded edge.
-     * @public
-     * @param {radius} Rounded edge radius on textboxes.
+     * @param {Integer} radius Rounded edge radius on textboxes.
     */ 
     self.setTextBox = function (radius){
         if (store.settings.textBox === false){ UltimateLib.Logger.log("UltimateLib.VisualTweaks.setTextBox = false."); return; };
@@ -2911,6 +4156,11 @@ UltimateLib.VisualTweaks = (function(self) {
         UltimateLib.Logger.log("UltimateLib.VisualTweaks.setTextBox set."); 
     };
 
+    /**
+     * @method setTextBox
+     * @description Gives text boxes a rounded edge.
+     * @param {Integer} style The style of the fancy grads. 1 or default.
+    */     
     self.setFancyGrads = function (style) {
         if (store.settings.fancyGrads === false) { UltimateLib.Logger.log("UltimateLib.VisualTweaks.setFancyGrads = false."); return; };
         var tweak = $('#visualTweaks');
@@ -2931,6 +4181,12 @@ UltimateLib.VisualTweaks = (function(self) {
         UltimateLib.Logger.log("UltimateLib.VisualTweaks.setFancyGrads set.");
     };
     
+    /**
+     * @method setWatermarks
+     * @description Gives text boxes a rounded edge.
+     * @param {String} object ID of the DOM object element.
+     * @param {String} url Image url of the watermark.
+    */     
     self.setWatermarks = function (object, url) {
         var tweak = $('#visualTweaks');
         var urlstore = UltimateLib.Storage.read('SliderBG');
@@ -3002,6 +4258,13 @@ UltimateLib.VisualTweaks = (function(self) {
             urlstore.watermarkset = true;
         }
     };
+
+    /**
+     * @private 
+     * @property addWatermarkCallback
+     * @type Closure
+     * @description Callback for adding a watermark into the game.
+    */      
     var addWatermarkCallback = function () {
         var keepme = UI.showFeatureList;
         UI.showFeatureList = function (features, options) {
@@ -3038,4 +4301,225 @@ UltimateLib.VisualTweaks = (function(self) {
     UltimateLib.Logger.log("UltimateLib.VisualTweaks loaded :-)");
 
     return self;
-})(UltimateLib.VisualTweaks || {});
+})(UltimateLib.VisualTweaks || {});/**
+ * @class Update
+ * @module UltimateLib
+ * @main UltimateLib
+ * @namespace UltimateLib
+ * @requires Base,Core,Logger
+ * @author Francesco Abbattista (alphabit)
+ * @version 1.0.0
+ * @description  The Updater class allows to check for a possible update of UL and / or other mods if they cope the specs.
+ * @fileOverview The Updater class allows to check for a possible update of UL and / or other mods if they cope the specs.
+ * @constructor
+ * @param {Object} self An object representing the class itself or a new object for the purpose of extensibility. This parameter can be ignored.
+ */ 
+UltimateLib.Update = (function(self){
+    // Show up in console
+    UltimateLib.Logger.log("UltimateLib.Update loading...");
+
+    /**
+     * @private
+     * @method compareVersions
+     * @description Compares two version strings to find out if the v2 is newer than v1.
+     * @param {String} v1 The version to compare (current version)
+     * @param {String} v2 The version to compare with (online version)
+     * @return {Integer} -1 if the v2 is newer than v1, otherwise 0.
+    */    
+    function compareVersions(v1, v2) {
+      var res   = 0;
+      var p1    = v1.split('.');
+      var p2    = v2.split('.');
+      var len   = Math.max(p1.length, p2.length);
+
+      for (var i = 0; i < len; i++) {
+        var np1 = (i < p1.length) ? parseInt(p1[i], 10) : 0;
+        var np2 = (i < p2.length) ? parseInt(p2[i], 10) : 0;
+
+        if (isNaN(np1)) { np1 = 0; }
+        if (isNaN(np2)) { np2 = 0; }
+
+        if (np1 != np2) {
+          res = (np1 > np2) ? 1 : -1;
+          break;
+        }
+      }
+
+      return res;
+    };
+     
+     /**
+     * @method init
+     * @description Initializes the module.
+    */ 
+    self.init = function(){
+        UltimateLib.Logger.log("UltimateLib.Update init ran.");
+    };
+    
+    /**
+     * @property GitHub
+     * @type Object
+     * @description Provides an object to perform update operations on GitHub. Please note that it is only allowed for 60 request per hours (GitHub specific) on this unauthorized mode.
+     * @param {method} getLatestVersionAvailable Returns the latest version of a mod, available from the specified repository, branch and directory.
+     * @param {method} hasNewerVersion Checks if there's a new version of a mod online by querying the specified repository, branch and directory.
+     * @param {method} notifyIfNewerVersion Notifies the user in-game if there's a new version of the mod available by offering to navigate to the page.
+    */   
+    self.GitHub = {
+        
+        /**
+         * @method getLatestVersionAvailable
+         * @description Returns the latest version of a mod, available from the specified repository, branch and directory.
+         * @param {String} user The name of the GitHub user
+         * @param {String} repo The name of the repository
+         * @param {String} [branch=master] Optional: A name specifying the branch to use. Default: master
+         * @param {String} [dir] Optional: Directory of the package.json of the module. Default: empty string (repo root)
+         * @return {String} A string containing the version information about the latest version available online.
+        */   
+        getLatestVersionAvailable: function(user, repo, branch, dir){
+            branch  = branch ? branch : "master";
+            dir     = dir ? dir+'/' : '';
+
+            var github      = new Github({username: user});
+            var repo        = github.getRepo(user, repo);
+            
+            repo.read(branch, dir+'package.json', function(err, data) {
+                if (err){
+                    UltimateLib.Logger.log("Could not read the specified GitHub data. The server responded:" + err);
+                    return undefined;
+                }
+                else {
+                    var packg = JSON.parse( data );
+                    return packg.version;
+                }
+            });
+        },
+        
+        /**
+         * @method hasNewerVersion
+         * @description Checks if there's a new version of a mod online by querying the specified repository, branch and directory.
+         * @param {String} user The name of the GitHub user
+         * @param {String} repo The name of the repository
+         * @param {String} [branch] Optional: A name specifying the branch to use. Default: master
+         * @param {String} [dir] Optional: Directory of the package.json of the module. Default: empty string (repo root)
+         * @return {Boolean} True if there's a new version of the mod available online, otherwise False.
+        */           
+        hasNewerVersion: function(user, repo, branch, dir){
+            branch  = branch ? branch : "master";
+            dir     = dir ? dir+'/' : '';
+
+            var github      = new Github({username: user});
+            var repo        = github.getRepo(user, repo);
+            var hasNewer    = false;
+            
+            repo.read(branch, dir + 'package.json', function(err, data) {
+                hasNewer = false;
+
+                if (err){
+                    UltimateLib.Logger.log("Could not read the specified GitHub data in UltimateLib.Update.hasNeverVersion. The server responded:" + err);
+                }
+                else {
+                    var packg = JSON.parse( data );
+                    var mod;
+                    for (var i = 0; i < ModSupport.availableMods.length; i++) {
+                        if(ModSupport.availableMods[i].id == packg.id){
+                            mod = ModSupport.availableMods[i];
+                            break;
+                        }
+                    }
+                    if (mod){
+                        hasNewer = compareVersions(mod.version, packg.version) < 0;
+                    }                    
+                }
+            });
+         },
+         
+        /**
+         * @method notifyIfNewerVersion
+         * @description Notifies the user in-game if there's a new version of the mod available by offering to navigate to the page.
+         * @param {String} user The name of the GitHub user
+         * @param {String} repo The name of the repository
+         * @param {String} [branch] Optional: A name specifying the branch to use. Default: master
+         * @param {String} [dir] Optional: Directory of the package.json of the module. Default: empty string (repo root)
+         * @param {String} Optional: Directory of the package.json of the module. Default: empty string (repo root)
+        */             
+        notifyIfNewerVersion: function(user, repo, branch, dir){
+            branch  = branch ? branch : "master";
+            dir     = dir ? dir+'/' : '';
+
+            var github      = new Github({username: user});
+            var repo        = github.getRepo(user, repo);
+            var hasNewer    = false;
+            
+            repo.read(branch, dir+'package.json', function(err, data) {
+                if (err){
+                    UltimateLib.Logger.log("Could not read the specified GitHub data. The server responded:" + err);
+                }
+                else {
+                    var packg = JSON.parse( data );
+                    var mod;
+                    for (var i = 0; i < ModSupport.availableMods.length; i++) {
+                        if(ModSupport.availableMods[i].id == packg.id){
+                            mod = ModSupport.availableMods[i];
+                            break;
+                        }
+                    }
+                    if (mod){
+                        var comp = compareVersions(mod.version, packg.version);
+                        var headerText = '';
+                        var bodyText = '';
+                        
+                        if(comp < 0){
+                            headerText = "New version available";
+                            bodyText = "A new version of " + mod.name + " is available.<br>Latest version: <strong>" + packg.version + "</strong>";
+
+                            var doc                 = $(document);
+                            var docWidth            = doc.width();
+                            var docHeight           = doc.height();
+                            var docCenterX          = (docWidth * 0.5) - 300;
+                            var docCenterY          = (docHeight * 0.5) - 20;
+                            
+                                            
+                            var notifier = $(document.createElement('div'));
+                            var notifierCloseButton = $(document.createElement('div'));
+                            var notifierUrlButton   = $(document.createElement('div'));
+                            
+                            notifier.addClass('UltimateLibUpdateNotifierElement');
+                            notifier.css({width:'600', height:80, border:'4px solid #ffffff', opacity:1,textAlign:'center', backgroundColor:'#eeeeee', position:'absolute',top:'5px', left:docCenterX, zIndex:10000});
+                            
+                            
+                            // notifierCloseButton.addClass('icon-times-circle-o');
+                            notifierCloseButton.addClass('icon-remove-sign'); 
+                            notifierCloseButton.css({width:16, height:16, position:'relative', top:'-40px',left:'230px', cursor:'pointer', margin:0, padding:0});
+                            notifierCloseButton.attr('title',"Close this update notification");
+
+                            notifierUrlButton.addClass('icon-external-link'); 
+                            notifierUrlButton.css({width:16, height:16, position:'relative', top:'-39px',left:'190px', cursor:'pointer', margin:0, padding:0});
+                            notifierUrlButton.attr('title',"Click here to browse to the update page ("+mod.url+")");
+                            
+                            $('#gameContainerWrapper').append(notifier);
+                            
+                            notifier.html('<h3>'+headerText+'</h3>'+bodyText);
+                            notifierCloseButton.appendTo(notifier);
+                            notifierUrlButton.appendTo(notifier);
+                            
+                            notifierCloseButton.click(function(){
+                                notifier.remove();
+                            });
+                            
+                            notifierUrlButton.click(function(){
+                                 PlatformShim.openUrlExternal(mod.url);
+                                 notifier.remove();       
+                            });
+                        }
+                        else if (comp == 0){
+                            headerText = "You are up-to-date";
+                            bodyText = "You are already using the latest version of " + mod.name + "<br>Current version:  <strong>" + mod.version + "</strong>";
+                        }
+                    }
+                }
+            });
+        }
+    };
+
+    return self;
+})(UltimateLib.Update || {});    
