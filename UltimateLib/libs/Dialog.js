@@ -4,7 +4,7 @@
  * @main UltimateLib
  * @namespace UltimateLib
  * @requires Base,Core,Logger
- * @author Francesco Abbattista (alphabit)
+ * @author Francesco Abbattista (alphabit) and Mathieu Dumoulin (crazycodr)
  * @description Dialog is an UltimateLib library class providing dialog creation capabilities i.e. for use with PopupMenu.
  * @constructor
  * @param {Object} self An object representing the class itself or a new object for the purpose of extensibility. This parameter can be ignored.
@@ -29,7 +29,14 @@
         
         el.addClass('selectorButton whiteButton');
         el.css({display:'inline-block', position: 'relative', marginLeft:'50px', width: width, height: height});
-        el.attr({id:name, onclick:onclick});
+        el.attr({id:name});
+
+        if(typeof(onclick) == 'function') {
+            $(el).on('click', onclick);
+        }
+        else {
+            el.attr({id:name, onclick:onclick});
+        }
         el.text(text);
         
         return el;
@@ -70,10 +77,9 @@
      * @param {Array} sections An array of sections to show on the dialog (use createSection to create each section)  
     */                
     self.createDialog = function(name, text, sections){
-        var idModalDialog       = name + "Modal";
-        var idDialogContainer   = name + "Container";
-        var idTop               = name + "Top";
-        var idPoweredBy         = name + "PoweredBy";
+        var idModalDialog = name + "Modal";
+        var idDialogContainer = name + "Container";
+        var idTop = name + "Top";
         
         // Modal dialog for a GDT dialog -->
         var modal = $(document.createElement('div'));
@@ -93,19 +99,65 @@
             scrolltop.appendTo(container);
                                         
         $.each(sections, function(i, v){
-            container.append(v);
+            UltimateLib.Dialog.addSection(container, v);
         });
 
-        var poweredBy = $(document.createElement('div'));
-            poweredBy.attr({id:idPoweredBy});
-            poweredBy.css({textAlign:'center', marginLeft:'50px', width: '450px'});
-            poweredBy.append('br').append('br');
-            poweredBy.text("Powered by UltimateLib");
-            poweredBy.appendTo(container);
+        //Add the poweredby
+        UltimateLib.Dialog.addPoweredBy(container);
             
         return container;
     };
     
+    /**
+    * @method clearSections
+    * @description Removes all sections from the specified dialog element
+    * @param {Object} dialog The dialog object (jQuery wrapped) you wish to clear all sections from
+    */
+    self.clearSections = function(dialog){
+        //Clear the dialog section
+        $('.ultimatelib-dialog-section', dialog).remove();
+    };
+    
+    /**
+    * @method addSection
+    * @description Appends a custom section to the specified dialog
+    * @param {Object} dialog The dialog object as jQuery wrapped object, you wish to append the section to
+    * @param {Object|String} section The section you wish to append to the dialog (DOM or html)
+    */
+    self.addSection = function(dialog, section){
+
+        //Append the section
+        UltimateLib.Dialog.clearPoweredBy(dialog);
+        dialog.append(section);
+        UltimateLib.Dialog.addPoweredBy(dialog);
+
+    };
+    
+    /**
+    * @method clearPoweredBy
+    * @description Removes the "PoweredBy by UltimateLib" section so we can add more items to the dialog and then add the powered by again later
+    * @param {Object} dialog The dialog object (jQuery wrapped) you wish to remove the poweredBy from
+    */
+    self.clearPoweredBy = function(dialog){
+        //Clear the dialog section
+        $('.ultimatelib-dialog-poweredby', dialog).remove();
+    };
+    
+    /**
+    * @method addPoweredBy
+    * @description Appends the powered by section at the end of the dialog
+    * @param {Object} dialog The dialog object (jQuery wrapped) you wish to append the "Poweredby by UltimateLib" section to
+    */
+    self.addPoweredBy = function(dialog){
+
+        var poweredBy = $(document.createElement('div'));
+            poweredBy.attr({id:$(dialog).attr('id').replace('Container', 'PoweredBy'), class:"ultimatelib-dialog-poweredby"});
+            poweredBy.css({textAlign:'center', marginLeft:'50px', width: '450px'});
+            poweredBy.append('br').append('br');
+            poweredBy.text("Powered by UltimateLib");
+            dialog.append(poweredBy);
+    };
+        
     // Show up in console
     UltimateLib.Logger.log("UltimateLib.Dialog loaded :-)");
     
