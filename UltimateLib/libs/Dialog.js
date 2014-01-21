@@ -22,7 +22,7 @@
      * @param {String} text Text (Title) of the button
      * @param {String|Integer} width The width of the button  (as integer or css string)
      * @param {String|Integer} height The height of the button  (as integer or css string)
-     * @param {String} onclick A string indicating the callback function to call (i.e. UI.myCallBackOnUIClick)
+     * @param {String|Function} onclick A string or a function indicating the callback function to call (i.e. UI.myCallBackOnUIClick)
     */        
     self.createButton = function(name, text, width, height, onclick) {
         var el = $(document.createElement('div'));
