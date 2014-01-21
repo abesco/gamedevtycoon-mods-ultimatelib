@@ -99,11 +99,11 @@
             scrolltop.appendTo(container);
                                         
         $.each(sections, function(i, v){
-            UltimateLib.Dialog.addSection(container, v);
+            self.addSection(container, v);
         });
 
         //Add the poweredby
-        UltimateLib.Dialog.addPoweredBy(container);
+        self.addPoweredBy(container);
             
         return container;
     };
@@ -127,9 +127,9 @@
     self.addSection = function(dialog, section){
 
         //Append the section
-        UltimateLib.Dialog.clearPoweredBy(dialog);
+        self.clearPoweredBy(dialog);
         dialog.append(section);
-        UltimateLib.Dialog.addPoweredBy(dialog);
+        self.addPoweredBy(dialog);
 
     };
     
