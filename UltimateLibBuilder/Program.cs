@@ -22,7 +22,7 @@ namespace UltimateLibBuilder
 
             // Collect all files in this directory
             var dir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-            var target = Path.Combine(dir, "UltimateLib.Main.js");
+            var target = Path.Combine(dir, "UltimateLib.js");
 
             if (File.Exists(target))
             {
@@ -30,6 +30,8 @@ namespace UltimateLibBuilder
             }
 
             var files = new List<string>();
+
+            files.Add(Path.Combine(dir, "UltimateLib.js.bak"));
 
             foreach (var item in BuildList.Core.Items)
             {
@@ -45,6 +47,8 @@ namespace UltimateLibBuilder
             {
                 files.Add(Path.Combine(dir, "libs\\" + item + ".js"));
             }
+
+            
 
             const int chunkSize = 2 * 1024; // 2KB
             using (var output = File.Create(target))

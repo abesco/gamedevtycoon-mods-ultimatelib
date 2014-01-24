@@ -54,6 +54,6 @@ In short
     var error = function () {   
     };
 
-    GDT.loadJs(['mods/UltimateLib/UltimateLib.Main.js'], ready, error);
+    GDT.loadJs([], ready, error);
     
 })();
