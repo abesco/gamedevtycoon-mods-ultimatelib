@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Build xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <Core>
     <Items>
@@ -24,12 +24,16 @@
       <string>Storage</string>
       <string>Utils</string>
       <string>VisualTweaks</string>
+      <string>Update</string>
     </Items>
   </Libraries>
   <Libraries3rd>
     <Items>
+      <string>base64</string>
+      <string>underscore</string>
       <string>foswig</string>
       <string>jstorage</string>
+      <string>github</string>
     </Items>
   </Libraries3rd>
 </Build>

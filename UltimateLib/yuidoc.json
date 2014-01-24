@@ -1,0 +1,14 @@
+{
+    "name": "UltimateLib API Documentation",
+    "description": "This is the official UltimateLib API Documentation",
+    "version": "1.1.0",
+    "url": "http://gdt-ultimatesuite.abesco.de/",
+    "options": {
+        "outdir": "hlp",
+		"linkNatives": "true",        
+        "attributesEmit": "true",
+        "selleck": "true",
+        "ignorePaths": [ "output", "ext-doc", "hlp", "img" ],
+        "paths": ["core","libs"]
+    }
+}
