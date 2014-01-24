@@ -149,9 +149,10 @@
     * @param {Object} dialog The dialog object (jQuery wrapped) you wish to append the "Poweredby by UltimateLib" section to
     */
     self.addPoweredBy = function(dialog){
-
         var poweredBy = $(document.createElement('div'));
-            poweredBy.attr({id:$(dialog).attr('id').replace('Container', 'PoweredBy'), class:"ultimatelib-dialog-poweredby"});
+        var newId = dialog.attr('id').replace('Container', 'PoweredBy');
+        
+            poweredBy.attr('id', newId).attr('class', "ultimatelib-dialog-poweredby");
             poweredBy.css({textAlign:'center', marginLeft:'50px', width: '450px'});
             poweredBy.append('br').append('br');
             poweredBy.text("Powered by UltimateLib");
