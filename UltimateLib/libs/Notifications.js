@@ -190,7 +190,7 @@ UltimateLib.Notifications = (function(self){
     * @description Shows a simple GDT in game notification with an optional overlay 
     * @param {String} header The header (title) of the notification
     * @param {String} text The notification text to show
-    * @param {Boolean} overlay Optional argument that specified if the notification should be overlayed
+    * @param {Boolean} [overlay] Optional argument that specified if the notification should be overlayed
     * @since 1.2.0
     */          
     self.showSimpleNotification = function(header, text, overlay){

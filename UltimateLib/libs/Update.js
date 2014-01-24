@@ -135,7 +135,6 @@ UltimateLib.Update = (function(self){
          * @param {String} repo The name of the repository
          * @param {String} [branch] Optional: A name specifying the branch to use. Default: master
          * @param {String} [dir] Optional: Directory of the package.json of the module. Default: empty string (repo root)
-         * @param {String} Optional: Directory of the package.json of the module. Default: empty string (repo root)
         */             
         notifyIfNewerVersion: function(user, repo, branch, dir){
             branch  = branch ? branch : "master";
