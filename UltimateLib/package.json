@@ -1,7 +1,7 @@
 {
     "id" : "UltimateLib",
     "name" : "UltimateLib",
-    "version":"1.0.2",
+    "version":"1.2.0",
     "author":"Francesco Abbattista and Chad Keating",
     "url":"",
     "description" : "A foundation library on which other mods can be built upon. Some modules will require this library.",

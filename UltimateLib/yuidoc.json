@@ -1,7 +1,7 @@
 {
     "name": "UltimateLib API Documentation",
     "description": "This is the official UltimateLib API Documentation",
-    "version": "1.1.0",
+    "version": "1.2.0",
     "url": "http://gdt-ultimatesuite.abesco.de/",
     "options": {
         "outdir": "hlp",
