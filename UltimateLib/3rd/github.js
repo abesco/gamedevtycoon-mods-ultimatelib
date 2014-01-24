@@ -660,7 +660,7 @@
       // Delete the gist
       // --------
 
-      this.delete = function(cb) {
+      this.del = function(cb) {
         _request("DELETE", gistPath, null, function(err,res) {
           cb(err,res);
         });
