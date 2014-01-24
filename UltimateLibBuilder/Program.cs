@@ -31,7 +31,7 @@ namespace UltimateLibBuilder
 
             var files = new List<string>();
 
-            files.Add(Path.Combine(dir, "UltimateLib.js.bak"));
+            files.Add(Path.Combine(dir, "GDT.Hook.js"));
 
             foreach (var item in BuildList.Core.Items)
             {
