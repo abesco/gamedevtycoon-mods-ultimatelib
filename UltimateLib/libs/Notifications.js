@@ -161,7 +161,6 @@ UltimateLib.Notifications = (function(self){
         return undefined;
      };
 
-     
     /**
     * @method getItemByName
     * @description Returns an notification item object by looking for the localized header
@@ -185,6 +184,28 @@ UltimateLib.Notifications = (function(self){
         }  
         return undefined;
      };
+
+   /*
+    * @method showSimpleNotification
+    * @description Shows a simple GDT in game notification with an optional overlay 
+    * @param {String} header The header (title) of the notification
+    * @param {String} text The notification text to show
+    * @param {Boolean} overlay Optional argument that specified if the notification should be overlayed
+    */          
+    self.showSimpleNotification = function(header, text, overlay){
+        if(GameManager.company){
+            if(overlay){
+                var item = self.getItemByName(header.localize());
+                if(!item){
+                    self.Items.push({id:'Custom_'+header, name:"{"+header+"}",   enabled:true, asOverlay: overlay});
+                }
+                else {
+                    item.asOverlay = overlay;
+                }
+            }
+            GameManager.company.notifications.push(new Notification({header: header, text: text})
+        )
+    };
                          
     /**
      * @method init
