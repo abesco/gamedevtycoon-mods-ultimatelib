@@ -185,7 +185,7 @@ UltimateLib.Notifications = (function(self){
         return undefined;
      };
 
-     /*
+   /**
     * @method showSimpleNotification
     * @description Shows a simple GDT in game notification with an optional overlay 
     * @param {String} header The header (title) of the notification
