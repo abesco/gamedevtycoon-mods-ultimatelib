@@ -5,7 +5,7 @@
  * @namespace UltimateLib
  * @requires Base,Core,Logger
  * @author Chad Keating (SirEverard)
- * @description  This is a library that provides and API for tweaking visual elements within the game.
+ * @description This is a library that provides and API for tweaking visual elements within the game.
  * @constructor
  * @param {Object} self An object representing the class itself or a new object for the purpose of extensibility. This parameter can be ignored.
  * @beta
@@ -21,7 +21,7 @@ UltimateLib.VisualTweaks.setWatermarks
 UltimateLib.VisualTweaks = (function(self) {    
     // Show up in console
     UltimateLib.Logger.log("UltimateLib.VisualTweaks loading...");
-    var store = GDT.getDataStore("UltimateLib");//function () { return GDT.getDataStore("UltimateLib"); };
+    var store = GDT.getDataStore("UltimateLib");
     
     /**
      * @method init
@@ -29,7 +29,9 @@ UltimateLib.VisualTweaks = (function(self) {
     */
     self.init = function(){
         UltimateLib.Logger.log("UltimateLib.VisualTweaks init ran.");
+
         $('head').append('<style id="visualTweaks" type="text/css"></style>');
+
         UltimateLib.Storage.write('SliderBG', {
 
             engine: ".\/mods\/UltimateLib\/img\/defaultsbg.gif",
@@ -44,6 +46,7 @@ UltimateLib.VisualTweaks = (function(self) {
             cssset: false,
             watermarkset: false
         });
+
     };
     
     /**

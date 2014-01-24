@@ -11,34 +11,19 @@
  * @beta
  * @example
  
-        UltimateLib Contract Format
+        UltimateLib Contract Format 
         {
         name : "Contract Name",
         description : "Contract description",
-        requiredD : 10, // Design points required
-        requiredT : t, // tech points required
-        payment : 3E4, // Payment on completion 
+        requiredD : 54, // Design points required
+        requiredT : 10, // tech points required
+        payment : 2E6, // Payment on completion 
         penalty : -2E3, // Penelty for not completing on time.
         weeksToFinish : 4, // Number of weeks to complete the contract.
-        rF : template.rF, 
+        rF : template.rF, //Not sure. Test this. 
         size : "size" //"small", "medium", or "large"
         }
 
-        Real Contract Format
-        {
-        name : "Contract Name",
-        description : "Contract description",
-        requiredD : 10, // Design points required
-        requiredT : t, // tech points required
-        spawnedD : 0,
-        spawnedT : 0,
-        payment : 3E4, // Payment on completion 
-        penalty : -2E3, // Penelty for not completing on time.
-        weeksToFinish : 4, // Number of weeks to complete the contract.
-        rF : template.rF, 
-        isGeneric : true, 
-        size : "size" //"small", "medium", or "large"
-        }
  */ 
 UltimateLib.Contracts = (function(self) {
     // Show up in console
@@ -67,18 +52,7 @@ UltimateLib.Contracts = (function(self) {
      * @description Adds a custom contract.
      * @param {Object} contract An object that has the specification shown in the example box (UltimateLib Contract Format)
      * @example
-	UltimateLib Contract Format
-		{
-			name : "Contract Name",
-			description : "Contract description",
-			requiredD : 10, // Design points required
-			requiredT : t, // tech points required
-			payment : 3E4, // Payment on completion 
-			penalty : -2E3, // Penelty for not completing on time.
-			weeksToFinish : 4, // Number of weeks to complete the contract.
-			rF : template.rF, 
-			size : "size" //"small", "medium", or "large"
-		}
+        UltimateLib Contract Format - Pending review.
 	*/
 	self.addContract = function (contract) {
 		
@@ -118,18 +92,7 @@ UltimateLib.Contracts = (function(self) {
      * @param {Object} contract An object that has the specification shown in the example box (UltimateLib Contract Format)
      * @return {Boolean} Pass or Fail the check
      * @example
-    UltimateLib Contract Format
-        {
-            name : "Contract Name",
-            description : "Contract description",
-            requiredD : 10, // Design points required
-            requiredT : t, // tech points required
-            payment : 3E4, // Payment on completion 
-            penalty : -2E3, // Penelty for not completing on time.
-            weeksToFinish : 4, // Number of weeks to complete the contract.
-            rF : template.rF, 
-            size : "size" //"small", "medium", or "large"
-        }
+        UltimateLib Contract Format - Pending review.
     */
 	function contractCheck(contract){
 		if (!(Checks.checkPropertiesPresent(contract, ['name', 'description', 'requiredD', 'requiredT', 'payment','penalty','weeksToFinish','rF','size']) 
@@ -146,21 +109,21 @@ UltimateLib.Contracts = (function(self) {
      * @param {Object} contract An object that has the UltimateLib Contract Format specification
      * @return {Object} An object that has the specification shown in the example box (Real Contract Format)
      * @example 
-     Real Contract Format
-		{
-			name : "Contract Name",
-			description : "Contract description",
-			requiredD : 10, // Design points required
-			requiredT : t, // tech points required
-			spawnedD : 0,
-			spawnedT : 0,
-			payment : 3E4, // Payment on completion 
-			penalty : -2E3, // Penelty for not completing on time.
-			weeksToFinish : 4, // Number of weeks to complete the contract.
-			rF : template.rF, 
-			isGeneric : true, 
-			size : "size" //"small", "medium", or "large"
-		}
+         Real Contract Format
+		    {
+			    name : "Contract Name",
+			    description : "Contract description",
+			    requiredD : 10, // Design points required
+			    requiredT : 10, // tech points required
+			    spawnedD : 0,   
+			    spawnedT : 0,   
+			    payment : 3E4, // Payment on completion 
+			    penalty : -2E3, // Penelty for not completing on time.
+			    weeksToFinish : 4, // Number of weeks to complete the contract.
+			    rF : template.rF, //??? Research points earned?
+			    isGeneric : true, // Makes it a contract rather than a publisher contract
+			    size : "size" //"small", "medium", or "large"
+		    }
 	*/
 	function formatContract(contract){
 		var c = contract;
@@ -208,10 +171,12 @@ UltimateLib.Contracts = (function(self) {
 		
 			collectedContracts.addRange(getstore.smallContracts);
 			UltimateLib.Logger.log("Small Contracts Added");
+
 		if (company.flags.mediumContractsEnabled){
 			collectedContracts.addRange(getstore.mediumContracts);
 			UltimateLib.Logger.log("Medium Contracts Added");
 		}
+
 		if (company.flags.largeContractsEnabled) {
 			collectedContracts.addRange(getstore.largeContracts);
 			UltimateLib.Logger.log("Large Contracts Added");

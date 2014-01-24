@@ -119,20 +119,19 @@ UltimateLib.Utils = (function(self) {
         */          
        self.compare = function (val1, val2, op) {
 
-           var newArr;
-           newArr = true;
+           var newArr = false;
 
-           if (op == "=" && val1 == val2) {
+           if ((op == "=" || op == "eq")&& val1 == val2) {
                newArr = true;
-           } else { newArr = false; }
+           }
 
-           if (op == "<" && val1 < val2) {
+           if ((op == "<" || op == "lt") && val1 < val2) {
                newArr = true;
-           } else { newArr = false; }
+           }
 
-           if (op == ">" && val1 > val2) {
+           if ((op == ">" || op == "gt") && val1 > val2) {
                newArr = true;
-           } else { newArr = false; }
+           }
 
            return newArr;
        };
@@ -145,7 +144,7 @@ UltimateLib.Utils = (function(self) {
         */           
        self.getIds = function (arr) {
 
-           var newArr;
+           var newArr = [];
 
            $.grep(arr, function (e, i) {
                newArr.push(e.id);

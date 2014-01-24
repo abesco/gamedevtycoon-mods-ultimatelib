@@ -22,10 +22,12 @@ var UltimateLib = (function(self) {
      * @description An array that contains all the core files of UltimateLib
      * @public
     */            
-    self.libraries      = [{name:'Configuration', file:''},
-                           {name:'Contracts', file:''}, 
+    self.libraries = [     {name:'Configuration', file:''},
+                           {name:'Contracts', file:''},
+                           {name:'Compatibility', file:''}, 
                            {name:'Dialog', file:''},
                            {name:'Elements', file:''},
+                           {name:'GameData', file:''},
                            {name:'NameGenerator', file:''},
                            {name:'Notifications', file:''},
                            {name:'PopupMenu', file:''},
