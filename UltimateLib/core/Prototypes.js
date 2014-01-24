@@ -1,4 +1,3 @@
-﻿
 /** Add Prototypes **/
 if (typeof String.format == 'undefined') {
     String.format = function () {

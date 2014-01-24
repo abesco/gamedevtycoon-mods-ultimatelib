@@ -1,15 +1,16 @@
 /**
  * @class GameData
+ * @module UltimateLib
+ * @main UltimateLib
  * @namespace UltimateLib
  * @author Chad Keating (SirEverard)
- * @version 1.0.0
  * @description GameData is a class intended for easy polling/searching of data from within the game.
- * @fileOverview GameData is a class intended for easy polling/searching of data from within the game.
  * @constructor
- * @param {object} self An object representing the class itself for extending
+ * @param {Object} self An object representing the class itself or a new object for the purpose of extensibility. This parameter can be ignored.
+ * @since 1.2.0
  * @beta
- */
-
+ */ 
+ 
 UltimateLib.GameData = (function (self) {
     // Show up in console
     UltimateLib.Logger.log("UltimateLib.GameData loading...");

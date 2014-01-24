@@ -1,4 +1,4 @@
-  /**
+/**
  * @class Logger
  * @module UltimateLib
  * @main UltimateLib

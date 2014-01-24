@@ -1,4 +1,4 @@
-  /**
+/**
  * @class Core
  * @module UltimateLib
  * @main UltimateLib

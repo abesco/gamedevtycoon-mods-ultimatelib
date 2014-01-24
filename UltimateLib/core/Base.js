@@ -1,4 +1,4 @@
- /**
+/**
  * @class Base
  * @module UltimateLib
  * @main UltimateLib

@@ -1,18 +1,18 @@
-﻿/**
+ /**
  * @class Compatibility
+ * @module UltimateLib
+ * @main UltimateLib
  * @namespace UltimateLib
  * @author Chad Keating (SirEverard)
  * @description Fixes any compatibility issues mods have between each other and/or the vanilla game.
- * @fileOverview  Fixes any compatibility issues mods have between each other and/or the vanilla game.
  * @constructor
- * @param {object} self An object representing the class itself for extending
- */
-
+ * @param {Object} self An object representing the class itself or a new object for the purpose of extensibility. This parameter can be ignored.
+ */ 
+ 
 UltimateLib.Compatibility = (function (self) {
     /**
      * @method init
      * @description Called for global initialization after Core.init()
-     * @public
     */        
     self.init = function () {
 
@@ -24,9 +24,8 @@ UltimateLib.Compatibility = (function (self) {
     /**
      * @method noGameFix
      * @description Fixes issue where the game will crash when training in the second office if no game has been created previously.
-     * @protected
+     * @private
     */
-    
     function noGameFix() {
 
         var keepme = Character.prototype._doTraining;
@@ -58,11 +57,9 @@ UltimateLib.Compatibility = (function (self) {
     /**
      * @method earlyContextBugFix
      * @description Fixes issue where it is possible to start a new working task before a contract is completed. 
-     * @protected
+     * @private
     */    
     function earlyContextBugFix() { };
-
-
 
     return self;
 })(UltimateLib.Compatibility || {});
