@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Build xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Optimizations Enabled="true">
+    <DisableOptimizations>false</DisableOptimizations>
+    <Compression>true</Compression>
+    <Obfuscation>true</Obfuscation>
+    <IgnoreEval>true</IgnoreEval>
+    <PreserveAllSemicolons>true</PreserveAllSemicolons>
+  </Optimizations>
   <Core>
     <Items>
       <string>Prototypes</string>

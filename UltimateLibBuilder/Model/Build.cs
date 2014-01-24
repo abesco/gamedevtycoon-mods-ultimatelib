@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Xml.Serialization;
 
 [Serializable]
 public class Build
@@ -7,15 +8,28 @@ public class Build
     public Core Core { get; set; }
     public Libraries Libraries { get; set; }
     public Libraries3rd Libraries3rd { get; set; }
+    public Optimizations Optimizations { get; set; }
 
     public Build()
     {
         this.Core = new Core();
         this.Libraries = new Libraries();
         this.Libraries3rd = new Libraries3rd();
+        this.Optimizations = new Optimizations();
     }
 }
 
+[Serializable]
+public class Optimizations
+{
+    [XmlAttribute]
+    public bool Enabled { get; set; }
+    public bool DisableOptimizations { get; set; }
+    public bool Compression { get; set; }
+    public bool Obfuscation { get; set; }
+    public bool IgnoreEval { get; set; }
+    public bool PreserveAllSemicolons { get; set; }
+}
 [Serializable]
 public class Core
 {

@@ -1,4 +1,4 @@
-﻿/**
+/**
  * @class GameData
  * @namespace UltimateLib
  * @author Chad Keating (SirEverard)

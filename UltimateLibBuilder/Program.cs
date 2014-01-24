@@ -11,6 +11,8 @@ namespace UltimateLibBuilder
     using System.Runtime.ExceptionServices;
     using System.Xml.Serialization;
 
+    using Yahoo.Yui.Compressor;
+
     class Program
     {
         private static Build BuildList;
@@ -48,28 +50,70 @@ namespace UltimateLibBuilder
             }
 
             files.Add(Path.Combine(dir, "GDT.Hook.js"));
-            
 
-            const int chunkSize = 2 * 1024; // 2KB
-            using (var output = File.Create(target))
+
+            if (BuildList.Optimizations.Enabled)
             {
-                foreach (var file in files)
+                var yuc = new Yahoo.Yui.Compressor.JavaScriptCompressor();
+                var sb = new StringBuilder();
+
+                yuc.DisableOptimizations = BuildList.Optimizations.DisableOptimizations;
+                yuc.LoggingType = LoggingType.None;
+                yuc.LineBreakPosition = 1;
+                yuc.CompressionType = BuildList.Optimizations.Compression? CompressionType.Standard : CompressionType.None;
+                yuc.ObfuscateJavascript = BuildList.Optimizations.Obfuscation;
+                yuc.PreserveAllSemicolons = BuildList.Optimizations.PreserveAllSemicolons;
+                yuc.IgnoreEval = BuildList.Optimizations.IgnoreEval;
+                
+                try
                 {
-                    if (!File.Exists(file))
+                    foreach (var file in files)
                     {
-                        continue;
-                    }
-                    using (var input = File.OpenRead(file))
-                    {
-                        var buffer = new byte[chunkSize];
-                        int bytesRead;
-                        while ((bytesRead = input.Read(buffer, 0, buffer.Length)) > 0)
+                        if (!File.Exists(file))
                         {
-                            output.Write(buffer, 0, bytesRead);
+                            continue;
+                        }
+
+
+                        sb.Append(yuc.Compress(File.ReadAllText(file))); 
+                    }
+
+                    
+
+                    using (var output = File.CreateText(target))
+                    {
+                        output.Write(sb.ToString());
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Error " + ex.Message);
+                }
+            }
+            else
+            {
+                const int chunkSize = 2 * 1024; // 2KB
+                using (var output = File.Create(target))
+                {
+                    foreach (var file in files)
+                    {
+                        if (!File.Exists(file))
+                        {
+                            continue;
+                        }
+                        using (var input = File.OpenRead(file))
+                        {
+                            var buffer = new byte[chunkSize];
+                            int bytesRead;
+                            while ((bytesRead = input.Read(buffer, 0, buffer.Length)) > 0)
+                            {
+                                output.Write(buffer, 0, bytesRead);
+                            }
                         }
                     }
                 }
             }
+
         }
 
         static void ReadBuildList()
