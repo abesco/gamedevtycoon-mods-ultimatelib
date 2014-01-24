@@ -31,7 +31,6 @@ namespace UltimateLibBuilder
 
             var files = new List<string>();
 
-            files.Add(Path.Combine(dir, "GDT.Hook.js"));
 
             foreach (var item in BuildList.Core.Items)
             {
@@ -48,6 +47,7 @@ namespace UltimateLibBuilder
                 files.Add(Path.Combine(dir, "libs\\" + item + ".js"));
             }
 
+            files.Add(Path.Combine(dir, "GDT.Hook.js"));
             
 
             const int chunkSize = 2 * 1024; // 2KB
