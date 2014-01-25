@@ -65,7 +65,7 @@ UltimateLib.GameData = (function (self) {
         /**
          * @method findStory
          * @description Searches all stories by it's unique id.
-         * @param {String} Unique Story Id
+         * @param {String} story Unique Story Id
          * @return {Object} Returns Story Object.
          * @example
             UltimateLib Story Object
@@ -101,7 +101,7 @@ UltimateLib.GameData = (function (self) {
         /**
          * @method findStaff
          * @description Finds a staff member by their name and returns that staff members object.
-         * @param {String} Staff members name
+         * @param {String} name Staff members name
          * @return {Object} Staff member object
         */   
         self.findStaff = function (name) {
@@ -112,7 +112,7 @@ UltimateLib.GameData = (function (self) {
         /**
          * @method getStaff
          * @description Allows the querying of staff member objects.
-         * @param {Object} Options object.
+         * @param {Object} options Options object.
          * @example
             UltimateLib.GameData.Staff.getStaff Options Object
             {
@@ -209,9 +209,9 @@ UltimateLib.GameData = (function (self) {
          * @private
          * @method modeSum
          * @description Returns an array of all elements summed by the filter.
-         * @param {Array} Array of Staff objects.
-         * @param {String} Filter option.
-         * @param {String}||{Integer} Array of Staff objects.
+         * @param {Array} arr Array of Staff objects.
+         * @param {String} fil Filter option.
+         * @param {String|Integer} val Array of Staff objects.
          * @return {Array} Array of summed elements.
         */
         function modeSum(arr, fil, val) {
@@ -301,8 +301,8 @@ UltimateLib.GameData = (function (self) {
          * @private
          * @method modeFilter
          * @description Returns an array object values determined by the filter option.
-         * @param {Array} Array of Staff objects.
-         * @param {String} Filter option.
+         * @param {Array} arr Array of Staff objects.
+         * @param {String} fil Filter option.
          * @return {Array} Array of object values determined by the filter option.
         */
         function modeFilter(arr, fil) {
@@ -360,10 +360,10 @@ UltimateLib.GameData = (function (self) {
          * @private
          * @method runFilter
          * @description Filters and compares an array of staff objects.
-         * @param {Array} Array of Staff objects.
-         * @param {String} Filter option.
-         * @param {String}||{Interger} Filter value.
-         * @param {String} Comparison operator.
+         * @param {Array} arr Array of Staff objects.
+         * @param {String} fil Filter option.
+         * @param {String|Interger} val Filter value.
+         * @param {String} com Comparison operator.
          * @return {Array} Array of filtered and compared objects.
         */
         function runFilter(arr, fil, val, com) {
@@ -421,9 +421,9 @@ UltimateLib.GameData = (function (self) {
          * @private
          * @method runCompare
          * @description Compares two values together.
-         * @param {String}||{Interger} Comparison value 1.
-         * @param {String}||{Interger} Comparison value 2.
-         * @param {String} Comparison operator.
+         * @param {String|Interger} val1 Comparison value 1.
+         * @param {String|Interger} val2 Comparison value 2.
+         * @param {String} op Comparison operator.
          * @return {Boolean} Returns true if comparison is true, else false.
         */
         function runCompare(val1, val2, op) {
@@ -434,9 +434,9 @@ UltimateLib.GameData = (function (self) {
          * @private
          * @method runSort
          * @description Sorts staff object array by sort key.
-         * @param {Array} Staff Object Array.
-         * @param {String} Sort key in which the array is sorted by.
-         * @param {Boolean} If true array will be sorted in ascending order.
+         * @param {Array} arr Staff Object Array.
+         * @param {String} key Sort key in which the array is sorted by.
+         * @param {Boolean} asc If true array will be sorted in ascending order.
          * @return {Array} Sorted array.
         */
         function runSort(arr, key, asc) {
