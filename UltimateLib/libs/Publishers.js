@@ -31,14 +31,20 @@ UltimateLib.Publishers = (function(self) {
         */
     };
     
+    self.Names = [];
+
     /**
      * @method addPublisherName
      * @description Adds publisher name to array
      * @param {String} name Publisher id/name
     */  
-    self.addPublisherName = function(name){
- 		var getstore = GDT.getDataStore("UltimateLib").settings;
-        getstore.publisherNames.push(name);
+    self.addPublisherName = function () {
+        if (arguments[0] === undefined) {
+            return;
+        }
+        for (var i = 0; i < arguments.length; i++) {
+            self.Names.push(arguments[i]);
+        }
     };
     
     /**
@@ -54,7 +60,7 @@ UltimateLib.Publishers = (function(self) {
 			if (type == "gameContract"){publishers.addRange(UltimateLib.Publisher.collection()); UltimateLib.Logger.log("Publisher Collection Added");}
 			return contracts;				
 		};
-	};
+	}
 
 	/**
      * @method collection

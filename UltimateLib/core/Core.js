@@ -24,7 +24,7 @@ UltimateLib.Core = (function(self) {
             var lib     = UltimateLib.getObjByName("UltimateLib." + v.name);
             var init    = lib ? lib.init : null;    
 
-            if(init != null){
+            if(init !== undefined){
                 UltimateLib.Logger.log("# Calling UltimateLib internal init function on "+v.name+" ("+v.file+").");
                 init();
             }

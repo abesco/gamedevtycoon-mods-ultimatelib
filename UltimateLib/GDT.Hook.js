@@ -57,11 +57,9 @@ In short
     };
 
     // GDT.loadJs(['mods/UltimateLib/UltimateLib.js'], ready, error);
-
-    
+   
     UltimateLib.init();
-
-        UltimateLib.Logger.enabled = UltimateLib.mod.debug && UltimateLib.mod.debug == true;
+    UltimateLib.Logger.enabled = UltimateLib.mod.debug && UltimateLib.mod.debug === true;
     UltimateLib.Core.init();
     
     UltimateLib.Update.GitHub.notifyIfNewerVersion("abesco", "gamedevtycoon-mods-ultimatelib", "release", "UltimateLib");

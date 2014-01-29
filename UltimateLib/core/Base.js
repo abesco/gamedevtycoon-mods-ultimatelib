@@ -35,7 +35,9 @@ var UltimateLib = (function(self) {
                            {name:'Storage', file:''},
                            {name:'Update', file:''},
                            {name:'Utils', file:''},
-                           {name:'VisualTweaks', file:''}];
+                           { name: 'Visuals', file: '' },
+                           { name: 'VisualTweaks', file: '' }
+    ];
 
     /**
      * @property {Array} libraries3rd
@@ -124,11 +126,13 @@ var UltimateLib = (function(self) {
                 switch(section){
                     case '3rd':
                         self.libraries3rd.push({name:name, file:file});
-                    break;
+                        break;
                     
                     case 'libs':
                         self.libraries.push({name:name, file:file});
-                    break; 
+                        break;
+                    default:
+                        break;
                 }
                 
                 self.js.push(file);

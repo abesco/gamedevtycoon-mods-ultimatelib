@@ -23,7 +23,7 @@ UltimateLib.Utils = (function(self) {
         */      
         function sortAlpha(a, b) {
            return a.toLowerCase() > b.toLowerCase() ? 1 : -1;
-        };
+        }
 
         /**
          * @private
@@ -35,7 +35,7 @@ UltimateLib.Utils = (function(self) {
         */           
         function sortNum(a, b) {
            return a > b ? 1 : -1;
-        };
+        }
        
         /**
          * @method getFormattedNumber
@@ -46,10 +46,10 @@ UltimateLib.Utils = (function(self) {
         self.getFormattedNumber = function(num) {
 			var s = num.toString().replace(",", ".");
 			var n = "";
-
+			var l; 
 			if (s.indexOf(".") >= 0) {
 				var i = s.substring(0, s.lastIndexOf("."));
-				var l = i.length - 1;
+				l = i.length - 1;
 				if (l > 0) {
 					n = s.substring(0, 1) + "E" + l;
 				} else {
@@ -57,7 +57,7 @@ UltimateLib.Utils = (function(self) {
 					n = s;
 				}
 			} else {
-				var l = s.length - 1;
+				l = s.length - 1;
 				if (l > 0) {
 					n = s.substring(0, 1) + "E" + l;
 				} else {
@@ -75,17 +75,17 @@ UltimateLib.Utils = (function(self) {
          * @param {any} val A value to assign when @see what  
          * @param {Integer} ms Interval time in milliseconds when to repeat check
         */           
-        self.wait4 = function(what, val, ms){
-            if(typeof what !== "undefined") {
+        self.wait4 = function (what, val, ms) {
+            if (typeof what !== "undefined") {
                 // variable exists, do what you want
                 UltimateLib.Logger.log("Done waiting!");
                 what = val;
             }
-            else{
+            else {
                 UltimateLib.Logger.log("I wait4 " + ms + " ms...");
                 setTimeout(function () { wait(); }, ms);
             }
-        }
+        };
         
         /**
          * @method sort
@@ -151,7 +151,7 @@ UltimateLib.Utils = (function(self) {
            });
 
            return newArr;
-       }
+       };
 
         
     // Show up in console

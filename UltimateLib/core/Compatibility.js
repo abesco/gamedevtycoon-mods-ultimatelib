@@ -33,10 +33,10 @@ UltimateLib.Compatibility = (function (self) {
         
         Character.prototype._doTraining = function (research, delta) {
 
-            if (GameManager.company.gameLog.length == 0) {
+            if (GameManager.company.gameLog.length === 0) {
                 var game = {
                     releaseWeek: GameManager.company.currentWeek
-                }
+                };
                 GameManager.company.gameLog.push(game);
 
                 keepme(research, delta);
@@ -52,14 +52,14 @@ UltimateLib.Compatibility = (function (self) {
         };
         GameManager.company.staff[0].currentResearch.lastSpawnTick = 0;
 
-    };
+    }
 
     /**
      * @method earlyContextBugFix
      * @description Fixes issue where it is possible to start a new working task before a contract is completed. 
      * @private
     */    
-    function earlyContextBugFix() { };
+    function earlyContextBugFix() { }
 
     return self;
 })(UltimateLib.Compatibility || {});

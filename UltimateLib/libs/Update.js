@@ -39,9 +39,8 @@ UltimateLib.Update = (function(self){
           break;
         }
       }
-
       return res;
-    };
+    }
      
      /**
      * @method init
@@ -59,7 +58,7 @@ UltimateLib.Update = (function(self){
      * @param {method} hasNewerVersion Checks if there's a new version of a mod online by querying the specified repository, branch and directory.
      * @param {method} notifyIfNewerVersion Notifies the user in-game if there's a new version of the mod available by offering to navigate to the page.
     */   
-    self.GitHub = {
+    self.GitHub = (function (self) {
         
         /**
          * @method getLatestVersionAvailable
@@ -70,24 +69,24 @@ UltimateLib.Update = (function(self){
          * @param {String} [dir] Optional: Directory of the package.json of the module. Default: empty string (repo root)
          * @return {String} A string containing the version information about the latest version available online.
         */   
-        getLatestVersionAvailable: function(user, repo, branch, dir){
-            branch  = branch ? branch : "master";
-            dir     = dir ? dir+'/' : '';
+        self.getLatestVersionAvailable = function (user, repo, branch, dir) {
+            branch = branch ? branch : "master";
+            dir = dir ? dir + '/' : '';
 
-            var github      = new Github({username: user});
-            var repo        = github.getRepo(user, repo);
-            
-            repo.read(branch, dir+'package.json', function(err, data) {
-                if (err){
+            var github = new Github({ username: user });
+            repo = github.getRepo(user, repo);
+
+            repo.read(branch, dir + 'package.json', function (err, data) {
+                if (err) {
                     UltimateLib.Logger.log("Could not read the specified GitHub data. The server responded:" + err);
                     return undefined;
                 }
                 else {
-                    var packg = JSON.parse( data );
+                    var packg = JSON.parse(data);
                     return packg.version;
                 }
             });
-        },
+        };
         
         /**
          * @method hasNewerVersion
@@ -98,35 +97,35 @@ UltimateLib.Update = (function(self){
          * @param {String} [dir] Optional: Directory of the package.json of the module. Default: empty string (repo root)
          * @return {Boolean} True if there's a new version of the mod available online, otherwise False.
         */           
-        hasNewerVersion: function(user, repo, branch, dir){
-            branch  = branch ? branch : "master";
-            dir     = dir ? dir+'/' : '';
+        self.hasNewerVersion = function (user, repo, branch, dir) {
+            branch = branch ? branch : "master";
+            dir = dir ? dir + '/' : '';
 
-            var github      = new Github({username: user});
-            var repo        = github.getRepo(user, repo);
-            var hasNewer    = false;
-            
-            repo.read(branch, dir + 'package.json', function(err, data) {
+            var github = new Github({ username: user });
+            var hasNewer = false;
+            repo = github.getRepo(user, repo);
+
+            repo.read(branch, dir + 'package.json', function (err, data) {
                 hasNewer = false;
 
-                if (err){
+                if (err) {
                     UltimateLib.Logger.log("Could not read the specified GitHub data in UltimateLib.Update.hasNeverVersion. The server responded:" + err);
                 }
                 else {
-                    var packg = JSON.parse( data );
+                    var packg = JSON.parse(data);
                     var mod;
                     for (var i = 0; i < ModSupport.availableMods.length; i++) {
-                        if(ModSupport.availableMods[i].id == packg.id){
+                        if (ModSupport.availableMods[i].id == packg.id) {
                             mod = ModSupport.availableMods[i];
                             break;
                         }
                     }
-                    if (mod){
+                    if (mod) {
                         hasNewer = compareVersions(mod.version, packg.version) < 0;
-                    }                    
+                    }
                 }
             });
-         },
+        };
          
         /**
          * @method notifyIfNewerVersion
@@ -136,84 +135,85 @@ UltimateLib.Update = (function(self){
          * @param {String} [branch] Optional: A name specifying the branch to use. Default: master
          * @param {String} [dir] Optional: Directory of the package.json of the module. Default: empty string (repo root)
         */             
-        notifyIfNewerVersion: function(user, repo, branch, dir){
-            branch  = branch ? branch : "master";
-            dir     = dir ? dir+'/' : '';
+        self.notifyIfNewerVersion = function (user, repo, branch, dir) {
+            branch = branch ? branch : "master";
+            dir = dir ? dir + '/' : '';
 
-            var github      = new Github({username: user});
-            var repo        = github.getRepo(user, repo);
-            var hasNewer    = false;
-            
-            repo.read(branch, dir+'package.json', function(err, data) {
-                if (err){
+            var github = new Github({ username: user });
+            var hasNewer = false;
+            repo = github.getRepo(user, repo);
+
+            repo.read(branch, dir + 'package.json', function (err, data) {
+                if (err) {
                     UltimateLib.Logger.log("Could not read the specified GitHub data. The server responded:" + err);
                 }
                 else {
-                    var packg = JSON.parse( data );
+                    var packg = JSON.parse(data);
                     var mod;
                     for (var i = 0; i < ModSupport.availableMods.length; i++) {
-                        if(ModSupport.availableMods[i].id == packg.id){
+                        if (ModSupport.availableMods[i].id == packg.id) {
                             mod = ModSupport.availableMods[i];
                             break;
                         }
                     }
-                    if (mod){
+                    if (mod) {
                         var comp = compareVersions(mod.version, packg.version);
                         var headerText = '';
                         var bodyText = '';
-                        
-                        if(comp < 0){
+
+                        if (comp < 0) {
                             headerText = "New version available";
                             bodyText = "A new version of " + mod.name + " is available.<br>Latest version: <strong>" + packg.version + "</strong>";
 
-                            var doc                 = $(document);
-                            var docWidth            = doc.width();
-                            var docHeight           = doc.height();
-                            var docCenterX          = (docWidth * 0.5) - 300;
-                            var docCenterY          = (docHeight * 0.5) - 20;
-                            
-                                            
+                            var doc = $(document);
+                            var docWidth = doc.width();
+                            var docHeight = doc.height();
+                            var docCenterX = (docWidth * 0.5) - 300;
+                            var docCenterY = (docHeight * 0.5) - 20;
+
+
                             var notifier = $(document.createElement('div'));
                             var notifierCloseButton = $(document.createElement('div'));
-                            var notifierUrlButton   = $(document.createElement('div'));
-                            
-                            notifier.addClass('UltimateLibUpdateNotifierElement');
-                            notifier.css({width:'600', height:80, border:'4px solid #ffffff', opacity:1,textAlign:'center', backgroundColor:'#eeeeee', position:'absolute',top:'5px', left:docCenterX, zIndex:10000});
-                            
-                            
-                            // notifierCloseButton.addClass('icon-times-circle-o');
-                            notifierCloseButton.addClass('icon-remove-sign'); 
-                            notifierCloseButton.css({width:16, height:16, position:'relative', top:'-40px',left:'230px', cursor:'pointer', margin:0, padding:0});
-                            notifierCloseButton.attr('title',"Close this update notification");
+                            var notifierUrlButton = $(document.createElement('div'));
 
-                            notifierUrlButton.addClass('icon-external-link'); 
-                            notifierUrlButton.css({width:16, height:16, position:'relative', top:'-39px',left:'190px', cursor:'pointer', margin:0, padding:0});
-                            notifierUrlButton.attr('title',"Click here to browse to the update page ("+mod.url+")");
-                            
+                            notifier.addClass('UltimateLibUpdateNotifierElement');
+                            notifier.css({ width: '600', height: 80, border: '4px solid #ffffff', opacity: 1, textAlign: 'center', backgroundColor: '#eeeeee', position: 'absolute', top: '5px', left: docCenterX, zIndex: 10000 });
+
+
+                            // notifierCloseButton.addClass('icon-times-circle-o');
+                            notifierCloseButton.addClass('icon-remove-sign');
+                            notifierCloseButton.css({ width: 16, height: 16, position: 'relative', top: '-40px', left: '230px', cursor: 'pointer', margin: 0, padding: 0 });
+                            notifierCloseButton.attr('title', "Close this update notification");
+
+                            notifierUrlButton.addClass('icon-external-link');
+                            notifierUrlButton.css({ width: 16, height: 16, position: 'relative', top: '-39px', left: '190px', cursor: 'pointer', margin: 0, padding: 0 });
+                            notifierUrlButton.attr('title', "Click here to browse to the update page (" + mod.url + ")");
+
                             $('#gameContainerWrapper').append(notifier);
-                            
-                            notifier.html('<h3>'+headerText+'</h3>'+bodyText);
+
+                            notifier.html('<h3>' + headerText + '</h3>' + bodyText);
                             notifierCloseButton.appendTo(notifier);
                             notifierUrlButton.appendTo(notifier);
-                            
-                            notifierCloseButton.click(function(){
+
+                            notifierCloseButton.click(function () {
                                 notifier.remove();
                             });
-                            
-                            notifierUrlButton.click(function(){
-                                 PlatformShim.openUrlExternal(mod.url);
-                                 notifier.remove();       
+
+                            notifierUrlButton.click(function () {
+                                PlatformShim.openUrlExternal(mod.url);
+                                notifier.remove();
                             });
                         }
-                        else if (comp == 0){
+                        else if (comp === 0) {
                             headerText = "You are up-to-date";
                             bodyText = "You are already using the latest version of " + mod.name + "<br>Current version:  <strong>" + mod.version + "</strong>";
                         }
                     }
                 }
             });
-        }
-    };
+        };
+        return self;
+    })(self.GitHub || {});
 
     return self;
 })(UltimateLib.Update || {});    

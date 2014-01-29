@@ -32,13 +32,14 @@ UltimateLib.GameData = (function (self) {
      * @description Returns time till next random event in milliseconds
      * @return {Integer} Time till next event (ms).
     */  
-    self.timeTilNextEvent = function(){
+    self.timeTilNextEvent = function () {
         return GameManager.company.flags.nextRandomEvent - GameManage.gameTime;
-    }
+    };
 
-    self.News = function () {
+    self.News = (function (self) {
 
-        var self = this;
+        var GM = GameManager;
+        var GMC = GameManager.company;
 
         /**
          * @method oldStories
@@ -53,7 +54,7 @@ UltimateLib.GameData = (function (self) {
                 date    :   "xx/xx/xx", //Date the story was triggered.
                 image   :   imageUrl //null if no url present
             }
-        */   
+        */
         self.oldStories = function () {
             var oldid = GMC.scheduledStoriesShown;
             var stories = [];
@@ -76,27 +77,28 @@ UltimateLib.GameData = (function (self) {
                 date    :   "xx/xx/xx", //Date the story was or will be triggered.
                 image   :   imageUrl //null if no url present
             }
-        */  
+        */
         self.findStory = function (story) {
 
             var id = UltimateLib.Utils.getIds(story, Media.allScheduledStories);
             var a = Media.allScheduledStories[id[0]];
             var b = {
-                id      :   a.id,
-                header  :   a.notification.header, 
-                text    :   a.notification.text, 
-                date    :   a.date, 
-                image   :   a.notification.image ?  a.notification.image : null
-            }
+                id: a.id,
+                header: a.notification.header,
+                text: a.notification.text,
+                date: a.date,
+                image: a.notification.image ? a.notification.image : null
+            };
 
             return b;
         };
 
         return self;
-    }
+    })(self.News || {});
 
-    self.Staff = function () {
-        var self = this;
+    self.Staff = (function (self) {
+        var GM = GameManager;
+        var GMC = GameManager.company;
 
         /**
          * @method findStaff
@@ -200,7 +202,7 @@ UltimateLib.GameData = (function (self) {
                 if (mode == "id") {
                     query = UltimateLib.Utils.getIds(query, filter);
                 }
-            };
+            }
             return query;
         };
 
@@ -221,24 +223,22 @@ UltimateLib.GameData = (function (self) {
             var newArr = [];
             $.grep(arr, function (e, i) {
                 switch (fil) {
-                    case "all":        
+                    case "all":
                         newArr.push(e);
                         break;
-                    case "id":        
+                    case "id":
                         newArr.push(e.id);
                         break;
                     case "name":
                         newArr[0] += e.name + ", ";
                         break;
                     case "sex":
-                        if (e.sex == "male")
-                        {
+                        if (e.sex == "male") {
                             newArr.push("male");
-                        };
-                        if (e.sex == "female")
-                        {
+                        }
+                        if (e.sex == "female") {
                             newArr.push("female");
-                        };
+                        }
                         break;
                     case "salary":
                         newArr[0] += e.salary;
@@ -267,16 +267,15 @@ UltimateLib.GameData = (function (self) {
                     default:
                         newArr = undefined;
                         break;
-                };
-
+                }
                 return false;
-            })
+            });
 
             if (fil == name) {
                 newArr[0].substring(0, str.length - 2);
 
                 var and = " and ";
-                newArr[0].replace(/,\s([^,]+)$/, and + '$1')
+                newArr[0].replace(/,\s([^,]+)$/, and + '$1');
 
             }
 
@@ -295,7 +294,7 @@ UltimateLib.GameData = (function (self) {
 
 
                 return newArr;
-        };
+        }
 
         /**
          * @private
@@ -348,13 +347,13 @@ UltimateLib.GameData = (function (self) {
                     default:
                         newArr = undefined;
                         break;
-                };
+                }
 
                 return false;
-            })
+            });
 
             return newArr;
-        };
+        }
 
         /**
          * @private
@@ -408,13 +407,13 @@ UltimateLib.GameData = (function (self) {
                     default:
                         result = undefined;
                         break;
-                };
+                }
 
                 return result;
-            })
+            });
 
             return newArr;
-        };
+        }
 
 
         /**
@@ -504,16 +503,16 @@ UltimateLib.GameData = (function (self) {
                     break;
                 default:
                     break;
-            };
+            }
 
             if (key != "none" && asc === true) {
                 newArr.reverse();
             }
             return newArr;
-        };
+        }
 
         return self;
-    };
+    })(self.Staff || {});
 
     /*
     self.findGame = function (gameName) {
@@ -521,6 +520,8 @@ UltimateLib.GameData = (function (self) {
         return games[jQuery.inArray(gameName, games)];
     };
     */
+    // Show up in console
+    UltimateLib.Logger.log("UltimateLib.GameData loaded :-)");
 
     return self;
 })(UltimateLib.GameData || {});
