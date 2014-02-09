@@ -18,7 +18,9 @@ UltimateLib.Core = (function(self) {
 
         // Initializes the logger
         UltimateLib.Logger.log("--- UltimateLib main library successfully loaded, now loading additional libs...");
-               
+        
+        UltimateLib.Compatibility.init();      
+        
         // Call "init" methods on all loaded libraries where applicable
         $.each( UltimateLib.libraries, function(i,v){
             var lib     = UltimateLib.getObjByName("UltimateLib." + v.name);

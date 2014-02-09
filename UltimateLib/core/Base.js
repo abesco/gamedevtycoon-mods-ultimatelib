@@ -23,10 +23,9 @@ var UltimateLib = (function(self) {
      * @public
     */            
     self.libraries = [
-                            { name: 'Achievements', file: '' },
-                            { name: 'Configuration', file: '' },
-                            { name: 'Contracts', file: '' },
-                            { name: 'Compatability', file: '' },
+                            {name:'Achievements', file: '' },
+                            {name:'Configuration', file: '' },
+                            {name:'Contracts', file:''}, 
                             {name:'Dialog', file:''},
                             {name:'Elements', file:''},
                             {name:'GameData', file:''}, 
@@ -38,8 +37,8 @@ var UltimateLib = (function(self) {
                             {name:'Storage', file:''},
                             {name:'Update', file:''},
                             {name:'Utils', file:''},
-                            { name: 'Visuals', file: '' },
-                            { name: 'VisualTweaks', file: '' }
+                            {name:'Visuals', file: '' },
+                            {name:'VisualTweaks', file: '' }
     ];
 
     /**
