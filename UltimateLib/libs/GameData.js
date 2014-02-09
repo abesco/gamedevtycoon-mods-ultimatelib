@@ -3,6 +3,7 @@
  * @module UltimateLib
  * @main UltimateLib
  * @namespace UltimateLib
+ * @requires Base,Core,Logger
  * @author Chad Keating (SirEverard)
  * @description GameData is a class intended for easy polling/searching of data from within the game.
  * @constructor

@@ -8,6 +8,7 @@
  * @description This API provides functionality for adding contracts to the game.
  * @constructor
  * @param {Object} self An object representing the class itself or a new object for the purpose of extensibility. This parameter can be ignored.
+ * @since 1.3.0
  * @beta
  * @example
         UltimateLib Contract Format 

@@ -17,9 +17,32 @@ UltimateLib.Compatibility = (function (self) {
     self.init = function () {
 
        // noGameFix();
-       // earlyContextBugFix();
+        // earlyContextBugFix();
+        //levelCalculator();
 
     };
+
+
+
+    function levelCalculator() {
+        var keep = LevelCalculator.getFeatureLevel;
+
+        LevelCalculator.getFeatureLevel = function (company, id) {
+            var level;
+            try{
+                level = keep(company, id);
+            }
+            catch (e) {
+                level = 0;
+            }
+            return level
+        };
+
+    }
+
+
+
+
 
     /**
      * @method noGameFix

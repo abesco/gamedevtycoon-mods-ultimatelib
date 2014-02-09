@@ -9,6 +9,7 @@
  * @constructor
  * @param {Object} self An object representing the class itself or a new object for the purpose of extensibility. This parameter can be ignored.
  * @beta
+ * @since 1.3.0
  * @example
         UltimateLib Publisher Contract Object
         {

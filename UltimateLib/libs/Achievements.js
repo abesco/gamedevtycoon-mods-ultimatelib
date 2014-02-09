@@ -1,15 +1,31 @@
 ﻿/**
-* @class Achievements
-* @module UltimateLib
-* @main UltimateLib
-* @namespace UltimateLib
-* @requires Base,Core,Logger
-* @author Francesco Abbattista (alphabit) and Mathieu Dumoulin (crazycodr)
-* @description Dialog is an UltimateLib library class providing dialog creation capabilities i.e. for use with PopupMenu.
-* @constructor
-* @param {Object} self An object representing the class itself or a new object for the purpose of extensibility. This parameter can be ignored.
-* @beta
-*/
+ * @class Achievements
+ * @module UltimateLib
+ * @main UltimateLib
+ * @namespace UltimateLib
+ * @requires Base,Core,Logger
+ * @since 1.3.0
+ * @author Chad Keating (SirEverard)
+ * @description Dialog is an UltimateLib library class providing dialog creation capabilities i.e. for use with PopupMenu.
+ * @constructor
+ * @param {Object} self An object representing the class itself or a new object for the purpose of extensibility. This parameter can be ignored.
+ * @example 
+        Ultimate Acheivements Example Object
+        {
+                id: "UltimateLib",
+                title: "UltimateLib",
+                description: "Played a game with UltimateLib installed.",
+                isAchieved: function (a) {
+                    return true;
+                },
+                tint: "#FFFFFF",
+                value: 10,
+                hidden: true,
+                canEarnMultiple: false
+        };
+
+ * @beta
+ */
 
 UltimateLib.Achievements = (function (self) {
     // Show up in console

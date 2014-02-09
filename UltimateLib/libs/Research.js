@@ -83,7 +83,8 @@ UltimateLib.Research = (function(self) {
         };
     */
 
-    function formatBigResearch(r,z) {
+    function formatBigResearch(r, z) {
+
         try {
             var test = GDT.getDataStore("UL-Research").data[r.id].complete;
         }
@@ -91,8 +92,15 @@ UltimateLib.Research = (function(self) {
             GDT.getDataStore("UL-Research").data[r.id] = {
                 complete: false
             };
-
         }
+
+        if (z === 0) {
+            var keepme = r.canResearch;
+            r.canResearch = function (a) {
+                return a.flags.hwLabUnlocked === true && keepme(a);
+            };
+        }
+
         if (r.repeatable === false) {
             var keepme1 = r.complete;
             var keepme2 = r.canResearch;
@@ -287,7 +295,6 @@ UltimateLib.Research = (function(self) {
      * @method addRndResearch
      * @description Adds a RnD lab research.
      * @param {Object} research An object of using the UltimateLib Lab Research Format
-     * @deprecated
      * @example
         RnD Lab Research Format
         {
