@@ -34,7 +34,7 @@ UltimateLib.Visuals = (function (self) {
 
 
         return self;
-    })(self.Color || {});
+    })(self.Tweaks || {});
 
     self.Office = (function (self) {
 
@@ -66,7 +66,10 @@ UltimateLib.Visuals = (function (self) {
         return self;
     })(self.Office || {});
 
+    console.log(self);
     self.Tweaks = (function (self) {
+        console.log(self);
+
 
         var store = GDT.getDataStore("UltimateLib");
         var tweakId = "ul-visuals-tweaks";
@@ -78,8 +81,9 @@ UltimateLib.Visuals = (function (self) {
             UltimateLib.Logger.log("UltimateLib.Visuals.Tweaks init ran.");
 
             $('head').append('<style id="' + tweakId + '" type="text/css"></style>');
-
+            console.log(tweakId);
             UltimateLib.Storage.write('SliderBG', {
+
                 engine: ".\/mods\/UltimateLib\/img\/defaultsbg.gif",
                 gameplay: ".\/mods\/UltimateLib\/img\/defaultsbg.gif",
                 story: ".\/mods\/UltimateLib\/img\/defaultsbg.gif",
@@ -92,7 +96,8 @@ UltimateLib.Visuals = (function (self) {
                 cssset: false,
                 watermarkset: false
             });
- 
+            console.log("setting");
+
         };
 
 
@@ -186,7 +191,7 @@ UltimateLib.Visuals = (function (self) {
             if (!(radius >= 0)) { radius = 8; }
             var tweak = $('#' + tweakId);
             tweak.append('.featureProgressContainer, .staffDTBarContainer, .rsNavItem, .rsThumb, .projectStatusCard, .selectableGameFeatureItem, .ul-vt-bar { border-radius: ' + radius + 'px; }');
-            tweak.append('.featurePreview1, .featureProgress, .ul-vt-bar-left { border-top-left-radius: ' + radius + 'px; border-bottom-left-radius: ' + radius + 'px }');
+            tweak.append('.featurePreview1, .featureProgress, .featureProgressGain, .ul-vt-bar-left { border-top-left-radius: ' + radius + 'px; border-bottom-left-radius: ' + radius + 'px }');
             tweak.append('.featurePreview3, .featureProgressGain, .ul-vt-bar-right { border-top-right-radius: ' + radius + 'px; border-bottom-right-radius: ' + radius + 'px }');
          
             UltimateLib.Logger.log("UltimateLib.Visuals.Tweaks.setRoundedBars set.");
@@ -359,6 +364,7 @@ UltimateLib.Visuals = (function (self) {
          * @param {String} style The style to apply **not yet implemented
         */
         self.setAllTweaks = function (style) {
+            console.log(self);
             self.setRoundedWindows();
             self.setScrollBar();
             self.setRoundedButtons();

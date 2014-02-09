@@ -1,7 +1,0 @@
-C:\Users\Serenity\Documents\GitHub\gamedevtycoon-mods-ultimatelib\UltimateLibBuilder\obj\Debug\UltimateLibBuilder.csprojResolveAssemblyReference.cache
-C:\Users\Serenity\Documents\GitHub\gamedevtycoon-mods-ultimatelib\UltimateLibBuilder\bin\Debug\BuildList.xml
-C:\Users\Serenity\Documents\GitHub\gamedevtycoon-mods-ultimatelib\UltimateLibBuilder\bin\Debug\UltimateLibBuilder.exe
-C:\Users\Serenity\Documents\GitHub\gamedevtycoon-mods-ultimatelib\UltimateLibBuilder\bin\Debug\UltimateLibBuilder.pdb
-C:\Users\Serenity\Documents\GitHub\gamedevtycoon-mods-ultimatelib\UltimateLibBuilder\bin\Debug\Yahoo.Yui.Compressor.dll
-C:\Users\Serenity\Documents\GitHub\gamedevtycoon-mods-ultimatelib\UltimateLibBuilder\obj\Debug\UltimateLibBuilder.exe
-C:\Users\Serenity\Documents\GitHub\gamedevtycoon-mods-ultimatelib\UltimateLibBuilder\obj\Debug\UltimateLibBuilder.pdb
