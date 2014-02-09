@@ -25,7 +25,8 @@ var UltimateLib = (function(self) {
     self.libraries = [
                             { name: 'Achievements', file: '' },
                             { name: 'Configuration', file: '' },
-                            {name:'Contracts', file:''}, 
+                            { name: 'Contracts', file: '' },
+                            { name: 'Compatability', file: '' },
                             {name:'Dialog', file:''},
                             {name:'Elements', file:''},
                             {name:'GameData', file:''}, 
