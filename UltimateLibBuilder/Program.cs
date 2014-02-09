@@ -24,7 +24,7 @@ namespace UltimateLibBuilder
 
             // Collect all files in this directory
             var dir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-            var target = Path.Combine(dir, "UltimateLib.js");
+            var target = Path.Combine(dir, "CAMELOT.js");
 
             if (File.Exists(target))
             {
@@ -33,21 +33,33 @@ namespace UltimateLibBuilder
 
             var files = new List<string>();
 
+            files.Add(Path.Combine(dir, "CamelotCore.js"));
 
-            foreach (var item in BuildList.Core.Items)
+            foreach (var item in BuildList.Gameplay.Items)
             {
-                files.Add(Path.Combine(dir, "core\\" + item + ".js"));
+                files.Add(Path.Combine(dir, "Gameplay\\" + item + ".js"));
             }
 
-            foreach (var item in BuildList.Libraries3rd.Items)
+            foreach (var item in BuildList.Grid.Items)
             {
-                files.Add(Path.Combine(dir, "3rd\\" + item + ".js"));
+                files.Add(Path.Combine(dir, "Grid\\" + item + ".js"));
             }
 
-            foreach (var item in BuildList.Libraries.Items)
+            foreach (var item in BuildList.Staff.Items)
             {
-                files.Add(Path.Combine(dir, "libs\\" + item + ".js"));
+                files.Add(Path.Combine(dir, "Staff\\" + item + ".js"));
             }
+
+            foreach (var item in BuildList.StockMarket.Items)
+            {
+                files.Add(Path.Combine(dir, "StockMarket\\" + item + ".js"));
+            }
+
+            foreach (var item in BuildList.Story.Items)
+            {
+                files.Add(Path.Combine(dir, "Story\\" + item + ".js"));
+            }
+
 
             files.Add(Path.Combine(dir, "GDT.Hook.js"));
 
@@ -137,9 +149,11 @@ namespace UltimateLibBuilder
             using (var sw = new StreamWriter(file))
             {
                 var b = new Build();
-                b.Core.Items = new[] { "iuj", "iojo", "oijoi" };
-                b.Libraries.Items = new[] { "iuj", "iojo", "oijoi" };
-                b.Libraries3rd.Items = new[] { "iuj", "iojo", "oijoi" };
+                b.Gameplay.Items = new[] { "iuj", "iojo", "oijoi" };
+                b.Grid.Items = new[] { "iuj", "iojo", "oijoi" };
+                b.Staff.Items = new[] { "iuj", "iojo", "oijoi" };
+                b.StockMarket.Items = new[] { "iuj", "iojo", "oijoi" };
+                b.Story.Items = new[] { "iuj", "iojo", "oijoi" };
                 xml.Serialize(sw, b);
             }
 

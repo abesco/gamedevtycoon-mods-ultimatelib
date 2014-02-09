@@ -5,16 +5,20 @@ using System.Xml.Serialization;
 [Serializable]
 public class Build
 {
-    public Core Core { get; set; }
-    public Libraries Libraries { get; set; }
-    public Libraries3rd Libraries3rd { get; set; }
+    public Gameplay Gameplay { get; set; }
+    public Grid Grid { get; set; }
+    public Staff Staff { get; set; }
+    public StockMarket StockMarket { get; set; }
+    public Story Story { get; set; }
     public Optimizations Optimizations { get; set; }
 
     public Build()
     {
-        this.Core = new Core();
-        this.Libraries = new Libraries();
-        this.Libraries3rd = new Libraries3rd();
+        this.Gameplay = new Gameplay();
+        this.Grid = new Grid();
+        this.Staff = new Staff();
+        this.StockMarket = new StockMarket();
+        this.Story = new Story();
         this.Optimizations = new Optimizations();
     }
 }
@@ -31,11 +35,11 @@ public class Optimizations
     public bool PreserveAllSemicolons { get; set; }
 }
 [Serializable]
-public class Core
+public class Gameplay
 {
     public string[] Items { get; set; }
 
-    public Core()
+    public Gameplay()
     {
         this.Items = new string[0];
     }
@@ -50,11 +54,11 @@ public class Core
 }
 
 [Serializable]
-public class Libraries
+public class Grid
 {
     public string[] Items { get; set; }
 
-    public Libraries()
+    public Grid()
     {
         this.Items = new string[0];
     }
@@ -69,11 +73,49 @@ public class Libraries
 }
 
 [Serializable]
-public class Libraries3rd
+public class Staff
 {
     public string[] Items { get; set; }
 
-    public Libraries3rd()
+    public Staff()
+    {
+        this.Items = new string[0];
+    }
+
+    public void Add(string item)
+    {
+        var l = new List<string>();
+        l.AddRange(this.Items);
+        l.Add(item);
+        this.Items = l.ToArray();
+    }
+}
+
+[Serializable]
+public class StockMarket
+{
+    public string[] Items { get; set; }
+
+    public StockMarket()
+    {
+        this.Items = new string[0];
+    }
+
+    public void Add(string item)
+    {
+        var l = new List<string>();
+        l.AddRange(this.Items);
+        l.Add(item);
+        this.Items = l.ToArray();
+    }
+}
+
+[Serializable]
+public class Story
+{
+    public string[] Items { get; set; }
+
+    public Story()
     {
         this.Items = new string[0];
     }
