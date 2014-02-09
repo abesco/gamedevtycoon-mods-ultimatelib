@@ -27,7 +27,7 @@
             }
         };
         
-        Lab Research Format
+        Hardware/Rnd Research Format
         {
             id: "UniqueID",
             name: "Research Name".localize(),
@@ -37,10 +37,10 @@
             },
             iconUri: "./mods/YourMod/images/yourImage.png", //Path to icon for your research.
             description: "Description of your research.".localize(),
-            targetZone: 2, // HardwareLab: 0, RndLab: 2
             complete: function () {
                 //Stuff that happens when the research completes.
-            }
+            },
+            repeatable: false // Allows the research to repeat after it's been completed.
         };
                 
  */ 
@@ -58,6 +58,83 @@ UltimateLib.Research = (function(self) {
 
     };
     
+    /**
+     * @private
+     * @method formatBigResearch
+     * @description Adds a special/oneoff research.
+     * @return {Boolean} Formatted research object
+     * @param {Object} r 
+     * @param {Integer} z An object of using the UltimateLib Special Research Format
+     * @example
+        Hardware/Rnd Research Format
+        {
+            id: "UniqueID",
+            name: "Research Name".localize(),
+            pointsCost: 1000, //Research cost, this is gathered over time and the speed is controlled by the lab budget. 
+            canResearch: function (company) {
+                return (a.staff.length == 3); //Returns a boolean value. Perform flag checks here.
+            },
+            iconUri: "./mods/YourMod/images/yourImage.png", //Path to icon for your research.
+            description: "Description of your research.".localize(),
+            complete: function () {
+                //Stuff that happens when the research completes.
+            },
+            repeatable: false // Allows the research to repeat after it's been completed.
+        };
+    */
+
+    function formatBigResearch(r,z) {
+        try {
+            var test = GDT.getDataStore("UL-Research").data[r.id].complete;
+        }
+        catch (e) {
+            GDT.getDataStore("UL-Research").data[r.id] = {
+                complete: false
+            };
+
+        }
+        if (r.repeatable === false) {
+            var keepme1 = r.complete;
+            var keepme2 = r.canResearch;
+            r.complete = function (a) {
+                    GDT.getDataStore("UL-Research").data[r.id].complete = true;
+                keepme1(a);
+            };
+            r.canResearch = function (a) {
+                return GDT.getDataStore("UL-Research").data[r.id].complete !== true && keepme2(a);
+            };
+        }
+
+        if (r.repeatable === true) {
+            var keepme3 = r.complete;
+            r.complete = function (a) {
+                    GDT.getDataStore("UL-Research").data[r.id].complete = true;
+                keepme3(a);
+            };
+        }
+
+        if (!(r.iconUri.length > 0)) {
+            r.iconUri = "./mods/UltimateLib/img/defaultResearch.png";
+        }
+
+        var research =   {
+                        id: "UL-Research-" + r.id,
+                        name: r.name,
+                        pointsCost: r.pointsCost, 
+                        canResearch: r.canResearch,
+                        iconUri: r.iconUri,
+                        description: r.description,
+                        targetZone: z,
+                        complete: r.complete                    
+        };
+
+        return research;
+
+    }
+
+
+
+
 	/**
      * @method addSpecial
      * @description Adds a special/oneoff research.
@@ -166,7 +243,8 @@ UltimateLib.Research = (function(self) {
             categoryDisplayName: "Debugging".localize(), //Name shown for the Category
             complete: function () {
                 //Stuff that happens when the research completes.
-            }
+            },
+            repeatable: false // Allows the research to repeat after it's been completed.
         }; 
     */
 	function specialCheck(research){        
@@ -224,11 +302,13 @@ UltimateLib.Research = (function(self) {
 	        targetZone: 2, // HardwareLab: 0, RndLab: 2
 	        complete: function () {
 		        //Stuff that happens when the research completes.
-	        }
+	        },
+            repeatable: false // Allows the research to repeat after it's been completed.
         };
 	*/
 	self.addRndResearch = function (research) {
-	    if (!labCheck(research) && research.targetZone === 2) {
+	    research = formatBigResearch(research, 2);
+	    if (!labCheck(research)) {
 	        UltimateLib.Logger.log("RnD Lab Research Failed Compatiblity Check. " + research);
 	        return;
 	    }
@@ -255,15 +335,17 @@ UltimateLib.Research = (function(self) {
 	        targetZone: 0, // HardwareLab: 0, RndLab: 2
 	        complete: function () {
 		        //Stuff that happens when the research completes.
-	        }
+	        },
+            repeatable: false // Allows the research to repeat after it's been completed.
         };
 	*/
 	self.addHardwareResearch = function (research) {
-
-	    if (!labCheck(research) && research.targetZone === 0) {
+	   
+	    research = formatBigResearch(research, 0);
+	    if (!labCheck(research)) {
 	        UltimateLib.Logger.log("Hardware Research Failed Compatiblity Check. " + research);
 	        return;
-	    }
+	    } 
 	    Research.bigProjects.push(research);
 	    UltimateLib.Logger.log("Hardware Research Research Added");
 	};

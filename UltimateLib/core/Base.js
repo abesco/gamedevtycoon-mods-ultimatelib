@@ -22,21 +22,23 @@ var UltimateLib = (function(self) {
      * @description An array that contains all the core files of UltimateLib
      * @public
     */            
-    self.libraries      = [{name:'Configuration', file:''},
-                           {name:'Contracts', file:''}, 
-                           {name:'Dialog', file:''},
-                           {name:'Elements', file:''},
-                           {name:'GameData', file:''}, 
-                           {name:'NameGenerator', file:''},
-                           {name:'Notifications', file:''},
-                           {name:'PopupMenu', file:''},
-                           {name:'Publishers', file:''},
-                           {name:'Research', file:''},
-                           {name:'Storage', file:''},
-                           {name:'Update', file:''},
-                           {name:'Utils', file:''},
-                           { name: 'Visuals', file: '' },
-                           { name: 'VisualTweaks', file: '' }
+    self.libraries = [
+                            { name: 'Achievements', file: '' },
+                            { name: 'Configuration', file: '' },
+                            {name:'Contracts', file:''}, 
+                            {name:'Dialog', file:''},
+                            {name:'Elements', file:''},
+                            {name:'GameData', file:''}, 
+                            {name:'NameGenerator', file:''},
+                            {name:'Notifications', file:''},
+                            {name:'PopupMenu', file:''},
+                            {name:'Publishers', file:''},
+                            {name:'Research', file:''},
+                            {name:'Storage', file:''},
+                            {name:'Update', file:''},
+                            {name:'Utils', file:''},
+                            { name: 'Visuals', file: '' },
+                            { name: 'VisualTweaks', file: '' }
     ];
 
     /**

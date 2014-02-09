@@ -18,6 +18,7 @@
   </Core>
   <Libraries>
     <Items>
+      <string>Achievements</string>
       <string>Configuration</string>
       <string>Contracts</string>
       <string>Dialog</string>

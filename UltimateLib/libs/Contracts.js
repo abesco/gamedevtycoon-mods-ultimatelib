@@ -12,13 +12,16 @@
  * @example
         UltimateLib Contract Format 
         {
-            name: "Contract Name",
+            title: "Contract Name",
+            ulid: uniqueID,
             description: "Contract description",
             isRandom: true, // If true will be randomly added when contracts are requested (only if trigger conditions are met).
             randomChance: 10, // Will have a 1 in 10 chance of appearing in contract list
             canTrigger: function (company) {
                 return company.gameLog.length > 3; // Bool value determining whether the contract can be taken or not.
             },
+            complete: c.complete,
+            repeatable: c.repeatable,
             requiredD: 54, // Design points required
             requiredT: 10, // tech points required
             payment: 2E6, // Payment on completion 
@@ -37,11 +40,10 @@ UltimateLib.Contracts = (function(self) {
      * @method init 
      * @description Initializes the module.
     */ 
-    self.init = function(){
-    	               
-        // hijack ProjectContracts.getAvailable
-        hijackgetAvailable();
+    self.init = function(){             
 
+        hijackgetAvailable();
+        hijackContractComplete();
         UltimateLib.Logger.log("UltimateLib.Contracts init ran.");
 
 
@@ -69,19 +71,22 @@ UltimateLib.Contracts = (function(self) {
     self.Large = [];
 
 	/**
-     * @method addContract
+     * @method add
      * @description Adds a custom contract.
      * @param {Object} contract An object that has the specification shown in the example box (UltimateLib Contract Format)
      * @example
         UltimateLib Contract Format 
         {
-            name: "Contract Name",
+            title: "Contract Name",
+            ulid: uniqueID,
             description: "Contract description",
             isRandom: true, // If true will be randomly added when contracts are requested (only if trigger conditions are met).
             randomChance: 10, // Will have a 1 in 10 chance of appearing in contract list
             canTrigger: function (company) {
                 return company.gameLog.length > 3; // Bool value determining whether the contract can be taken or not.
             },
+            complete: c.complete,
+            repeatable: c.repeatable,
             requiredD: 54, // Design points required
             requiredT: 10, // tech points required
             payment: 2E6, // Payment on completion 
@@ -91,11 +96,11 @@ UltimateLib.Contracts = (function(self) {
             size: "small" //"small", "medium", or "large"
         };
 	*/
-	self.addContract = function (contract) {
+	self.add = function (contract) {
 	
 		if (!contractCheck(contract)) {
 		    UltimateLib.Logger.log("Contract Failed Compatiblity Check: " + contract.name);
-		    console.log("Failed");
+		    
 			return; 
 		}
 		
@@ -113,7 +118,7 @@ UltimateLib.Contracts = (function(self) {
 		    default:
 		        break;
 		}
-
+		console.log("Contract Added: " + fcontract.name);
 		UltimateLib.Logger.log("Contract Added: " + fcontract.name);
 	};
 		
@@ -126,13 +131,18 @@ UltimateLib.Contracts = (function(self) {
      * @example
         UltimateLib Contract Format 
         {
-            name: "Contract Name",
+            title: "Contract Title",
+            ulid: uniqueID,
             description: "Contract description",
             isRandom: true, // If true will be randomly added when contracts are requested (only if trigger conditions are met).
             randomChance: 10, // Will have a 1 in 10 chance of appearing in contract list
             canTrigger: function (company) {
                 return company.gameLog.length > 3; // Bool value determining whether the contract can be taken or not.
             },
+            complete: function (company) {
+                //complete fuction
+            },
+            repeatable: false,
             requiredD: 54, // Design points required
             requiredT: 10, // tech points required
             payment: 2E6, // Payment on completion 
@@ -143,9 +153,48 @@ UltimateLib.Contracts = (function(self) {
         };
     */
 	function contractCheck(contract){
-	    return (Checks.checkPropertiesPresent(contract, ['name', 'description', 'requiredD', 'requiredT', 'payment', 'penalty', 'weeksToFinish', 'rF', 'size']));
+	    return (Checks.checkPropertiesPresent(contract, ['title', 'description', 'requiredD', 'requiredT', 'payment', 'penalty', 'weeksToFinish', 'rF', 'size']));
 	}
 		
+
+    /**
+     * @private
+     * @method setContractComplete
+     * @description Sets the contract's flag to complete.
+     * @param {String} id A contracts UL Id
+    */
+	function setContractComplete(id) {
+	    try {
+	        GDT.getDataStore("UL-Contracts").data[id].complete = true;
+	    }
+	    catch (e) {
+	        GDT.getDataStore("UL-Contracts").data[id] = {
+	            complete: true
+	        };
+
+	    }
+
+	}
+
+    /**
+     * @private
+     * @method getContractComplete
+     * @description Sets the contract's flag to complete.
+     * @param {String} id A contracts UL Id
+     * @return {Boolean} Returns true if the contract is complete. Else false.
+    */
+	function getContractComplete(id) {
+	    var test;
+	    try {
+	        test = GDT.getDataStore("UL-Contracts").data[id].complete;
+	    }
+	    catch (e) {
+	        test = false;
+	    }
+	    return test;
+    }
+
+
 	/**
      * @private
      * @method formatContract
@@ -156,11 +205,14 @@ UltimateLib.Contracts = (function(self) {
          Injected Contract Format
 		    {
 	            id: "genericContracts",
-				name : c.name,
+                ulid: "uniqueId",
+				name : c.title,
 				description: c.description,
 				isRandom: c.isRandom,
 				canTrigger: c.canTrigger,
-				requiredD : c.requiredD, // Design points required
+				complete: c.complete,
+                repeatable: c.repeatable,
+                requiredD : c.requiredD, // Design points required
 				requiredT : c.requiredT, // tech points required
 				spawnedD : 0,
 				spawnedT : 0,
@@ -170,16 +222,42 @@ UltimateLib.Contracts = (function(self) {
 				rF : c.rF, 
 				isGeneric : true, 
 				size : c.size // "small", "medium", or "large"
+                
 		    }
 	*/
 	function formatContract(contract){
+
+
+	    if (contract.repeatable === false) {
+	        var keepme1 = contract.complete;
+	        var keepme2 = contract.canTrigger;
+	        contract.complete = function (a) {
+	            setContractComplete(this.ulid);
+	            keepme1(a);
+	        };
+	        contract.canTrigger = function (a) {
+	            return getContractComplete(this.ulid) !== true && keepme2(a);
+	        };
+	    }
+
+	    if (contract.repeatable === true) {
+	        var keepme3 = contract.complete;
+	        contract.complete = function (a) {
+	            setContractComplete(this.ulid);
+	            keepme3(a);
+	        };
+	    }
+
+
 	    var c = contract;
 	    return {
-	            id: "genericContracts",
-				name : c.name,
+	        id: "genericContracts",
+	        ulid: "UL-Contracts-" + c.ulid,
+				name : c.title,
 				description: c.description,
 				isRandom: c.isRandom,
 				canTrigger: c.canTrigger,
+				complete: c.complete,
 				requiredD : c.requiredD, // Design points required
 				requiredT : c.requiredT, // tech points required
 				spawnedD : 0,
@@ -201,9 +279,9 @@ UltimateLib.Contracts = (function(self) {
     */  
 	function hijackgetAvailable () {
 		var keep = ProjectContracts.getAvailable;
-		ProjectContracts.getAvailable  = function(company, type){
-		    var contracts = keep(company, type);
-			if (type == "generic") {
+		ProjectContracts.getAvailable = function(company, ctype){
+		    var contracts = keep(company, ctype);
+		    if (ctype === "generic") {
 			    contracts.addRange(UltimateLib.Contracts.collection(company));
 			    UltimateLib.Logger.log("Contract Collection Added");
 			}
@@ -211,9 +289,37 @@ UltimateLib.Contracts = (function(self) {
 		};
 	}
 	
-	function randomContract(random,chance) {
+    /**
+     * @private
+     * @method hijackContractComplete
+     * @description Injects a complete callback for custom contracts.
+     * @return {Object} An array containig object items with the UltimateLib Contract Format specification
+    */
+	function hijackContractComplete() {
+	    var keep = ProjectContracts.genericContracts.complete;
+
+	    ProjectContracts.genericContracts.complete = function (company, success, data) {
+	        try {
+	            data.complete(company);
+	        }
+	        catch (e) { }
+	        keep(company, success, data);
+	    };
+	}
+
+
+
+    /**
+     * @private
+     * @method randomContract
+     * @description Decides whether a random contract is chosen or not.
+     * @param {Boolean} random True if the contract is a random contract.
+     * @param {Integer} chance A number larger than 1 donating the chance that the contract is giving.
+     * @return {Boolean} random True indicating that the contract is chosen.
+    */
+	function randomContract(random, chance) {
 	    if (random === true) {
-	        if (!(1 == Math.floor((Math.random() * chance) + 1))) {
+	        if ((1 === Math.floor((Math.random() * chance) + 1)) === false) {
 	            random = false;
 	        }
 	    }
