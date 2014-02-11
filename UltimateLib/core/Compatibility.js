@@ -25,19 +25,17 @@ UltimateLib.Compatibility = (function (self) {
 
 
     function levelCalculator() {
-        var keep = LevelCalculator.getFeatureLevel;
-
         LevelCalculator.getFeatureLevel = function (company, id) {
             var level;
+            
             try{
-                level = keep(company, id);
+                level = LevelCalculator.getLevel(LevelCalculator.getFeatureExperience(company, id));
             }
             catch (e) {
                 level = 0;
             }
             return level
         };
-
     }
 
 
