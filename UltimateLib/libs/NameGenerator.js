@@ -90,7 +90,8 @@ UltimateLib.NameGenerator = (function(self){
         suffixes:  [    "Collective", "United", "Studio", "Interactive", "Games", "Group",
                         "Team", "Community", "Alliance", "Company", "Direction", "Software", 
                         "Media", "Labs", "Ltd.", "Global", "Solutions", "Apps", "Technologies",
-                        "Park", "Systems", "Logic", "Services", "Associates", "Consulting"
+                        "Park", "Systems", "Logic", "Services", "Associates", "Consulting",
+                        "Entertainment"
                    ]
     };
     
