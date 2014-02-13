@@ -24,6 +24,46 @@ UltimateLib.Visuals = (function (self) {
         self.Tweaks.init();
     };
 
+    self.Custom = (function (self) {
+
+        var ulCustom = "UL-Visuals-Custom";
+
+        /**
+         * @method setCss
+         * @description Replaces the css of the given element.
+         * @param {String} id Id of the css element.
+         * @param {String} css Id of the css element.
+        */
+        self.setCss = function (id, css) {
+            id = ulCustom + id;
+
+            if ($('#' + id).length === 0) {
+                $('head').append('<style id="' + id + '" type="text/css"></style>');
+            }
+
+            $('head').find('#' + id).append(css);
+        };
+
+        /**
+         * @method addCss
+         * @description Appended the css of the given element.
+         * @param {String} id Id of the css element.
+         * @param {String} css Id of the css element.
+        */
+        self.addCss = function (id, css) {
+            id = ulCustom + id;
+
+            if ($('#' + id).length === 0) {
+                $('head').append('<style id="' + id + '" type="text/css"></style>');
+            }
+
+            $('head').find('#' + id).html(css);
+        };
+
+
+        return self;
+    })(self.Custom || {});
+
 
     self.setLayoutCss = function (modfolder) {
         var a = $('link[href$="layout.css"]');
