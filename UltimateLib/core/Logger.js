@@ -23,68 +23,6 @@ UltimateLib.Logger = (function(self) {
         }   
         return [[AddZero(dt.getFullYear()), AddZero(dt.getMonth() + 1), dt.getDate()].join("-"), [AddZero(dt.getHours()), AddZero(dt.getMinutes()), AddZero(dt.getHours())].join(":")].join(" ");
     }
-    
-    /**
-     * @private
-     * @method alertOverride 
-     * @description Overrides the window.alert to allow for better error messages.
-    */
-    function alertOverride() {
-
-        window.alert = function (alertMessage) {
-
-            headerText = "Information Alert";
-            bodyText = "" + alertMessage;
-
-            var doc = $(document);
-            var docWidth = doc.width();
-            var docHeight = doc.height();
-            var docCenterX = (docWidth * 0.5) - 360;
-            var docCenterY = (docHeight * 0.5) - 20;
-
-
-            var notifier = $(document.createElement('div'));
-            var notifierCloseButton = $(document.createElement('div'));
-            var notifierUrlButton = $(document.createElement('div'));
-
-            notifier.addClass('UltimateLibAlertNotifierElement');
-            notifier.css({
-                width: 720, height: "auto", border: '4px solid #ffffff', opacity: 1, textAlign: 'center',
-
-                backgroundColor: '#eeeeee', position: 'absolute', top: '30px', zIndex: 10000, left: docCenterX
-            });
-            notifierCloseButton.addClass('icon-remove-sign');
-            notifierCloseButton.css({ width: 16, height: 16, position: 'absolute', top: '9px', right: '16px', cursor: 'pointer', margin: 0, padding: 0 });
-            notifierCloseButton.attr('title', "Close this update notification");
-
-            notifierUrlButton.addClass('icon-external-link');
-            notifierUrlButton.css({ width: 16, height: 16, position: 'absolute', top: '10px', right: '38px', cursor: 'pointer', margin: 0, padding: 0 });
-            notifierUrlButton.attr('title', "Click here to head to the Greenheart Games Forums (http://forum.greenheartgames.com/)");
-
-            $('#gameContainerWrapper').append(notifier);
-
-            notifier.html('<h3>' + headerText + '</h3>' + '<p style="-webkit-user-select: text">' + bodyText + '</p>');
-            notifierCloseButton.prependTo(notifier);
-            notifierUrlButton.prependTo(notifier);
-
-            notifierCloseButton.click(function () {
-                notifier.remove();
-            });
-
-            notifierUrlButton.click(function () {
-                PlatformShim.openUrlExternal("http://forum.greenheartgames.com/");
-                notifier.remove();
-            });
-
-        };
-
-
-    } alertOverride();
-
-
-
-
-
 
     /**
      * @property enabled 

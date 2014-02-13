@@ -96,11 +96,9 @@ var UltimateLib = (function(self) {
      * @description Called for global initialization after Base.init()
      * @public
     */        
-    self.init = function(){
-        var sections        = ['3rd','libs'];
-        self.js             = [];
-        
+    self.init = function () {
 
+        // Assign module object for UL
         var availMods = ModSupport.availableMods;
         $.each(availMods, function(i, mod){
             if (mod.id == 'UltimateLib'){
@@ -124,9 +122,6 @@ var UltimateLib = (function(self) {
 
         var handler = function (e) {
             UltimateLib.Logger.log("A module has been loaded. " + e);
-            //custom code which will be called whenever one week passes.
-            // console.log("mod.loaded");
-            // console.log(ModSupport);
         };
         
         GDT.on(GDT.eventKeys.mod.loaded, handler);        
