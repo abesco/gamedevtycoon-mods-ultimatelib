@@ -11,6 +11,7 @@
     <Items>
       <string>Prototypes</string>
       <string>Base</string>
+      <string>Messages</string>
       <string>Logger</string>
       <string>Core</string>
       <string>Compatibility</string>
@@ -24,12 +25,14 @@
       <string>Dialog</string>
       <string>Elements</string>
       <string>GameData</string>
+      <string>Graphs</string>
       <string>NameGenerator</string>
       <string>Notifications</string>
       <string>PopupMenu</string>
       <string>Publishers</string>
       <string>Research</string>
       <string>Storage</string>
+      <string>Stats</string>
       <string>Utils</string>
       <string>Visuals</string>
       <string>VisualTweaks</string>
