@@ -18,6 +18,13 @@ var UltimateLib = (function(self) {
     self.js             = [];
       
     /**
+     * @property {Array} css
+     * @description An array that contains the css files associated to the UltimateLib library
+     * @public
+    */
+    self.css = [];
+
+    /**
      * @property {Array} libraries
      * @description An array that contains all the core files of UltimateLib
      * @public
@@ -46,7 +53,7 @@ var UltimateLib = (function(self) {
      * @description An array that contains all the 3rd party files of UltimateLib
      * @public
     */            
-    self.libraries3rd   = [{name:'base64', file:''}, {name:'underscore', file:''}, {name:'github', file:''}, {name:'foswig', file:''},{name:'jstorage', file:''}];
+    self.libraries3rd = [{ name: 'base64', file: '' }, { name: 'underscore', file: '' }, { name: 'github', file: '' }, { name: 'foswig', file: '' }, { name: 'jstorage', file: '' }, { name: 'flot', file: '' }];
 
     /**
      * @method getFiles
@@ -91,8 +98,9 @@ var UltimateLib = (function(self) {
     */        
     self.init = function(){
         var sections        = ['3rd','libs'];
-        self.js             = [];        
+        self.js             = [];
         
+
         var availMods = ModSupport.availableMods;
         $.each(availMods, function(i, mod){
             if (mod.id == 'UltimateLib'){
@@ -100,6 +108,20 @@ var UltimateLib = (function(self) {
             }
         });
         
+        // Acquire all CSS from the CSS folder
+        self.css = getFiles("css");
+
+        if (self.css && self.css.length > 0) {
+            var head = $('head');
+            $.each(self.css, function (index, item) {
+                if (item.toLowerCase().endsWith(".css")) {
+                    var link = $(document.createElement('link'));
+                    link.attr({ rel: 'stylesheet', type: 'text/css', href: item, media: 'all' });
+                    head.append(link);
+                }
+            });
+        }
+
         var handler = function (e) {
             UltimateLib.Logger.log("A module has been loaded. " + e);
             //custom code which will be called whenever one week passes.
