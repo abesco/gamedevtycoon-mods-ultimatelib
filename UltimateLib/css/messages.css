@@ -30,9 +30,55 @@
     top: 30px;
     z-index: 10000; 
     box-shadow: 3px 3px 5px #000;
+    background-color: #eeeeee;
    
+}
+
+.message-header {
+    font-family: "Segoe UI", "Open Sans";
 }
 
 p.message {
     -webkit-user-select: text;
 }
+
+.message.msg-error {
+    border-color: #c24242;
+    /*background-color: #a61717;*/
+}
+
+.message.msg-success {
+    border-color: #3c59ad;
+    /*background-color: #153286;*/
+}
+
+.message.msg-hint {
+    border-color: #c24242;
+    /*background-color: #a61717;*/
+}
+
+.message.msg-warning {
+    border-color: #edda72;
+    /*background-color: #dab903;*/
+}
+
+.message.msg-info {
+    border-color: #ffffff;
+    /*background-color: #eeeeee;*/
+}
+
+.message.msg-response {
+    border-color: #ffffff;
+    
+}
+
+.message.msg-tutorial {
+    border-color: #8164a5;
+    /*background-color: #5c368b;*/
+}
+
+.message.msg-default {
+    border-color: #c24242;
+    /*background-color: #a61d1d;*/
+}
+
