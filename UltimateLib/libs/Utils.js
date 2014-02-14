@@ -152,7 +152,6 @@ UltimateLib.Utils = (function(self) {
 
            return newArr;
        };
-
         
     // Show up in console
     UltimateLib.Logger.log("UltimateLib.Utils loaded :-)");

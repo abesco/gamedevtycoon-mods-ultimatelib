@@ -20,13 +20,18 @@ UltimateLib.Visuals = (function (self) {
      * @description Initializes the module.
     */
     self.init = function () {
-        UltimateLib.Configuration.addTab("visualsConfig", "Visuals", "");
+        //UltimateLib.Configuration.addTab("visualsConfig", "Visuals", "");
         self.Tweaks.init();
     };
+
+
 
     self.Custom = (function (self) {
 
         var ulCustom = "UL-Visuals-Custom";
+        
+
+
 
         /**
          * @method setCss
