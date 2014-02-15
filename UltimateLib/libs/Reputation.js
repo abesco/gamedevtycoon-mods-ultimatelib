@@ -21,10 +21,55 @@ UltimateLib.Reputation = (function (self) {
 
     self.Rating = (function (self) {
 
-        self.cash = function () {
+    	var c = GameManager.company;
+
+    	self.cash = function (company) {
+    		var cash = company ? company.cash : c.cash;
+    		var score = 0;
+    		switch (cash) {
+    			case cash > 1E10:
+    				score = 5;
+    				break
+    			case cash > 1E9:
+    				score = 4;
+    				break;
+    			case cash > 1E8:
+    				score = 3;
+    				break;
+    			case cash > 1E7:
+    				score = 2;
+    				break;
+    			case cash > 1E6:
+    				score = 1;
+    				break;
+    			default:
+    				break;
+    		}
+    		return score;
         };
 
-        self.games = function () {
+
+		
+
+
+    	self.games = function (company) {
+    		var log = company ? company.gameLog : c.gameLog;
+    		if (log.length > 0){
+
+    			var i = 0;
+    			var firstScore = 9;
+
+    			do{
+
+    				$.grep(log, function (ele, ind) {
+    					UltimateLib.Utils.compare(ele.score, firstScore  );
+    				});
+    				i++;
+
+    			} while (i < log.length);
+
+    		}
+
         };
 
         self.sales = function () {

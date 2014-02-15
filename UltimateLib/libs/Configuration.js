@@ -38,8 +38,11 @@ UltimateLib.Configuration = (function(self){
         var tabs = $('#UltimateLibConfigurationTabs');
             tabs.tabs("add","#"+name, text);
             tabs.tabs( "refresh" );
-            tabs.tabs( 'select', 0);
+            tabs.tabs('select', 0);
+
+
             
+
         $("#"+name).append(content);
                      
         return tabPanel;
@@ -73,7 +76,9 @@ UltimateLib.Configuration = (function(self){
         tabsContainer.find('.ui-tabs .ui-tabs-nav li a').css({fontSize:'7pt'});
 
         //Add overflow style for advanded options
-        $('head').append('<style id="ul-config-adv-overflow" type="text/css">#newGameView .featureSelectionPanel { overflow-x: none; overflow-y: auto; }</style>');
+        UltimateLib.Visual.Custom.setCss("advanceOptionsCss", "#newGameView .featureSelectionPanel { overflow-x: none; overflow-y: auto; }</style>");
+
+        UltimateLib.Visual.Custom.setCss("settingPanelCss", ".ui-dialog .ui-dialog-content { padding: .5em 1em 1em .5em; overflow-x: none; overflow-y: visible; }");
 
         UltimateLib.Logger.log("UltimateLib.Configuration init ran.");              
     };
