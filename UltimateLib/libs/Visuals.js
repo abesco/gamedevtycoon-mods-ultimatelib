@@ -214,7 +214,7 @@ UltimateLib.Visuals = (function (self) {
             }
             if (!(radius >= 0)) { radius = 10; }
             var tweak = $('#' + tweakId);
-            tweak.append('.orangeButton, .deleteButton, .whiteButton, .selectorButton, .baseButton, .contextMenuButton, .ul-vt-button { border-radius: ' + radius + 'px; }');
+            tweak.append('.orangeButton, .deleteButton, .whiteButton, .selectorButton, .baseButton, .contextMenuButton, .gameSizeButton, .ul-vt-button { border-radius: ' + radius + 'px; }');
             UltimateLib.Logger.log("UltimateLib.Visuals.Tweaks.setRoundedButtons set.");
         };
 
@@ -230,7 +230,7 @@ UltimateLib.Visuals = (function (self) {
             }
             if (!(radius >= 0)) { radius = 8; }
             var tweak = $('#' + tweakId);
-            tweak.append('.featureProgressContainer, .staffDTBarContainer, .rsNavItem, .rsThumb, .projectStatusCard, .selectableGameFeatureItem, .ul-vt-bar { border-radius: ' + radius + 'px; }');
+            tweak.append('.featureProgressContainer,  .staffItemBorder, .staffDTBarContainer, .rsNavItem, .rsThumb, .projectStatusCard, .selectableGameFeatureItem, .ul-vt-bar { border-radius: ' + radius + 'px; }');
             tweak.append('.featurePreview1, .featureProgress, .ul-vt-bar-left { border-top-left-radius: ' + radius + 'px; border-bottom-left-radius: ' + radius + 'px }');
             tweak.append('.featurePreview3, .featureProgressGain, .ul-vt-bar-right { border-top-right-radius: ' + radius + 'px; border-bottom-right-radius: ' + radius + 'px }');
          
@@ -249,6 +249,8 @@ UltimateLib.Visuals = (function (self) {
             }
             if (!(radius >= 0)) { radius = 8; }
             var tweak = $('#' + tweakId);
+
+            tweak.append('.gameSalesCardCanvas {width: 220px;left: 3px;};');
             tweak.append('#gameTitle, .featureSelectionCategoryHeading, .gameSalesCard, .loadSaveButton, .cashLogContainer, .ul-vt-textbox { border-radius: ' + radius + 'px; }');
             UltimateLib.Logger.log("UltimateLib.Visuals.Tweaks.setTextBox set.");
         };

@@ -185,7 +185,7 @@ UltimateLib.Messages = (function(self) {
     			break;
     	}
 
-    	$('#gameContainerWrapper').append(notifier);
+    	$('body').append(notifier);
 
     	notifier.html('<h3><i class="' + notifierIconClass + ' icon-2x">&nbsp;&nbsp;<span class="message-header">' + headerText + '</span></i></h3>' + '<p class="message">' + bodyText + '</p>');
 

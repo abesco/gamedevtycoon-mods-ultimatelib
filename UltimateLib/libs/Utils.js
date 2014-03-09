@@ -19,7 +19,7 @@ UltimateLib.Utils = (function(self) {
          * @description Comparer method for alphanumeric sorting
          * @param {String} a First string 
          * @param {String} b Second string
-         * @return {Integer} 1 if a is greatr than b else -1.
+         * @return {Integer} 1 if a is greater than b else -1.
         */      
         function sortAlpha(a, b) {
            return a.toLowerCase() > b.toLowerCase() ? 1 : -1;
@@ -31,7 +31,7 @@ UltimateLib.Utils = (function(self) {
          * @description Comparer method for numeric sorting
          * @param {Number} a First number
          * @param {Number} b Second number
-         * @return {Integer} 1 if a is greatr than b else -1.
+         * @return {Integer} 1 if a is greater than b else -1.
         */           
         function sortNum(a, b) {
            return a > b ? 1 : -1;
@@ -96,7 +96,7 @@ UltimateLib.Utils = (function(self) {
          * @return {Array} The sorted input array.
         */           
        self.sort = function (array, typ, asc) {
-           var sorted;
+           var sorted = [];
            if (typ == "alpha") {
                sorted = array.sort(sortAlpha);
            }
@@ -153,6 +153,133 @@ UltimateLib.Utils = (function(self) {
            return newArr;
        };
         
+	/**
+	 * @method percentage
+	 * @description Returns the percentage of a number
+	 * @param {Integer} small The small number.
+	 * @param {Integer} big The big number.
+	 * @param {Boolean} floor Whether to round the number or not. Default: false.
+	 * @return {Integer} Calculated percentage.
+	*/
+       self.percentage = function (small, big, floor) {
+
+       	floor = floor ? true : false;
+
+       	if (small === 0 || big === 0) {
+
+       		return 0;
+       	}
+
+       	var percent = small / big * 100;
+
+       	if (floor === true) {
+       		percent = Math.floor(percent);
+       	}
+
+       	return percent;
+
+       };
+
+
+       self.devStats = function () {
+       	var c = function (line, type) {
+       		var color;
+       		var r = "";
+       		var l = "";
+       		switch(type){
+       			case "h1":
+
+       				color = 'background: #333; color: #bada55; font-weight:bold;';
+       				line = "--- " + line + " ---";
+       				r = Array((38 - line.length) + 1).join(" ");
+       				l = Array(Math.floor((r.length / 2)) + 1).join(" ");
+       				r = Array((r.length - l.length) + 1).join(" ");
+       				break;
+       			case "h2":
+       				color = 'background: #333; color: #bada55; font-weight:bold;';
+       				line = "-- " + line + " --";
+       				r = Array((38 - line.length) + 1).join(" ");
+       				l = Array(Math.floor((r.length / 2)) + 1).join(" ");
+       				r = Array((r.length - l.length) + 1).join(" ");
+       				break;
+       			case "h3":
+       				color = 'background: #333; color: #bada55; font-weight:bold;';
+       				line = "- " + line + " -";
+       				r = Array((38 - line.length) + 1).join(" ");
+       				l = Array(Math.floor((r.length / 2)) + 1).join(" ");
+       				r = Array((r.length - l.length) + 1).join(" ");
+       				break;
+       			default:
+       				r = Array((38 - line.length) + 1).join(" ");
+       				color = 'background: #333; color: #fff';
+       				break;
+       		}
+
+			
+       		
+
+
+			line = " #  " + l + line + r + "  # ";
+
+			if (type == "div") {
+
+				console.log("%c" + " " + (Array((38 + 6) + 1).join("#")) + " ", color);
+				return
+			}
+       		if (color) {
+       			console.log(("%c" + line), color);
+       		} else {
+       			console.log(line)
+       		}
+
+       		return;
+       	}
+
+       	var r = Research;
+
+       	c("", "div");
+       	c("Development Stats", "h1");
+		c("", "div");
+       	c("");
+       	c("", "div");
+       	c("Research Items", "h2");
+       	c("Basic Items: " + r.BasicItems.length);
+       	c("Special Items: " + r.SpecialItems.length);
+       	c("One Time Items: " + r.OneTimeItems.length);
+       	c("Lab Researches: " + r.bigProjects.length);
+       	c("");
+       	c("Game Engine Items", "h3");
+       	c("Engine Items: " + r.engineItems.length);
+       	c("Gameplay Items: " + r.gameplayItems.length);
+       	c("Story Items: " + r.storyItems.length);
+       	c("Dialog Items: " + r.dialogItems.length);
+       	c("Level Design Items: " + r.levelDesignItems.length);
+       	c("A.I. Items: " + r.aiItems.length);
+       	c("World Design Items: " + r.worldDesignItems.length);
+       	c("Graphic Items: " + r.graphicItems.length);
+       	c("Sound Items: " + r.soundItems.length);
+       	c("");
+       	c(" -- Total: " + (r.getAllItems().length + r.bigProjects.length));
+
+       	c("", "div");
+       	c("");
+       	c("", "div");
+       	c("Misc.", "h2");
+       	c("", "div");
+       	c("Achivements: " + Achievements.getAllItems().length);
+       	c("Platforms: " + Platforms.allPlatforms.length);
+       	c("Events: " + DecisionNotifications.getAllNotificationsObjects().length);
+       	c("Topics: " + Topics.topics.length);
+       	c("Mods: " + ModSupport.availableMods.length);
+       	c(" --Enabled: " + JSON.parse(DataStore.getValue('enabledMods')).length);
+       	c("", "div");
+       	c(" Powered by UltimateLib");
+       	c("", "div");
+       };
+
+
+
+
     // Show up in console
     UltimateLib.Logger.log("UltimateLib.Utils loaded :-)");
         

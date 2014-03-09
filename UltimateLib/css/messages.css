@@ -40,6 +40,7 @@
 
 p.message {
     -webkit-user-select: text;
+    user-select: text;
 }
 
 .message.msg-error {

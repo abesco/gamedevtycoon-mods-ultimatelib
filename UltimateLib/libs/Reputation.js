@@ -56,19 +56,22 @@ UltimateLib.Reputation = (function (self) {
     		var log = company ? company.gameLog : c.gameLog;
     		if (log.length > 0){
 
+    			var tot = log.length;
+
     			var i = 0;
     			var firstScore = 9;
 
-    			do{
+    			var games = $.grep(log, function (ele, ind) {
+    				UltimateLib.Utils.compare(ele.score, firstScore);
+    			});
+    			games = games.length;
 
-    				$.grep(log, function (ele, ind) {
-    					UltimateLib.Utils.compare(ele.score, firstScore  );
-    				});
-    				i++;
+    			while((UltimateLib.Utils.percentage(games, tot, true) >= 50) === false);
 
-    			} while (i < log.length);
 
     		}
+			
+			return 
 
         };
 

@@ -279,6 +279,7 @@ UltimateLib.Publishers = (function(self) {
         var c = contract;
 
         var name = c.name ? c.name : (c.topic ? c.topic : "Any Topic".localize()) + " / " + (c.genre ? c.genre : "Any Genre".localize());
+        console.log(name);
 
         return {
             id: "publisherContracts",
@@ -322,6 +323,7 @@ UltimateLib.Publishers = (function(self) {
                 contracts.addRange(UltimateLib.Publishers.collection(company));
                 UltimateLib.Logger.log("Publisher Collection Added");
             }
+            console.log(contracts);
             return contracts;
         };
     }
@@ -410,12 +412,15 @@ UltimateLib.Publishers = (function(self) {
 
         var collectedContracts = [];
 
+
             collectedContracts.addRange(self.Small);
             UltimateLib.Logger.log("Small Contracts Added");
+            console.log(self.Small);
 
             collectedContracts.addRange(self.Medium);
             UltimateLib.Logger.log("Medium Contracts Added");
-      
+            console.log(self.Medium);
+
         if (company.canDevelopLargeGames()) {
             collectedContracts.addRange(self.Large);
             UltimateLib.Logger.log("Large Contracts Added");
@@ -437,7 +442,7 @@ UltimateLib.Publishers = (function(self) {
                     return e.canTrigger(company) && randomContract(e.isRandom, e.randomChance) && checkPlatforms(e.platform, company);
                 }
             );
-
+        console.log(collectedContracts);
         return collectedContracts;
     };
 

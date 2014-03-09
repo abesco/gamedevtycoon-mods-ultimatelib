@@ -76,9 +76,9 @@ UltimateLib.Configuration = (function(self){
         tabsContainer.find('.ui-tabs .ui-tabs-nav li a').css({fontSize:'7pt'});
 
         //Add overflow style for advanded options
-        UltimateLib.Visual.Custom.setCss("advanceOptionsCss", "#newGameView .featureSelectionPanel { overflow-x: none; overflow-y: auto; }</style>");
+        UltimateLib.Visuals.Custom.setCss("advanceOptionsCss", "#newGameView .featureSelectionPanel { overflow-x: none; overflow-y: auto; }</style>");
 
-        UltimateLib.Visual.Custom.setCss("settingPanelCss", ".ui-dialog .ui-dialog-content { padding: .5em 1em 1em .5em; overflow-x: none; overflow-y: visible; }");
+        UltimateLib.Visuals.Custom.setCss("settingPanelCss", ".ui-dialog .ui-dialog-content { padding: .5em 1em 1em .5em; overflow-x: none; overflow-y: visible; }");
 
         UltimateLib.Logger.log("UltimateLib.Configuration init ran.");              
     };
