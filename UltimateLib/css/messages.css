@@ -1,0 +1,85 @@
+﻿.message.button.url {
+    width: 16px;
+    height: 16px; 
+    position: absolute; 
+    top: 10px; 
+    right: 38px; 
+    cursor: pointer;
+    margin: 0;
+    padding: 0;
+}
+.message.button.close {
+    width: 16px;
+    height: 16px; 
+    position: absolute; 
+    top: 9px; 
+    right: 16px; 
+    cursor: pointer;
+    margin: 0;
+    padding: 0;
+}
+
+.message.window {
+    width: 720px;
+    height: auto;
+    border-width: 8px;
+    border-style: solid;
+    opacity: 1;
+    text-align: center;
+    position: absolute; 
+    top: 30px;
+    z-index: 10000; 
+    box-shadow: 3px 3px 5px #000;
+    background-color: #eeeeee;
+   
+}
+
+.message-header {
+    font-family: "Segoe UI", "Open Sans";
+}
+
+p.message {
+    -webkit-user-select: text;
+    user-select: text;
+}
+
+.message.msg-error {
+    border-color: #c24242;
+    /*background-color: #a61717;*/
+}
+
+.message.msg-success {
+    border-color: #0aa01f;
+    /*background-color: #153286;*/
+}
+
+.message.msg-hint {
+    border-color: #3c59ad;
+    /*background-color: #a61717;*/
+}
+
+.message.msg-warning {
+    border-color: #edda72;
+    /*background-color: #dab903;*/
+}
+
+.message.msg-info {
+    border-color: #ffffff;
+    /*background-color: #eeeeee;*/
+}
+
+.message.msg-response {
+    border-color: #ffffff;
+    
+}
+
+.message.msg-tutorial {
+    border-color: #8164a5;
+    /*background-color: #5c368b;*/
+}
+
+.message.msg-default {
+    border-color: #c24242;
+    /*background-color: #a61d1d;*/
+}
+
