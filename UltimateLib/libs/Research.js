@@ -85,14 +85,6 @@ UltimateLib.Research = (function(self) {
 
     function formatBigResearch(r, z) {
 
-        try {
-            var test = GDT.getDataStore("UL-Research").data[r.id].complete;
-        }
-        catch (e) {
-            GDT.getDataStore("UL-Research").data[r.id] = {
-                complete: false
-            };
-        }
 
         if (z === 0) {
             var keepme = r.canResearch;
@@ -109,7 +101,17 @@ UltimateLib.Research = (function(self) {
                 keepme1(a);
             };
             r.canResearch = function (a) {
-                return GDT.getDataStore("UL-Research").data[r.id].complete !== true && keepme2(a);
+            	var complete = true;
+            	try {
+            		if(GDT.getDataStore("UL-Research").data[r.id].complete === true){
+            			complete = false;
+            		}
+
+            	} catch (e) {
+            		GDT.getDataStore("UL-Research").data[r.id].complete = false;
+            	}
+
+            	return  complete && keepme2(a);
             };
         }
 
